@@ -12,7 +12,7 @@ Tous ces aspects contribuent à faire de `OCaml` l'un des langages les plus sûr
 - `Facebook` (Hack, Flow), `Messenger` et `What's app` : utilisent `OCaml` pour faire fonctionner leurs services en raison de sa rapidité et du faible taux de bugs
 - Vérificateurs de programmes : analyseur statique `ASTREE` qui a vérifié les programmes de bord de l'Airbus A340
 - Logiciels du monde de la finance : sociétés `Jane Street` et `LexiFi`
-- Assistant de preuve mathématique `Coq` : première preuve entièrement formalisée du **théorème des 4 couleurs** !
+- Assistant de preuve mathématique `Coq` : première preuve entièrement formalisée du [théorème des 4 couleurs](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_quatre_couleurs) !
 - FFTW : calcul rapide de transformée de Fourier discrètes
 - Unison :  synchroniseur de fichiers sûr et multi-plateformes
 
