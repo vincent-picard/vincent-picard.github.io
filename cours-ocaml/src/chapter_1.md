@@ -16,3 +16,7 @@ Tous ces aspects contribuent à faire de `OCaml` l'un des langages les plus sûr
 - FFTW : calcul rapide de transformée de Fourier discrètes
 - Unison :  synchroniseur de fichiers sûr et multi-plateformes
 
+
+```
+let x = 2 in if x > 3 then 2 else 7;;
+``` 
