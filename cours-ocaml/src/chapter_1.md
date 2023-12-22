@@ -1,6 +1,6 @@
 # Introduction
 
-Ce livre a pour but de vous familiariser rapidement et efficacement au langage de programmation `OCaml` et plus généralement à la programmation **fonctionnelle**. Nous traiteront uniquement les aspects de `OCaml` qui sont au programme d'informatique de la MP2I/MPI.
+Ce livre a pour but de vous familiariser rapidement et efficacement au langage de programmation `OCaml` et plus généralement à la programmation **fonctionnelle**. Nous traiterons uniquement les aspects de `OCaml` qui sont au programme d'informatique de la MP2I/MPI.
 
 `OCaml` est un langage à la philosophie plutôt opposée à celle du langage `C` :
 - `OCaml` est un langage principalement **fonctionnel** : on programme *mathématiquement* en exprimant ce que le programme est censé faire contrairement au langage `C` dans lequel on programme **impérativement** en donnant une suite d'ordres à la machine.
