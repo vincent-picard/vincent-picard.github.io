@@ -17,6 +17,6 @@ Tous ces aspects contribuent à faire de `OCaml` l'un des langages les plus sûr
 - Unison :  synchroniseur de fichiers sûr et multi-plateformes
 
 
-```
+```ocaml
 let x = 2 in if x > 3 then 2 else 7;;
 ``` 
