@@ -1,0 +1,6 @@
+[book]
+authors = ["Vincent Picard"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Cours de OCaml"
