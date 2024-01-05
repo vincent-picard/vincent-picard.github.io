@@ -16,7 +16,5 @@ Tous ces aspects contribuent à faire de `OCaml` l'un des langages les plus sûr
 - FFTW : calcul rapide de transformée de Fourier discrètes
 - Unison :  synchroniseur de fichiers sûr et multi-plateformes
 
+Enfin, je suis convaincu que `OCaml` vous sera d'une grande aide pour apprendre plus tard d'autres langages tels que `Rust` qui font intervenir des concepts empruntés à la programmation fonctionnelle.
 
-```ocaml
-let x = 2 in if x > 3 then 2 else 7;;
-``` 
