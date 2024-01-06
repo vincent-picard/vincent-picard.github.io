@@ -1,14 +1,16 @@
-# Environnement
+# Définitions globales
 
 En plus des valeurs *littérales* telles que `4242`, un expression peut faire intervenir des valeurs possédant un *nom* comme par exemple `2 * x + 5` ou `largeur * longueur`.
 
-Bien évidemment, si on demande à OCaml d'évaluer une telle expression, on obtient une erreur :
+Bien évidemment, si on demande à OCaml d'évaluer tout de suite une telle expression, on obtient une erreur :
 ```
 # 2 * x + 5;;
 Error: Unbound value x
 ```
 
-qui signifie que la valeur de nom `x` n'est pas liée dans l'environnement, autrement dit, `OCaml` ne connaît pas la valeur de `x`. L'environnement est le contexte d'évaluation des expressions qui associe à chaque *nom* sa valeur littérale. Pour pouvoir évaluer cette expression, il faut d'abord définir sa valeur dans l'envionnement à l'aide du mot clé `let` :
+qui signifie que le nom `x` n'est lié à aucune valeur dans l'environnement, autrement dit, `OCaml` ne connaît pas la valeur de `x`. 
+
+L'**environnement** est le contexte d'évaluation des expressions qui associe à chaque *nom* sa valeur littérale. Pour pouvoir évaluer cette expression, il faut d'abord définir sa valeur dans l'environnement à l'aide du mot clé `let` :
 ```ocaml
 let x = 3;;
 ```
@@ -16,7 +18,7 @@ l'interprète OCaml répond alors :
 ```
 val x : int = 3
 ```
-signfiant que l'expression a été évaluée à `3`, est de type `int` et que cette valeur a été ajoutée à l'énvironnement sous le nom `x`.
+signfiant que l'expression est de type `int`, son évaluation donne la valeur `3` qui est ajoutée à l'énvironnement sous le nom `x`.
 
 Il est maintenant possible d'évaluer l'expression précédente :
 ```
@@ -24,30 +26,51 @@ Il est maintenant possible d'évaluer l'expression précédente :
 - : int = 11
 ```
 
-## Définitions globales
+## Syntaxe
 
 Plus généralement, la syntaxe d'une **définition globale** est 
 ```ocaml
 let nom = expression;;
 ```
-où le résultat de l'évaluation de l'expression sera lié dans la suite du programme à l'environnement global sous le nom `nom`.
-
+où le résultat de l'évaluation de l'expression sera lié dans la suite du programme à l'environnement global sous le nom `nom`. Par exemple :
+```ocaml
+let longueur = 5;;
+let largeur = 12;;
+let perimetre = (longueur + largeur) * 2;;
+let aire = longueur * largeur;;
+```
 La syntaxe OCaml spécifie qu'un *nom* de valeur doit commencer par une lettre minuscule ou `_`, et ne contenir que des lettres, des chiffres et des caractères `_`. Typiquement, un nom de variable s'écrit donc avec la convention *snake case* par exemple :  `nom_de_valeur`.
 
+## La pile d'environnement
+
+Il est utile de voir l'environnemement comme une **pile d'associations**.
+L'exécution de plusieurs `let` comme dans le programme précédent, empile une à une les définitions globales ainsi :
+
+| Environnement |
+|---------------|
+| aire = 60 |
+| perimetre = 34 |
+| largeur = 12 |
+| longueur = 5 |
+
+Dans cet environnement si on exécute le programme suivant :
+```ocaml
+let largeur = 42
+```
+On obtiendra le nouvel environnement :
+
+| Environnement |
+|---------------|
+| largeur = 42 |
+| aire = 60 |
+| perimetre = 34 |
+| largeur = 12 |
+| longueur = 5 |
+
+Notez bien que la valeur de `largeur` n'a pas été modifiée ! Autrement dit `let` ne sert pas à faire une affectation. Le résultat est qu'une deuxième valeur `largeur` existe et qu'elle **masque** la valeur de même nom située plus bas qu'elle dans la pile. Ainsi, `largeur` vaudra bien `42` dans la suite du programme.
+
+Remarquez aussi que cela ne modifie en aucun cas les autres valeurs telles que `perimetre` ou `aire`.
+
 ## Il n'y a pas de variables en OCaml
- 
-Vous remarquerez, que je n'ai pas utilisé le terme de **variable** pour la simple et bonne raison qu'il n'existe pas de variables dans le langage `OCaml`. Il n'existe donc pas non plus d'affectation. L'expression
-```ocaml
-x = 7;;
-```
-n'affecte pas 7 à la variable `x` mais constitue un test d'égalité : c'est une expression de type `bool` dont la valeur (pour notre environnement) sera `false`.
 
-Ainsi, en OCaml, une valeur nommée ne change jamais de valeur. Il n'y a donc pas de mot clé **const** comme en C. On pourrait toutefois écrire :
-```ocaml
-let x = 2;;
-let x = 12;;
-```
-à l'issu de ces deux lignes, `x` vaut effectivement 12 mais en réalité on a créé un deuxième nom `x` qui **masque** la valeur `x` précédente.
-
-L'absence de variables est une permière difficulté pour celles et ceux qui ont commencé par programmer avec un langage impératif comme le C mais elle est importante à comprendre.
-
+Une conclusion importante à comprendre dans cette section est que les concepts de **variable** et d'**affectation** n'existent pas en `OCaml`. Le but d'un programme `OCaml` est d'évaluer une suite d'expressions et on peut, si on le souhaite, donner des noms aux valeurs obtenues avec `let`. Ces noms seront empilés dans l'environnement pour pouvoir être utilisés dans les expressions suivantes.

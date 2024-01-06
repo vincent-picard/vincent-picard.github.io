@@ -1,8 +1,10 @@
 # Définitions locales
 
-Lorsqu'on donne un nom à une valeur, celle-ci est en général utilisée dans une petite partie de code et non pas dans le programme en entier. L'utilisation de **définitions locales** permet d'éviter de surcharger l'environnement global. De plus, on évite aussi de masquer involontairement une valeur globale qui pourrait être utilisée dans la suite du programme. C'est donc une bonne pratique de programmation d'utiliser des **définitions locales** dès que cela s'avère possible.
+Lorsqu'on donne un nom à une valeur, celle-ci est en général utilisée dans une petite partie de code et non pas dans le programme en entier. De manière générale lorqu'on programme, on se concentre sur une très petite portion de code et on ignore quels noms de valeurs ont été ou seront utilisés ailleurs dans le programme.
 
-Pour définir une valeur localement on utilise les mots clefs **let** et **in$$ ainsi :
+ L'utilisation de **définitions locales** permet d'éviter de surcharger l'environnement global. De plus, on évite aussi de masquer involontairement une valeur globale ou d'utiliser un nom qui pourrait être masqué par une autre définition globale. C'est donc une bonne pratique de programmation d'utiliser des **définitions locales** dès que cela s'avère possible.
+
+Pour définir une valeur localement on utilise les mots clefs **let** et **in** ainsi :
 ```ocaml
 let x = 5 in 2 * x + 1;;
 ```
@@ -15,7 +17,7 @@ A première vue, tout semble se passer comme pour une définition globale mais c
 let x = 4 in 2 * x + 1;;
 x * x + 2;;
 ```
-produira l'erreur `unbound value x` à la deuxième ligne car `x` a été uniquement défini **localement** à l'expression `2 * x + 1`.
+produira l'erreur `Unbound value x` à la deuxième ligne car `x` a été uniquement défini **localement** à l'expression `2 * x + 1`.
 
 Il est également possible de définir plusieurs valeurs locales en enchaînant les **let .. in** :
 
@@ -25,60 +27,61 @@ let largeur = 5 in
 longueur * largeur;;
 ```
 
-## L'environnement vu comme une pile
+## Pile d'environnement : empilements et dépilements
 
-Pour bien comprendre les définitions globales et locales il est utile de voir l'environnement comme une **pile** d'associations nom-valeur. Chaque définition globale ajoute une association dans la pile d'environnement. Il en est de même pour définitions locales avec la différence que l'association d'une variable locale est **dépilée** lorsqu'on quitte l'expression où elle a été localement définie.
+Pour bien comprendre le `let ... in` revenons à la représentation sous forme de pile de l'environnement. Lorsqu'on utilise `let x = expr1 in expr2` la valeur de `expr1` sera temporairement liée au nom `x` lors de l'évaluation de `expr2`. Concrètement, cela signifie qu'on **empilera** la valeur `x` dans l'environnement avant d'évaluer `expr2`, puis immédiatement, cette valeur sera **dépilée** de l'environnement.
+
+Etudions cela sur un exemple :
+```ocaml
+let a = 5;;
+let b = 3 + 4;;
+let a = 17 in a + b;;
+a * b;;
+```
+
+Après l'évaluation des deux premières expressions, la pile d'environnement vaut :
+
+| Environnement |
+|---------------|
+| b = 7 |
+| a = 5 |
+
+Ensuite, l'évaluation de la troisième expression se fait dans un environnement où `a = 17` a été temporairement empilée :
+
+| Environnement |
+|---------------|
+| a = 17 |
+| b = 7 |
+| a = 5 |
+
+C'est pourquoi le résultat de l'évaluation de la 3e expression donnera 24. La valeur précédente de `a` est temporairement **masquée**.
+
+Puis, l'association `a = 17` est dépilée pour l'évaluation de la dernière expression et `a` *retrouve* sa valeur prédente. Le résultat sera donc 35.
 
 ## let ... in est une expression
 
-En plus des valeurs *littérales* telles que `4242`, un expression peut faire intervenir des valeurs possédant un *nom* comme par exemple `2 * x + 5` ou `largeur * longueur`.
+Il existe une dernière différence importante entre le `let` et le `let .. in` : le `let .. in` est une **expression**, ce qui signifie :
+- qu'elle possède un type
+- qu'elle possède une valeur
+- qu'elle peut être utilisée au sein d'une autre expression
 
-Bien évidemment, si on demande à OCaml d'évaluer une telle expression, on obtient une erreur :
-```
-# 2 * x + 5;;
-Error: Unbound value x
-```
-
-qui signifie que la valeur de nom `x` n'est pas liée dans l'environnement, autrement dit, `OCaml` ne connaît pas la valeur de `x`. L'environnement est le contexte d'évaluation des expressions qui associe à chaque *nom* sa valeur littérale. Pour pouvoir évaluer cette expression, il faut d'abord définir sa valeur dans l'envionnement à l'aide du mot clé `let` :
+Par exemple, imagions qu'un gateau coûte habituellement 18 euros, et qu'une promotion exceptionnelle réduise le prix de 5 euros, alors on peut calculer le prix de l'achat de 15 gateâux par :
 ```ocaml
-let x = 3;;
+15 * (let prix_base = 18 in prix_base - 5)
 ```
-l'interprète OCaml répond alors :
-```
-val x : int = 3
-```
-signfiant que l'expression a été évaluée à `3`, est de type `int` et que cette valeur a été ajoutée à l'énvironnement sous le nom `x`.
+L'expression entre parenthèses est une expression `let ... in` de type entier et de valeur 13. 
 
-Il est maintenant possible d'évaluer l'expression précédente :
-```
-# 2 * x + 5;;
-- : int = 11
-```
-
-## Définitions globales
-
-Plus généralement, la syntaxe d'une **définition globale** est 
+C'est aussi pour cette raison qu'il est possible d'utiliser consécutivement plusieurs `let ... in` :
 ```ocaml
-let nom = expression;;
+let longueur = 3 in
+let largeur = 5 in
+longueur * largeur;;
 ```
-où le résultat de l'évaluation de l'expression sera lié dans la suite du programme à l'environnement global sous le nom `nom`.
+Ici, `longueur` est en fait définie localement dans l'expression `let largeur in longueur * largeur`.
 
-La syntaxe OCaml spécifie qu'un *nom* de valeur doit commencer par une lettre minuscule ou `_`, et ne contenir que des lettres, des chiffres et des caractères `_`. Typiquement, un nom de variable s'écrit donc avec la convention *snake case* par exemple :  `nom_de_valeur`.
+## `let` ou `let ... in` ?
 
-## Il n'y a pas de variables en OCaml
- 
-Vous remarquerez, que je n'ai pas utilisé le terme de **variable** pour la simple et bonne raison qu'il n'existe pas de variables dans le langage `OCaml`. Il n'existe donc pas non plus d'affectation. L'expression
-```ocaml
-x = 7;;
-```
-n'affecte pas 7 à la variable `x` mais constitue un test d'égalité : c'est une expression de type `bool` dont la valeur (pour notre environnement) sera `false`.
+Comment choisir s'il faut définir une valeur localement ou globalement ?
+La réponse est simple : si la valeur définie est destinée à être utilisée dans l'ensemble du programme, par exemple s'il s'agit d'une définition de fonction, alors la définition devra être globale.
 
-Ainsi, en OCaml, une valeur nommée ne change jamais de valeur. Il n'y a donc pas de mot clé **const** comme en C. On pourrait toutefois écrire :
-```ocaml
-let x = 2;;
-let x = 12;;
-```
-à l'issu de ces deux lignes, `x` vaut effectivement 12 mais en réalité on a créé un deuxième nom `x` qui **masque** la valeur `x` précédente.
-
-L'absence de variables est une permière difficulté pour celles et ceux qui ont commencé par programmer avec un langage impératif comme le C mais elle est importante à comprendre.
-
+Dans tous les autres cas, on préférera une définition locale. En particulier, les définitions de valeurs internes à une fonction seront toujours locales.
