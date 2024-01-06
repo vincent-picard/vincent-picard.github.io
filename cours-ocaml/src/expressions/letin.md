@@ -1,4 +1,35 @@
-# Environnement
+# Définitions locales
+
+Lorsqu'on donne un nom à une valeur, celle-ci est en général utilisée dans une petite partie de code et non pas dans le programme en entier. L'utilisation de **définitions locales** permet d'éviter de surcharger l'environnement global. De plus, on évite aussi de masquer involontairement une valeur globale qui pourrait être utilisée dans la suite du programme. C'est donc une bonne pratique de programmation d'utiliser des **définitions locales** dès que cela s'avère possible.
+
+Pour définir une valeur localement on utilise les mots clefs **let** et **in$$ ainsi :
+```ocaml
+let x = 5 in 2 * x + 1;;
+```
+l'interprète répond alors :
+```
+- : int = 11
+```
+A première vue, tout semble se passer comme pour une définition globale mais ce n'est pas le cas :
+```ocaml
+let x = 4 in 2 * x + 1;;
+x * x + 2;;
+```
+produira l'erreur `unbound value x` à la deuxième ligne car `x` a été uniquement défini **localement** à l'expression `2 * x + 1`.
+
+Il est également possible de définir plusieurs valeurs locales en enchaînant les **let .. in** :
+
+```ocaml
+let longueur = 3 in
+let largeur = 5 in
+longueur * largeur;;
+```
+
+## L'environnement vu comme une pile
+
+Pour bien comprendre les définitions globales et locales il est utile de voir l'environnement comme une **pile** d'associations nom-valeur. Chaque définition globale ajoute une association dans la pile d'environnement. Il en est de même pour définitions locales avec la différence que l'association d'une variable locale est **dépilée** lorsqu'on quitte l'expression où elle a été localement définie.
+
+## let ... in est une expression
 
 En plus des valeurs *littérales* telles que `4242`, un expression peut faire intervenir des valeurs possédant un *nom* comme par exemple `2 * x + 5` ou `largeur * longueur`.
 
