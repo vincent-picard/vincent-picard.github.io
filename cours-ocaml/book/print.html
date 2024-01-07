@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="fr" class="light" dir="ltr">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -89,9 +89,11 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="expressions.html"><strong aria-hidden="true">1.</strong> Expressions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="expressions/environnements.html"><strong aria-hidden="true">1.1.</strong> Définitions globales</a></li><li class="chapter-item expanded "><a href="expressions/letin.html"><strong aria-hidden="true">1.2.</strong> Définitions locales</a></li><li class="chapter-item expanded "><a href="expressions/fonctions.html"><strong aria-hidden="true">1.3.</strong> Fonctions</a></li><li class="chapter-item expanded "><a href="expressions/if.html"><strong aria-hidden="true">1.4.</strong> Expressions conditionnelles</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">2.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="types/scalaires.html"><strong aria-hidden="true">2.1.</strong> Types scalaires</a></li><li class="chapter-item expanded "><a href="types/tuples.html"><strong aria-hidden="true">2.2.</strong> Les tuples</a></li><li class="chapter-item expanded "><a href="types/record.html"><strong aria-hidden="true">2.3.</strong> Les types enregistrement</a></li><li class="chapter-item expanded "><a href="types/enum.html"><strong aria-hidden="true">2.4.</strong> Les types somme</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -190,8 +192,276 @@
 <li>FFTW : calcul rapide de transformée de Fourier discrètes</li>
 <li>Unison :  synchroniseur de fichiers sûr et multi-plateformes</li>
 </ul>
-<pre><code class="language-ocaml">let x = 2 in if x &gt; 3 then 2 else 7;;
+<p>Enfin, je suis convaincu que <code>OCaml</code> vous sera d'une grande aide pour apprendre plus tard d'autres langages tels que <code>Rust</code> qui font intervenir des concepts empruntés à la programmation fonctionnelle.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="expressions"><a class="header" href="#expressions">Expressions</a></h1>
+<h2 id="expressions-types-valeurs"><a class="header" href="#expressions-types-valeurs">Expressions, types, valeurs</a></h2>
+<p>Une <strong>expression</strong> est un texte qui décrit un <em>calcul</em> à effectuer. Par exemple <code>(2 + 5) * 3</code> est une expression.
+Chaque expression possède une <strong>valeur</strong> qui est le résultat du calcul représenté et un <strong>type</strong> qui est le type
+de données du résultat. Ainsi <code>(2 + 5) * 3</code> est une expression dont la valeur est <code>21</code> et le type est <code>int</code> (entier).
+L'opération qui consiste à déterminer la valeur d'une expression s'appelle l'<strong>évaluation</strong>.</p>
+<p>Pour demander à <code>OCaml</code> d'évaluer une expression, on l'écrit et on la fait suivre du <em>terminateur d'expression</em> <code>;;</code></p>
+<pre><code class="language-ocaml">(2 + 5) * 3;;
 </code></pre>
+<p>Si on travaille avec l'interprète <code>OCaml</code>, ce que je conseille pour débuter, on obtiendra la réponse suivante :</p>
+<pre><code>- : int = 21
+</code></pre>
+<p>signifiant que l'expression a été détectée du type entier <code>int</code> et que sa valeur est <code>21</code>.</p>
+<p>Basiquement, un programme <code>OCaml</code> a la forme suivante :</p>
+<pre><code class="language-ocaml">expression1;;
+expression2;;
+expression3;;
+...
+</code></pre>
+<p>Lorsqu'un programme <code>OCaml</code> est exécuté, l'ensemble des expressions sont évaluées dans l'ordre.
+Il n'y a donc pas de fonction <code>main</code> dans un programme <code>OCaml</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="définitions-globales"><a class="header" href="#définitions-globales">Définitions globales</a></h1>
+<p>En plus des valeurs <em>littérales</em> telles que <code>4242</code>, un expression peut faire intervenir des valeurs possédant un <em>nom</em> comme par exemple <code>2 * x + 5</code> ou <code>largeur * longueur</code>.</p>
+<p>Bien évidemment, si on demande à OCaml d'évaluer tout de suite une telle expression, on obtient une erreur :</p>
+<pre><code># 2 * x + 5;;
+Error: Unbound value x
+</code></pre>
+<p>qui signifie que le nom <code>x</code> n'est lié à aucune valeur dans l'environnement, autrement dit, <code>OCaml</code> ne connaît pas la valeur de <code>x</code>. </p>
+<p>L'<strong>environnement</strong> est le contexte d'évaluation des expressions qui associe à chaque <em>nom</em> sa valeur littérale. Pour pouvoir évaluer cette expression, il faut d'abord définir sa valeur dans l'environnement à l'aide du mot clé <code>let</code> :</p>
+<pre><code class="language-ocaml">let x = 3;;
+</code></pre>
+<p>l'interprète OCaml répond alors :</p>
+<pre><code>val x : int = 3
+</code></pre>
+<p>signfiant que l'expression est de type <code>int</code>, son évaluation donne la valeur <code>3</code> qui est ajoutée à l'énvironnement sous le nom <code>x</code>.</p>
+<p>Il est maintenant possible d'évaluer l'expression précédente :</p>
+<pre><code># 2 * x + 5;;
+- : int = 11
+</code></pre>
+<h2 id="syntaxe"><a class="header" href="#syntaxe">Syntaxe</a></h2>
+<p>Plus généralement, la syntaxe d'une <strong>définition globale</strong> est </p>
+<pre><code class="language-ocaml">let nom = expression;;
+</code></pre>
+<p>où le résultat de l'évaluation de l'expression sera lié dans la suite du programme à l'environnement global sous le nom <code>nom</code>. Par exemple :</p>
+<pre><code class="language-ocaml">let longueur = 5;;
+let largeur = 12;;
+let perimetre = (longueur + largeur) * 2;;
+let aire = longueur * largeur;;
+</code></pre>
+<p>La syntaxe OCaml spécifie qu'un <em>nom</em> de valeur doit commencer par une lettre minuscule ou <code>_</code>, et ne contenir que des lettres, des chiffres et des caractères <code>_</code>. Typiquement, un nom de variable s'écrit donc avec la convention <em>snake case</em> par exemple :  <code>nom_de_valeur</code>.</p>
+<h2 id="la-pile-denvironnement"><a class="header" href="#la-pile-denvironnement">La pile d'environnement</a></h2>
+<p>Il est utile de voir l'environnemement comme une <strong>pile d'associations</strong>.
+L'exécution de plusieurs <code>let</code> comme dans le programme précédent, empile une à une les définitions globales ainsi :</p>
+<div class="table-wrapper"><table><thead><tr><th>Environnement</th></tr></thead><tbody>
+<tr><td>aire = 60</td></tr>
+<tr><td>perimetre = 34</td></tr>
+<tr><td>largeur = 12</td></tr>
+<tr><td>longueur = 5</td></tr>
+</tbody></table>
+</div>
+<p>Dans cet environnement si on exécute le programme suivant :</p>
+<pre><code class="language-ocaml">let largeur = 42
+</code></pre>
+<p>On obtiendra le nouvel environnement :</p>
+<div class="table-wrapper"><table><thead><tr><th>Environnement</th></tr></thead><tbody>
+<tr><td>largeur = 42</td></tr>
+<tr><td>aire = 60</td></tr>
+<tr><td>perimetre = 34</td></tr>
+<tr><td>largeur = 12</td></tr>
+<tr><td>longueur = 5</td></tr>
+</tbody></table>
+</div>
+<p>Notez bien que la valeur de <code>largeur</code> n'a pas été modifiée ! Autrement dit <code>let</code> ne sert pas à faire une affectation. Le résultat est qu'une deuxième valeur <code>largeur</code> existe et qu'elle <strong>masque</strong> la valeur de même nom située plus bas qu'elle dans la pile. Ainsi, <code>largeur</code> vaudra bien <code>42</code> dans la suite du programme.</p>
+<p>Remarquez aussi que cela ne modifie en aucun cas les autres valeurs telles que <code>perimetre</code> ou <code>aire</code>.</p>
+<h2 id="il-ny-a-pas-de-variables-en-ocaml"><a class="header" href="#il-ny-a-pas-de-variables-en-ocaml">Il n'y a pas de variables en OCaml</a></h2>
+<p>Une conclusion importante à comprendre dans cette section est que les concepts de <strong>variable</strong> et d'<strong>affectation</strong> n'existent pas en <code>OCaml</code>. Le but d'un programme <code>OCaml</code> est d'évaluer une suite d'expressions et on peut, si on le souhaite, donner des noms aux valeurs obtenues avec <code>let</code>. Ces noms seront empilés dans l'environnement pour pouvoir être utilisés dans les expressions suivantes.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="définitions-locales"><a class="header" href="#définitions-locales">Définitions locales</a></h1>
+<p>Lorsqu'on donne un nom à une valeur, celle-ci est en général utilisée dans une petite partie de code et non pas dans le programme en entier. De manière générale lorqu'on programme, on se concentre sur une très petite portion de code et on ignore quels noms de valeurs ont été ou seront utilisés ailleurs dans le programme.</p>
+<p>L'utilisation de <strong>définitions locales</strong> permet d'éviter de surcharger l'environnement global. De plus, on évite aussi de masquer involontairement une valeur globale ou d'utiliser un nom qui pourrait être masqué par une autre définition globale. C'est donc une bonne pratique de programmation d'utiliser des <strong>définitions locales</strong> dès que cela s'avère possible.</p>
+<p>Pour définir une valeur localement on utilise les mots clefs <strong>let</strong> et <strong>in</strong> ainsi :</p>
+<pre><code class="language-ocaml">let x = 5 in 2 * x + 1;;
+</code></pre>
+<p>l'interprète répond alors :</p>
+<pre><code>- : int = 11
+</code></pre>
+<p>A première vue, tout semble se passer comme pour une définition globale mais ce n'est pas le cas :</p>
+<pre><code class="language-ocaml">let x = 4 in 2 * x + 1;;
+x * x + 2;;
+</code></pre>
+<p>produira l'erreur <code>Unbound value x</code> à la deuxième ligne car <code>x</code> a été uniquement défini <strong>localement</strong> à l'expression <code>2 * x + 1</code>.</p>
+<p>Il est également possible de définir plusieurs valeurs locales en enchaînant les <strong>let .. in</strong> :</p>
+<pre><code class="language-ocaml">let longueur = 3 in
+let largeur = 5 in
+longueur * largeur;;
+</code></pre>
+<h2 id="pile-denvironnement--empilements-et-dépilements"><a class="header" href="#pile-denvironnement--empilements-et-dépilements">Pile d'environnement : empilements et dépilements</a></h2>
+<p>Pour bien comprendre le <code>let ... in</code> revenons à la représentation sous forme de pile de l'environnement. Lorsqu'on utilise <code>let x = expr1 in expr2</code> la valeur de <code>expr1</code> sera temporairement liée au nom <code>x</code> lors de l'évaluation de <code>expr2</code>. Concrètement, cela signifie qu'on <strong>empilera</strong> la valeur <code>x</code> dans l'environnement avant d'évaluer <code>expr2</code>, puis immédiatement, cette valeur sera <strong>dépilée</strong> de l'environnement.</p>
+<p>Etudions cela sur un exemple :</p>
+<pre><code class="language-ocaml">let a = 5;;
+let b = 3 + 4;;
+let a = 17 in a + b;;
+a * b;;
+</code></pre>
+<p>Après l'évaluation des deux premières expressions, la pile d'environnement vaut :</p>
+<div class="table-wrapper"><table><thead><tr><th>Environnement</th></tr></thead><tbody>
+<tr><td>b = 7</td></tr>
+<tr><td>a = 5</td></tr>
+</tbody></table>
+</div>
+<p>Ensuite, l'évaluation de la troisième expression se fait dans un environnement où <code>a = 17</code> a été temporairement empilée :</p>
+<div class="table-wrapper"><table><thead><tr><th>Environnement</th></tr></thead><tbody>
+<tr><td>a = 17</td></tr>
+<tr><td>b = 7</td></tr>
+<tr><td>a = 5</td></tr>
+</tbody></table>
+</div>
+<p>C'est pourquoi le résultat de l'évaluation de la 3e expression donnera 24. La valeur précédente de <code>a</code> est temporairement <strong>masquée</strong>.</p>
+<p>Puis, l'association <code>a = 17</code> est dépilée pour l'évaluation de la dernière expression et <code>a</code> <em>retrouve</em> sa valeur prédente. Le résultat sera donc 35.</p>
+<h2 id="let--in-est-une-expression"><a class="header" href="#let--in-est-une-expression">let ... in est une expression</a></h2>
+<p>Il existe une dernière différence importante entre le <code>let</code> et le <code>let .. in</code> : le <code>let .. in</code> est une <strong>expression</strong>, ce qui signifie :</p>
+<ul>
+<li>qu'elle possède un type</li>
+<li>qu'elle possède une valeur</li>
+<li>qu'elle peut être utilisée au sein d'une autre expression</li>
+</ul>
+<p>Par exemple, imagions qu'un gateau coûte habituellement 18 euros, et qu'une promotion exceptionnelle réduise le prix de 5 euros, alors on peut calculer le prix de l'achat de 15 gateâux par :</p>
+<pre><code class="language-ocaml">15 * (let prix_base = 18 in prix_base - 5)
+</code></pre>
+<p>L'expression entre parenthèses est une expression <code>let ... in</code> de type entier et de valeur 13. </p>
+<p>C'est aussi pour cette raison qu'il est possible d'utiliser consécutivement plusieurs <code>let ... in</code> :</p>
+<pre><code class="language-ocaml">let longueur = 3 in
+let largeur = 5 in
+longueur * largeur;;
+</code></pre>
+<p>Ici, <code>longueur</code> est en fait définie localement dans l'expression <code>let largeur in longueur * largeur</code>.</p>
+<h2 id="let-ou-let--in-"><a class="header" href="#let-ou-let--in-"><code>let</code> ou <code>let ... in</code> ?</a></h2>
+<p>Comment choisir s'il faut définir une valeur localement ou globalement ?
+La réponse est simple : si la valeur définie est destinée à être utilisée dans l'ensemble du programme, par exemple s'il s'agit d'une définition de fonction, alors la définition devra être globale.</p>
+<p>Dans tous les autres cas, on préférera une définition locale. En particulier, les définitions de valeurs internes à une fonction seront toujours locales.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fonctions"><a class="header" href="#fonctions">Fonctions</a></h1>
+<p>Comme dans la plupart des langages de programmation, <code>OCaml</code> permet d'écrire des fonctions, c'est-à-dire un sous-programme dont le résultat dépend de valeurs passées en <strong>paramètres</strong>.</p>
+<p>Dans cette section, vous apprendrez à utiliser puis définir vos propres fonctions.</p>
+<h2 id="appel-dune-fonction"><a class="header" href="#appel-dune-fonction">Appel d'une fonction</a></h2>
+<p>En <code>OCaml</code> l'appel d'une fonction <code>f</code> s'écrit <code>f arg1 arg2 ... argn</code>, avec des espaces séparant les paramètres, contrairement à la notation plus classique <code>f(arg1, ..., argn)</code>. Il y a une bonne raison à cela qu'on expliquera plus tard.</p>
+<p>Regardons par exemple l'utilisation de la fonction racine carrée <code>sqrt</code>:</p>
+<pre><code class="language-ocaml">let x = sqrt 16.0;;
+</code></pre>
+<p>l'interprète répond</p>
+<pre><code>val x : float = 4.0
+</code></pre>
+<p>L'appel d'une fonction constitue une expression donc on peut évidemment l'utiliser au sein d'une autre expression :</p>
+<pre><code class="language-ocaml">let y = sqrt 25.0 -. sqrt 9.0;;
+</code></pre>
+<p>Ici, nous avons écrit 2 appels à la fonction <code>sqrt</code> puis on a calculé la différence des deux résultats flottants à l'aide de l'opérateur <code>-.</code> qui calcule la soustraction de deux flottants.</p>
+<p>Attention toutefois à bien utiliser des parenthèses lorsqu'un argument est lui-même donné sous forme d'expression :</p>
+<pre><code class="language-ocaml">let hyp = sqrt (25.0 -. 16.0);;
+</code></pre>
+<p>Si on avait écrit <code>sqrt 25.0 -. 16.0</code> on aurait obtenu la valeur <code>-11.0</code> car la racine ne s'applique qu'au <code>25.0</code>.</p>
+<h2 id="les-fonctions-sont-des-citoyens-de-première-classe"><a class="header" href="#les-fonctions-sont-des-citoyens-de-première-classe">Les fonctions sont des citoyens de première classe</a></h2>
+<p>Dans les langages fonctionnels, les fonctions sont des valeurs au même titre que les entiers, les flottants, les caractères, <em>etc</em>. Regardons ce qui se passe lorsqu'on évalue simplement <code>sqrt</code>.</p>
+<pre><code># sqrt;;
+- : float -&gt; float = &lt;fun&gt;
+</code></pre>
+<p>On découvre que le type de <code>sqrt</code> est <code>float -&gt; float</code> ce qui signifie que cette valeur est une fonction prenant en entré un paramètre de type flottant et retournant en sortie une valeur de type flottant. Comme la <em>valeur</em> d'une fonction ne peut être affichée simplement sur le terminal, <code>OCaml</code> dit que la valeur est <code>&lt;fun&gt;</code> signifiant que c'est une fonction.</p>
+<p>Que se passe-t-il alors si on évalue <code>sqrt 16</code> ?</p>
+<pre><code># sqrt 16;;
+Error: This expression has type int but an expression was expected of type
+         float
+  Hint: Did you mean `16.'?
+</code></pre>
+<p><code>OCaml</code> étant un langage fortement typé, il déclenche une erreur car <code>sqrt</code> attend une valeur de type <code>float</code> en entrée et qu'une valeur de type <code>int</code> a été incorrectement utilisée.</p>
+<p>Cela peut paraître contraignant au premier abord mais le typage fort permet d'éliminer un grand nombre de bugs dès la compilation. On peut retenir les deux points suivants sur le système de typage de <code>OCaml</code>:</p>
+<ul>
+<li><code>OCaml</code> n'effectuera jamais de conversion de type implicite à votre place</li>
+<li>Chaque fonction a une signature unique qui doit être respectée à chaque appel : il n'y a pas de surcharges de fonctions en <code>OCaml</code></li>
+</ul>
+<p>Cela explique aussi pourquoi nous avons utilisé l'opérateur <code>-.</code> pour soustraire les deux flottants et non pas l'opérateur <code>-</code> qui soustrait deux entiers.</p>
+<h2 id="définition-dune-fonction"><a class="header" href="#définition-dune-fonction">Définition d'une fonction</a></h2>
+<p>Pour définir une fonction, on utilise aussi le mot clef <code>let</code> comme pour toute autre valeur :</p>
+<pre><code class="language-ocaml">let f arg1 arg2 arg3 ... argn =
+    expr
+;;
+</code></pre>
+<p>Ici <code>expr</code> est le résultat de l'appel de la fonction, cette expression peut (et devrait) utiliser les valeurs des paramètres. Il n'y a pas de mot clé <code>return</code> en <code>OCaml</code>.</p>
+<p>Par exemple,</p>
+<pre><code class="language-ocaml">let decupler n =
+    10 * n
+;;
+</code></pre>
+<p>produit la réponse :</p>
+<pre><code>val decupler : int -&gt; int = &lt;fun&gt;
+</code></pre>
+<p>Regardons ce qui se passe lorsqu'on définit une fonction à deux paramètres :</p>
+<pre><code># let aire_rectangle longueur largeur =
+    longueur * largeur
+;;
+val aire_rectangle : int -&gt; int -&gt; int = &lt;fun&gt;
+</code></pre>
+<p>Le type de cette fonction est <code>int -&gt; int -&gt; int</code> ce qui signifie qu'elle attend un premier paramètre de type <code>int</code>, un second de type <code>int</code> également, et que le résultat sera lui aussi de type <code>int</code>. Il n'est pas nécessaire de comprendre immédiatement pourquoi le type s'écrit ainsi, on peut se contenter de savoir lire un tel type pour le moment. (Voir Curryfication pour comprendre).</p>
+<p>Voici un exemple complet, utilisant les concepts présentés dans cette section :</p>
+<pre><code class="language-ocaml">(* Fonction appliquant une promotion a un prix *)
+let reduction prix pourcentage =
+    prix -. (prix *. pourcentage)
+;;
+
+(* Fonction calculant le prix d'un panier de pommes en promotion *)
+let prix_panier nb_pommes =
+    let prix_pomme = 2.5 in
+    let promo = 0.15 in
+    let prix_reduit = reduction prix_pomme promo in
+    (float_of_int nb_pomme) *. prix_reduit
+;;
+</code></pre>
+<p>Notez qu'il a été nécessaire d'utiliser explicitement la fonction de conversion <code>float_ot_int</code> pour convertir la valeur entière <code>nb_pommes</code> en valeur flottante.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="expressions-conditionnelles"><a class="header" href="#expressions-conditionnelles">Expressions conditionnelles</a></h1>
+<p>Une caractéristique essentielle des programmes informatiques est la possibilité d'exécuter une certain code lorsqu'une condition est vraie et un autre code lorsque cette condion est faux. En <code>OCaml</code>, cette possibilité est fournie par l'<strong>expression conditionnelle</strong> : <code>if ... then ... else ...</code>.</p>
+<h2 id="syntaxe-1"><a class="header" href="#syntaxe-1">Syntaxe</a></h2>
+<p>La syntaxe générale d'une expression conditionnelle est :</p>
+<pre><code class="language-ocaml">if test then expr_vrai else expr_faux
+</code></pre>
+<p><code>test</code> est un test, c'est-à-dire une <strong>expression booléenne</strong> dont la valeur est évaluée par le programme. Si elle est évaluée à <code>true</code> alors l'expression <code>expr_vrai</code> est évaluée et son résultat est retourné, sinon c'est le résultat de l'évaluation de <code>expr_faux</code> qui est retourné.</p>
+<p>À titre d'exemple, nous pouvons (ré)-écrire la fonction valeur absolue :</p>
+<pre><code class="language-ocaml">let abs x =
+    if x &gt; 0 then
+        x
+    else
+        -x
+;;
+</code></pre>
+<h2 id="le-if-est-une-expression"><a class="header" href="#le-if-est-une-expression">Le <code>if</code> est une expression</a></h2>
+<p>Encore une fois, <code>OCaml</code> se distingue du <code>C</code> par le fait que le <code>if</code> n'est pas une instruction mais une <strong>expression</strong> : en Caml, un <code>if</code> possède un type et une valeur.</p>
+<p>Voici un exemple faisant intervenir cette particularité. Nous allons écrire une fonction qui prend en entrée la longueur d'un côté de carré, qui diminue cette longueur de 4 et qui calcule l'aire du carré. Evidemment, si le carré a initialement un côté inférieur à 4 alors le résultat sera nul. Nous pourrions écrire :</p>
+<pre><code class="language-ocaml">let aire_reduite cote =
+    if cote &lt; 4 then
+        0
+    else
+        (cote - 4) * (cote - 4)
+;;
+</code></pre>
+<p>mais il est tout à fait possible d'écrire également</p>
+<pre><code class="language-ocaml">let aire_reduite cote =
+    let carre x = x * x in
+    carre (if cote &lt; 4 then 0 else cote)
+;;
+</code></pre>
+<p>où l'expression <code>if</code> sert à calculer la longueur du côté reduit.</p>
+<h2 id="typage-fort"><a class="header" href="#typage-fort">Typage fort</a></h2>
+<p>Comme <code>OCaml</code> est fortement typé, toute expression possède un type, et les expressions conditionnelles n'échappent pas à cette règle. Il n'est par exemple pas possible d'écrire :</p>
+<pre><code class="language-ocaml">if 72 &gt; 35 then 7 else 3.5;;
+</code></pre>
+<p>Nous obtenons la réponse suivante :</p>
+<pre><code># if 72 &gt; 35 then 7 else 3.5;;
+Error: This expression has type float but an expression was expected of type
+         int 
+</code></pre>
+<p>En effet, <code>OCaml</code> n'est pas capable de déterminer le type de cette expression conditionnelle qui pourrait être évaluée à <code>7</code> de type <code>int</code> ou <code>3.5</code> de type <code>float</code>, cela conduit à une erreur de typage. Cela arrive même lorsque le résultat du test pourrait être prédit à l'avance comme c'est le cas ici.</p>
+<p>La règle est donc la suivante : <code>expr_vrai</code> et <code>expr_faux</code> <strong>doivent être de même type</strong>.</p>
+<p>Pour la même raison, il n'est pas possible d'avoir un <code>if</code> qui ne contient pas de else :</p>
+<pre><code># if 3 &gt; 8 then 71;;
+Error: This expression has type int but an expression was expected of type
+         unit because it is in the result of a conditional with no else branch
+</code></pre>
+<p>En effet, cette expression doit nécessairement avoir une valeur en OCaml dont le <code>else</code> est nécessaire.</p>
+<p>L'interprète nous parle ici du type <code>unit</code> car cette seconde règle souffre d'une seule exception que nous verrons dans le chapitre sur la programmation impérative.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="types-scalaires"><a class="header" href="#types-scalaires">Types scalaires</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="les-tuples"><a class="header" href="#les-tuples">Les tuples</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="les-types-enregistrement"><a class="header" href="#les-types-enregistrement">Les types enregistrement</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="les-types-somme"><a class="header" href="#les-types-somme">Les types somme</a></h1>
 
                     </main>
 

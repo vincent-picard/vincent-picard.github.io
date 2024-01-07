@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - Cours de OCaml</title>
-        <base href="/">
+        <title>Expressions conditionnelles - Cours de OCaml</title>
 
 
         <!-- Custom HTML head -->
@@ -13,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -36,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -89,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="expressions.html"><strong aria-hidden="true">1.</strong> Expressions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="expressions/environnements.html"><strong aria-hidden="true">1.1.</strong> Définitions globales</a></li><li class="chapter-item expanded "><a href="expressions/letin.html"><strong aria-hidden="true">1.2.</strong> Définitions locales</a></li><li class="chapter-item expanded "><a href="expressions/fonctions.html"><strong aria-hidden="true">1.3.</strong> Fonctions</a></li><li class="chapter-item expanded "><a href="expressions/if.html"><strong aria-hidden="true">1.4.</strong> Expressions conditionnelles</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">2.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="types/scalaires.html"><strong aria-hidden="true">2.1.</strong> Types scalaires</a></li><li class="chapter-item expanded "><a href="types/tuples.html"><strong aria-hidden="true">2.2.</strong> Les tuples</a></li><li class="chapter-item expanded "><a href="types/record.html"><strong aria-hidden="true">2.3.</strong> Les types enregistrement</a></li><li class="chapter-item expanded "><a href="types/enum.html"><strong aria-hidden="true">2.4.</strong> Les types somme</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="../expressions.html"><strong aria-hidden="true">1.</strong> Expressions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../expressions/environnements.html"><strong aria-hidden="true">1.1.</strong> Définitions globales</a></li><li class="chapter-item expanded "><a href="../expressions/letin.html"><strong aria-hidden="true">1.2.</strong> Définitions locales</a></li><li class="chapter-item expanded "><a href="../expressions/fonctions.html"><strong aria-hidden="true">1.3.</strong> Fonctions</a></li><li class="chapter-item expanded "><a href="../expressions/if.html" class="active"><strong aria-hidden="true">1.4.</strong> Expressions conditionnelles</a></li></ol></li><li class="chapter-item expanded "><a href="../types.html"><strong aria-hidden="true">2.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../types/scalaires.html"><strong aria-hidden="true">2.1.</strong> Types scalaires</a></li><li class="chapter-item expanded "><a href="../types/tuples.html"><strong aria-hidden="true">2.2.</strong> Les tuples</a></li><li class="chapter-item expanded "><a href="../types/record.html"><strong aria-hidden="true">2.3.</strong> Les types enregistrement</a></li><li class="chapter-item expanded "><a href="../types/enum.html"><strong aria-hidden="true">2.4.</strong> Les types somme</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -145,7 +144,7 @@
                     <h1 class="menu-title">Cours de OCaml</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -174,14 +173,68 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="expressions-conditionnelles"><a class="header" href="#expressions-conditionnelles">Expressions conditionnelles</a></h1>
+<p>Une caractéristique essentielle des programmes informatiques est la possibilité d'exécuter une certain code lorsqu'une condition est vraie et un autre code lorsque cette condion est faux. En <code>OCaml</code>, cette possibilité est fournie par l'<strong>expression conditionnelle</strong> : <code>if ... then ... else ...</code>.</p>
+<h2 id="syntaxe"><a class="header" href="#syntaxe">Syntaxe</a></h2>
+<p>La syntaxe générale d'une expression conditionnelle est :</p>
+<pre><code class="language-ocaml">if test then expr_vrai else expr_faux
+</code></pre>
+<p><code>test</code> est un test, c'est-à-dire une <strong>expression booléenne</strong> dont la valeur est évaluée par le programme. Si elle est évaluée à <code>true</code> alors l'expression <code>expr_vrai</code> est évaluée et son résultat est retourné, sinon c'est le résultat de l'évaluation de <code>expr_faux</code> qui est retourné.</p>
+<p>À titre d'exemple, nous pouvons (ré)-écrire la fonction valeur absolue :</p>
+<pre><code class="language-ocaml">let abs x =
+    if x &gt; 0 then
+        x
+    else
+        -x
+;;
+</code></pre>
+<h2 id="le-if-est-une-expression"><a class="header" href="#le-if-est-une-expression">Le <code>if</code> est une expression</a></h2>
+<p>Encore une fois, <code>OCaml</code> se distingue du <code>C</code> par le fait que le <code>if</code> n'est pas une instruction mais une <strong>expression</strong> : en Caml, un <code>if</code> possède un type et une valeur.</p>
+<p>Voici un exemple faisant intervenir cette particularité. Nous allons écrire une fonction qui prend en entrée la longueur d'un côté de carré, qui diminue cette longueur de 4 et qui calcule l'aire du carré. Evidemment, si le carré a initialement un côté inférieur à 4 alors le résultat sera nul. Nous pourrions écrire :</p>
+<pre><code class="language-ocaml">let aire_reduite cote =
+    if cote &lt; 4 then
+        0
+    else
+        (cote - 4) * (cote - 4)
+;;
+</code></pre>
+<p>mais il est tout à fait possible d'écrire également</p>
+<pre><code class="language-ocaml">let aire_reduite cote =
+    let carre x = x * x in
+    carre (if cote &lt; 4 then 0 else cote)
+;;
+</code></pre>
+<p>où l'expression <code>if</code> sert à calculer la longueur du côté reduit.</p>
+<h2 id="typage-fort"><a class="header" href="#typage-fort">Typage fort</a></h2>
+<p>Comme <code>OCaml</code> est fortement typé, toute expression possède un type, et les expressions conditionnelles n'échappent pas à cette règle. Il n'est par exemple pas possible d'écrire :</p>
+<pre><code class="language-ocaml">if 72 &gt; 35 then 7 else 3.5;;
+</code></pre>
+<p>Nous obtenons la réponse suivante :</p>
+<pre><code># if 72 &gt; 35 then 7 else 3.5;;
+Error: This expression has type float but an expression was expected of type
+         int 
+</code></pre>
+<p>En effet, <code>OCaml</code> n'est pas capable de déterminer le type de cette expression conditionnelle qui pourrait être évaluée à <code>7</code> de type <code>int</code> ou <code>3.5</code> de type <code>float</code>, cela conduit à une erreur de typage. Cela arrive même lorsque le résultat du test pourrait être prédit à l'avance comme c'est le cas ici.</p>
+<p>La règle est donc la suivante : <code>expr_vrai</code> et <code>expr_faux</code> <strong>doivent être de même type</strong>.</p>
+<p>Pour la même raison, il n'est pas possible d'avoir un <code>if</code> qui ne contient pas de else :</p>
+<pre><code># if 3 &gt; 8 then 71;;
+Error: This expression has type int but an expression was expected of type
+         unit because it is in the result of a conditional with no else branch
+</code></pre>
+<p>En effet, cette expression doit nécessairement avoir une valeur en OCaml dont le <code>else</code> est nécessaire.</p>
+<p>L'interprète nous parle ici du type <code>unit</code> car cette seconde règle souffre d'une seule exception que nous verrons dans le chapitre sur la programmation impérative.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../expressions/fonctions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="../types.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -189,7 +242,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../expressions/fonctions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="../types.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -202,13 +261,13 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

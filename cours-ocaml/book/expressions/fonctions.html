@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Fonctions - Cours de OCaml</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="../expressions.html"><strong aria-hidden="true">1.</strong> Expressions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../expressions/environnements.html"><strong aria-hidden="true">1.1.</strong> Définitions globales</a></li><li class="chapter-item expanded "><a href="../expressions/letin.html"><strong aria-hidden="true">1.2.</strong> Définitions locales</a></li><li class="chapter-item expanded "><a href="../expressions/fonctions.html" class="active"><strong aria-hidden="true">1.3.</strong> Fonctions</a></li><li class="chapter-item expanded "><a href="../expressions/if.html"><strong aria-hidden="true">1.4.</strong> Expressions conditionnelles</a></li></ol></li><li class="chapter-item expanded "><a href="../types.html"><strong aria-hidden="true">2.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../types/scalaires.html"><strong aria-hidden="true">2.1.</strong> Types scalaires</a></li><li class="chapter-item expanded "><a href="../types/tuples.html"><strong aria-hidden="true">2.2.</strong> Les tuples</a></li><li class="chapter-item expanded "><a href="../types/record.html"><strong aria-hidden="true">2.3.</strong> Les types enregistrement</a></li><li class="chapter-item expanded "><a href="../types/enum.html"><strong aria-hidden="true">2.4.</strong> Les types somme</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Cours de OCaml</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="fonctions"><a class="header" href="#fonctions">Fonctions</a></h1>
+<p>Comme dans la plupart des langages de programmation, <code>OCaml</code> permet d'écrire des fonctions, c'est-à-dire un sous-programme dont le résultat dépend de valeurs passées en <strong>paramètres</strong>.</p>
+<p>Dans cette section, vous apprendrez à utiliser puis définir vos propres fonctions.</p>
+<h2 id="appel-dune-fonction"><a class="header" href="#appel-dune-fonction">Appel d'une fonction</a></h2>
+<p>En <code>OCaml</code> l'appel d'une fonction <code>f</code> s'écrit <code>f arg1 arg2 ... argn</code>, avec des espaces séparant les paramètres, contrairement à la notation plus classique <code>f(arg1, ..., argn)</code>. Il y a une bonne raison à cela qu'on expliquera plus tard.</p>
+<p>Regardons par exemple l'utilisation de la fonction racine carrée <code>sqrt</code>:</p>
+<pre><code class="language-ocaml">let x = sqrt 16.0;;
+</code></pre>
+<p>l'interprète répond</p>
+<pre><code>val x : float = 4.0
+</code></pre>
+<p>L'appel d'une fonction constitue une expression donc on peut évidemment l'utiliser au sein d'une autre expression :</p>
+<pre><code class="language-ocaml">let y = sqrt 25.0 -. sqrt 9.0;;
+</code></pre>
+<p>Ici, nous avons écrit 2 appels à la fonction <code>sqrt</code> puis on a calculé la différence des deux résultats flottants à l'aide de l'opérateur <code>-.</code> qui calcule la soustraction de deux flottants.</p>
+<p>Attention toutefois à bien utiliser des parenthèses lorsqu'un argument est lui-même donné sous forme d'expression :</p>
+<pre><code class="language-ocaml">let hyp = sqrt (25.0 -. 16.0);;
+</code></pre>
+<p>Si on avait écrit <code>sqrt 25.0 -. 16.0</code> on aurait obtenu la valeur <code>-11.0</code> car la racine ne s'applique qu'au <code>25.0</code>.</p>
+<h2 id="les-fonctions-sont-des-citoyens-de-première-classe"><a class="header" href="#les-fonctions-sont-des-citoyens-de-première-classe">Les fonctions sont des citoyens de première classe</a></h2>
+<p>Dans les langages fonctionnels, les fonctions sont des valeurs au même titre que les entiers, les flottants, les caractères, <em>etc</em>. Regardons ce qui se passe lorsqu'on évalue simplement <code>sqrt</code>.</p>
+<pre><code># sqrt;;
+- : float -&gt; float = &lt;fun&gt;
+</code></pre>
+<p>On découvre que le type de <code>sqrt</code> est <code>float -&gt; float</code> ce qui signifie que cette valeur est une fonction prenant en entré un paramètre de type flottant et retournant en sortie une valeur de type flottant. Comme la <em>valeur</em> d'une fonction ne peut être affichée simplement sur le terminal, <code>OCaml</code> dit que la valeur est <code>&lt;fun&gt;</code> signifiant que c'est une fonction.</p>
+<p>Que se passe-t-il alors si on évalue <code>sqrt 16</code> ?</p>
+<pre><code># sqrt 16;;
+Error: This expression has type int but an expression was expected of type
+         float
+  Hint: Did you mean `16.'?
+</code></pre>
+<p><code>OCaml</code> étant un langage fortement typé, il déclenche une erreur car <code>sqrt</code> attend une valeur de type <code>float</code> en entrée et qu'une valeur de type <code>int</code> a été incorrectement utilisée.</p>
+<p>Cela peut paraître contraignant au premier abord mais le typage fort permet d'éliminer un grand nombre de bugs dès la compilation. On peut retenir les deux points suivants sur le système de typage de <code>OCaml</code>:</p>
+<ul>
+<li><code>OCaml</code> n'effectuera jamais de conversion de type implicite à votre place</li>
+<li>Chaque fonction a une signature unique qui doit être respectée à chaque appel : il n'y a pas de surcharges de fonctions en <code>OCaml</code></li>
+</ul>
+<p>Cela explique aussi pourquoi nous avons utilisé l'opérateur <code>-.</code> pour soustraire les deux flottants et non pas l'opérateur <code>-</code> qui soustrait deux entiers.</p>
+<h2 id="définition-dune-fonction"><a class="header" href="#définition-dune-fonction">Définition d'une fonction</a></h2>
+<p>Pour définir une fonction, on utilise aussi le mot clef <code>let</code> comme pour toute autre valeur :</p>
+<pre><code class="language-ocaml">let f arg1 arg2 arg3 ... argn =
+    expr
+;;
+</code></pre>
+<p>Ici <code>expr</code> est le résultat de l'appel de la fonction, cette expression peut (et devrait) utiliser les valeurs des paramètres. Il n'y a pas de mot clé <code>return</code> en <code>OCaml</code>.</p>
+<p>Par exemple,</p>
+<pre><code class="language-ocaml">let decupler n =
+    10 * n
+;;
+</code></pre>
+<p>produit la réponse :</p>
+<pre><code>val decupler : int -&gt; int = &lt;fun&gt;
+</code></pre>
+<p>Regardons ce qui se passe lorsqu'on définit une fonction à deux paramètres :</p>
+<pre><code># let aire_rectangle longueur largeur =
+    longueur * largeur
+;;
+val aire_rectangle : int -&gt; int -&gt; int = &lt;fun&gt;
+</code></pre>
+<p>Le type de cette fonction est <code>int -&gt; int -&gt; int</code> ce qui signifie qu'elle attend un premier paramètre de type <code>int</code>, un second de type <code>int</code> également, et que le résultat sera lui aussi de type <code>int</code>. Il n'est pas nécessaire de comprendre immédiatement pourquoi le type s'écrit ainsi, on peut se contenter de savoir lire un tel type pour le moment. (Voir Curryfication pour comprendre).</p>
+<p>Voici un exemple complet, utilisant les concepts présentés dans cette section :</p>
+<pre><code class="language-ocaml">(* Fonction appliquant une promotion a un prix *)
+let reduction prix pourcentage =
+    prix -. (prix *. pourcentage)
+;;
+
+(* Fonction calculant le prix d'un panier de pommes en promotion *)
+let prix_panier nb_pommes =
+    let prix_pomme = 2.5 in
+    let promo = 0.15 in
+    let prix_reduit = reduction prix_pomme promo in
+    (float_of_int nb_pomme) *. prix_reduit
+;;
+</code></pre>
+<p>Notez qu'il a été nécessaire d'utiliser explicitement la fonction de conversion <code>float_ot_int</code> pour convertir la valeur entière <code>nb_pommes</code> en valeur flottante.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../expressions/letin.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../expressions/if.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../expressions/letin.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../expressions/if.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
