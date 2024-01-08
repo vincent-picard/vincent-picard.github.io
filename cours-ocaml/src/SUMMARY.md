@@ -11,3 +11,4 @@
     - [Les tuples](types/tuples.md)
     - [Les types enregistrement](types/record.md)
     - [Les types somme](types/enum.md)
+    - [Les types parametrés](types/param.md)
