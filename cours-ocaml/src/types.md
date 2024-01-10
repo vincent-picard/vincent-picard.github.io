@@ -3,9 +3,9 @@
 Nous allons maintenant étudier plus en détail le système de types de `OCaml`.
 
 Rappelons brièvement les règles que nous avons déjà vues :
-    1. Toute expression a une valeur et un type
-    2. Les fonctions et les opérateurs ont une seule signature : il n'y a pas de surcharge en `OCaml`
-    3. `OCaml` ne fera jamais de conversion de type implicite : les types des fonctions doivent être respectés
+1. Toute expression a une valeur et un type
+1. Les fonctions et les opérateurs ont une seule signature : il n'y a pas de surcharge en `OCaml`
+1. `OCaml` ne fera jamais de conversion de type implicite : les types des fonctions doivent être respectés
 
 Le deuxième point est important. Contrairement à un langage comme `Python` où l'on peut écrire indistinctement `1 + 7`, `1 + 3.5`, `2.4 + 3.6` ou même `"Hello " + "world!"` cela n'est pas possible en `OCaml`. En effet, cela conduirait à certains problèmes, regardons par exemple :
 ```ocaml
