@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="expressions.html"><strong aria-hidden="true">1.</strong> Expressions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="expressions/environnements.html"><strong aria-hidden="true">1.1.</strong> Définitions globales</a></li><li class="chapter-item expanded "><a href="expressions/letin.html"><strong aria-hidden="true">1.2.</strong> Définitions locales</a></li><li class="chapter-item expanded "><a href="expressions/fonctions.html"><strong aria-hidden="true">1.3.</strong> Fonctions</a></li><li class="chapter-item expanded "><a href="expressions/if.html"><strong aria-hidden="true">1.4.</strong> Expressions conditionnelles</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">2.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="types/scalaires.html"><strong aria-hidden="true">2.1.</strong> Types scalaires</a></li><li class="chapter-item expanded "><a href="types/tuples.html"><strong aria-hidden="true">2.2.</strong> Les tuples</a></li><li class="chapter-item expanded "><a href="types/record.html"><strong aria-hidden="true">2.3.</strong> Les types enregistrement</a></li><li class="chapter-item expanded "><a href="types/enum.html"><strong aria-hidden="true">2.4.</strong> Les types somme</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="expressions.html"><strong aria-hidden="true">1.</strong> Expressions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="expressions/environnements.html"><strong aria-hidden="true">1.1.</strong> Définitions globales</a></li><li class="chapter-item expanded "><a href="expressions/letin.html"><strong aria-hidden="true">1.2.</strong> Définitions locales</a></li><li class="chapter-item expanded "><a href="expressions/fonctions.html"><strong aria-hidden="true">1.3.</strong> Fonctions</a></li><li class="chapter-item expanded "><a href="expressions/if.html"><strong aria-hidden="true">1.4.</strong> Expressions conditionnelles</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">2.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="types/scalaires.html"><strong aria-hidden="true">2.1.</strong> Types scalaires</a></li><li class="chapter-item expanded "><a href="types/tuples.html"><strong aria-hidden="true">2.2.</strong> Les tuples</a></li><li class="chapter-item expanded "><a href="types/record.html"><strong aria-hidden="true">2.3.</strong> Les types enregistrement</a></li><li class="chapter-item expanded "><a href="types/enum.html"><strong aria-hidden="true">2.4.</strong> Les types somme</a></li><li class="chapter-item expanded "><a href="types/param.html"><strong aria-hidden="true">2.5.</strong> Les types parametrés</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -458,10 +458,79 @@ Error: This expression has type int but an expression was expected of type
 <p>En effet, cette expression doit nécessairement avoir une valeur en OCaml dont le <code>else</code> est nécessaire.</p>
 <p>L'interprète nous parle ici du type <code>unit</code> car cette seconde règle souffre d'une seule exception que nous verrons dans le chapitre sur la programmation impérative.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
+<p>Nous allons maintenant étudier plus en détail le système de types de <code>OCaml</code>.</p>
+<p>Rappelons brièvement les règles que nous avons déjà vues :</p>
+<ol>
+<li>Toute expression a une valeur et un type</li>
+<li>Les fonctions et les opérateurs ont une seule signature : il n'y a pas de surcharge en <code>OCaml</code></li>
+<li><code>OCaml</code> ne fera jamais de conversion de type implicite : les types des fonctions doivent être respectés</li>
+</ol>
+<p>Le deuxième point est important. Contrairement à un langage comme <code>Python</code> où l'on peut écrire indistinctement <code>1 + 7</code>, <code>1 + 3.5</code>, <code>2.4 + 3.6</code> ou même <code>&quot;Hello &quot; + &quot;world!&quot;</code> cela n'est pas possible en <code>OCaml</code>. En effet, cela conduirait à certains problèmes, regardons par exemple :</p>
+<pre><code class="language-ocaml">let somme x y =
+    x + y
+;;
+</code></pre>
+<p>Quel serait le type de cette fonction si la surchage du <code>+</code> était possible comme en <code>Python</code> ? <code>x</code> et <code>y</code> pourraient être des entiers, des flottants, voire même des chaînes de caractères et il ne serait pas possible de déterminer le type de <code>somme</code>... c'est embêtant !</p>
+<p><code>OCaml</code> utilise un mécanisme appelé l'<strong>inférence de type</strong> qui détermine automatiquement et sans ambiguité le type de n'importe quelle expression tapée dans un programme. Ainsi OCaml est capable de vérifier dès la compilation le type de chaque expression et vérifier que les fonctions sont appelées avec les bons types de données. Cela permet de corriger un très grand nombre de bugs dès la compilation. Il y a certaines contre-parties comme le fait d'avoir des opérateurs et des fonctions différents pour chaque type et de devoir s'occuper soi-même de toutes les conversions.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="types-scalaires"><a class="header" href="#types-scalaires">Types scalaires</a></h1>
+<p>Les types <strong>scalaires</strong> sont les types de base du langage. Ils servent généralement à représenter une donnée manipulable directement par le processeur tel qu'une valeur entière, une valeur flottante, <em>etc</em>.</p>
+<p>En <code>OCaml</code> les types scalaires sont :</p>
+<ul>
+<li>Les entiers : <code>int</code></li>
+<li>Les flottants : <code>float</code></li>
+<li>Les booléens : <code>bool</code></li>
+<li>Les caractères : <code>char</code></li>
+<li>Le type unit : <code>unit</code></li>
+</ul>
+<p>Les types scalaires sont ensuite utilisés comme briques de base pour construire de nouveaux types appelés types composés et qui permettent la représentation de données complexes.</p>
+<p>Le type <code>unit</code> sera expliqué dans le chapitre sur la programmation impérative.</p>
+<h2 id="les-entiers"><a class="header" href="#les-entiers">Les entiers</a></h2>
+<p>Les entiers de <code>OCaml</code> sont codés sur 30 bits et peuvent prendre les valeurs de -2^30 à 2^30 - 1 (environ 1 milliard). </p>
+<p>Remarque : si on veut utiliser des entiers plus grands il faudra utiliser d'autres types, par exemple <code>int64</code>, au détriment des performances du programme.</p>
+<p>Les valeurs littérales entières s'écrivent normalement, par exemple <code>123</code> ou <code>-198</code>. Il est possible d'ajouter des tirets bas pour écrire une valeur plus lisiblement, par exemple <code>6_023_456</code>. Il est aussi possible d'écrire les valeurs dans d'autres base à l'aide d'un préfixe :</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">Base</th><th style="text-align: center">Préfixe</th></tr></thead><tbody>
+<tr><td style="text-align: center">10</td><td style="text-align: center">aucun</td></tr>
+<tr><td style="text-align: center">2</td><td style="text-align: center"><code>0b</code> ou <code>0B</code></td></tr>
+<tr><td style="text-align: center">16</td><td style="text-align: center"><code>0x</code> ou <code>0X</code></td></tr>
+<tr><td style="text-align: center">8</td><td style="text-align: center"><code>0o</code> ou <code>0O</code></td></tr>
+</tbody></table>
+</div>
+<p>Par exemple pour définir la valeur entière <code>cafe974</code> (notée en base hexadécimale) on pourra écrire :</p>
+<pre><code class="language-ocaml">let n = 0xCAFE974;;
+</code></pre>
+<p>Pour calculer avec les valeurs entières, on utilise les opérateurs arithmétiques classiques <code>+</code>, <code>-</code>, <code>*</code>. Le <strong>quotient</strong> de la division de <em>a</em> par <em>b</em> s'obtient avec <code>a / b</code>, et le <strong>reste</strong> de la division s'obtient avec <code>a mod b</code>.</p>
+<p>** Il n'y a pas d'opérateur de puissance sur les entiers ** : la raison est que la puissance n'est pas une opération de base du processeur, il faut utiliser un algorithme pour faire ce calcul. <code>OCaml</code> vous laisse donc le soin de choisir l'algorithme d'exponentiation qui vous convient.</p>
+<h2 id="les-flottants"><a class="header" href="#les-flottants">Les flottants</a></h2>
+<p>Le type des nombres à virgule flottantes en <code>OCaml</code> est <code>float</code>. Ils sont codés sur 64 bits selon la norme IEEE754.</p>
+<p>Les valeurs flottantes littérales se distinguent des valeurs entières par la présence d'une virgule <code>.</code> ou des caractères <code>e</code> ou <code>E</code> pour écrire le nombre en <strong>notation scientifique</strong>.</p>
+<p>Voici quelques exemples :</p>
+<pre><code class="language-ocaml">let pi = 3.141592;;
+let avogadro = 6.02e23;;  (* signifie 6.02 x 10^23 `*) 
+let quatre = 4. ;; (* 4. signifie 4.0 *)
+let mille = 1E3;;
+</code></pre>
+<p>Pour calculer avec les flottants, on utilise les opérateurs arithmétiques <code>+.</code>, <code>-.</code>, <code>*.</code>, <code>/.</code>. L'opérateur de puissance existe sur les flottants et est noté <code>**</code>.</p>
+<p>Il est possible de convertir un entier en flottant à l'aide de la fonction <code>float : int -&gt; float</code> (aussi nommée <code>float_of_int</code>). Et convertir un flottant en entier (en l'approximant) à l'aide la fonction <code>int_of_float : float -&gt; int</code>.</p>
+<p>Il est bon de rappeler ici que le calcul flottant n'est pas exact et peut produire nombre d'étrangetés. Il est donc à manipuler avec précaution. L'utilisation de <code>float</code> pour faire du calcul entier est à proscrire.</p>
+<h2 id="les-booléens"><a class="header" href="#les-booléens">Les booléens</a></h2>
+<p>Les type <code>bool</code> sert à représenter une valeur de vérité et n'a que deux valeurs possibles : <code>true</code> (vrai) ou <code>false</code> (faux). Ce type sert le plus souvent (mais pas uniquement) à écrire des expressions boolénnes qui sont des tests pour les <code>if</code> et les <code>while</code>.</p>
+<p>Le calcul booléen se fait au travers des opérateurs logiques <code>||</code> (ou), <code>&amp;&amp;</code> (et) ainsi que de la fonction de négation <code>not : bool -&gt; bool</code>. Par exemple:</p>
+<pre><code class="language-ocaml">let x = (true || false) &amp;&amp; true;;
+let y = (not x) &amp;&amp;;;
+let impl a b =
+    b || (not a)
+;;
+</code></pre>
+<p>L'évaluation de <code>||</code> et <code>&amp;&amp;</code> est <strong>paresseuse</strong>, c'est-à-dire que pour évaluer <code>expr1 || expr2</code>, <code>OCaml</code> évalue d'abord <code>expr1</code> et si le résultat est <code>true</code> retourne directement <code>true</code> sans évaluer <code>expr2</code>. De même, pour évaluer <code>expr1 &amp;&amp; expr2</code>, <code>OCaml</code> évalue d'abord <code>expr1</code> et si le résultat est <code>false</code> retourne directement <code>false</code> sans évaluer <code>expr2</code>.</p>
+<h2 id="les-caractères"><a class="header" href="#les-caractères">Les caractères</a></h2>
+<p>Le type des caractères en <code>OCaml</code> est <code>char</code>. Une valeur littérale de type <code>char</code> s'écrit entre <strong>simples apostrophes</strong> : <code>'a'</code>, <code>'b'</code>, ...</p>
+<p>Ces caractères sont codés sous forme d'un octet (8 bits). Les valeurs entre 0 et 127 correspondent aux caractères de la norme ASCII. Les valeurs entre 128 et 255 respectent le standard ISO 8859-1. Autrement dit, on peut utiliser la plupart des caractères habituels (y compris les caractères accentués) ainsi que certains symboles, mais on n'aura pas autant de libertés qu'un codage unicode.</p>
+<p>Notons l'existence de caractères spéciaux utiles tels que <code>'\n'</code> (retour à la ligne) et <code>'\t'</code> (tabulation).</p>
+<p>On ne peut pas faire grand chose sur le type <code>char</code> à part : le convertir en entier avec <code>int_of_char : char -&gt; int</code> ou convertir un entier en <code>char</code> avec <code>char_of_int : int -&gt; char</code>. Toutefois, ce type sera très utilisé car il sert de brique de base pour la construction des chaînes de caractères.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="les-tuples"><a class="header" href="#les-tuples">Les tuples</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="les-types-enregistrement"><a class="header" href="#les-types-enregistrement">Les types enregistrement</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="les-types-somme"><a class="header" href="#les-types-somme">Les types somme</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="les-types-parametrés"><a class="header" href="#les-types-parametrés">Les types parametrés</a></h1>
 
                     </main>
 
