@@ -1,6 +1,8 @@
 site_name: Site de Vincent Picard
 theme:
   name: material
+  features:
+    - content.code.copy
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -10,7 +12,3 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-
-theme:
-  features:
-    - content.code.copy
