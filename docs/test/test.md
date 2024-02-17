@@ -31,7 +31,6 @@ int main() {
 ```
 
 Voici une formule de maths :
-
 $$ 
 \int_0^\pi \cos(t) dt 
 $$
