@@ -4,7 +4,6 @@ theme:
   features:
     - content.code.copy
     - content.code.select
-    - content.code.annotate
 
 markdown_extensions:
   - pymdownx.highlight:
