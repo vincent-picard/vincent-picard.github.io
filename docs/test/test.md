@@ -18,3 +18,14 @@ let rec fact n =
         n * fact (n - 1)
 ;;
 ```
+
+Un code en langage C :
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    printf("Hello world !\n");
+    return EXIT_SUCCESS;
+}
+```
