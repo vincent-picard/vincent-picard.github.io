@@ -2,7 +2,7 @@
 
 Ceci est une page test
 
-```py
+``` py
 import numpy as np
 ```
 
