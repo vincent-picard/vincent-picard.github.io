@@ -29,3 +29,10 @@ int main() {
     return EXIT_SUCCESS;
 }
 ```
+
+Voici une formule de maths :
+$$ 
+\int_0^\pi \cos(t) dt 
+$$
+
+Il est aussi possible d'écrire des formules dans les lignes comme $x \mapsto x + 1$.
