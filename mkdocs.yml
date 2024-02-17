@@ -10,3 +10,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+theme:
+  features:
+    - content.code.copy
