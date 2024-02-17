@@ -10,7 +10,7 @@ import numpy as np
 fin code python
 
 Un code OCaml :
-``` ml
+``` ocaml
 let rec fact n =
     if n <= 1 then
         1
