@@ -17,6 +17,7 @@ J'enseigne l'informatique (Numérique et Sciences Informatiques) depuis 2012.
 - 2015 : ATER à l'université de Nantes
     * Initiation à la cryptographie (L1)
     * TD/TP de programmation en C++ (L3)
+    * TD/TP de bases de données relationnelles (L3)
 
 ## Enseignement pendant mon doctorat
 - 2012 - 2015 : Mission d'enseignement ENS Rennes / Université de Rennes 1
