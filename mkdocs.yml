@@ -2,6 +2,10 @@ site_name: Site de Vincent Picard
 site_description: Page personnelle de Vincent Picard et ressources pour l'informatique en MPI
 site_author: Vincent Picard
 
+nav:
+  - Page de test: 'test/test.md'
+  - À propos de moi : 'aboutme/enseignement.md'
+
 theme:
   name: material
   features:
@@ -25,5 +29,3 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-nav:
-  - Page de test: 'test/test.md'
