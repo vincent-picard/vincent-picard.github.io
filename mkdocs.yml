@@ -4,7 +4,8 @@ site_author: Vincent Picard
 
 nav:
   - Page de test: 'test/test.md'
-  - À propos de moi : 'aboutme/enseignement.md'
+  - À propos de moi : 'aboutme/index.md'
+    - Enseignement : 'aboutme/enseignement.md'
 
 theme:
   name: material
