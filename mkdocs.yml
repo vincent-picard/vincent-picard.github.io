@@ -1,9 +1,13 @@
 site_name: Site de Vincent Picard
+site_description: Page personnelle de Vincent Picard et ressources pour l'informatique en MPI
+site_author: Vincent Picard
+
 theme:
   name: material
   features:
     - content.code.copy
     - content.code.select
+  language: fr
 markdown_extensions:
   - admonition
   - pymdownx.highlight:
