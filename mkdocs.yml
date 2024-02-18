@@ -7,6 +7,7 @@ theme:
   features:
     - content.code.copy
     - content.code.select
+    - navigation.tabs
   language: fr
 markdown_extensions:
   - admonition
