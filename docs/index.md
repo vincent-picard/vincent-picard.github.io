@@ -1,3 +1,4 @@
 # Site de Vincent Picard
 
-Ce site est en cours de construction.
+!!! warning "Attention"
+    Ce site est en cours de construction.
