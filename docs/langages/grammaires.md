@@ -1,8 +1,8 @@
 # Grammaires algébriques
 
-Nous avons déjà étudié les expressions régulières et les automates finis qui permettent de générer certains langages appelés langages rationnels. Nous avons aussi vu que tous les langages ne sont pas rationnels, en particulier certains langages utiles en informatique comme les langages des mots bien parenthésés ne sont pas rationnels (lemme de l'étoile).
+Nous avons déjà étudié les expressions régulières et les automates finis qui permettent de décrire certains langages appelés langages réguliers. Nous avons aussi vu que tous les langages ne sont pas réguliers, en particulier certains langages utiles en informatique comme les langages de mots bien parenthésés ne sont pas régulier.
 
-On s'intéresse donc dans ce chapitre à une nouvelle manière de générer des langages à l'aide de grammaires.
+On s'intéresse donc dans ce chapitre à une nouvelle manière de décrire des langages à l'aide de grammaires.
 
 ## 1. Grammaires algébriques
 
@@ -12,64 +12,81 @@ Dans ce cours on notera en général :
 - $V$ un alphabet fini de symboles appelés **variables** ou **symboles non terminaux**
 
 !!! definition "Définition"
-    Une **grammaire algébrique** est un quadruplet $(\Sigma, V, S, R)$ dans lequel :
+    Une **grammaire algébrique** est un quadruplet $(\Sigma, V, S, \mathcal{R})$ dans lequel :
 
-    * $\Sigma$ est l'alphabet des terminaux
-    * $V$ est l'alphabet des non terminaux
-    * $S$ est une variable de V appelée **axiome** ou **symbole de départ**
-    * R est un ensemble _fini_ de **règles de production** : une règle de production est un couple $(X, u)$ où $X$ est une variable et $u$ un mot sur $\Sigma \cup V$.
+    * $\Sigma$ est l'alphabet des ** symboles terminaux**
+    * $V$ est l'alphabet des **symboles non terminaux** ou **variables**
+    * $S \in V$ est un non terminal spécial appelé **axiome** ou **symbole de départ**
+    * $\mathcal{R}$ est un ensemble _fini_ de **règles de production** : une règle de production est un couple $(X, u)$ où $X$ est une variable et $u$ un mot sur $\Sigma \cup V$.
 
-Notation : une règle de production (X, u) sera notée X -> u. X est la partie gauche de la règle et u sa partie droite.
-Lorsqu'on possède plusieurs règles avec même membre gauche on peut condenser l'écriture :
-X -> u | v | w signifie qu'il y a 3 règles.
+Une règle de production $(X, u)$ sera notée $X \to u$. $X$ est le **membre gauche** de la règle et $u$ le **membre droit**.
 
-#### Exemple
-Grammaire pour décrire une phrase en français
+Lorsqu'une grammaire possède plusieurs règles avec même membre gauche on peut condenser l'écriture de ces règles ainsi : $X \to u \ | \ v \ | \ w$ signifie qu'il existe trois règles de production $X \to u$, $X \to v$ et $X \to w$.
 
-```
-Phrase -> Sujet Verbe Complement
-Sujet -> je | elle
-Verbe -> programme | mange
-Complément -> Article | Nom
-Article -> un | une | le | la
-Nom -> ordinateur | pomme | arbre 
-```
+!!! note "Remarque"
+    Les grammaires algébriques sont aussi appelées **grammaires hors contexte** ou encore ** grammaires non contextuelles**
 
-On voit que l'on pourra générer des phrases telles que :
-elle programme un ordinateur
-je mange une pomme
-je programme un arbre
-elle programme le pomme
+!!! example "Exemple (grammaire en langage naturel)"
+    Voici une grammaire algébrique pour décrire ceraines phrases en français : 
+    ```
+    Phrase -> Sujet Verbe Complement
+    Sujet -> je | elle
+    Verbe -> programme | mange
+    Complément -> Article | Nom
+    Article -> un | une | le | la
+    Nom -> ordinateur | pomme | arbre 
+    ```
+On remarque que pour donner une grammaire il suffit souvent de lister les règles de production. Une convention souvent utilisée est que la première règle de production correspond à l'axiome, les variables commencent par une majuscule et les terminaux sont en minuscules. En cas de doute, préciser la nature des symboles utilisés.
 
-#### Exemple
-Grammaire pour representer un langage balisé
+Cette grammaire permet de générer les phrases suivantes :
 
-```
-Texte -> epsilon | lettre Texte | < ident > Texte < /ident > Texte
-lettre -> a | b | ... | z (26 règles)
-ident -> gras | italique
-```
+* elle programme un ordinateur
+* je mange une pomme
+* je programme un arbre
+* elle programme le pomme
 
-ceci est un < gras > < italique > texte < /italique > < /gras > généré par notre < gras > grammaire algébrique < /gras > 
+!!! example "Exemple (langage de balises)"
+    Voici une grammaire permettant de representer un langage balisé
+    ```
+    Texte -> epsilon | lettre Texte | < ident > Texte < /ident > Texte
+    lettre -> a | b | ... | z (26 règles)
+    ident -> gras | italique
+    ```
+    Ici, `epsilon` désigne le mot vide. Il n'y a qu'un seul non terminal $V = \{\mathrm{Texte}\}$ et les symboles terminaux sont $\Sigma = \{<, >, /, a, ..., z\}$.
 
-#### Exemple
-Une expression arithmétique
-```
-S -> C
-S -> S + S
-S -> S x S
-C -> OD | 1D
-D -> epsilon | 0D | 1D
-```
+Cette grammaire permet par exemple de réprésenter le texte balisé suivant : `< gras > < italique > texte < /italique > < /gras > généré par notre < gras > grammaire algébrique < /gras >`.
 
-111 + 10 x 1101
+!!! warning "Attention"
+    Cette grammaire ne génère pas nécessairement de textes **correctement** balisés : par exemple il est tout a fait possible d'écrire `<gras> vanille bourbon </italique>` avec les règles de cette grammaire. *Comment modifier cette grammaire pour obtenir des balises correctes ?*
 
-#### Exemple
-Le manuel OCaml décrit la grammaire du langage. Une grammaire est donc une possibilité pour spécifier un langage de programmation ou un format de données (html, xml, yaml, toml, json...)
+??? example "Exemple (langage de balises correct)"
+    Pour avoir un parenthésage correct des balises 'gras' et 'italique' on peut utiliser la grammaire suivante :
+    ```
+    Texte -> epsilon | lettre Texte
+    Texte -> < gras > Texte < /gras > Texte
+    Texte -> < italique > Texte < /italique > Texte
+    lettre -> a | b | ... | z (26 règles)
+    ```
+
+!!! example "Exemple (expressions arithmétiques)"
+    Les expressions arithmétiques avec des constantes littérales binaires peuvent être obtenues par une grammaire telle que :
+    ```
+    S -> C
+    S -> S + S
+    S -> S x S
+    C -> 0D | 1D
+    D -> epsilon | 0D | 1D
+    ```
+    Par exemple on peut générer le texte : `111 + 10 x 1101` avec cette grammaire.
+
+!!! example "Exemple (grammaire d'un langage de programmation)"
+    La lecture du [manuel OCaml](https://v2.ocaml.org/releases/5.1/htmlman/language.html) permet de s'apercevoir que la syntaxe des programmes `OCaml` est décrite par une grammaire algébrique. Une grammaire permet donc la spécification formelle de la syntaxe d'un langage de programmation ou d'un format de données (html, xml, yaml, toml, json...)
 
 ## 2. Dérivations et langages engendrés
 
-Nous allons maintenant définir formellement ce qu'est le **langage engendré** par une grammaire.
+Nous allons maintenant définir formellement ce qu'est le **langage engendré** par une grammaire. Pour cela, il nous faudra d'abord expliquer la notion de **dérivation**.
+
+### A. Dérivations
 
 #### Définition
 Soit G = (Sigma, V, S, RR) une grammaire algébrique, soit R = A->alpha une règle de production de G. On dit que u se **dérive immédiatement** en v par la règle R s'il existe deux mots x et y tels que
@@ -87,8 +104,6 @@ u => w1 => w2 => ... => wn => v
 ### Proposition
 La relation =>* est reflexive et transitive 
 
-### Dérivations gauche et droite
-
 #### Définition
 On dit qu'une dérivation immédiate xAy => x alpha y est une **dérivation gauche immédiate** (resp. **dérivation droite immédiate**) lorsque x (resp. y) ne contient pas de symbole non terminal.
 
@@ -99,7 +114,8 @@ Autrement dit, une dérivation gauche est une dérivation dans laquelle on appli
 #### Définition
 On dit que u se dérive en v par **dérivation gauches** si on peut dériver u en v par une suite finie de dérivation immédiates gauches.
 
-### Langage engendré par une grammaire
+### B. Langage engendré par une grammaire
+
 
 #### Définition
 Soit G = (Sigma, V, S, R) une grammaire algébrique, on appelle **langage engendré** par G le langage des mots sur Sigma qu'on peut obtenir par dérivation de l'axiome :
@@ -139,6 +155,8 @@ S -> SS | epsilon
 S -> aSb
 ```
 engendre aussi le langage de Dyck
+
+### C. Non contextualité des langages réguliers
 
 ## 3. Arbres de dérivation et ambuiguité
 
