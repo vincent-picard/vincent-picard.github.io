@@ -7,8 +7,8 @@ On s'intéresse donc dans ce chapitre à une nouvelle manière de générer des 
 ## 1. Grammaires algébriques
 
 Dans ce cours on notera en général :
-    - $\Sigma$ un alphabet fini de symboles appelés **symboles terminaux**
-    - $V$ un alphabet fini de symboles appelés **variables** ou **symboles non terminaux**
+- $\Sigma$ un alphabet fini de symboles appelés **symboles terminaux**
+- $V$ un alphabet fini de symboles appelés **variables** ou **symboles non terminaux**
 
 !!! definition "Définition"
     Une **grammaire algébrique** est un quadruplet $(\Sigma, V, S, R)$ dans lequel :
