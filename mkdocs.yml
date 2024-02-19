@@ -19,6 +19,7 @@ theme:
     - navigation.tabs
   language: fr
 markdown_extensions:
+  - def_list
   - admonition
   - pymdownx.highlight:
       anchor_linenums: true
