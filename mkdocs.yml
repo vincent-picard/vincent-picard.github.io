@@ -7,7 +7,10 @@ nav:
     - Index : 'aboutme/index.md'
     - Enseignement : 'aboutme/enseignement.md'
     - Parcours : 'aboutme/parcours.md'
+  - Langages formels :
+    - Grammaires algébriques : 'langages/grammaires.md'
   - Page de test: 'test/test.md'
+
 theme:
   name: material
   features:
