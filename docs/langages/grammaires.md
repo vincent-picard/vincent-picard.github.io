@@ -14,7 +14,7 @@ Dans ce cours on notera en général :
 !!! definition "Définition"
     Une **grammaire algébrique** est un quadruplet $(\Sigma, V, S, \mathcal{R})$ dans lequel :
 
-    * $\Sigma$ est l'alphabet des ** symboles terminaux**
+    * $\Sigma$ est l'alphabet des **symboles terminaux**
     * $V$ est l'alphabet des **symboles non terminaux** ou **variables**
     * $S \in V$ est un non terminal spécial appelé **axiome** ou **symbole de départ**
     * $\mathcal{R}$ est un ensemble _fini_ de **règles de production** : une règle de production est un couple $(X, u)$ où $X$ est une variable et $u$ un mot sur $\Sigma \cup V$.
