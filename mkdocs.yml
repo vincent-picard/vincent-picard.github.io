@@ -3,11 +3,11 @@ site_description: Page personnelle de Vincent Picard et ressources pour l'inform
 site_author: Vincent Picard
 
 nav:
-  - Page de test: 'test/test.md'
   - À propos de moi :
     - Index : 'aboutme/index.md'
     - Enseignement : 'aboutme/enseignement.md'
-
+    - Parcours : 'aboutme/parcours.md'
+  - Page de test: 'test/test.md'
 theme:
   name: material
   features:
