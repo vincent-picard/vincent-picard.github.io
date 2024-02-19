@@ -1,7 +1,7 @@
 # Parcours académique
 
 - 2015 : Doctorat en informatique à l'Université de Rennes 1
-- 2012 : Agrégation d'informatique -- option D (informatique)
+- 2012 : Agrégation de mathématiques -- option D (informatique)
 - 2011 : Master Recherche en Informatique à l'ENS Lyon
 - 2009 : Licence d'informatique à l'Université de Rennes 1
 - 2009 : Licence de mathématiques à l'Université de Rennes 1
