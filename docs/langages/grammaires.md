@@ -7,15 +7,17 @@ On s'intéresse donc dans ce chapitre à une nouvelle manière de générer des 
 ## 1. Grammaires algébriques
 
 Dans ce cours on notera en général :
-    - $\Sigma$ un alphabet fini de symboles appelés **symboles terminaux**
-    - $V$ un alphabet fini de symboles appelés **variables** ou **symboles non terminaux**
+
+- $\Sigma$ un alphabet fini de symboles appelés **symboles terminaux**
+- $V$ un alphabet fini de symboles appelés **variables** ou **symboles non terminaux**
 
 !!! definition "Définition"
     Une **grammaire algébrique** est un quadruplet $(\Sigma, V, S, R)$ dans lequel :
-        * $\Sigma$ est l'alphabet des terminaux
-        * $V$ est l'alphabet des non terminaux
-        * $S$ est une variable de V appelée **axiome** ou **symbole de départ**
-        * R est un ensemble _fini_ de **règles de production** : une règle de production est un couple $(X, u)$ où $X$ est une variable et $u$ un mot sur $\Sigma \cup V$.
+
+    * $\Sigma$ est l'alphabet des terminaux
+    * $V$ est l'alphabet des non terminaux
+    * $S$ est une variable de V appelée **axiome** ou **symbole de départ**
+    * R est un ensemble _fini_ de **règles de production** : une règle de production est un couple $(X, u)$ où $X$ est une variable et $u$ un mot sur $\Sigma \cup V$.
 
 Notation : une règle de production (X, u) sera notée X -> u. X est la partie gauche de la règle et u sa partie droite.
 Lorsqu'on possède plusieurs règles avec même membre gauche on peut condenser l'écriture :
