@@ -38,3 +38,4 @@ extra_javascript:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/definition.css
