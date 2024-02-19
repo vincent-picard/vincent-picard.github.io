@@ -37,3 +37,8 @@ $$
 $$
 
 Il est aussi possible d'écrire des formules dans les lignes comme $x \mapsto x + 1$.
+
+Une admonition personnelle :
+!!! pied-piper "Proposition"
+    Voici une proposition intéressante !
+
