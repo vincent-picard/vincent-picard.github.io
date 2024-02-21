@@ -24,7 +24,7 @@ Une règle de production $(X, u)$ sera notée $X \to u$. $X$ est le **membre gau
 Lorsqu'une grammaire possède plusieurs règles avec même membre gauche on peut condenser l'écriture de ces règles ainsi : $X \to u \ | \ v \ | \ w$ signifie qu'il existe trois règles de production $X \to u$, $X \to v$ et $X \to w$.
 
 !!! note "Remarque"
-    Les grammaires algébriques sont aussi appelées **grammaires hors contexte** ou encore ** grammaires non contextuelles**
+    Les grammaires algébriques sont aussi appelées **grammaires hors contexte** ou encore **grammaires non contextuelles**
 
 !!! example "Exemple (grammaire en langage naturel)"
     Voici une grammaire algébrique pour décrire ceraines phrases en français : 
@@ -88,12 +88,15 @@ Nous allons maintenant définir formellement ce qu'est le **langage engendré** 
 
 ### A. Dérivations
 
-#### Définition
-Soit G = (Sigma, V, S, RR) une grammaire algébrique, soit R = A->alpha une règle de production de G. On dit que u se **dérive immédiatement** en v par la règle R s'il existe deux mots x et y tels que
-u = x A y
-v = x alpha y
+!!! definition "Définition (dérivation immédiate)"
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, soit $R = A \to \alpha$ une règle de production de $G$. Soit $u$ et $v$ deux mots sur $\Sigma \cup V$. On dit que $u$ se **dérive immédiatement** en $v$ avec la règle $R$ s'il existe deux mots $x$ et $y$ sur $\Sigma \cup V$ tels que :
 
-**Notation :** u => v
+    * $u = x A y$
+    * $v = x \alpha y$
+
+Autrement dit, cette définition dit que $u$ se dérive en $v$ avec la règle $R$ si $u$ contient quelque part le symbole non terminal $A$ et qu'on peut obtient $v$ lorsqu'on subsitue $A$ par $\alpha$ dans $u$.
+
+**Notation :** On notera $u \Rightarrow v$ pour dire que $u$ se dérive imméd en $v$.
 
 #### Définition
 Soit G = (Sigma, V, S, RR) une grammaire algébrique. On dit que u se **dérive** en v s'il existe une suite _finie_ de mots (eventuellement vide) tels que 
