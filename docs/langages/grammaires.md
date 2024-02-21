@@ -96,7 +96,7 @@ Nous allons maintenant définir formellement ce qu'est le **langage engendré** 
 
 Autrement dit, cette définition dit que $u$ se dérive en $v$ avec la règle $R$ si $u$ contient quelque part le symbole non terminal $A$ et qu'on peut obtient $v$ lorsqu'on subsitue $A$ par $\alpha$ dans $u$.
 
-**Notation :** On notera $u \Rightarrow v$ pour dire que $u$ se dérive imméd en $v$.
+**Notation :** On notera $u \Rightarrow v$ pour dire que $u$ se dérive immédiatement en $v$.
 
 #### Définition
 Soit G = (Sigma, V, S, RR) une grammaire algébrique. On dit que u se **dérive** en v s'il existe une suite _finie_ de mots (eventuellement vide) tels que 
