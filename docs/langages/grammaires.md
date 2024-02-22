@@ -98,14 +98,18 @@ Autrement dit, cette définition dit que $u$ se dérive en $v$ avec la règle $R
 
 **Notation :** On notera $u \Rightarrow v$ pour dire que $u$ se dérive immédiatement en $v$.
 
-#### Définition
-Soit G = (Sigma, V, S, RR) une grammaire algébrique. On dit que u se **dérive** en v s'il existe une suite _finie_ de mots (eventuellement vide) tels que 
-u => w1 => w2 => ... => wn => v
- 
-**Notation :** u =>* v
+!!! definition "Définition (dérivation)"
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique. Soit $u$ et $v$ des mots sur $\Sigma \cup V$. On dit que $u$ se **dérive** en $v$ s'il existe une suite _finie_ de $n$ dérivations immédiates : $w_0 \Rightarrow w_1 \Rightarrow w_2 \Rightarrow \dots \Rightarrow w_n$ telle que :
 
-### Proposition
-La relation =>* est reflexive et transitive 
+    * $w_0 = u$
+    * $w_n = v$
+
+    Le nombre de dérivations immédiates $n \in \mathbb{N}$ s'appelle la *longueur de la dérivation*.
+ 
+**Notation :** $u \Rightarrow^* v$
+
+!!! note "Proposition"
+    La relation $\Rightarrow^*$ est reflexive et transitive.
 
 #### Définition
 On dit qu'une dérivation immédiate xAy => x alpha y est une **dérivation gauche immédiate** (resp. **dérivation droite immédiate**) lorsque x (resp. y) ne contient pas de symbole non terminal.
