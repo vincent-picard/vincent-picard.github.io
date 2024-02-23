@@ -48,13 +48,13 @@ Cette grammaire permet de générer les phrases suivantes :
 !!! example "Exemple (langage de balises)"
     Voici une grammaire permettant de representer un langage balisé
     ```
-    Texte -> epsilon | lettre Texte | < ident > Texte < /ident > Texte
-    lettre -> a | b | ... | z (26 règles)
-    ident -> gras | italique
+    Texte -> epsilon | LettreTexte | <Ident>Texte</Ident>Texte
+    Lettre -> a | b | ... | z | (espace) (27 règles)
+    Ident -> gras | italique
     ```
-    Ici, `epsilon` désigne le mot vide. Il n'y a qu'un seul non terminal $V = \{\mathrm{Texte}\}$ et les symboles terminaux sont $\Sigma = \{<, >, /, a, ..., z\}$.
+    Ici, `epsilon` désigne le mot vide. Les symboles non terminaux sont $V = \{\mathrm{Texte}, \mathrm{Lettre}, \mathrm{Ident}\}$ et les symboles terminaux sont $\Sigma = \{<, >, /, a, ..., z, (espace)\}$.
 
-Cette grammaire permet par exemple de réprésenter le texte balisé suivant : `< gras > < italique > texte < /italique > < /gras > généré par notre < gras > grammaire algébrique < /gras >`.
+Cette grammaire permet par exemple de réprésenter le texte balisé suivant : `<gras> <italique> texte </italique> </gras> issu de notre <gras> grammaire </gras>`.
 
 !!! warning "Attention"
     Cette grammaire ne génère pas nécessairement de textes **correctement** balisés : par exemple il est tout a fait possible d'écrire `<gras> vanille bourbon </italique>` avec les règles de cette grammaire. *Comment modifier cette grammaire pour obtenir des balises correctes ?*
@@ -62,10 +62,10 @@ Cette grammaire permet par exemple de réprésenter le texte balisé suivant : `
 ??? example "Exemple (langage de balises correct)"
     Pour avoir un parenthésage correct des balises 'gras' et 'italique' on peut utiliser la grammaire suivante :
     ```
-    Texte -> epsilon | lettre Texte
-    Texte -> < gras > Texte < /gras > Texte
-    Texte -> < italique > Texte < /italique > Texte
-    lettre -> a | b | ... | z (26 règles)
+    Texte -> epsilon | LettreTexte
+    Texte -> <gras>Texte</gras>Texte
+    Texte -> <italique>Texte</italique>Texte
+    Lettre -> a | b | ... | z | (espace) (27 règles)
     ```
 
 !!! example "Exemple (expressions arithmétiques)"
