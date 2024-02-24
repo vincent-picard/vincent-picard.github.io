@@ -125,13 +125,9 @@ En informatique, on dit que la relation $\Rightarrow^* {}$ est la **fermeture r�
 
 Autrement dit, une dérivation gauche est une dérivation dans laquelle on applique une règle de production associée à un symbole non terminal le plus à gauche du mot. 
 
-On définit de même les relations de dérivation gauche $\Rightarrow_g^* $ et droite $\rightarrow_d^* $ lorsqu'on a une suite finie de dérivations immédiates gauche ou droite.
-
-#### Définition
-On dit que u se dérive en v par **dérivation gauches** si on peut dériver u en v par une suite finie de dérivation immédiates gauches.
+On définit de même les relations de **dérivation gauche** $\Rightarrow_g^* $ et de ** dérivation droite** $\rightarrow_d^* $ lorsqu'on a une suite finie de dérivations immédiates gauche ou droite.
 
 ### B. Langage engendré par une grammaire
-
 
 #### Définition
 Soit G = (Sigma, V, S, R) une grammaire algébrique, on appelle **langage engendré** par G le langage des mots sur Sigma qu'on peut obtenir par dérivation de l'axiome :
