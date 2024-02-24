@@ -11,7 +11,7 @@ Dans ce cours on notera en général :
 - $\Sigma$ un alphabet fini de symboles appelés **symboles terminaux**
 - $V$ un alphabet fini de symboles appelés **variables** ou **symboles non terminaux**
 
-!!! definition "Définition"
+!!! abstract "Définition"
     Une **grammaire algébrique** est un quadruplet $(\Sigma, V, S, \mathcal{R})$ dans lequel :
 
     * $\Sigma$ est l'alphabet des **symboles terminaux**
@@ -23,8 +23,8 @@ Une règle de production $(X, u)$ sera notée $X \to u$. $X$ est le **membre gau
 
 Lorsqu'une grammaire possède plusieurs règles avec même membre gauche on peut condenser l'écriture de ces règles ainsi : $X \to u \ | \ v \ | \ w$ signifie qu'il existe trois règles de production $X \to u$, $X \to v$ et $X \to w$.
 
-!!! note "Remarque"
-    Les grammaires algébriques sont aussi appelées **grammaires hors contexte** ou encore **grammaires non contextuelles**
+!!! info "Vocabulaire"
+    Les grammaires algébriques sont aussi appelées **grammaires hors contexte** ou encore **grammaires non contextuelles**.
 
 !!! example "Exemple (grammaire en langage naturel)"
     Voici une grammaire algébrique pour décrire ceraines phrases en français : 
@@ -88,7 +88,7 @@ Nous allons maintenant définir formellement ce qu'est le **langage engendré** 
 
 ### A. Dérivations
 
-!!! definition "Définition (dérivation immédiate)"
+!!! abstract "Définition (dérivation immédiate)"
     Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, soit $R = A \to \alpha$ une règle de production de $G$. Soit $u$ et $v$ deux mots sur $\Sigma \cup V$. On dit que $u$ se **dérive immédiatement** en $v$ avec la règle $R$ s'il existe deux mots $x$ et $y$ sur $\Sigma \cup V$ tels que :
 
     * $u = x A y$
@@ -98,7 +98,7 @@ Autrement dit, cette définition dit que $u$ se dérive en $v$ avec la règle $R
 
 **Notation :** On notera $u \Rightarrow v$ pour dire que $u$ se dérive immédiatement en $v$.
 
-!!! definition "Définition (dérivation)"
+!!! abstract "Définition (dérivation)"
     Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique. Soit $u$ et $v$ des mots sur $\Sigma \cup V$. On dit que $u$ se **dérive** en $v$ s'il existe une suite _finie_ de $n$ dérivations immédiates : $w_0 \Rightarrow w_1 \Rightarrow w_2 \Rightarrow \dots \Rightarrow w_n$ telle que :
 
     * $w_0 = u$
@@ -108,15 +108,24 @@ Autrement dit, cette définition dit que $u$ se dérive en $v$ avec la règle $R
  
 **Notation :** $u \Rightarrow^* v$
 
-!!! note "Proposition"
-    La relation $\Rightarrow^*$ est reflexive et transitive.
+!!! tip "Proposition"
+    La relation $\Rightarrow^*$ est réflexive et transitive.
 
-#### Définition
-On dit qu'une dérivation immédiate xAy => x alpha y est une **dérivation gauche immédiate** (resp. **dérivation droite immédiate**) lorsque x (resp. y) ne contient pas de symbole non terminal.
+??? note "Démonstration"
+    
+    1. Il est évident que tout mot $u$ se dérive en $u$ par la suite de dérivations de longueur nulle. Donc $\Rightarrow^* {}$ est transitive.
+    2. On suppose qu'il existe trois mots $u$, $v$, $w$ tels que $u \Rightarrow^* v$ et $v \Rightarrow^* w$. Donc il existe deux suites finies de dérivations immédiates $a_0 \Rightarrow \dots \Rightarrow a_n$ et $b_0 \Rightarrow \dots \Rightarrow b_m$ telles que $a_0 = u$, $a_n = b_0 = v$ et $b_m = w$. Ainsi, il existe bien une dérivation de $u$ en $w$ de longueur $n + m$ : $u = a_0 \Rightarrow \dots \Rightarrow a_n = b_0 \Rightarrow \dots \Rightarrow b_m = w$. Donc $u \Rightarrow^* v$.
 
-**Notation:** u =>g* v
+En informatique, on dit que la relation $\Rightarrow^* {}$ est la **fermeture réflexive transitive** de la relation $\Rightarrow$.
+
+!!! abstract "Définition"
+    On dit qu'une dérivation immédiate xAy => x alpha y est une **dérivation immédiate gauche** (resp. **dérivation immédiate droite**) lorsque x (resp. y) ne contient pas de symbole non terminal.
+
+**Notations:** $u \Rightarrow_g v$ et $u \Rightarrow_d v$
 
 Autrement dit, une dérivation gauche est une dérivation dans laquelle on applique une règle de production associée à un symbole non terminal le plus à gauche du mot. 
+
+On définit de même les relations de dérivation gauche $\Rightarrow_g^* $ et droite $\rightarrow_d^* $ lorsqu'on a une suite finie de dérivations immédiates gauche ou droite.
 
 #### Définition
 On dit que u se dérive en v par **dérivation gauches** si on peut dériver u en v par une suite finie de dérivation immédiates gauches.
