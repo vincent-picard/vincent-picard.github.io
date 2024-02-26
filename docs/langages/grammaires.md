@@ -125,51 +125,78 @@ En informatique, on dit que la relation $\Rightarrow^* {}$ est la **fermeture r�
 
 Autrement dit, une dérivation gauche est une dérivation dans laquelle on applique une règle de production associée à un symbole non terminal le plus à gauche du mot. 
 
-On définit de même les relations de **dérivation gauche** $\Rightarrow_g^* $ et de ** dérivation droite** $\rightarrow_d^* $ lorsqu'on a une suite finie de dérivations immédiates gauche ou droite.
+On définit de même les relations de **dérivation gauche** $\Rightarrow_g^*$ et de **dérivation droite** $\Rightarrow_d^*$ lorsqu'on a une suite finie de dérivations immédiates gauche ou droite.
 
 ### B. Langage engendré par une grammaire
 
-#### Définition
-Soit G = (Sigma, V, S, R) une grammaire algébrique, on appelle **langage engendré** par G le langage des mots sur Sigma qu'on peut obtenir par dérivation de l'axiome :
-```
-L(G) = { u \in \Sigma^* tels que S =>* u }
-```
+!!! abstract "Définition"
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, on appelle **langage engendré** par $G$ le langage des mots sur $\Sigma$ qu'on peut obtenir par dérivation du symbole initial $S$ : 
 
-#### Définition
-Un langage L sur Sigma tel qu'il existe une grammaire G telle que L(G) = L est dit **langage algébrique**, aussi appelé **langage non contextuel**.
+    $$\mathcal{L}(G) = \{ u \in \Sigma^* \text{ tels que } S \Rightarrow^* u \}$$
 
-#### Exemple : langage de Dyck
-Soit la G la grammaire
-```
-S -> epsilon | aSbS
-```
-Démontrer que L(G) est le langage des mots bien parenthésés sur {a, b}.
+Attention, le langage engendré par une grammaire n'est constitué que de mots formés sur l'alphabet des terminaux.
 
-Dem :
-    1. Par récurrence sur la longueur de u. Soit u un mot bien parenthésé non vide, il commence nécessairement par une parenthèse ouvrante a. On décompose alors u en u = a v b w où la lettre b de la décomposition correspond à la parenthèse fermante associée à la première parenthèse. v et w sont alors aussi bien parenthésés. Par hypothèse de récurrence forte il S =>* v et S =>* w. Il vient alors : S => aSbS => avbS => avbw = u 
-    2. Par récurrence sur la longueur d'une dérivation. Si la dérivation est de longueur 0 alors elle ne peut pas générer de mot c'est gagné. Si la dérivation est de longueur k > 0. Alors soit elle commence par S => epsilon qui est bien parenthésé, soit elle commence par S => aSbS. Donc nécessairement u est de la forme a v b w avec S =>* v et S =>* w. Par hypothese de recurrence forte, v et w sont bien parenthésés. On en déduit que avb est bien parenthésé et que u = avb w est bien parenthésé par concaténation de deux mots bien parenthésés.
+!!! abstract "Définition"
+    Un langage $L$ est dit **langage algébrique** s'il est engendré par une grammaire algébrique. On désigne aussi parfois cette classe de langage sous le terme de **langages non contextuels**.
 
-On remarque qu'il n'est pas toujours agréable de travailler avec les dérivations, de plus la notion de mot bien parenthésé n'est pas formellement définie. On fera quelque chose de plus carré en TD. 
+!!! example "Exemple (langage de Dyck)"
+    Soit $G$ la grammaire suivante :
 
-#### Définition
-Deux grammaires sont **faiblement équivalents** lorsqu'elles engendrent le même langage : L(G_1) = L(G_2).
+    $$S \rightarrow \varepsilon \ | \ aSbS$$
 
-#### Proposition
-Les langages rationnels (=réguliers) sont non contextuels
+    Alors $\mathcal{L}(G)$ est le langage des mots bien parenthésés dans lequel $a$ représente une parenthèse ouvrante et $b$ une parenthèse fermante.
 
-Dem : par induction sur les langages rationnels on montre la propriété
-P(L) : "Il existe une grammaire algébrique G telle que L(G) = L"
+??? note "Démonstration"
 
-#### Exemple
-La Grammaire
-```
-S -> SS | epsilon
-S -> aSb
-```
-engendre aussi le langage de Dyck
+    1. Montrons d'abord que tout mot correctement parenthésé peut se dériver depuis $S$. On procède par récurrence forte sur la longueur de $u$. Si $u = \varepsilon$ alors $S \Rightarrow^* u$. Si $u$ un mot bien parenthésé non vide, il commence nécessairement par une parenthèse ouvrante $a$. On décompose alors $u$ en $u = avbw$ où la lettre $b$ de la décomposition correspond à la parenthèse fermante associée à la première parenthèse ouvrante $a$. Les mots $v$ et $w$ sont alors aussi bien parenthésés. Par hypothèse de récurrence forte on a $S \Rightarrow^* v$ et $S \Rightarrow^* w$. Il vient alors : $S \Rightarrow aSbS \Rightarrow^* avbS \Rightarrow^* avbw = u$. La récurrence forte est établie.
+    2. Réciproquement, montrons que tout mot $u$ dérivé depuis $S$ est bien parenthésé. On procède par récurrence forte sur la longueur de la dérivation. Si la dérivation est de longueur 0 alors elle ne peut pas générer de mot sur $\Sigma$. Si la dérivation est de longueur k > 0. Alors soit elle commence par $S \Rightarrow \varepsilon$ ce qui signifie que $u = \varepsilon$ qui est bien parenthésé, soit elle commence par $S \Rightarrow aSbS$. Donc nécessairement $u$ est de la forme $u = avbw$ avec $S \Rightarrow^* v$ et $S \Rightarrow^* w$. Par hypothese de recurrence forte, $v$ et $w$ sont bien parenthésés. On en déduit que $avb$ est bien parenthésé et que $u = avb \cdot w$ est bien parenthésé par concaténation de deux mots bien parenthésés. La récurrence forte est établie.
+
+    Une démonstration plus formelle (mais pas nécessairement plus claire) nécessiterait de définir proprement le langage de Dyck comme les mots ayant autant de $a$ que de $b$ et dans lesquels tout préfixe contient plus de $a$ que de $b$. Aussi, le 2e sens de la preuve peut être clarifié en utilisant les arbres de dérivations présentés dans la partie suivante.
+
+!!! abstract "Définition"
+    Deux grammaires $G_1$ et $G_2$ sont dites **faiblement équivalentes** lorsqu'elles engendrent le même langage : $\mathcal{L}(G_1) = \mathcal{L}(G_2)$.
+
+!!! example "Exemple"
+    La grammaire suivante 
+
+    $$ \begin{align}
+    S & \to SS \ |\  \varepsilon \\
+    S & \to aSb
+    \end{align}
+    $$
+
+    engendre aussi le langage de Dyck et est donc faiblement équivalente à la grammaire proposée précédemment.
+
+??? note "Démonstration"
+
+    Notons $G_1$ la grammaire initialement proposée et $G_2$ cette nouvelle grammaire.
+
+    1. On remarque que pour $G_2$, $S \Rightarrow \varepsilon$ et $S \Rightarrow SS \Rightarrow aSbS$. Donc toute suite de dérivation immédiates pour la grammaire $G_1$ peut être traduite en suite de dérivations pour la grammaire $G_2$. Cela signifie que $\mathcal{L}(G_1) \subset \mathcal{L}(G_2)$.
+
+    2. Pour montrer l'inclusion réciproque : $\mathcal{L}(G_2) \subset \mathcal{L}(G_1)$, il suffit de montrer que les mots engendrés par $G_2$ sont bien parentésés. On peut le montrer par récurrence forte sur la longueur de la dérivation : cela fonctionne car $\varepsilon$ est bien parenthésé, si $u$ est bien parenthésé alors $aub$ aussi et que le langage de Dyck est stable par concaténation.
 
 ### C. Non contextualité des langages réguliers
 
+!!! tip "Proposition"
+    Les langages réguliers sont non contextuels.
+
+Deux autres manières de le dire : 
+    
+    - Tout langage dénoté par une expression régulière est engendré par une grammaire algébrique
+    - Tout langage accepté par un automate fini (déterministe ou non) est engendré par une grammaire algébrique
+
+!!! note "Démonstration"
+    On procède par induction sur les langages réguliers qui sont définis inductivement. Montrons la propriété
+
+    $$P(L) : \text{"Il existe une grammaire algébrique $G$ telle que $\mathcal{L}(G) = L$"}$$
+
+    sur tous les langages $L$ réguliers.
+
+    - **Cas de base**
+        * $L = \varnothing$ : une grammaire ne contenant aucune règle de production convient
+        * $L = \{ \varepsilon \}$ : la grammaire possédant uniquement la règle $S \to \varepsilon$ convient
+        * $L = \{ a \}$ avec $a \in \Sigma$ : la grammaire possédant uniquement la règle $S \to a$ convient
+    - **Hérédité**
 ## 3. Arbres de dérivation et ambuiguité
 
 ### A. Arbres de dérivation
