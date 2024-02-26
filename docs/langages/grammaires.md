@@ -178,12 +178,12 @@ Attention, le langage engendré par une grammaire n'est constitué que de mots f
 ### C. Non contextualité des langages réguliers
 
 !!! tip "Proposition"
-    Les langages réguliers sont non contextuels.
+    Les langages réguliers sont algébriques.
 
 Deux autres manières de le dire : 
-    
-    - Tout langage dénoté par une expression régulière est engendré par une grammaire algébrique
-    - Tout langage accepté par un automate fini (déterministe ou non) est engendré par une grammaire algébrique
+
+- Tout langage dénoté par une expression régulière est engendré par une grammaire algébrique
+- Tout langage accepté par un automate fini (déterministe ou non) est engendré par une grammaire algébrique
 
 !!! note "Démonstration"
     On procède par induction sur les langages réguliers qui sont définis inductivement. Montrons la propriété
@@ -197,7 +197,20 @@ Deux autres manières de le dire :
         * $L = \{ \varepsilon \}$ : la grammaire possédant uniquement la règle $S \to \varepsilon$ convient
         * $L = \{ a \}$ avec $a \in \Sigma$ : la grammaire possédant uniquement la règle $S \to a$ convient
     - **Hérédité**
+
 ## 3. Arbres de dérivation et ambuiguité
+
+!!! example "Exemple introductif (L'inconvénient des suites de dérivations)"
+    Pour la grammaire du langage de Dyck introduite précédemment :
+
+    $$ S \to aSbS \ | \  \varepsilon$$
+
+    On peut dériver depuis $S$ le mot $aabbab$ de deux manières différentes :
+    
+    1. $S \Rightarrow a\mathbf{S}bS \Rightarrow aaSbSb\mathbf{S} \Rightarrow aaSbSbaSbS \Rightarrow^* aabbab$
+    2. $S \Rightarrow aSb\mathbf{S} \Rightarrow a\mathbf{S}baSbS \Rightarrow aaSbSbaSbS \Rightarrow^* aabbab$
+
+    Pourtant ces deux dérivations utilisent les mêmes règles de production, qui sont simplement appliquées dans un ordre différent. Il n'est pas aisé de constater ce fait lorsqu'on représente une dérivation par une suite de dérivations immédiates. Dans cette partie on va montrer comment représenter les dérivations à l'aide d'arbres. 
 
 ### A. Arbres de dérivation
 
@@ -209,12 +222,26 @@ Soit G = (Sigma, V, S, R) une grammaire algébrique. Soit A un symbole non termi
     4. Pour tout noeud interne X ayant pour fils des noeuds et feuilles étiquetées de gauche à droite par alpha_1 ... alpha_n, alors X -> alpha_1 ... alpha_n est une règle de production de G
 Lorsque les feuilles de l'arbre contiennent encore des non terminaux on dit que c'est un ** arbre de dérivation partielle **.
 
-Les arbres de dérivation sont une manière plus commode de représenter une suite de dérivations :
-### Exemple
-S -> abSaT | a
-T -> bT | epsilon
+Les arbres de dérivation sont donc une manière plus commode de représenter une suite de dérivations :
 
-Donner un exemple d'arbre de dérivation de S
+!!! example "Exemple (langage de Dyck)"
+    Reprenons l'exemple de la grammaire générant le langage de Dyck :
+
+    $$ S \to aSbS \ | \  \varepsilon$$
+
+    Voici un exemple d'arbre de dérivation qui représente les dérivations utilisées dans l'introduction de la partie pour engendré $aabbab$ :
+
+    ```mermaid
+    graph TD
+        A[S] --- B1((a)) & B2[S] & B3((b)) & B4[S]; 
+        B2 --- C1((a)) & C2[S] & C3((b)) & C4[S]; 
+        B4 --- C5((a)) & C6[S] & C7((b)) & C8[S]; 
+        C2 --- D1((ε));
+        C4 --- D2((ε));
+        C6 --- D3((ε));
+        C8 --- D4((ε));
+    ```
+    On constate que chaque noeud interne correspond à l'application d'une règle de production.
 
 #### Définition (hors programme)
 Soit un arbre de dérivation, on appelle **frontière** de l'arbre la concaténation de gauche à droite de toutes ses feuilles.
