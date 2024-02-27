@@ -185,7 +185,7 @@ Deux autres manières de le dire :
 - Tout langage dénoté par une expression régulière est engendré par une grammaire algébrique
 - Tout langage accepté par un automate fini (déterministe ou non) est engendré par une grammaire algébrique
 
-!!! note "Démonstration"
+??? note "Démonstration"
     On procède par induction sur les langages réguliers qui sont définis inductivement. Montrons la propriété
 
     $$P(L) : \text{"Il existe une grammaire algébrique $G$ telle que $\mathcal{L}(G) = L$"}$$
@@ -197,6 +197,10 @@ Deux autres manières de le dire :
         * $L = \{ \varepsilon \}$ : la grammaire possédant uniquement la règle $S \to \varepsilon$ convient
         * $L = \{ a \}$ avec $a \in \Sigma$ : la grammaire possédant uniquement la règle $S \to a$ convient
     - **Hérédité**
+        * $L = L_1.L_2$ avec $P(L_1)$ et $P(L_2)$ vraies. Il existe alors deux grammaires algébriques $G_1 = (\Sigma, V_1, S_1, \mathcal{R}_1)$ et $G_2 = (\Sigma, V_2, S_2, \mathcal{R}_2)$ telles que $\mathcal{L}(G_1) = L_1$ et $\mathcal{L}(G_2) = L_2$. Quitte à renommer les symboles non terminaux, on peut supposer $V_1 \cap V_2 = \varnothing$. On pose alors $G = (\Sigma, V_1 \cup V_2 \cup \{S\}, \mathcal{R}_1 \cup \mathcal{R}_2 \cup \{ S \to S_1S_2\})$ où $S$ est un symbole non terminal nouveau. Dans la grammaire obtenue, la seule dérivation immédiate initiale possible est $S \Rightarrow S_1S_2$ ce qui signifie que les mots dérivés depuis $S$ seront de la forme $u_1.u_2$ avec $u_1 \in L_1$ et $u_2 \in L_2$. Donc $\mathcal{L}(G) = L_1.L_2 = L$.
+        * $L = L_1 \cup L_2$ avec $P(L_1)$ et $P(L_2)$ vraies. On procède comme dans le cas précédent et on pose cette fois la grammaire : $G = (\Sigma, V_1 \cup V_2 \cup \{S\}, \mathcal{R}_1 \cup \mathcal{R}_2 \cup \{S \to S_1, S \to S_2\})$. Une dérivation de $S$ dans cette grammaire débute soit par $S \Rightarrow S_1$ et alors un mot de $L_1$ sera ultimement généré, soit $S \Rightarrow S_2$ et alors un mot de $L_2$ sera ultimement généré. On en déduit que $\mathcal{L}(G) = L_1 \cup L_2 = L$.
+        * $L = L_1^*$ avec $P(L_1)$ vrai. Il existe donc une grammaire $G_1 = (\Sigma, V_1, S_1, \mathcal{R}_1)$ engendrant $L_1$. On pose la grammaire $G = (\Sigma, V_1 \cup \{S\}, \mathcal{R}_1 \cup \{S \to S_1S, S \to \varepsilon\})$. Les règles introduites permettent initialement de dériver tout mot de la forme $S_1^k$ depuis $S$ : $S \Rightarrow S_1^k$ pour tout $k \in \mathbb{N}$. Chaque non terminal $S_1$ se dérivera ensuite en un mot de $L_1$. Donc le langage engendré par cette grammaire est $\mathcal{L}(G) = L_1^* = L$.
+
 
 ## 3. Arbres de dérivation et ambuiguité
 
@@ -214,12 +218,16 @@ Deux autres manières de le dire :
 
 ### A. Arbres de dérivation
 
-#### Définition
-Soit G = (Sigma, V, S, R) une grammaire algébrique. Soit A un symbole non terminal. Un **arbre de dérivation** de A est un arbre étiqueté dans Sigma union V union epsilon où :
+!!! abstract "Définition"
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique. Soit $X \in V$ un symbole non terminal. Un **arbre de dérivation** de racine $X$ est un arbre enraciné dont les noeuds et feuilles sont étiquetés dans $\Sigma \cup V \cup \{\varepsilon\}$ et qui vérifie :
+
+    1. La racine est étiquetée par $X$
     1. Les noeuds internes sont étiquetés par des variables
-    2. La racine est étiquetée par A
-    3. Si une feuille est étiquetée par epsilon, elle n'a pas de soeurs, et si X est son père alors X -> epsilon est une règle de production
-    4. Pour tout noeud interne X ayant pour fils des noeuds et feuilles étiquetées de gauche à droite par alpha_1 ... alpha_n, alors X -> alpha_1 ... alpha_n est une règle de production de G
+    3. Si une feuille est étiquetée par $\varepsilon$, elle n'a pas de soeurs, et si $A$ est l'étiquette de son parent alors $A \to \varepsilon$ est une règle de production de $G$
+    4. Pour tout noeud interne étiqueté par $A$ ayant pour fils des noeuds et feuilles étiquetées de gauche à droite par $\alpha_1 \dots \alpha_n$, alors $A \to \alpha_1 \dots \alpha_n$ est une règle de production de $G$
+
+Un tel arbre représente une suite de dérivations immédiates effectuée depuis $X$. Chaque noeud interne de l'arbre correspond à l'application d'une règle de production de la grammaire.
+
 Lorsque les feuilles de l'arbre contiennent encore des non terminaux on dit que c'est un ** arbre de dérivation partielle **.
 
 Les arbres de dérivation sont donc une manière plus commode de représenter une suite de dérivations :
