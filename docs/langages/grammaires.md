@@ -228,9 +228,8 @@ Deux autres manières de le dire :
 
 Un tel arbre représente une suite de dérivations immédiates effectuée depuis $X$. Chaque noeud interne de l'arbre correspond à l'application d'une règle de production de la grammaire.
 
-Lorsque les feuilles de l'arbre contiennent encore des non terminaux on dit que c'est un ** arbre de dérivation partielle **.
-
-Les arbres de dérivation sont donc une manière plus commode de représenter une suite de dérivations :
+!!! info "Vocabulaire"
+    Lorsque les feuilles de l'arbre contiennent encore des non terminaux on dit que c'est un **arbre de dérivation partielle**.
 
 !!! example "Exemple (langage de Dyck)"
     Reprenons l'exemple de la grammaire générant le langage de Dyck :
@@ -251,19 +250,24 @@ Les arbres de dérivation sont donc une manière plus commode de représenter un
     ```
     On constate que chaque noeud interne correspond à l'application d'une règle de production.
 
-#### Définition (hors programme)
-Soit un arbre de dérivation, on appelle **frontière** de l'arbre la concaténation de gauche à droite de toutes ses feuilles.
+!!! abstract "Définition"
+    Soit un arbre de dérivation, on appelle **frontière** de l'arbre le mot obtenu en concaténant toutes ses feuilles de gauche à droite de toutes ses feuilles.
 
-#### Proposition
-Soit G = (Sigma, V, S, R) une grammaire algébrique, u un mot sur Sigma union V, et X un symbole non terminal alors
-X =>* u ssi il existe un arbre de dérivation de racine X dont la frontière est u
+**Notation:** $\mathrm{Fr}(A)$ où $A$ est l'arbre de dérivation.
 
-Demonstration
-    1. Par récurrence sur la longueur de la dérivation : si la dérivation est de longueur 0, alors l'arbre-feuille X convient. Sinon la dérivation se décompose en X =>k v => u. Par hypothèse de récurrence, il existe un arbre de dérivation A1 de racine X dont la frontière est V. Puisque v => u, v se décompose en v = alpha Y beta et u en alpha u_1 ... u_n beta où Y -> u_1 ... u_n est une règle de production. Il suffit alors de remplacer la feuille Y dans A1 par un noeud étiquetté par Y et ayant des feuilles étiquetées de gauche à droite par u_1 ... u_n. A2 est bien un arbre de dérivation dont la frontière est alpha u_1 ... u_n beta c'est à dire u.
-    2. Par induction sur les arbres :
-        P(A) : "Si A est un arbre derivation de racine X et de frontière u alors X =>* u"
-        A. Si l'arbre est une feuille alors on a bien X =>* X
-        B. Sinon l'arbre est un noeud X et on a deux cas, soit il a pour fils epsilon uniquement et alors X -> epsilon est une règle et X =>* epsilon = frontière (A). Sinon il possède des fils A_1 ... A_n de racines respectives a_1 ... a_n qui ne sont pas epsilon. On a alors Fr(A) = Fr(A_1)...Fr(A_n) = u. Et on veut montrer que X =>* u. 
+On peut remarquer que si l'arbre de dérivation n'est pas partiel alors la frontière est un mot sur $\Sigma$.
+
+!!! tip "Proposition" 
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $u$ un mot sur $\Sigma \cup V$ et $X$ un symbole non terminal alors $X \Rightarrow^* u$ si et seulement s'il existe un arbre de dérivation de racine $X$ dont la frontière est $u$.
+
+!!! note "Démonstration"
+
+    1. **Sens direct :** On procède par récurrence sur la longueur de la dérivation. 
+        - *Initialisation* : Si la dérivation est de longueur 0, c'est-à-dire $X \Rightarrow^* X$, l'arbre ayant un seul noeud $X$ convient. 
+        - *Hérédité* : La dérivation se décompose en $X \Rightarrow^* v$ de longueur $k$ et $v \Rightarrow u$. Par hypothèse de récurrence, il existe un arbre de dérivation $A_1$ de racine $X$ dont la frontière est $v$. Puisque $v \Rightarrow u$, $v$ se décompose en $v = s Y t$ et $u$ en $s y_1 ... y_n t$ avec $Y \to y_1 ... y_n$ la règle de production utilisée dans la dernière dérivation immédiate. Il suffit alors de remplacer la feuille $Y$ dans $A_1$ par un noeud étiquetté par $Y$ et ayant des feuilles étiquetées de gauche à droite par $y_1 ... y_n$, on obtient un nouvel arbre $A$. Il est facile de vérifier que $A$ est bien un arbre de dérivation dont la frontière est $s y_1 ... y_n t = u$.
+    2. **Sens réciproque :** On procède par induction sur les arbres : $P(A)$ : "Si $A$ est un arbre de dérivation de racine $X$ et de frontière $u$ alors $X \Rightarrow^* u$".
+        - *Cas de base* : Si l'arbre est une feuille alors on a bien $X \Rightarrow^* X$.
+        - *Hérédité* : La racine possède un ou plusieurs fils qui vérifient l'hypothèse d'induction. On a deux cas, soit la racine possède un unique fils $\varepsilon$ et alors $X \to \varepsilon$ est une règle de la grammaire donc $X \Rightarrow^* \varepsilon = \mathrm{Fr}(A)$. Sinon il possède des fils $A_1, \dots,  A_n$ de racines respectives d'étiquettes $a_1, \dots, a_n$ distinctes de $\varepsilon$. Si $a_i$ est un symbole terminal alors $a_i \Rightarrow^* a_i = \mathrm{Fr}(A_i)$. Si $a_i$ est un symbole non terminal alors $a_i \Rightarrow^* \mathrm{Fr}(A_i)$ par hypothèse d'induction. On a alors Fr(A) = Fr(A_1)...Fr(A_n) = u. Et on veut montrer que X =>* u. 
 Comme X est un noeud on sait qu'il existe une règle X -> a_1 ... a_n
 Si A_i est un feuille etiquetée par un non terminal on a a_i =>* a_i. Si A_i est un noeud alors a_i est un non terminal et A_i est un arbre de dérivation de racine a_i par hypothèese de recurrence forte, a_i =>* Fr(A_i) on en deduit : 
 X => a_1 ... a_n =>* Fr(a_1) a_2 ... a_n =>* Fr(a_1) Fr(a_2) a_3 ... a_n =>* ... =>* Fr(a_1) Fr(a_2) ... Fr(a_n) = u
