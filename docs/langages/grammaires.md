@@ -202,7 +202,7 @@ Deux autres manières de le dire :
         * $L = L_1^*$ avec $P(L_1)$ vrai. Il existe donc une grammaire $G_1 = (\Sigma, V_1, S_1, \mathcal{R}_1)$ engendrant $L_1$. On pose la grammaire $G = (\Sigma, V_1 \cup \{S\}, \mathcal{R}_1 \cup \{S \to S_1S, S \to \varepsilon\})$. Les règles introduites permettent initialement de dériver tout mot de la forme $S_1^k$ depuis $S$ : $S \Rightarrow S_1^k$ pour tout $k \in \mathbb{N}$. Chaque non terminal $S_1$ se dérivera ensuite en un mot de $L_1$. Donc le langage engendré par cette grammaire est $\mathcal{L}(G) = L_1^* = L$.
 
 
-## 3. Arbres de dérivation et ambuiguité
+## 3. Arbres de dérivation et ambiguïté
 
 !!! example "Exemple introductif (L'inconvénient des suites de dérivations)"
     Pour la grammaire du langage de Dyck introduite précédemment :
@@ -260,7 +260,7 @@ Un tel arbre représente une suite de dérivations immédiates effectuée depuis
 
 On peut remarquer que si l'arbre de dérivation n'est pas partiel alors la frontière est un mot sur $\Sigma$.
 
-!!! tip "Proposition" 
+!!! tip "Théorème" 
     Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $u$ un mot sur $\Sigma \cup V$ et $X$ un symbole non terminal alors $X \Rightarrow^* u$ si et seulement s'il existe un arbre de dérivation de racine $X$ dont la frontière est $u$.
 
 ??? note "Démonstration"
@@ -278,36 +278,36 @@ On peut remarquer que si l'arbre de dérivation n'est pas partiel alors la front
 !!! tip "Corollaire"
     Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $u$ un mot sur $\Sigma$ alors $u \in \mathcal{L}(G)$ si et seulement s'il existe un arbre de dérivation de racine $S$ dont la frontière est $u$.
 
-#### Savoir passer de suites de dérivations immédiates à arbre
-Le sens <= de la preuve donne un algorithme pour reconstuire la suite derivation associée à un arbre : c'est un parcours en profondeur de gauche à droite. (On obtient alors que des dérivations gauche)
-Pour le sens => de la preuve, on peut aussi construire par étapes l'arbre de dérivation en *développant* une feuille non terminale à chaque occurrence d'une dérivation immédiate. 
+La démonstration de ce théorème est importante car elle nous donne un algorithme pour convertir une suite de dérivations immédiates en arbre de dérivation et réciproquement :
 
-#### Proposition (corollaire)
-Soit G = (Sigma, V, S, R) une grammaire algébrique alors, u un mot sur Sigma alors
-u appartient à L(G) ssi il existe un arbre de dérivation (non partielle) de racine S dont la frontière est u
+- Pour construire un arbre de dérivation à partir d'une suite de dérivations immédiates depuis $X$ : on commence par construire le noeud racine $X$, puis on lit les dérivations dans l'ordre, pour chaque dérivation utilisant une règle $A \to a_1\dots a_n$, on ajoute au noeud d'étiquette $A$ concerné $n$ fils d'étiquettes $a_1, \dots, a_n$.
+- Pour obtenir une suite de dérivations immédiates à partir d'un arbre de dérivation on procède par **parcours en profondeur** de l'arbre de dérivation : à chaque noeud interne rencontré, on écrit une dérivation immédiate correspondant à la règle utilisée pour ce noeud.
 
-### Proposition
-u =>* v ssi u =>g* v ssi u =>d* v
-Dem :
-(2) => (1) et (3) => (1) sont évidents.
+!!! tip "Proposition"
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $u$ et $v$ deux mots sur $\Sigma \cup V$ alors on a équivalence entre :
 
-(1) => (2)
-On décompose u en u_1 V_1 u_2 V_2 ... u_n V_n u_n+1 où les u_1 sont des mots sur Sigma, on a alors que v = u_1 w_1 ... où V_i =>* w_i.
-D'après la proposition il existe donc des arbres de dérivations de racines respectives V_i et de frontières respecives w_i. Donc toujours d'après la proposition (sens réciproque avec parcours), V_i =>g* w_i. Il suffit ensuite dériver chacun des V_i de gauche à droite.
+    1. $u \Rightarrow^* v$
+    2. $u \Rightarrow_g^* v$
+    3. $u \Rightarrow_d^* v$
 
-(1) => (3)
-idem
+??? note "Démonstration"
 
-L'intéret de cette proproposition est de faciliter les preuves : lorsqu'on a une dérivation u =>* v on peut toujours considérer que ce sont des dérivations gauches (ou droites) sans nuire à la généralité.
+    - (2) implique (1) et (3) implique (1) découlent directement des définitions.
+    - Montrons que (1) implique (2). On  suppose que $u \Rightarrow^* v$. Pour simplifier la preuve, ajoutons un symbole non terminal initial fictif $S_f$ et la règle $S_f \to u$. On a alors $S_f \Rightarrow u \Rightarrow^* v$. D'après le théorème sur les arbres de dérivation : il existe un arbre de dérivation de racine $S_f$ et de frontière $v$. Comme dans la preuve du théorème, on peut transformer cet arbre de dérivation en suite de **dérivations gauche** par parcours en profondeur où les fils sont explorés de gauche à droite. De plus, comme il commence à la racine d'étiquette $S_f$, cette suite de dérivation a nécessairement pour forme $S_f \Rightarrow_g u \Rightarrow_g^* v$ ce qui montre que $u \Rightarrow_g^* v$. 
+    - (1) implique (3) se montre de la même manière mais en considérant un parcours en profondeur où les fils sont explorés de droite à gauche.
 
-### B. Ambiguité
+Un intérêt possible de cette preuve est de pouvoir supposer dans une démonstration dans la quelle on sait que $u \Rightarrow^* v$ que toutes les dérivations utilisées sont gauche (ou droite).
 
-#### Définition
-Une grammaire $G$ est dite **ambiguë** si elle possède un mot u dans L(G) telle qu'il existe deux arbres de dérivation distincts de racine S et de frontière u.
+### B. Ambiguïté
 
-### Exemple
-S -> CST | S + S | S x S
-CST -> 1 | 2 | ... | 9
+!!! abstract "Définition"
+    Une grammaire $G$ est dite **ambiguë** s'il existe un mot $u$ dans $\mathcal{L}(G)$ tel qu'il existe deux arbres de dérivation distincts de racine $S$ et de frontière $u$.
+
+Ainsi une grammaire est ambiguë lorsqu'elle permet de produire un mot $u$ de deux manières différentes.
+
+!!! example "Exemple"
+    S -> CST | S + S | S x S
+    CST -> 1 | 2 | ... | 9
 
 ### Exemple Dyck
 S -> SS | aSb | epsilon
