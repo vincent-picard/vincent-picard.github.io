@@ -306,9 +306,38 @@ Un intérêt possible de cette preuve est de pouvoir supposer dans une démonstr
 Ainsi une grammaire est ambiguë lorsqu'elle permet de produire un mot $u$ de deux manières différentes.
 
 !!! example "Exemple"
-    S -> CST | S + S | S x S
-    CST -> 1 | 2 | ... | 9
+    On considère la grammaire suivante permettant de décrire certaines formules propositionnelles sur l'ensemble de variables propositionnelles ${x, y, z}$.
 
+    $$\begin{align}
+        S &\to C \ | \ (S) \\
+        S &\to \neg S\\
+        S &\to S \lor S \ | \ S \land S\\ 
+        C &\to x \ |\  y\  |\  z
+    \end{align}
+    $$
+
+    Cette grammaire est ambiguë, un exemple peut être obtenu avec la formule $u = x \lor y \lor z$ qui est frontière des deux arbres de dérivations suivants :
+
+    ```mermaid
+    graph TD
+        A[S] --- B1[S] & B2((v)) & B3[S]; 
+        B1 --- C1[S] & C2((v)) & C3[S]; 
+        C1 --- F1((x));
+        C3 --- F2((y));
+        B3 --- F3((z));
+    ```
+
+    et 
+
+    ```mermaid
+    graph TD
+        A[S] --- B1[S] & B2((v)) & B3[S]; 
+        B3 --- C1[S] & C2((v)) & C3[S]; 
+        B1 --- F1((x));
+        C1 --- F2((y));
+        C3 --- F3((z));
+    ```
+    
 ### Exemple Dyck
 S -> SS | aSb | epsilon
 
