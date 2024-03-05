@@ -239,7 +239,7 @@ Un tel arbre représente une suite de dérivations immédiates effectuée depuis
 
     $$ S \to aSbS \ | \  \varepsilon$$
 
-    Voici un exemple d'arbre de dérivation qui représente les dérivations utilisées dans l'introduction de la partie pour engendré $aabbab$ :
+    Voici un exemple d'arbre de dérivation qui représente les dérivations utilisées dans l'introduction de la partie pour engendrer $aabbab$ :
     
     <figure>
     ![Exemple d'arbre de dérivation](fig/arbreder/arbreder-1.svg)
