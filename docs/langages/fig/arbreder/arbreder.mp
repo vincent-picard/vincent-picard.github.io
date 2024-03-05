@@ -1,6 +1,6 @@
 prologues := 3;
-outputtemplate := "%j-%c.pdf";
-outputformat := "pdf";
+outputtemplate := "%j-%c.%o";
+outputformat := "svg";
 
 beginfig(1);
 v := 1cm;
@@ -50,6 +50,7 @@ draw z12 -- z16;
 
 for i = 0 upto 16:
     fill fullcircle scaled 0.5cm shifted z[i] withcolor white;
+    unfill fullcircle scaled 0.5cm shifted z[i];
 endfor;
 
 label(btex $S$ etex, z0);
@@ -74,6 +75,7 @@ label(btex $\varepsilon$ etex, z14);
 label(btex $\varepsilon$ etex, z15);
 label(btex $\varepsilon$ etex, z16);
 
+currentpicture := currentpicture scaled 2;
 endfig;
 
 end;
