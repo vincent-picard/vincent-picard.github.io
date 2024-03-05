@@ -241,16 +241,8 @@ Un tel arbre représente une suite de dérivations immédiates effectuée depuis
 
     Voici un exemple d'arbre de dérivation qui représente les dérivations utilisées dans l'introduction de la partie pour engendré $aabbab$ :
 
-    ```mermaid
-    graph TD
-        A[S] --- B1((a)) & B2[S] & B3((b)) & B4[S]; 
-        B2 --- C1((a)) & C2[S] & C3((b)) & C4[S]; 
-        B4 --- C5((a)) & C6[S] & C7((b)) & C8[S]; 
-        C2 --- D1((ε));
-        C4 --- D2((ε));
-        C6 --- D3((ε));
-        C8 --- D4((ε));
-    ```
+    ![Exemple d'arbre de dérivation](fig/arbreder/arbreder-1.svg)
+
     On constate que chaque noeud interne correspond à l'application d'une règle de production.
 
 !!! abstract "Définition"
