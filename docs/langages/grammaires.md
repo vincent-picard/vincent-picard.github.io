@@ -290,7 +290,7 @@ La démonstration de ce théorème est importante car elle nous donne un algorit
     - Montrons que (1) implique (2). On  suppose que $u \Rightarrow^* v$. Pour simplifier la preuve, ajoutons un symbole non terminal initial fictif $S_f$ et la règle $S_f \to u$. On a alors $S_f \Rightarrow u \Rightarrow^* v$. D'après le théorème sur les arbres de dérivation : il existe un arbre de dérivation de racine $S_f$ et de frontière $v$. Comme dans la preuve du théorème, on peut transformer cet arbre de dérivation en suite de **dérivations gauche** par parcours en profondeur où les fils sont explorés de gauche à droite. De plus, comme il commence à la racine d'étiquette $S_f$, cette suite de dérivation a nécessairement pour forme $S_f \Rightarrow_g u \Rightarrow_g^* v$ ce qui montre que $u \Rightarrow_g^* v$. 
     - (1) implique (3) se montre de la même manière mais en considérant un parcours en profondeur où les fils sont explorés de droite à gauche.
 
-Un intérêt possible de cette preuve est de pouvoir supposer dans une démonstration dans la quelle on sait que $u \Rightarrow^* v$ que toutes les dérivations utilisées sont gauche (ou droite).
+Un intérêt possible de cette proposition est de pouvoir supposer dans une démonstration dans la quelle on sait que $u \Rightarrow^* v$ que toutes les dérivations utilisées sont gauche (ou droite).
 
 ### B. Ambiguïté
 
