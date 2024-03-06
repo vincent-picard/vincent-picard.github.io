@@ -1,4 +1,4 @@
-site_name: Site de Vincent Picard
+site_name: Vincent Picard - Informatique MPI
 site_description: Page personnelle de Vincent Picard et ressources pour l'informatique en MPI
 site_author: Vincent Picard
 
@@ -36,6 +36,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
      generic: true
   - attr_list
+  - md_in_html
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
