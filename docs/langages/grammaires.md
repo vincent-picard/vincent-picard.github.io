@@ -402,7 +402,7 @@ else
 ``` 
 Ce programme affiche `DEUX` à l'écran.
 
-On constate donc que OCaml décide de faire le choix que le dernier `else` . Si on regarde la manière dont le code est indenté, on constate que l'auteur est probablement dans l'erreur dans ce qu'il imagine être le comportement du programme (erreur classique d'utilisation du `if` en OCaml).
+On constate donc que OCaml décide de faire le choix que le dernier `else` correspond au 2e `if`. Si on regarde la manière dont le code est indenté, on constate que l'auteur est probablement dans l'erreur dans ce qu'il imagine être le comportement du programme (erreur classique d'utilisation du `if` en OCaml).
 
 ### D. Analyse syntaxique
 
