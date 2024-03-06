@@ -310,27 +310,11 @@ Ainsi une grammaire est ambiguë lorsqu'elle permet de produire un mot $u$ de de
     \end{align}
     $$
 
-    Cette grammaire est ambiguë, un exemple peut être obtenu avec la formule $u = x \lor y \lor z$ qui est frontière des deux arbres de dérivations suivants :
+    Cette grammaire est ambiguë, un exemple peut être obtenu avec le mot $u = x \lor y \land z$ qui est frontière des deux arbres de dérivations suivants :
 
-    ```mermaid
-    graph TD
-        A[S] --- B1[S] & B2((v)) & B3[S]; 
-        B1 --- C1[S] & C2((v)) & C3[S]; 
-        C1 --- F1((x));
-        C3 --- F2((y));
-        B3 --- F3((z));
-    ```
-
-    et 
-
-    ```mermaid
-    graph TD
-        A[S] --- B1[S] & B2((v)) & B3[S]; 
-        B3 --- C1[S] & C2((v)) & C3[S]; 
-        B1 --- F1((x));
-        C1 --- F2((y));
-        C3 --- F3((z));
-    ```
+    <figure>
+    ![Un arbre de dérivation](fig/ambiguite/ambiguite-1.svg)
+    </figure>
     
 ### Exemple Dyck
 S -> SS | aSb | epsilon
