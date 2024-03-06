@@ -32,7 +32,7 @@ Lorsqu'une grammaire possède plusieurs règles avec même membre gauche on peut
     Phrase -> Sujet Verbe Complement
     Sujet -> je | elle
     Verbe -> programme | mange
-    Complément -> Article | Nom
+    Complément -> Article Nom
     Article -> un | une | le | la
     Nom -> ordinateur | pomme | arbre 
     ```
