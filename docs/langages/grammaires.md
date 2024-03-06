@@ -316,19 +316,66 @@ Ainsi une grammaire est ambiguë lorsqu'elle permet de produire un mot $u$ de de
     ![Un arbre de dérivation](fig/ambiguite/ambiguite-1.svg)
     </figure>
     
-### Exemple Dyck
-S -> SS | aSb | epsilon
+    <figure>
+    ![Un autre arbre de dérivation](fig/ambiguite/ambiguite-2.svg)
+    </figure>
 
-Remarque : la grammaire faiblement équivalente vue précédemment n'est pas ambiguë. Il existe des langages algébriques inhéremment ambigus : on ne peut pas les décrire par une grammaire non ambiguë.
+    On note également que l'ambiguïté n'est en général pas une propriété souhaitable pour une grammaire. Dans cet exemple, elle signifie qu'il est impossible de donner un sens à la formule $x \lor y \land z$ (on ne sait pas si cette formule et un OU ou un ET).
 
-### Exemple Dangling else (sinon pendant)
-I -> si B alors I
-    | si B alors I sinon I
-    | a
-B -> b
-1) Montrer que G est ambiguë
-2) Imaginons un programme proche du C, sans accolades, dans lequel on pourrait écrire :
-```
+!!! example "Exemple : le théorème de lecture unique"
+    Avec l'exemple précédent, on comprend l'intérêt de définir des grammaires non ambiguës pour décrire les formules propositionnelles. Cela est possible avec la grammaire suivante :
+
+    $$
+    \begin{align}
+    S &\to \neg S\\
+    S &\to (S \lor S) \ |\  (S \land S) \ |\  (S \rightarrow S) \ |\  (S \leftrightarrow S)\\
+    S &\to C \\
+    C &\to \textrm{variables propositionnelles}
+    \end{align}
+    $$
+    
+    En logique propositionnelle, le **théorème de lecture unique** énonce que cette grammaire est non ambiguë. Autrement dit, si on se sert de ces règles pour écrire les formules alors on pourra les interpréter sous forme d'arbre sans ambiguïté.
+
+Si l'on souhaite "résoudre" les problèmes d'ambiguïté deux solutions sont en général utilisées :
+
+- Définir une grammaire non ambiguë pour le langage souhaité en utilisant un bon système de parenthésage : c'est ce qui a été fait dans l'exemple précédent.
+- Utiliser une grammaire ambiguë mais définir des priorités d'opérateurs et/ou des règles d'associativité pour lever l'ambiguité sur l'arbre d'analyse à choisir quand il y en a plusieurs : c'est souvent ce que l'on fait pour les expressions arithmétiques et plus généralement les langages de programmation.
+
+!!! example "Exemple : une autre grammaire pour le langage de Dyck"
+    On peut vérifier que la grammaire suivante :
+
+    $$
+    S \to SS \ |\  aSb \ |\  \varepsilon
+    $$
+
+    engendre également le langage de Dyck mais qu'elle est ambiguë. Saurez-vous un mot de Dyck possédant deux arbres d'analyse distincts pour cette grammaire ?
+
+Il n'est pas toujours possible d'obtenir une grammaire non ambiguë pour décrire un langage algébrique, autrement dit, il existe des langages algébriques dits **inhéremment ambigüs** pour lesquels toutes les grammaires qui les décrivent sont ambiguës. Un exemple est $L = \{a^n b^n c^m,\  (n, m) \in \mathbb{N}^2\} \cup \{a^n b^m c^m,\  (n, m) \in \mathbb{N}^2\}$ mais les outils pour le démontrer sont hors programme.
+
+### C. L'exemple du "sinon pendant" (dangling else)
+
+Un cas d'école classique d'illustration des grammaires et de l'ambiguïté est le problème du _sinon pendant_. Le problème survient lorsque l'on décide de définir pour un langage de programmation, une structure conditionnelle *Si ... Alors ... Sinon ...* avec un *Sinon* optionnel. Par exemple considérons la grammaire simplifiée suivante :
+
+$$
+\begin{align}
+I &\to \mathbf{si}\  B\  \mathbf{alors}\  I\\
+    &|\  \mathbf{si}\  B\ \mathbf{alors}\  I\  \mathbf{sinon}\  I \\
+    &|\ a \\
+B &\to b
+\end{align}
+$$
+
+Dans cette grammaire, $B$ sert à décrire une expression booléenne (ici volontairement simplifiée à $b$ par simplicité) et $a$ sert à décrire une instruction ou un bloc d'instructions (ici volontairement réduit à $a$). On remarque alors qu'il existe deux interprétations différentes du programme :
+
+$$
+\mathbf{si}\  b\  \mathbf{alors}\  \mathbf{si}\  b\  \mathbf{alors}\  a\  \mathbf{sinon}\  a 
+$$
+
+autrement dit, la grammaire utilisée est ambiguë.
+
+Voyons comment le problème pourrait se traduire en langage C. Imaginons un langage proche du C dans lequel il n'y a pas d'accolade, et considérons le programme :
+
+```C
 int a = 5;
 int b = 2;
 if (a == 1)
@@ -336,11 +383,13 @@ if (a == 1)
         a = 42;
 else
     b = 42;
-print(a, b)
+printf("%d, %d", a, b);
 ```
-Comment se traduit ici le résultat de la question 1) ?
-3) En OCaml
-```
+
+Alors avec la première interprétation du sinon pendant, le programme affiche `(5, 42)` avec la seconde interprétation il affiche `(5, 2)`. Autrement dit, il est impossible de savoir si le `else` appartient au premier ou au second `if`... La syntaxe du langage C permet de lever l'ambiguité grâce à l'utilisation des accolades.
+
+Voyons maintenant ce qu'il se passe en OCaml. 
+```ocaml
 let a = 7;;
 let b = 1;;
 if a = 1 then
@@ -351,21 +400,16 @@ else
     print_string "TROIS"
 ;;
 ``` 
+Ce programme affiche `DEUX` à l'écran.
 
-### C. Analyse syntaxique (parsing)
+On constate donc que OCaml décide de faire le choix que le dernier `else` . Si on regarde la manière dont le code est indenté, on constate que l'auteur est probablement dans l'erreur dans ce qu'il imagine être le comportement du programme (erreur classique d'utilisation du `if` en OCaml).
 
-En général, les noeuds des arbres de dérivation d'une expression vont servir à effectuer des actions pour produire une donnée. On utilise souvent le schéma suivant :
+### D. Analyse syntaxique
 
-donnée =>(analyse syntaxique) arbre =>(actions) résultat 
+L'**analyse syntaxique** consiste à partir d'une grammaire et d'un texte appartenant au langage de cette grammaire à **construire un arbre d'analyse** pour ce texte. Cet arbre représentera alors le texte sous une forme structurée qui sera plus facile à manipuler par un programme.
 
-par exemple pour une expression arithmétique
+Par exemple, on peut vouloir obtenir le résultat du calcul de l'expression arithmétique `(1 + 3) * (5 + 7)`. On utilise alors un analyseur syntaxique pour obtenir un arbre de dérivation correspondant à cette expression, puis on calcule la valeur de l'expression à partir de l'arbre.
 
-expression (texte) =>(analyse syntaxique) arbre arithémtique =>(actions) résultat numérique
+Un autre exemple classique est celui de la compilation. En général, un compilateur commence par une première phrase d'analyse textuelle du code source afin de représenter le programme sous forme d'un arbre appelé **arbre de syntaxe abstraite**. C'est à partir de cet arbre que le compilateur va pouvoir produire du code vers le langage cible.
 
-par exemple dans le cadre de la compilation d'un programme :
-
-langage A =>(analyse syntaxique) arbre =>(actions) langage B
-
-Si G est une grammaire non ambiguë décrivant un langage, le processus de construction de l'arbre de dérivation produisant un mot s'appelle **analyse syntaxique**.
-
-L'analyse syntaxique est hors programme mais il faut savoir écrire à la main un programme reconstruisant un arbre de dérivation d'un mot sur Sigma pour des grammaires très symples.
+Aucune technique spécifique d'analyse syntaxique n'est au programme mais il faut savoir réaliser cette démarche dans le cas de grammaires simples. **Voir TP :** pour une analyse syntaxique descendante des expressions arithmétiques simples.
