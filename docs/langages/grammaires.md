@@ -248,7 +248,7 @@ Un tel arbre représente une suite de dérivations immédiates effectuée depuis
     On constate que chaque noeud interne correspond à l'application d'une règle de production.
 
 !!! abstract "Définition"
-    Soit un arbre de dérivation, on appelle **frontière** de l'arbre le mot obtenu en concaténant toutes ses feuilles de gauche à droite de toutes ses feuilles.
+    Soit un arbre de dérivation, on appelle **frontière** de l'arbre le mot obtenu en concaténant toutes ses feuilles de gauche à droite.
 
 **Notation:** $\mathrm{Fr}(A)$ où $A$ est l'arbre de dérivation.
 
