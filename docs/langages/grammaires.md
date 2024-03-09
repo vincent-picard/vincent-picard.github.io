@@ -348,7 +348,7 @@ Si l'on souhaite "résoudre" les problèmes d'ambiguïté deux solutions sont en
     S \to SS \ |\  aSb \ |\  \varepsilon
     $$
 
-    engendre également le langage de Dyck mais qu'elle est ambiguë. Saurez-vous un mot de Dyck possédant deux arbres d'analyse distincts pour cette grammaire ?
+    engendre également le langage de Dyck mais qu'elle est ambiguë. Saurez-vous trouver un mot de Dyck possédant deux arbres d'analyse distincts pour cette grammaire ?
 
 Il n'est pas toujours possible d'obtenir une grammaire non ambiguë pour décrire un langage algébrique, autrement dit, il existe des langages algébriques dits **inhéremment ambigüs** pour lesquels toutes les grammaires qui les décrivent sont ambiguës. Un exemple est $L = \{a^n b^n c^m,\  (n, m) \in \mathbb{N}^2\} \cup \{a^n b^m c^m,\  (n, m) \in \mathbb{N}^2\}$ mais les outils pour le démontrer sont hors programme.
 
