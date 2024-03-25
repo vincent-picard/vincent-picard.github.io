@@ -9,6 +9,27 @@ Un algorithme est dit **probaliste** lorsque son exécution dépend de valeurs g
 
 ### A. Génération du hasard
 
+En informatique,  le hasard est généré à l'aide de nombre pseudo-aléatoires. Ces nombres sont obtenus comme les valeurs d'une certaine suite récurrente de type $u_{n+1} = f(u_n)$. La valeur $u_0$ utilisée est appelée la graine (*seed* en anglais).
+La graine peut-être choisie :
+
+- arbitrairement
+- comme le numéro `PID` d'identification du processus
+- avec l'heure actuelle du systeme
+- en utilisant un vrai hasard construit matériellement en mesurant le bruit thermique (instruction `RDRAND` disponible depuis 2012 sur les processeurs Intel)
+
+En langage C, les fonctions de hasard sont définies dans `stdlib.h`, la graine peut-être initilisée ainsi :
+```c
+#include <stdlib.h>
+#include <time.h>
+
+srand(time(NULL));
+```
+
+En langage OCaml, les fonctions de hasard sont définies dans le module `Random`, la graine peut être initialisée ainsi :
+```ocaml 
+Random.self_init ();;
+```
+
 ### B. Algorithmes de *Las Vegas*
 
 Un algorithme de *Las Vegas* est un algorithme probabiliste qui donne toujours un résultat exact. L'utilisation du hasard permet en général d'obtenir de meilleurs performances d'exécution.
@@ -45,10 +66,8 @@ C'est donc un temps linéaire ce qui est beaucoup plus efficace que de trier le 
 
 
 Un algorithme de *Monte Carlo* est un algorithme probabiliste qui s'exécute en un temps déterministe (qui ne dépend pas du hasard). Le résultat est soumis à une incertitude :
-* soit il est approximatif
 * soit il est parfois faux (on espère avec une faible probabilité)
-
-Exemples : recuit simulé, tests de primalité, algorithme de Karger
+* soit il est approximatif
 
 #### Tester si un nombre est premier
 
@@ -147,7 +166,71 @@ $$
 $$
 
 Ainsi, la probabilité qu'un entier aléatoire soit premier est de l'ordre de $\frac{1}{\ln(x)}$. Dans notre cas, on a environ $x = 2^{512}$ ce qui donne une probabilité de 0,28%. Les nombres premiers sont rares mais pas si rares ! Ainsi si on teste pour 500 entiers grands entiers s'ils sont premier, on en trouvera en moyenne 1,5, ce qui explique que notre procédure fonctionne en pratique.
- 
+
+#### Algorithme du recuit simulé
+
+Cet algorithme sert à déterminer le maximum (ou le minimum) d'une fonction $f : E \to \mathbb{R}$ en s'insipirant du processus de recuit en métallurgie. Ce processus consiste à chauffer un métal puis à le laisser refroidir très lentement pour qu'il atteigne une organisation d'énergie minimale.
+
+Intuitivement l'algorithme repose sur une valeur $T$ appelée température. Initialement on choisit un point $x = x_0 \in E$. À chaque itération, on choisit aléatoirement une nouvelle valeur $x'$ voisine de l'ancienne $x$. Il peut alors se produire de choses, soit on obtient une plus grande valeur $f(x') > f(x)$ et on garde alors cette valeur $x \gets x'$. Soit la valeur est plus petite et on décide si on la garde aléatoirement avec une probabilité $p$. Cette probabilité est définie par :
+
+$$
+p = \exp\left(- \frac{f(x) - f(x')}{T}\right)
+$$
+
+On comprend alors deux choses :
+- Plus la température $T$ est faible, moins on a de chances d'accepter $x'$
+- Plus diminution de $f(x)$ est grande, moins on a de chances d'accepter $x'$
+
+À la première itération, on choisit une grande valeur de $T$ puis à chaque itération on fait diminuer très légèrement $T$.
+On décide de s'arrêter soit à un nombre fixé d'itérations, soit lorsque la température est jugée assez basse.
+
+Voici un exemple d'implémentation de cet algorithme en `OCaml`
+
+```ocaml 
+(* On veut maximiser la fonction sur [-6, 6] *)
+let f x =
+    -2.0 *. x ** 4.0 +. 5.0 *. x ** 3.0 +. 30.0 *. x ** 2.0 +. 5.0
+;;
+
+Random.self_init ();;
+
+(* voisin de x dans [a, b] *)
+let voisin x a b =
+    let delta = 1.0 -. (Random.float 2.0) in
+    let y = x +. delta in
+    if y < a then
+        a
+    else if y > b then
+        b
+    else
+        y
+;;
+
+let recuit f a b x0 t0 tfinal =
+    let t = ref t0 in
+    let x = ref x0 in
+
+    while (!t > tfinal) do
+        let y = voisin !x a b in
+        if f y > f !x then begin
+            x := y
+        end
+        else begin
+            let p = exp (-. (f !x -. f y) /. !t) in
+            if (Random.float 1.0 < p) then
+                x := y
+        end;
+        t := !t *. 0.999;
+        Printf.printf "Temperature = %f \t x = %f \t f(x) = %f\n " !t !x (f !x)
+    done;
+    !x
+;;
+
+recuit f (-6.0) (6.0) 0.0 10.0 1.0 ;;
+```
+
+On remarque que l'algorithme converge vers un maximum local. Cependant il n'atteint pas nécessairement un maximum global. On obtient pas donc pas nécessairement un résultat exact.
+
 ## 2. Algorithmes d'approximation
 
 ### A. Problèmes de décision et d'optimisation
@@ -155,4 +238,10 @@ Ainsi, la probabilité qu'un entier aléatoire soit premier est de l'ordre de $\
 ### B. Notion d'approximation
 
 ### C. Exemples
-Glouton, probabiliste
+
+Utilisation du recuit simulé pour résoudre le problème du voyageur de commerce :
+
+[Recuit simulé pour le voyateur de commerce](http://people.irisa.fr/Francois.Schwarzentruber/mit1_algo2_2013/tsp/)
+
+(Remerciement aux auteurs : Guillaume Grodwohl et François Schwarzentruber)
+ 
