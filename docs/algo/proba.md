@@ -10,24 +10,78 @@ Un algorithme est dit **probaliste** lorsque son exécution dépend de valeurs g
 ### A. Génération du hasard
 
 En informatique,  le hasard est généré à l'aide de nombre pseudo-aléatoires. Ces nombres sont obtenus comme les valeurs d'une certaine suite récurrente de type $u_{n+1} = f(u_n)$. La valeur $u_0$ utilisée est appelée la graine (*seed* en anglais).
-La graine peut-être choisie :
+La graine peut-être choisie au choix :
 
-- arbitrairement
-- comme le numéro `PID` d'identification du processus
+- arbitrairement (rend le programme déterministe, utile pour débugger)
+- comme le numéro `PID` d'identification du processus actuel
 - avec l'heure actuelle du systeme
-- en utilisant un vrai hasard construit matériellement en mesurant le bruit thermique (instruction `RDRAND` disponible depuis 2012 sur les processeurs Intel)
+- en utilisant un *vrai* hasard construit matériellement en mesurant le bruit thermique (instruction `RDRAND` disponible depuis 2012 sur les processeurs Intel)
 
-En langage C, les fonctions de hasard sont définies dans `stdlib.h`, la graine peut-être initilisée ainsi :
+!!!warning "Attention"
+    Attention l'initialisation de la graine ne doit avoir lieu qu'une seule fois au début de votre programme.
+
+#### En langage C
+
+En langage C, les fonctions de hasard sont définies dans `stdlib.h`, la graine peut-être initialisée ainsi :
 ```c
 #include <stdlib.h>
 #include <time.h>
 
-srand(time(NULL));
+int main() {
+    srand(time(NULL));
+}
 ```
+
+On peut ensuite utiliser la fonction `rand` qui génère une valeur entière quelconque uniformément entre 0 et la constante `RAND_MAX` incluse, supposée grande.
+Il n'y a pas de fonction pour générer un flottant aléatoire, il faut ruser un peu :
+```c
+int main() {
+    ...
+    int a = rand();
+    int b = rand() % N; // Un entier entre 0 et N-1
+    int c = P + rand() % (Q-P+1); // Un entier entre P et Q 
+    float u = (float) rand() / (float) RAND_MAX; // Un flottant entre 0 et 1
+    float u = 5.0 * (float) rand() / (float) RAND_MAX; // Un flottant entre 0 et 5
+}
+```
+
+#### En langage OCaml
 
 En langage OCaml, les fonctions de hasard sont définies dans le module `Random`, la graine peut être initialisée ainsi :
 ```ocaml 
 Random.self_init ();;
+```
+Caml choisit automatiquement la meilleure source de hasard disponible sur votre système pour le choix de la graine.
+
+Le module propose ensuite des fonctions pour générer des valeurs aléatoires. Voir le [manuel OCaml](https://v2.ocaml.org/api/Random.html) pour une présentation exhaustive.
+
+```ocaml
+(* Un entier entre p inclus et q exclus *)
+let a = Random.int p q;;
+
+(* Un flottant entre 0 et 5 inclus *)
+let u = Random.float 5.0;;
+```
+
+#### Une astuce à connaître
+
+Lorsqu'on écrit un programme probabiliste il est souvent utile d'obtenir un branchement probabiliste de type :
+
+- avec une probablité $p$ faire A
+- sinon (avec une probabilité $1 - p$) faire B
+
+Pour cela on peut utiliser pour test, l'expression booléeenne $X < p$ où $X$ est une valeur aléatoire flottante générée dans $[0, 1]$. Cela fonctionne car dans ce cas $P(X < p) = p$.
+
+Considérons l'exemple suivant qui consiste à tirer à pile ou face $n$ fois avec une pièce truquée ($p$ est la probabilité de faire face) et dans lequel on compte le nombre de face obtenus :
+
+```ocaml
+let nb_succes n p =
+    let compteur = ref 0 in
+    for k = 1 to n do
+        if (Random.float 1.0 < p) then
+            incr compteur
+    done;
+    !compteur;;
 ```
 
 ### B. Algorithmes de *Las Vegas*
@@ -61,7 +115,57 @@ $$
 $$
 
 C'est donc un temps linéaire ce qui est beaucoup plus efficace que de trier le tableau.
- 
+
+Voici une implémentation en langage C de cette fonction :
+```c
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+void echanger(int t[], int a, int b) {
+    int tmp = t[a];
+    t[a] = t[b];
+    t[b] = tmp;
+}
+
+//Pivote le sous-tableau t[a:b] avec p le choix d'indice de pivot
+//Retourne la position finale du pivot
+//
+int pivoter(int t[], int a, int b, int p) {
+    echanger(t, a, p); // On place le pivot au début
+    int q = a; // position actuelle du pivot
+    for (int k = a; k <= b; k += 1) {
+        if (t[k] < t[q]) {
+            echanger(t, k, q+1);
+            echanger(t, q, q+1);
+            q += 1;
+        }
+    }
+    return q;
+}
+
+// Retourne la k-ième plus grande valeur du sous-tableau t[a:b]
+// Attention : modifie le tableau
+int quickselect(int t[], int a, int b, int k) {
+   int p = a + rand() % (b - a + 1);
+   fprintf(stderr, "Pivot choisi en pos %d\n", p);
+   p = pivoter(t, a, b, p);
+   if (p == a + k-1) {
+       return t[p];
+   } else if (p > a + k-1) {
+       return quickselect(t, a, p-1, k);
+   } else {
+       return quickselect(t, p+1, b, k - (p - a + 1));
+   }
+}
+
+int main() {
+    srand(time(NULL));
+    int t[] = {5, 8, 3, 11, 4, 9, 1, 2, 10, 6, 7};
+    printf("Valeur mediane %d\n", quickselect(t, 0, 10, 6));
+}
+```
+
 ### C. Algorithmes de *Monte Carlo*
 
 
