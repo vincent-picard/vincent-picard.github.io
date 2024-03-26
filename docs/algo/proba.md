@@ -337,15 +337,112 @@ On remarque que l'algorithme converge vers un maximum local. Cependant il n'atte
 
 ## 2. Algorithmes d'approximation
 
+Dans cette partie on introduit la notion de problème d'optimisation et on montre que certains sont difficiles à résoudre en pratique, en faisant le lien avec la théorie de la décidadibilité.
+
 ### A. Problèmes de décision et d'optimisation
 
-### B. Notion d'approximation
+!!!abstract "Définition"
+    Un **problème d'optimisation** :
+    
+    - prend en entrée une instance $I$
+    - introduit une fonction $f : X \to \mathbb{R}$ qui dépend de l'instance $I$
+    - cherche à déterminer une valeur $x \in X$ telle que $f(x)$ est maximal (resp. minimal)
 
-### C. Exemples
+!!!example "Exemple : chemin de poids minimal dans un graphe"
+    On a déjà abordé des problèmes d'optimisation, par exemple déterminer un chemin de poids minimal entre deux sommets dans un graphe :
 
-Utilisation du recuit simulé pour résoudre le problème du voyageur de commerce :
+    - L'instance est le graphe $G$, le sommet de départ $a$ et le sommet d'arrivée $b$
+    - $X$ est l'ensemble des chemins de $a$ vers $b$
+    - $f : X \to \mathbb R$ est la fonction qui à chaque chemin associe son poids. On cherche à minimiser $f$.
+
+    Pour cet exemple, on connait des algorithmes efficaces pour répondre à la question.
+
+#### Lien avec les problèmes de décision
+
+Tout problème d'optimisation peut être transformé en problème de décision à l'aide d'un seuil. Soit $A$ un problème de maximisation (par exemple) on pose le problème de décision $B$ suivant :
+
+**Instance** : une instance de $A$ et une valeur $v$ de seuil
+
+**Question** : existe-t-il $x \in X$ tel que $f(x) > v$ ?
+
+À quoi sert ce problème de décision ? Et bien il est utile car le problème d'optimisation $A$ est plus difficile à résoudre que le problème de décision $B$. En effet, si on sait résoudre le problème d'optimisation en temps polynomial, c'est-à-dire on est capable de calculer la valeur $M$ maximale de $f$ alors on peut répondre immédiatement à la question $\exists x : f(x) > v ?$ pour toute valeur de seuil $v$ : il suffit de regarder si $v \geq M$.
+
+Donc si le problème de décision associé à un problème d'optimisation est difficile, cela sera aussi le cas du problème d'optimisation. Par exemple, on a la proposition suivante :
+
+!!!tip "Proposition"
+    Soit $A$ un problème d'optimisation, et $B$ le problème de décision associé. Si $B$ est NP-complet alors il n'existe pas d'algorithme permettant de résoudre $A$ en temps polynomial, à moins que $P = NP$.
+
+Considérons le problème d'optimisation suivant appelé **MAX-CLIQUE**
+
+**Instance :** un graphe $G$ non orienté
+
+**But** : trouver une clique $C$ de $G$ de taille maximale
+
+Le problème de décision associé est le suivant :
+
+**Instance :** un graphe $G$ non orienté et une valeur $v$
+
+**Question :** existe-t-il une clique de taille $> v$ ?
+
+Il est facile de montrer que ce problème est NP-complet, donc il n'existe pas d'algorithme polynomial pour résoudre **MAX-CLIQUE** à moins que $P = NP$.
+
+### B. Algorithme d'approximation
+
+Que faire lorsqu'a montré qu'un problème d'optimisation est difficile ? Une manière de surmonter le problème est de se dire que l'on a peut-être été trop ambitieux sur la tâche à accomplir : il n'est peut-être pas nécessaire d'obtenir une solution optimale mais une bonne solution peut suffire. 
+
+!!!abstract "Définition : approximation d'un problème de maximisation"
+    Soit $A$ un problème de maximisation, $f$ la fonction à maximiser et notons $M(I) = \max_{x \in X} f(x)$ le maximum que l'on peut obtenir pour $f$ sur une instance $I$.
+    Soit un réel $0 < \rho < 1$. On dit qu'un algorithme fournit une $\rho$-approximation de $A$ si pour toute instance $I$ il propose une solution $x \in X$ telle que :
+
+    $$\rho M(I) \leq f(x) \leq M(I) $$
+
+#### Le problème **MAX-SAT** 
+À titre d'exemple considérons le problème **MAX-SAT** suivant :
+
+**Instance** : une formule propositionnelle sous forme normale conjonctive
+
+**But** : trouver une valuation qui maximise le nombre de clauses satisfaites
+
+Si on utilise la conversion en problème de décision, on s'apercoit qu'il s'agirait de savoir si on peut satisfaire $k$ clauses d'une formule ce qui est encore plus difficile que de savoir si on peut satisfaire la formule en entier. Ce problème d'optimisation est donc difficile.
+
+Pour le résoudre on propose l'algorithme probabiliste de Monte-Carlo suivant : pour chaque variable dire qu'elle est vraie avec probabilité $1/2$. Si chaque clause contient au moins $k$ variables on obtient une $(1 - 2^{-k})$-approximation en moyenne. Par exemple si on considère des formules de 3-CNF-SAT, on obtient une $7/8$-approximation en moyenne.
+
+Pour montrer ce résultat on va montrer que cette méthode satisfait une proportion $(1-2^{-k})$ de toutes les clauses. On considère une clause $(l_1 \lor l_2 \lor \dots \lor l_p)$ où les littéraux concernent des variables distinctes et $p \geq k$. Alors la probabilité que cette clause ne soit pas satisfaite est $1/2^p \leq 1/2^k$. Donc la probabilité que la clause soit satisfaite est au moins $(1 - 1/2^k)$. Si $d$ est le nombre de clauses, le nombre de clauses satisfaites en moyennes sera :
+
+$$ \mathbb{E}(C) \geq (1 - 2^{-k}) d \geq (1 - 2^{-k}) M(I) $$ 
+
+on obtient donc bien :
+
+$$ (1 - 2^{-k}) M(I) \leq \mathbb{E}(C) \leq M(I) $$
+
+Ainsi nous voyons comme un algorithme de Monte Carlo peut obtenir un résultat approché correct en moyenne d'un problème d'optimisation difficile à résoudre de manière exacte.
+
+Remarquons que ce résultat est un peu déroutant : il nous apprend qu'une valuation aléatoire aura tendance à satisfaire un grand nombre de clauses d'une formule sous forme normale conjonctive.
+
+Nous donnons maintenant l'équivalent d'approximation pour un problème de minimisation :
+
+!!!abstract "Définition : approximation d'un problème de minimisation"
+    Soit $A$ un problème de minimisation, $f$ la fonction à minimiser et notons $m(I) = \min_{x \in X} f(x)$ le minimum que l'on peut obtenir pour $f$ sur une instance $I$.
+    Soit un réel $\rho > 1$. On dit qu'un algorithme fournit une $\rho$-approximation de $A$ si pour toute instance $I$ il propose une solution $x \in X$ telle que :
+
+    $$M(I) \leq f(x) \leq \rho M(I)$$
+
+
+!!!info "Remarque"
+    Que ce soit pour un problème de maximisation ou de minimisation, on préfère obtenir une $\rho$-approximation pour $\rho$ aussi proche de 1 que possible. Plus $\rho$ est proche de 1, meilleure est la qualité de l'approximation.
+
+À titre d'exemple on peut considérer le fameux problème du voyageur de commerce **TSP** (travelling salesman problem)
+
+**Instance** : un ensemble de $n$ villes et la matrice de distances entre chaque villes
+**But** : trouver une tournée (un cycle) qui passe une et une seule fois par chaque ville et de distance totale minimale
+
+Il est possible de montrer que le problème de décision associé est NP-complet (par réduction depuis le problème de cycle hamiltonien lui-même NP-complet). C'est donc un problème d'optimisation difficile. De plus il est aussi possible de montrer qu'il n'admet pas de $(1+\varepsilon)$-approximation en temps polynomial et ce pour tout $\varepsilon > 0$. C'est donc vraiment un problème théoriquement difficile qui fait encore l'objet de recherches aujourd'hui.
+
+Toutefois, il existe de nombreuses méthodes approchées pour résoudre le problème du voyageur de commerce en pratique (sur des petits exemples). On peut par exemple utiliser l'algorithme de Monte Carlo du recuit simulé pour obtenir une bonne solution.
 
 [Recuit simulé pour le voyateur de commerce](http://people.irisa.fr/Francois.Schwarzentruber/mit1_algo2_2013/tsp/)
 
 (Remerciement aux auteurs : Guillaume Grodwohl et François Schwarzentruber)
+
+Une autre méthode non probabiliste est d'utiliser un algorithme de type séparation-évaluation **branch and bound** (voir TP).
  
