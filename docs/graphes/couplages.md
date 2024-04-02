@@ -162,3 +162,14 @@ Dans le cas d'un graphe biparti, la recherche d'un chemin augmentant peut s'obte
 - Il est de longueur impaire donc commence par un sommet de $U$ (resp. V) et termine par un sommet de $V$ (resp. U)$. On peut donc se restreindre par symétrie aux sommets de $U$ comme point de départ.
 
 Ainsi la recherche de chemin augmentant s'effectue avec une complexité $O(|U| + |V| + |A|)$. Cette recherche est répétée au plus $k$ fois où $k \leq \min(|U|, |V|)$ est la taille d'un couplage maximal.
+
+### C - Lien avec les problèmes de flot
+
+Soit $G = (U \sqcup V, A)$ un graphe biparti. On considère que le graphe est orienté avec les arcs allant de $U$ vers $V$. On ajoute deux sommets fictifs :
+
+- un sommet **source** $s$ ayant pour voisins sortants tous les sommets de $U$
+- un sommet **puits** $t$ ayant pour voisins entrants tous les sommets de $V$.
+
+On imagine que chaque arc est un tuyau de capacité de début $1L / s$. On souhaite faire transiter un maximum d'eau depuis la source vers le puits. Il faut donc choisir quels tuyaux seront utilisés $1L/ s$  ou non utiliés $0L /s$. Une solution à ce problème consiste à calculer le couplage maximal et faire transiter $1L/ s$ dans chaque tuyau choisi par le couplage.
+
+Le problème de flot maximal dans un graphe est plus général : on peut avoir des capacités différentes de 1 selon les tuyaux. Toutefois, il existe des approches algorithmiques similaires, on peut par exemple évoquer l'algorithme de Ford-Fulkerson qui trouve un flot maximal dans un graphe à l'aide de chemins augmentants.
