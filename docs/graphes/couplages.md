@@ -16,7 +16,8 @@ On rappelle que **partition** signifie :
 - $S = U \cup V$ : $U$ et $V$ **recouvrent** tout l'ensemble à partitionner
 - $U \cap V = \varnothing$ : les parties $U$ et $V$ sont **disjointes**
 
-Souvent, on décrit un graphe biparti en donnant la partition à considérer dans ce cas on pourra écrire : soit $G = (U \sqcup V, A)$ un graphe biparti.
+On peut remarquer que lorsque un graphe est biparti, il peut admettre plusieurs *bipartitions* valides.
+Dans les cas pratiques, la bipartition considérée est souvent imposée par la modélisation du problème. Dans ce cas, on décrit un graphe biparti en donnant la bipartition à considérer, on pourra par exemple écrire : soit $G = (U \sqcup V, A)$ un graphe biparti.
 
 !!! example "Exemple : un graphe biparti"
     <figure>
