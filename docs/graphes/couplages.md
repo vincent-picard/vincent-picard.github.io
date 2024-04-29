@@ -64,8 +64,12 @@ Cette proposition nous fait aussi remarquer que les graphes acycliques (les arbr
 
 !!!example "Exemple : le bal"
     On considère un bal où il y a $n$ danseuses et $m$ danseurs. On construit le graphe biparti $G = (U \sqcup V, A)$ où $U$ est l'ensemble des danseuses et $V$ l'ensemble des danseurs. Dans ce graphe, il existe une arête $uv \in A$ si $u$ et $v$ sont d'accord pour danser ensemble. On voit sur cet exemple qu'un couplage est une affectation possible danseuses-danseurs où tout le monde est d'accord sur son ou sa partenaire.
+    <figure>
+    ![Exemple de couplage pour le bal](fig/couplage_bal/couplage_bal-1.svg) 
+    <figcaption>Un couplage de cardinal 3, en rouge, pour une instance du problèe du bal.</figcaption>
+    </figure>
 
-Soit $G = (U \sqcup V, A)$ un graphe biparti, on suppose que les sommets de $U$ et $V$ sont numérotés : $U = \{a_0, a_1, \dots, a_{n-1}$ et $V = \{b_0, b_1, \dots, b_{m-1}$. Informatiquement un couplage $M$ peut se représenter par un tableau $T$ de longueur $n$ dans lequel :
+Soit $G = (U \sqcup V, A)$ un graphe biparti, on suppose que les sommets de $U$ et $V$ sont numérotés : $U = \{u_0, u_1, \dots, u_{n-1}\}$ et $V = \{v_0, v_1, \dots, v_{m-1}\}$. Informatiquement un couplage $M$ peut se représenter par un tableau $T$ de longueur $n$ dans lequel :
 
 - Si $(u_i, v_j) \in M$ alors $T[i] = j$
 - Sinon $T[i] = -1$
@@ -73,9 +77,9 @@ Soit $G = (U \sqcup V, A)$ un graphe biparti, on suppose que les sommets de $U$ 
 !!!exercise "Exercice"
     Écrire une fonction en langage C vérifiant si un couplage est correct :
     ```c
-    bool verifie(bool adj[MAX][MAX], int T[MAX], int n, int m)
+    bool verifie(int adj[MAX][MAX], int T[MAX], int n, int m)
     ```
-    Dans ce prototype `NMAX` designe une constante supérieure à $n$ et $m$ et `adj` est un tableau bi-dimensionnel stockant la *matrice d'adjacence* du graphe. On suppose que les sommets de $U$ sont les sommets numérotés de $0$ à $n-1$ et les sommets de $V$ les sommets de $n$ à $n-m-1$.
+    Dans ce prototype `MAX` designe une constante supérieure à $n+m$ et `adj` est un tableau bi-dimensionnel stockant la *matrice d'adjacence* du graphe. On suppose que les sommets de $U$ sont les sommets numérotés de $0$ à $n-1$ et les sommets de $V$ les sommets de $n$ à $n+m-1$.
 
 ## 3. Couplages maximaux
 
