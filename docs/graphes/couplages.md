@@ -60,6 +60,12 @@ Cette proposition nous fait aussi remarquer que les graphes acycliques (les arbr
 !!!abstract "Définition (couplage)"
     Soit $G = (S, A)$ un graphe, un **couplage** $M$ est une ensemble d'arêtes (ou d'arcs) qui n'ont pas de sommets en commun, c'est-à-dire tel qu'il n'existe pas deux arêtes (ou arcs) incidentes à un même sommet.
 
+!!!example "Exemple : couplage dans un graphe non orienté"
+    Dans le graphe non orienté ci-dessous, $M = \{BH, CD, EG\}$ est un exemple de couplage, mais il y en a d'autres...
+    <figure>
+    ![Exemple de couplage](fig/couplage_exem/couplage_exem-1.svg) 
+    <figcaption>Un exemple de couplage en rouge.</figcaption>
+
 ### Cas des graphes bipartis
 
 !!!example "Exemple : le bal"
