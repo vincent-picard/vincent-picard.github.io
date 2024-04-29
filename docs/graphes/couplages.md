@@ -66,7 +66,7 @@ Cette proposition nous fait aussi remarquer que les graphes acycliques (les arbr
     On considère un bal où il y a $n$ danseuses et $m$ danseurs. On construit le graphe biparti $G = (U \sqcup V, A)$ où $U$ est l'ensemble des danseuses et $V$ l'ensemble des danseurs. Dans ce graphe, il existe une arête $uv \in A$ si $u$ et $v$ sont d'accord pour danser ensemble. On voit sur cet exemple qu'un couplage est une affectation possible danseuses-danseurs où tout le monde est d'accord sur son ou sa partenaire.
     <figure>
     ![Exemple de couplage pour le bal](fig/couplage_bal/couplage_bal-1.svg) 
-    <figcaption>Un couplage de cardinal 3, en rouge, pour une instance du problèe du bal.</figcaption>
+    <figcaption>Un couplage de cardinal 3, en rouge, pour une instance du problème du bal.</figcaption>
     </figure>
 
 Soit $G = (U \sqcup V, A)$ un graphe biparti, on suppose que les sommets de $U$ et $V$ sont numérotés : $U = \{u_0, u_1, \dots, u_{n-1}\}$ et $V = \{v_0, v_1, \dots, v_{m-1}\}$. Informatiquement un couplage $M$ peut se représenter par un tableau $T$ de longueur $n$ dans lequel :
