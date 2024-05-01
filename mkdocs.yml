@@ -9,6 +9,9 @@ nav:
     - Parcours : 'aboutme/parcours.md'
   - Langages formels :
     - Grammaires algébriques : 'langages/grammaires.md'
+  - Algorithmique :
+    - Algorithmes probabilistes : 'algo/proba.md'
+    - Couplages maximaux : 'graphes/couplages.md'
   - Page de test: 'test/test.md'
 
 theme:
