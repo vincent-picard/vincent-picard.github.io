@@ -12,6 +12,8 @@ nav:
   - Algorithmique :
     - Algorithmes probabilistes : 'algo/proba.md'
     - Couplages maximaux : 'graphes/couplages.md'
+  - Langage C:
+    - Tableaux : 'langc/tableaux.md'
   - Page de test: 'test/test.md'
 
 theme:
