@@ -51,4 +51,4 @@ t[1] = 17;
 t[3] = 12;
 t[0] = t[1] + t[3];
 ```
-ne fonctionne pas du tout. Le pointeur `t` n'est pas initialisé, donc la valeur contenue est indéfinie. Lorsqu'on écrit `t[i]` il y a donc fort à parier que l'on tente d'accéder à une case mémoire qui ne nous appartient pas.
+ne fonctionne pas du tout. Le pointeur `t` n'est pas initialisé, donc la valeur qu'il contient est indéfinie. Lorsqu'on écrit `t[i]` il y a donc fort à parier que l'on tente d'accéder à une adresse mémoire interdite.
