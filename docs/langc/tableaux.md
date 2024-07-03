@@ -20,6 +20,11 @@ t[1] = 17;
 t[3] = 12;
 t[0] = t[1] + t[3];
 ```
+
+<figure markdown="span">
+   ![Déclaration d'un tableau statique](fig/tabexem/tabexem-1.svg)
+</figure>
+
 La première case du tableau d'indice 0 contiendra le valeur 29, les cases d'indice 1 et 3 auront pour valeur 17 et 12, et la case d'indice 2 aura une valeur indéfinie.
 
 Remarquons immédiatement qu'un tableau n'est pas un pointeur. Ainsi, écrire :
