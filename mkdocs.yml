@@ -7,6 +7,8 @@ nav:
     - Index : 'aboutme/index.md'
     - Enseignement : 'aboutme/enseignement.md'
     - Parcours : 'aboutme/parcours.md'
+  - Généralités :
+    - Récurrence et induction : 'general/induction.md'
   - Langages formels :
     - Grammaires algébriques : 'langages/grammaires.md'
   - Algorithmique :
