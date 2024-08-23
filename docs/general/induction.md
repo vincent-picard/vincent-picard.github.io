@@ -113,7 +113,7 @@ Une preuve par récurrence consiste à démontrer une propriété pour tout enti
 !!! example "Exercice"
     Démontrer par récurrence forte que tout arbre binaire à $n$ noeuds internes possède $n + 1$ feuilles (noeuds externes).
 
-## Preuve par induction
+## 3. Preuves par induction
 
 On dit aussi parfois **preuve par induction structurelle**.
 
@@ -186,8 +186,9 @@ La formulation générale de ce princpe de preuve peut paraître intimidante, ma
 
 !!! example "Arbres ET/OU"
     Un arbre binaire ET/OU est un arbre binaire dans lequel : 
-        - une feuille est soit la variable $x$, soit une constante $0$ représentant le faux, soit une constante $1$ représentant le vrai. 
-        - il existe deux types de noeuds, les noeuds $\land$ représantant la conjonction logique et les noeuds $\lor$ représentant la disjonction logique. 
+
+    - une feuille est soit la variable $x$, soit une constante $0$ représentant le faux, soit une constante $1$ représentant le vrai. 
+    - il existe deux types de noeuds, les noeuds $\land$ représantant la conjonction logique et les noeuds $\lor$ représentant la disjonction logique. 
 
     À tout arbre binaire ET/OU $A$ on associe une fonction $f_A : \{0, 1\} \to \{0, 1\}$ où $f_A(t)$ vaut le résultat de l'évaluation de l'arbre $A$ en replaçant les feuilles $x$ par la valeur $t$.
     
