@@ -16,7 +16,6 @@ nav:
     - Couplages maximaux : 'graphes/couplages.md'
   - Langage C:
     - Tableaux : 'langc/tableaux.md'
-  - Page de test: 'test/test.md'
 
 theme:
   name: material
