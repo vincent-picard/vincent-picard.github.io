@@ -146,13 +146,77 @@ Attention à ne pas confondre concaténation de mots et concaténation de langag
 
     Intuituivement $L^*$ est le langage des mots qu'on peut former en prenant des mots de $L$ et en les concaténants.
 
+On pourra remarquer que cette définition est cohérente avec la notation $\Sigma^*$ définie précédemment.
+
 !!! example "Exercice"
-    Soit $L = \{M, P, I\}$, lister les premiers mots de $L^* = \{M, P, I\}^*$ par ordre de longueur croissante
+    Soit $L = \{M, P, I\}$, lister les premiers mots de $L^* = \{M, P, I\}^*$ dans l'ordre lexicographique.
 
 !!! example "Exercice"
     Soit $L$ un langage quelconque. Comparer $L^*$ et $(L^*)^*$.
 
 ## 3. Langages réguliers
 
-## 4. Applications pratiques
+Les langages réguliers sont une **classe** particulière de langages, c'est-à-dire un ensemble de langages. Elle est définie par induction.
+
+!!! abstract "Définition (langages réguliers)"
+    Soit $\Sigma$ un alphabet. L'ensemble des **langages réguliers** sur $\Sigma$, aussi appelés **langages rationnels**, noté $\def\rat#1{{\text{RAT}(#1)}} \rat{\Sigma}$, est défini inductivement par
+
+    * **Axiomes** :
+
+        - $\varnothing \in \rat{\Sigma}$
+        - $\{\varepsilon\} \in \rat{\Sigma}$
+        - Pour tout $x \in \Sigma$, $\{x\} \in \rat{\Sigma}$
+    * **Règles d'inférence** :
+
+        - Si $L_1 \in \rat{\Sigma}$ et $L_2 \in \rat{\Sigma}$ alors $L_1.L_2 \in \rat{\Sigma}$
+        - Si $L_1 \in \rat{\Sigma}$ et $L_2 \in \rat{\Sigma}$ alors $L_1 \cup L_2 \in \rat{\Sigma}$
+        - Si $L \in \rat{\Sigma}$ alors $L^* \in \rat{\Sigma}$
+
+Autrement dit, $\rat{\Sigma}$ est la plus petite classe de langages contenant le langage vide, le langage contenant uniquement le mot vide, les langages contenant uniquement un mot d'une lettre, et stable par concaténation, union finie et étoile.
+
+Comme toute définition inductive, cela signifie que les langages réguliers peuvent se représenter sous forme d'arbres où les feuilles sont des axiomes et où les noeuds (ici binaires pour $\cup$ et $.$ et unaires pour $*$) représentent l'application d'une règle d'inférence.
+
+!!! example "Exemples"
+    
+    1. Montrer que $L = \{a, aba\}$ est un langage régulier.
+    2. Montrer que le langage des mots non vides sur $\{a, b\}$ ne contenant que des $a$ est régulier. 
+    3. Montrer que le langage des mots sur $\{a, b\}$ finissant par $ba$ est régulier. 
+    4. Montrer que le langage des mots sur $\{0, 1\}$ contenant deux $1$ consécutifs est régulier.
+    5. Montrer que le langage des mots sur $\{a, b\}$ dans lesquels tout $a$ est suivi d'un $b$ est régulier.
+     
+!!! tip "Proposition"
+
+    - L'union d'une famille **finie** de langages réguliers est régulier.
+    - La concaténation d'une suite finie de langages réguliers est régulier.
+    - *(admis)* L'intersection d'une famille **finie** de langages réguliers est régulier.
+    - *(admis)* Le complémentaire d'un langage régulier est régulier.
+
+Nous verrons plus tard que l'union/intersection d'une famille infinie de langages réguliers n'est pas nécessairement un langage régulier, même lorsqu'elle est supposée dénombrable.
+
+Les deux propriétés pour le moment admises sont la conséquence du théorème de Kleene que nous étudierons plus tard.
+
+!!! tip "Proposition"
+    Tout langage fini est régulier.
+
+Pour rappel, nous avons donné des exemples de langages réguliers infinis ci-dessus.
+
+## 4. Expressions régulières
+
+Nous introduisons ici un formalisme qui permet de décrire simplement les langages réguliers comme les langages des mots qui correspondent à un certain **motif**. Voici un exemple d'un tel motif qui pourrait correspondre au langage des numéros de téléphone portable à la Réunion
+
+$$ 069(2|3) (0|1|2|3|4|5|6|7|8|9)^6$$
+
+Ce formalisme est d'autant plus important qu'il est largement utilisé en informatique pour les documentations (spécifications) et dans la manipulation de certains programmes (*shell*, *grep*, etc).
+
+!!! tip "Proposition"
+    Un langage $L$ est régulier si et seulement s'il existe une expression régulière $e$ qui dénote $L$, c'est-à-dire telle que $L = \mu(e)$.
+
+!!! note "Point méthode"
+    Pour résumer, nous avons vu pour l'instant ces 3 méthodes pour démontrer qu'un langage est régulier :
+    
+    - s'il s'obtient comme application des règles d'inférence sur les axiomes, il est régulier
+    - s'il est fini, il est régulier
+    - s'il est dénoté par une expression régulière, il est régulier
+
+## 5. Applications pratiques
 
