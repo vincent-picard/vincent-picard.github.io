@@ -208,8 +208,57 @@ $$ 069(2|3) (0|1|2|3|4|5|6|7|8|9)^6$$
 
 Ce formalisme est d'autant plus important qu'il est largement utilisé en informatique pour les documentations (spécifications) et dans la manipulation de certains programmes (*shell*, *grep*, etc).
 
+!!! abstract "Définition (expressions régulières)"
+    Soit $\Sigma$ un alphabet. L'ensemble des \notion{expressions régulières} sur $\Sigma$, noté $\def\regexp#1{{\text{REGEXP}(#1)}} \regexp{\Sigma}$, est défini inductivement par
+
+    - **Axiomes :**
+
+        * $\varnothing \in \regexp{\Sigma}$
+        * $\varepsilon \in \regexp{\Sigma}$
+        * Pour tout $x \in \Sigma$, $x \in \regexp{\Sigma}$
+    - **Règles d'inférence :**
+        
+        * Si $e_1 \in \regexp{\Sigma}$ et $e_2 \in \regexp{\Sigma}$ alors $(e_1.e_2) \in \regexp{\Sigma}$
+        * Si $e_1 \in \regexp{\Sigma}$ et $e_2 \in \regexp{\Sigma}$ alors $(e_1|e_2) \in \regexp{\Sigma}$
+        * Si $e \in \regexp{\Sigma}$ alors $e* \in \regexp{\Sigma}$
+   
+!!! example "Exemples"
+    Voici quelques exemples d'expressions régulières suivies de leur signification intuitive :
+
+    - $(a|b)*$ : mots ne contenant que des $a$ ou des $b$.
+    - $(a|b)*baba$ : mots sur $\Sigma = \{a, b\}$ finissant par $baba$.
+    - $bac(a|b|c)*$ : mots sur $\Sigma = \{a, b, c\}$ commençant par $bac$.
+    - $(+|-|\varepsilon)(1|\dots|9)(0|\dots|9)*$ : mots représentant une constante littérale entière
+
+**Écritures simplifiée :** pour simplifier les écritures, on pourra 
+
+* s'abstenir d'écrire certaines parenthèses, par exemple écrire $(a|b|c)$ au lieu de $((a|b)|c)$, 
+* ommettre le $.$ de la concaténation : par exemple écrire $baba$ à la place de $(b.(a.(b.a)))$.
+* utiliser les puissances : par exemple, écrire $(a|b)^3$ pour $(a|b)(a|b)(a|b)$
+
+###A. Dénotation
+Nous remarquons sur les exemples précédents que les expressions régulières sont des motifs qui correspondent (match) à un ensemble de mots. Le langage des mots qui correspondent à une expression régulière est appelé **langage dénoté** par l'expression régulière. En voici une définition formelle : 
+
+!!! abstract "Définition (langage dénoté)"
+    Le **langage dénoté** par une expression régulière $e \in \regexp{\Sigma}$ est noté $\mu(e)$ et est défini inductivement par :
+
+    - **Axiomes :**
+
+        * $\mu(\varnothing) = \varnothing$
+        * $\mu(\varepsilon) = \{ \varepsilon \}$
+        * Pour tout $x \in \Sigma$, $\mu(x) = \{ x \}$
+    - **Règles d'inférence :**
+
+        * Si $e_1 \in \regexp{\Sigma}$ et $e_2 \in \regexp{\Sigma}$ alors $\mu(e_1.e_2) = \mu(e_1).\mu(e_2)$
+        * Si $e_1 \in \regexp{\Sigma}$ et $e_2 \in \regexp{\Sigma}$ alors $\mu(e_1|e_2) = \mu(e_1) \cup \mu(e_2)$
+        * $e \in \regexp{\Sigma}$ alors $\mu(e*) = \mu(e)^*$
+
 !!! tip "Proposition"
-    Un langage $L$ est régulier si et seulement s'il existe une expression régulière $e$ qui dénote $L$, c'est-à-dire telle que $L = \mu(e)$.
+    Un langage $L$ est régulier si et seulement s'il existe une expression régulière $e$ qui dénote $L$, c'est-à-dire telle que $L = \mu(e)$. On peut l'écrire :
+
+    $$ \forall L \subseteq \Sigma^*, \quad L \in \rat{\Sigma} \Leftrightarrow \exists e \in \regexp{\Sigma} : \mu(e) = L$$
+
+Cette proposition nous éclaire sur la classe des langages réguliers : il s'agit en fait des langages qu'on peut dénoter par expression régulière, nous verrons que ce n'est pas le cas de tous les langages.
 
 !!! note "Point méthode"
     Pour résumer, nous avons vu pour l'instant ces 3 méthodes pour démontrer qu'un langage est régulier :
@@ -217,6 +266,11 @@ Ce formalisme est d'autant plus important qu'il est largement utilisé en inform
     - s'il s'obtient comme application des règles d'inférence sur les axiomes, il est régulier
     - s'il est fini, il est régulier
     - s'il est dénoté par une expression régulière, il est régulier
+
+###B. Équivalence
+
+On peut remarquer qu'il n'y a pas unicité de l'expression régulière permettant de dénoter un langage régulier. Par exemple $e_1 = b(ab)*$ et $e_2 = (ba)*b$ dénotent le même langage : celui des mots commençant et finissant par $b$ et qui alternent entre $a$ et $b$. Dans ce cas $\mu(e_1) = \mu(e_2)$ et on dira que les expressions régulières sont équivalentes.
+
 
 ## 5. Applications pratiques
 
