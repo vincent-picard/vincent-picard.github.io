@@ -253,6 +253,9 @@ Nous remarquons sur les exemples précédents que les expressions régulières s
         * Si $e_1 \in \regexp{\Sigma}$ et $e_2 \in \regexp{\Sigma}$ alors $\mu(e_1|e_2) = \mu(e_1) \cup \mu(e_2)$
         * $e \in \regexp{\Sigma}$ alors $\mu(e*) = \mu(e)^*$
 
+!!! example "Exemple"
+    Le langage dénoté par $e = (a|b)*ba$ est le langage des mots sur $\Sigma = \{a, b\}$ qui finissent par $ba$.
+
 !!! tip "Proposition"
     Un langage $L$ est régulier si et seulement s'il existe une expression régulière $e$ qui dénote $L$, c'est-à-dire telle que $L = \mu(e)$. On peut l'écrire :
 
@@ -271,6 +274,58 @@ Cette proposition nous éclaire sur la classe des langages réguliers : il s'agi
 
 On peut remarquer qu'il n'y a pas unicité de l'expression régulière permettant de dénoter un langage régulier. Par exemple $e_1 = b(ab)*$ et $e_2 = (ba)*b$ dénotent le même langage : celui des mots commençant et finissant par $b$ et qui alternent entre $a$ et $b$. Dans ce cas $\mu(e_1) = \mu(e_2)$ et on dira que les expressions régulières sont équivalentes.
 
+!!! abstract "Définition"
+    Deux expressions régulières $e_1$ et $e_2$ sont dites **équivalentes** si elles dénotent le même langage c'est-à-dire lorsque $\mu(e_1) = \mu(e_2)$. On notera $e_1 \equiv e_2$.
+
+Comme en logique, l'équivalence des expressions régulières nous permet de *calculer* sur les expressions régulières sans changer leur sens c'est-à-dire sans changer le langage dénoté. Voici quelques équivalences usuelles (liste non exhaustive) :
+
+- $\forall e \in \regexp{\Sigma}, \ \varepsilon.e \equiv e.\varepsilon \equiv e$
+- $\forall e \in \regexp{\Sigma}, \ e** \equiv e*$
+- $\forall e, f, g \in \regexp{\Sigma}^3, \  e.(f | g) \equiv (e.f | e.g)$
+- $\forall e \in \regexp{\Sigma}, \ \varnothing.e \equiv e.\varnothing \equiv \varnothing$ 
+- $\forall e \in \regexp{\Sigma}, \ e* | ee* \equiv (\varepsilon | e)e* \equiv e*$
+
+On remarquera que *décider l'équivalence de deux expressions régulières* ou *simplifier une expression régulière* sont des problèmes difficiles en général.
 
 ## 5. Applications pratiques
 
+Les *expressions régulières* sont largement utilisées en informatique, voici quelques exemples concrets :
+
+- Les interprètes de commande (*shells*) dans les systèmes d'exploitation de type *Unix* acceptent certains paramètres sous forme d'expressions régulières ayant une syntaxe propre. Par exemple :
+
+    * `#!sh ls *.ml` : affiche la liste de tous les fichiers source Caml dans le répertoire courant
+    * `#!sh rm jeu*.o` : supprime les fichiers compilés commençant par `jeu`
+    * `#!sh rm *.(c\|h)` : supprime tous les fichiers sources et d'en-tête du répertoire actuel (idéal pour perdre tout son travail).
+
+- L'utilitaire **grep** permet de lire un fichier ligne par ligne et d'afficher toutes les lignes qui correspondent à un motif donné sous forme d'expression régulière :
+
+    * `#!sh grep -E 'L_(1|2)' regexp.md` trouve toutes les lignes de ce résumé de cours contenant $L_1$ ou $L_2$.
+
+- Le langage **Awk** permet d'écrire des programmes qui lisent les fichiers ligne par ligne et d'effectuer certaines actions si la ligne correspond à un motif dénoté par expression régulière étendue. Il a inspiré en partie le langage **Perl** dans lequel les expressions régulières ont une place importante.
+- Pour **spécifier** un langage de programmation il faut commencer par définir sa syntaxe : quels sont mots-clefs du langage, à quoi ressemble une variable, une constante littérale flottante ? Ces définitions se font à l'aide d'expressions régulières. C'est la première étape pour définir un langage de programmation et permet ensuite de faciliter la conception des compilateurs et interprètes pour ce langage.
+
+    * Par exemple le [manuel OCaml](https://ocaml.org/manual/5.2/lex.html#integer-literal) décrit les constantes littérales entières à l'aide d'expressions régulières.
+
+### Expressions régulières étendues POSIX
+
+Malheureusement il n'existe pas de syntaxe *unifiée* pour les expressions régulières et chaque logiciel a tendance à utiliser ses propres conventions syntaxiques. La **norme POSIX** tente d'uniformiser ces notations, on parle alores d'expressions régulières étendues POSIX. Voici par exemple ce qu'on peut utiliser dans les expressions régulières étendues :
+
+| Motif | Signification |
+| ----- | ------------- |
+| `m*` | $m$ répété 0 ou plusieurs fois |
+| `m+` | $m$ répété 1 ou plusieurs fois |
+| `m?` | $m$  0 ou 1 fois |
+| `m{5}` | $m$ exactement 5 fois |
+| `m{3,7}` | $m$ entre 3 et 7 fois |
+| `m{3,}` | $m$ au moins 3 fois |
+| `.` | 1 caractère |
+| `(a\|b)` | $a$ ou $b$ |
+| `[abc]` | $a$,$b$ ou $c$ |
+| `[a-z]` | un caractère entre $a$ et $z$ |
+| `\w` | un caractère alphanumérique |
+
+Il est important de comprendre que chacune de ces règles peut s'obtenir sous forme d'une expression régulière vue dans notre cours, elles n'apportent donc techniquement rien de plus si ce n'est un plus grand confort dans l'écriture des motifs.
+
+Par exemple, le langage des numéros de téléphone portable réunionnais peut être décrit avec l'expression regulière POSIX :
+
+$$ (06-9)(2\backslash|3)(-[0-9]\{2\})\{3\} $$
