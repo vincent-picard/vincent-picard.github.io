@@ -230,7 +230,7 @@ Ce formalisme est d'autant plus important qu'il est largement utilisé en inform
     - $bac(a|b|c)*$ : mots sur $\Sigma = \{a, b, c\}$ commençant par $bac$.
     - $(+|-|\varepsilon)(1|\dots|9)(0|\dots|9)*$ : mots représentant une constante littérale entière
 
-**Écritures simplifiée :** pour simplifier les écritures, on pourra 
+**Écritures simplifiées :** pour simplifier les écritures, on pourra 
 
 * s'abstenir d'écrire certaines parenthèses, par exemple écrire $(a|b|c)$ au lieu de $((a|b)|c)$, 
 * ommettre le $.$ de la concaténation : par exemple écrire $baba$ à la place de $(b.(a.(b.a)))$.
