@@ -149,7 +149,7 @@ Attention à ne pas confondre concaténation de mots et concaténation de langag
 On pourra remarquer que cette définition est cohérente avec la notation $\Sigma^*$ définie précédemment.
 
 !!! example "Exercice"
-    Soit $L = \{M, P, I\}$, lister les premiers mots de $L^* = \{M, P, I\}^*$ dans l'ordre lexicographique.
+    Soit $L = \{M, P, I\}$, lister les premiers mots de $L^* = \{M, P, I\}^*$ par ordre de longueur.
 
 !!! example "Exercice"
     Soit $L$ un langage quelconque. Comparer $L^*$ et $(L^*)^*$.
