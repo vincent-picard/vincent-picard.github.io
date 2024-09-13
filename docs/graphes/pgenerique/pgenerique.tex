@@ -1,0 +1,30 @@
+\define\tantque{{\bf Tant que} }
+\define\faire{{\bf faire}}
+\define\fintantque{{\bf Fin Tant que} }
+\define\si{{\bf Si} }
+\define\alors{{\bf alors} }
+\define\sinon{{\bf Sinon} }
+\define\finsi{{\bf Fin Si} }
+\define\pour{{\bf Pour} }
+\define\finpour{{\bf Fin Pour} }
+
+\starttext
+\startTEXpage
+\startlines
+\cap{\bf PARCOURS GENERIQUE}($G = (S, A)$, $x_d$)
+\blank[small]
+$c[x_d] \gets$ Gris
+Mettre $x_d$ dans le {\tt sac}
+\tantque le {\tt sac} est non vide \faire
+\qquad prendre un sommet $x$ du {\tt sac} 
+\qquad \si $c[x] \neq $ Noir \alors
+\qquad \qquad $c[x] \gets$ Noir
+\qquad \qquad \pour tout $y \in \text{Voisins}(x)$ \faire 
+\qquad \qquad \qquad \si $c[y] = $ Blanc \alors $c[y] \gets$ Gris
+\qquad \qquad \qquad Mettre $y$ dans le {\tt sac}
+\qquad \qquad \finpour
+\qquad \finsi
+\fintantque
+\stoplines
+\stopTEXpage
+\stoptext
