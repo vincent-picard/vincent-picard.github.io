@@ -5,27 +5,10 @@
 ### B. Parcours de graphe en général
 
 !!! abstract "Algorithme : parcours générique"
-
-    $c[x_d] \gets$ Gris
-
-    Mettre $x_d$ dans le sac
-
-    **Tant que** le sac n'est pas vide **faire**
-
-    - prendre un sommet x du sac
-
-    - **Si** $c[x] \neq$ Noir **alors**
-
-        - $c[x] \gets$ Noir
-        - **Pour tout** $xy \in A$ :
-
-            - **Si** $c[y] =$ Blanc **alors** $c[y] \gets$ Gris
-            - Mettre $y$ dans le sac
-        - **Fin Pour**
-
-    - **Fin Si**
-
-    **Fin Tant que**
+    <figure>
+    ![Un graphe biparti](algo/pgenerique/pgenerique.svg)
+    </figure>
+    
 
 Ce parcours générique intervient fréquemment en algorithmique :
 
