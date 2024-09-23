@@ -17,7 +17,7 @@ Nous avons revu en cours :
 - Représentation par listes d'adjacence
 - Représentation implicite
 
-## 2. Parcours de graphe en générique
+## 2. Parcours de graphe générique
 
 Les parcours de graphes permettent de répondre à la question de l'accessibilité entre deux sommets d'un graphe. Leur étude est fondamentale car ils sont d'une part efficaces et d'autre part constituent souvent un excellent point de départ pour résoudre des problèmes sur les graphes. (exemples : calcul des composantes connexes, existence de cycles, 2-colorabilité, etc)
 
@@ -53,33 +53,27 @@ Cet arborescence s'obtient en notant pour chaque sommet exploré son **parent** 
 
 !!! abstract "Algorithme : parcours générique avec arborescence"
     <figure>
-    ![Parcours avec arborescence](algo/pgenerique/pgenerique_parent.svg)
+    ![Parcours avec arborescence](algo/pgenerique_parent/pgenerique_parent.svg)
     </figure>
-
-    $c[x_d] \gets$ Gris
-
-    Mettre $(\varnothing, x_d)$ dans le sac
-
-    **Tant que** le sac n'est pas vide **faire**
-
-    - prendre un couple $(pred, x)$ du sac
-
-    - **Si** $c[x] \neq$ Noir **alors**
-
-        - $c[x] \gets$ Noir
-        - $parent[x] \gets pred$
-        - **Pour tout** $xy \in A$ :
-
-            - **Si** $c[y] =$ Blanc **alors** $c[y] \gets$ Gris
-            - Mettre $(x, y)$ dans le sac
-        - **Fin Pour**
-
-    - **Fin Si**
-
-    **Fin Tant que**
 
 Puisqu'un même sommet peut apparaître plusieurs fois dans le sac depuis des sommets différents. La première occurrence à être extraite du sac, désignera le sommet qui sera son parent dans l'arborescence du parcours.
 
+!!! tip "Proposition"
+    
+    1. À la fin de l'algorithme du parcours, tout sommet $x$ fermé (noir) est accessible depuis $x_d$ par un chemin provenant du sommet $parent[x]$. 
+    2. Si un sommet $x$ est accessible depuis $x_d$ alors à la fin du parcours, il sera fermé (de couleur noire).
+
+!!! note "Démonstration"
+
+    1. On fait une preuve par invariant. On pose
+
+    $$ I : \quad \ll \forall x \in S, \  c[x] = Noir \quad \Longrightarrow \quad x_d \leadsto x \text{ (provenant de parent[x])} \gg $$
+
+    2. Se démontre par récurrence sur la longueur du chemin permettant d'atteindre $x$ depuis $x_d$.
+
+    $$ P(n) : \quad \ll \exists u_0 \rightarrow u_1 \rightarrow \dots \rightarrow u_n \text{ avec }\gg $$
+
+ 
 ## 2. Parcours en profondeur (DFS)
 
 ## 3. Parcours en largeur (BFS)
