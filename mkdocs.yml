@@ -11,6 +11,7 @@ nav:
     - Récurrence et induction : 'general/induction.md'
   - Langages formels :
     - Langages réguliers : 'langages/regexp.md'
+    - Théorème de Kleene : 'langages/kleene.md'
     - Grammaires algébriques : 'langages/grammaires.md'
   - Algorithmique :
     - Algorithmes probabilistes : 'algo/proba.md'
