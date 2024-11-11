@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+        <link rel="prev" href="../../algo/proba/">
+      
+      
+        <link rel="next" href="../../langc/tableaux/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Couplages maximaux - Vincent Picard - Informatique MPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#couplage-maximal-dans-un-graphe-biparti" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique MPI" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique MPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique MPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Couplages maximaux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../general/induction/" class="md-tabs__link">
+          
+  
+  Généralités
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../langages/regexp/" class="md-tabs__link">
+          
+  
+  Langages formels
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../algo/proba/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../langc/tableaux/" class="md-tabs__link">
+          
+  
+  Langage C
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique MPI" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique MPI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vincent Picard - Informatique MPI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    À propos de moi
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            À propos de moi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enseignement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parcours
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Généralités
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Généralités
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/induction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récurrence et induction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Langages formels
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Langages formels
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../langages/regexp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Langages réguliers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../langages/kleene/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Théorème de Kleene
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../langages/grammaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grammaires algébriques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algo/proba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes probabilistes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Couplages maximaux
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Couplages maximaux
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-graphes-bipartis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Graphes bipartis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-couplages" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Couplages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Couplages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-des-graphes-bipartis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas des graphes bipartis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-couplages-maximaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Couplages maximaux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Couplages maximaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-recherche-exhaustive" class="md-nav__link">
+    <span class="md-ellipsis">
+      A - Recherche exhaustive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-chemins-augmentants" class="md-nav__link">
+    <span class="md-ellipsis">
+      B - Chemins augmentants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-lien-avec-les-problemes-de-flot" class="md-nav__link">
+    <span class="md-ellipsis">
+      C - Lien avec les problèmes de flot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Langage C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Langage C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../langc/tableaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-graphes-bipartis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Graphes bipartis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-couplages" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Couplages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Couplages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-des-graphes-bipartis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas des graphes bipartis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-couplages-maximaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Couplages maximaux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Couplages maximaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-recherche-exhaustive" class="md-nav__link">
+    <span class="md-ellipsis">
+      A - Recherche exhaustive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-chemins-augmentants" class="md-nav__link">
+    <span class="md-ellipsis">
+      B - Chemins augmentants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-lien-avec-les-problemes-de-flot" class="md-nav__link">
+    <span class="md-ellipsis">
+      C - Lien avec les problèmes de flot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="couplage-maximal-dans-un-graphe-biparti">Couplage maximal dans un graphe biparti</h1>
+<h2 id="1-graphes-bipartis">1. Graphes bipartis</h2>
+<p>Les <strong>graphes bipartis</strong> sont une classe de graphes utile pour modéliser des situations pratiques.</p>
+<p><strong>Notation :</strong> Si <span class="arithmatex">\(G = (S, A)\)</span> est un graphe orienté ou non, on notera <span class="arithmatex">\(xy \in A\)</span> pour dire l'arc <span class="arithmatex">\((x, y)\)</span> ou l'arête <span class="arithmatex">\(\{x, y\}\)</span> est dans <span class="arithmatex">\(A\)</span>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Un graphe <span class="arithmatex">\(G = (S, A)\)</span> orienté ou non est <strong>biparti</strong> s'il existe une <strong>partition</strong> de <span class="arithmatex">\(S\)</span> en deux ensembles <span class="arithmatex">\(S = U \sqcup V\)</span> tels que :</p>
+<div class="arithmatex">\[ \forall xy \in A, \quad (x \in U \land y \in V) \lor (x \in V \land y \in U)\]</div>
+</div>
+<p>On rappelle que <strong>partition</strong> signifie :</p>
+<ul>
+<li><span class="arithmatex">\(S = U \cup V\)</span> : <span class="arithmatex">\(U\)</span> et <span class="arithmatex">\(V\)</span> <strong>recouvrent</strong> tout l'ensemble à partitionner</li>
+<li><span class="arithmatex">\(U \cap V = \varnothing\)</span> : les parties <span class="arithmatex">\(U\)</span> et <span class="arithmatex">\(V\)</span> sont <strong>disjointes</strong></li>
+</ul>
+<p>On peut remarquer que lorsque un graphe est biparti, il peut admettre plusieurs <em>bipartitions</em> valides.
+Dans les cas pratiques, la bipartition considérée est souvent imposée par la modélisation du problème. Dans ce cas, on décrit un graphe biparti en donnant la bipartition à considérer, on pourra par exemple écrire : soit <span class="arithmatex">\(G = (U \sqcup V, A)\)</span> un graphe biparti.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple : un graphe biparti</p>
+<p><figure>
+<img alt="Un graphe biparti" src="../fig/bipartite/bipartite-1.svg" />
+</figure></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : Vocabulaire et textes</p>
+<p>On peut considérer le graphe non orienté biparti <span class="arithmatex">\(G = (U \sqcup V, A)\)</span> dans lequel <span class="arithmatex">\(U\)</span> est un ensemble fini de mots (un vocabulaire) et <span class="arithmatex">\(V\)</span> un ensemble de textes. On construit alors une arête <span class="arithmatex">\(mt \in A\)</span> lorsque le mot <span class="arithmatex">\(m\)</span> apparaît dans le texte <span class="arithmatex">\(t\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemples en biologie, en écologie et en médecine</p>
+<p>L'image suivante montre plusieurs exemples de modélisations à l'aide de graphes bipartis, en biologie, en écologie et en médecine.
+<figure>
+<img alt="Exemples en biologie" src="../fig/bipartite_biology.jpeg" /> 
+<figcaption>Extrait de "Bipartite graphs in systems biology and medicine: a survey of methods and applications", Gigascience, Pavlopoulos <em>et al.</em>, 2018</figcaption>
+</figure></p>
+</div>
+<p>D'après la proposition suivante, il existe d'autres manières de parler de graphes bipartis sans les nommer.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe non orienté, on a équivalence entre :</p>
+<ol>
+<li><span class="arithmatex">\(G\)</span> est biparti</li>
+<li><span class="arithmatex">\(G\)</span> est 2-colorable</li>
+<li><span class="arithmatex">\(G\)</span> n'admet aucun cycle de longueur impaire</li>
+</ol>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<ul>
+<li>(1) implique (2) : il suffit de colorer tous les sommets de <span class="arithmatex">\(U\)</span> en bleu et tous les sommets de <span class="arithmatex">\(V\)</span> en rouge</li>
+<li>(2) implique (3) : si on considère par l'absurde un cycle de longueur impaire <span class="arithmatex">\((x_1, \dots, x_{n-1}, x_n = x_1)\)</span> de <span class="arithmatex">\(G\)</span> qui est 2-coloré, alors par imparité, la couleur de <span class="arithmatex">\(x_1\)</span> est égale à celle de <span class="arithmatex">\(x_{n-1}\)</span> ce qui est absurde.</li>
+<li>(3) implique (1) : on travaille composante connexe par composante connexe. Dans une composante connexe, on réalise un parcours de graphe en largeur depuis un sommet <span class="arithmatex">\(x\)</span>, tous les sommets situés à distance paire de <span class="arithmatex">\(x\)</span> sont placés dans <span class="arithmatex">\(U\)</span> et ceux à distance impaire dans <span class="arithmatex">\(V\)</span>. S'il existe un arc <span class="arithmatex">\(st \in A\)</span> entre <span class="arithmatex">\(s \in U\)</span> et <span class="arithmatex">\(t \in U\)</span> alors <span class="arithmatex">\(s\)</span> et <span class="arithmatex">\(t\)</span> font partie d'un cycle de longueur impaire : c'est absurde. </li>
+</ul>
+</details>
+<p>Cette proposition nous fait aussi remarquer que les graphes acycliques (les arbres et les forêts) sont des graphes bipartis.</p>
+<h2 id="2-couplages">2. Couplages</h2>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (incidence)</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe, si <span class="arithmatex">\(xy \in A\)</span> est une arête (resp. un arc) du graphe alors on dit que <span class="arithmatex">\(xy\)</span> est incidente au sommet <span class="arithmatex">\(x\)</span> (et aussi au sommet <span class="arithmatex">\(y\)</span>)</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (couplage)</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe, un <strong>couplage</strong> <span class="arithmatex">\(M\)</span> est une ensemble d'arêtes (ou d'arcs) qui n'ont pas de sommets en commun, c'est-à-dire tel qu'il n'existe pas deux arêtes (ou arcs) incidentes à un même sommet.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : couplage dans un graphe non orienté</p>
+<p>Dans le graphe non orienté ci-dessous, <span class="arithmatex">\(M = \{BH, CD, EG\}\)</span> est un exemple de couplage, mais il y en a d'autres...
+<figure>
+<img alt="Exemple de couplage" src="../fig/couplage_exem/couplage_exem-1.svg" /> 
+<figcaption>Un exemple de couplage en rouge.</figcaption></p>
+</div>
+<h3 id="cas-des-graphes-bipartis">Cas des graphes bipartis</h3>
+<div class="admonition example">
+<p class="admonition-title">Exemple : le bal</p>
+<p>On considère un bal où il y a <span class="arithmatex">\(n\)</span> danseuses et <span class="arithmatex">\(m\)</span> danseurs. On construit le graphe biparti <span class="arithmatex">\(G = (U \sqcup V, A)\)</span> où <span class="arithmatex">\(U\)</span> est l'ensemble des danseuses et <span class="arithmatex">\(V\)</span> l'ensemble des danseurs. Dans ce graphe, il existe une arête <span class="arithmatex">\(uv \in A\)</span> si <span class="arithmatex">\(u\)</span> et <span class="arithmatex">\(v\)</span> sont d'accord pour danser ensemble. On voit sur cet exemple qu'un couplage est une affectation possible danseuses-danseurs où tout le monde est d'accord sur son ou sa partenaire.
+<figure>
+<img alt="Exemple de couplage pour le bal" src="../fig/couplage_bal/couplage_bal-1.svg" /> 
+<figcaption>Un couplage de cardinal 3, en rouge, pour une instance du problème du bal.</figcaption>
+</figure></p>
+</div>
+<p>Soit <span class="arithmatex">\(G = (U \sqcup V, A)\)</span> un graphe biparti, on suppose que les sommets de <span class="arithmatex">\(U\)</span> et <span class="arithmatex">\(V\)</span> sont numérotés : <span class="arithmatex">\(U = \{u_0, u_1, \dots, u_{n-1}\}\)</span> et <span class="arithmatex">\(V = \{v_0, v_1, \dots, v_{m-1}\}\)</span>. Informatiquement un couplage <span class="arithmatex">\(M\)</span> peut se représenter par un tableau <span class="arithmatex">\(T\)</span> de longueur <span class="arithmatex">\(n\)</span> dans lequel :</p>
+<ul>
+<li>Si <span class="arithmatex">\((u_i, v_j) \in M\)</span> alors <span class="arithmatex">\(T[i] = j\)</span></li>
+<li>Sinon <span class="arithmatex">\(T[i] = -1\)</span></li>
+</ul>
+<div class="admonition exercise">
+<p class="admonition-title">Exercice</p>
+<p>Écrire une fonction en langage C vérifiant si un couplage est correct :
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">verifie</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">adj</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">MAX</span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+</span></code></pre></div>
+Dans ce prototype <code>MAX</code> designe une constante supérieure à <span class="arithmatex">\(n+m\)</span> et <code>adj</code> est un tableau bi-dimensionnel stockant la <em>matrice d'adjacence</em> du graphe. On suppose que les sommets de <span class="arithmatex">\(U\)</span> sont les sommets numérotés de <span class="arithmatex">\(0\)</span> à <span class="arithmatex">\(n-1\)</span> et les sommets de <span class="arithmatex">\(V\)</span> les sommets de <span class="arithmatex">\(n\)</span> à <span class="arithmatex">\(n+m-1\)</span>.</p>
+</div>
+<h2 id="3-couplages-maximaux">3. Couplages maximaux</h2>
+<p>Je donne la définition générale d'un couplage maximal mais le programme précise qu'on se place dans le cadre des graphes bipartis.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (couplage maximal)</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe, un couplage <span class="arithmatex">\(M\)</span> est un <strong>couplage maximal</strong> si <span class="arithmatex">\(\mathrm{Card}(M)\)</span> est maximal parmi tous les couplages possibles.</p>
+</div>
+<p>On dira que <span class="arithmatex">\(\mathrm{Card}(M)\)</span> est la <strong>taille du couplage</strong>. Un couplage maximal est donc un couplage de taille maximale.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple : crise médicale</p>
+<p>Une crise médicale surgit dans laquelle <span class="arithmatex">\(n\)</span> patients ont besoin de soins urgents et <span class="arithmatex">\(m\)</span> médecins sont disponibles. On construit un graphe biparti <span class="arithmatex">\(G = (U \sqcup V, A)\)</span> où <span class="arithmatex">\(U\)</span> est l'ensemble des patients, <span class="arithmatex">\(V\)</span> l'ensemble des médecins, et il existe un arête <span class="arithmatex">\((u, v) \in A\)</span> ssi le médecin <span class="arithmatex">\(v\)</span> peut traiter le patient <span class="arithmatex">\(u\)</span>. Avec cet exemple, on constate qu'un couplage est une affectation possible d'un médecin à un un patient. Un couplage <strong>maximal</strong> correspondra à une affectation de médecins qui maximise le nombre de patients traités.</p>
+</div>
+<div class="admonition bug">
+<p class="admonition-title">Attention !</p>
+<p>Un couplage peut être maximal au sens de l'inclusion sans être un couplage maximal.</p>
+</div>
+<h3 id="a-recherche-exhaustive">A - Recherche exhaustive</h3>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe.
+La méthode exhaustive peut être employée pour déterminer un couplage maximal. Par exemple, on construit un arbre binaire de hauteur <span class="arithmatex">\(|A|\)</span> chaque profondeur représente le choix de prendre ou de ne pas prendre l'arête numéro <span class="arithmatex">\(i\)</span> dans le couplage. Chaque feuille de l'arbre correspond donc à une partie de <span class="arithmatex">\(A\)</span> : on vérifie s'il s'agit d'un couplage et conserve celui de cardinal maximum.</p>
+<p>Cette méthode est très coûteuse : <span class="arithmatex">\(O(2^{|A|})\)</span>.</p>
+<p>On peut l'améliorer en :</p>
+<ul>
+<li>vérifiant à chaque arête s'il est possible de la prendre dans le couplage en cours de construction (et donc élaguer le choix 'oui' dans le cas où c'est impossible)</li>
+<li>utiliser la méthode de <em>séparation et évaluation</em> (<em>Branch and bound</em>) : on peut au fur et a mesure de la recherche éliminer les arêtes incidentes à un sommet déjà choisi, le nombre d'arêtes restantes nous permet alors de majorer la taille du couplage que l'on pourra former.</li>
+</ul>
+<p>Dans tous les cas, cette méthode est coûteuse.</p>
+<h3 id="b-chemins-augmentants">B - Chemins augmentants</h3>
+<p>Les chemins augmentants permettent d'obtenir une méthode efficace pour la recherche d'un couplage maximal.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (chemin alternant)</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe et <span class="arithmatex">\(M\)</span> un couplage pour ce graphe. Un chemin est dit <strong>alternant relativement à <span class="arithmatex">\(M\)</span></strong>, s'il alterne entre une arête dans <span class="arithmatex">\(M\)</span> et une arête n'appartenant pas à <span class="arithmatex">\(M\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Remarque</p>
+<p>L'alternance peut commencer ou non par une arête dans <span class="arithmatex">\(M\)</span>.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe, <span class="arithmatex">\(M\)</span> un couplage et <span class="arithmatex">\(C\)</span> un chemin dans <span class="arithmatex">\(G\)</span>. Le chemin <span class="arithmatex">\(C\)</span> est dit <strong>augmentant</strong> pour notre couplage <span class="arithmatex">\(M\)</span> si :</p>
+<ol>
+<li><span class="arithmatex">\(C\)</span> est un chemin alternant relativement à <span class="arithmatex">\(M\)</span></li>
+<li><span class="arithmatex">\(C\)</span> commence et termine par un sommet qui n'est pas aparié dans le couplage <span class="arithmatex">\(M\)</span> (il n'existe pas d'arête du couplage incidente à ce sommet).</li>
+</ol>
+</div>
+<p>Un chemin est augmentant si il commence et finit par un sommet non apparié.</p>
+<p>Dans la suite on utilisera l'opérateur de <strong>différence symétrique</strong> entre deux ensembles :</p>
+<div class="arithmatex">\[X \Delta Y = (X \cup Y) \setminus (X \cap Y)\]</div>
+<p>Pour simplifier les notations, on confondra par abus un chemin avec son ensemble d'arêtes ce qui permettra aussi d'appliquer cet opérateur sur les chemins.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe, <span class="arithmatex">\(M\)</span> un couplage de cardinal <span class="arithmatex">\(k\)</span> et <span class="arithmatex">\(C\)</span> un chemin augmentant, alors <span class="arithmatex">\(M \Delta C\)</span> est un couplage de cardinal <span class="arithmatex">\(k + 1\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<ul>
+<li>Comme les sommets de départ et d'arrivée ne sont pas appariés et que <span class="arithmatex">\(C\)</span> est alternant, on voit que <span class="arithmatex">\(M' = M \Delta C\)</span> contiendra une arete de plus que <span class="arithmatex">\(M\)</span>, d'ou le cardinal <span class="arithmatex">\(k + 1\)</span>. </li>
+<li>Il faut maintenant vérifier que c'est bien un couplage. Soit <span class="arithmatex">\((x,y)\)</span> une arete dans <span class="arithmatex">\(M' = M \Delta C\)</span>. Dans le chemin <span class="arithmatex">\(C\)</span>, il apparaît le sous-chemin <span class="arithmatex">\((a, x, y, b)\)</span> tel que <span class="arithmatex">\((a, x) \in M\)</span>,  <span class="arithmatex">\((x, y) \not \in M\)</span> et <span class="arithmatex">\((y, b) \in M\)</span>. Comme <span class="arithmatex">\(M\)</span> est un couplage <span class="arithmatex">\((a, x)\)</span> est la seule arete incidente à <span class="arithmatex">\(x\)</span> donc si on l'enleve <span class="arithmatex">\(x\)</span> n'est touché par plus personne donc (x, y) est la seule arête incidente à <span class="arithmatex">\(x\)</span> dans <span class="arithmatex">\(M'\)</span>. Il en va de meme pour <span class="arithmatex">\(y\)</span>. Donc <span class="arithmatex">\(M'\)</span> est bien un couplage.</li>
+</ul>
+</div>
+<p>Cette proposition est intéressante car elle donne une méthode pour améliorer un couplage <span class="arithmatex">\(M\)</span> : rechercher un chemin augmentant. On ne sait toutefois pas encore si un couplage qui n'admet pas de chemin augmentant est bien maximal. C'est l'objet du théorème suivant.</p>
+<div class="admonition tip">
+<p class="admonition-title">Théorème (Berge)</p>
+<p>Un couplage <span class="arithmatex">\(M\)</span> est maximal si et seulement s'il n'admet pas de chemin augmentant.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<ul>
+<li>La proposition précédente montre le sens direct par contraposition</li>
+<li>Montrons le sens réciproque : soit <span class="arithmatex">\(G = (S, A)\)</span> un graphe et <span class="arithmatex">\(M\)</span> un couplage n'admettant pas de chemin augmentant. Supposons par l'absurde que <span class="arithmatex">\(M\)</span> ne soit pas maximal et notons <span class="arithmatex">\(M'\)</span> un meilleur couplage. On considère alors <span class="arithmatex">\(H\)</span> le sous-graphe de <span class="arithmatex">\(G\)</span> induit par les arêtes de l'ensemble <span class="arithmatex">\(M \Delta M'\)</span>. Dans ce graphe un sommet ne peut être incident qu'à au plus deux arêtes : une de <span class="arithmatex">\(M\)</span> et une de <span class="arithmatex">\(M'\)</span>, les composantes connexes de <span class="arithmatex">\(H\)</span> sont donc de trois types possibles :<ol>
+<li>Un sommet isolé</li>
+<li>Un cycle alternant entre des arêtes de <span class="arithmatex">\(M\)</span> et de <span class="arithmatex">\(M'\)</span></li>
+<li>Un chemin alternant entre des arêtes de <span class="arithmatex">\(M\)</span> et de <span class="arithmatex">\(M'\)</span> de longueur impaire. </li>
+</ol>
+</li>
+<li>Puisque <span class="arithmatex">\(M'\)</span> est plus grand que <span class="arithmatex">\(M\)</span>, il en découle que <span class="arithmatex">\(H\)</span> contient une composante connexe possédant plus d'arêtes de <span class="arithmatex">\(M'\)</span> que d'arêtes de <span class="arithmatex">\(M\)</span>. Cette composante ne peut être que du troisième type : un chemin alternant qui commence par un sommet non apparié dans <span class="arithmatex">\(M\)</span> et qui termine par un sommet non apparié dans <span class="arithmatex">\(M\)</span>. Donc c'est un chemin augmentant, c'est absurde.</li>
+</ul>
+</div>
+<p>On obtient donc une méthode algorithmique pour construire un couplage de cardinal maximal :</p>
+<ol>
+<li>Initialiser avec le couplage vide <span class="arithmatex">\(M = \varnothing\)</span></li>
+<li>Tant qu'il existe un chemin augmentant <span class="arithmatex">\(C\)</span>, faire <span class="arithmatex">\(M \gets M \Delta C\)</span></li>
+<li>Retourner <span class="arithmatex">\(M\)</span></li>
+</ol>
+<p>Dans le cas d'un graphe biparti, la recherche d'un chemin augmentant peut s'obtenir facilement à l'aide d'un parcours de graphe en faisant les quelques remarques suivantes :
+- Le chemin est alterné, donc dans le parcours on prend garde à alternativement prendre un arc pas dans <span class="arithmatex">\(M\)</span> et un arc dans <span class="arithmatex">\(M\)</span>. 
+- Le chemin doit commencer et terminer par un sommet non apparié. On peut arrêter le parcours dès que l'on a trouvé un chemin augmentant, c'est-à-dire quand on tombe sur un sommet non apparié.
+- Il est de longueur impaire donc commence par un sommet de <span class="arithmatex">\(U\)</span> (resp. V) et termine par un sommet de <span class="arithmatex">\(V\)</span> (resp. U)$. On peut donc se restreindre par symétrie aux sommets de <span class="arithmatex">\(U\)</span> comme point de départ.</p>
+<p>Ainsi la recherche de chemin augmentant s'effectue avec une complexité <span class="arithmatex">\(O(|U| + |V| + |A|)\)</span>. Cette recherche est répétée au plus <span class="arithmatex">\(k\)</span> fois où <span class="arithmatex">\(k \leq \min(|U|, |V|)\)</span> est la taille d'un couplage maximal.</p>
+<h3 id="c-lien-avec-les-problemes-de-flot">C - Lien avec les problèmes de flot</h3>
+<p>Soit <span class="arithmatex">\(G = (U \sqcup V, A)\)</span> un graphe biparti. On considère que le graphe est orienté avec les arcs allant de <span class="arithmatex">\(U\)</span> vers <span class="arithmatex">\(V\)</span>. On ajoute deux sommets fictifs :</p>
+<ul>
+<li>un sommet <strong>source</strong> <span class="arithmatex">\(s\)</span> ayant pour voisins sortants tous les sommets de <span class="arithmatex">\(U\)</span></li>
+<li>un sommet <strong>puits</strong> <span class="arithmatex">\(t\)</span> ayant pour voisins entrants tous les sommets de <span class="arithmatex">\(V\)</span>.</li>
+</ul>
+<p>On imagine que chaque arc est un tuyau de capacité de début <span class="arithmatex">\(1L / s\)</span>. On souhaite faire transiter un maximum d'eau depuis la source vers le puits. Il faut donc choisir quels tuyaux seront utilisés <span class="arithmatex">\(1L/ s\)</span>  ou non utiliés <span class="arithmatex">\(0L /s\)</span>. Une solution à ce problème consiste à calculer le couplage maximal et faire transiter <span class="arithmatex">\(1L/ s\)</span> dans chaque tuyau choisi par le couplage.</p>
+<p>Le problème de flot maximal dans un graphe est plus général : on peut avoir des capacités différentes de 1 selon les tuyaux. Toutefois, il existe des approches algorithmiques similaires, on peut par exemple évoquer l'algorithme de Ford-Fulkerson qui trouve un flot maximal dans un graphe à l'aide de chemins augmentants.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
