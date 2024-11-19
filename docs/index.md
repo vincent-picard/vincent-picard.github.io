@@ -16,3 +16,4 @@ Vous trouverez sur ce site des [informations sur moi](aboutme) ainsi que des **r
 ## Compléments (hors-programme)
 
 - [Théorème de Myhill-Nerode et applications](pdf/myhill.pdf)
+- [Langages réguliers et reconnaissance par monoïde](pdf/monoides.pdf)
