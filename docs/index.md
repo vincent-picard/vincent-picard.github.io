@@ -12,6 +12,7 @@ Vous trouverez sur ce site des [informations sur moi](aboutme) ainsi que des **r
 - Chapitre 4 : Automates finis
 - Chapitre 5 : Arbres couvrants de poids minimal
 - Chapitre 6 : Théorème de Kleene
+- [Chapitre 7 : Logique](pdf/logique.pdf)
 
 ## Compléments (hors-programme)
 
