@@ -13,5 +13,5 @@
 
 ## Sujets
 
-- [TP 1](bdd/sq1.pdf)
+- [TP 1](itc/bdd/sq1.pdf)
 
