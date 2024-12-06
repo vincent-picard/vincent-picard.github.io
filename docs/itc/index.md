@@ -15,5 +15,5 @@
 
 ## Sujets
 
-- [TP 1](itc/bdd/sql1.pdf)
+- [TP 1](bdd/sql1.pdf)
 
