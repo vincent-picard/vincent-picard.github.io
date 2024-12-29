@@ -27,6 +27,11 @@ t[2][0] := bended_edge(n2, n0, -50); drawarrow t[2][0];
 label(btex $q_0$ etex, z0);
 label(btex $q_1$ etex, z1);
 label(btex $q_2$ etex, z2);
+edge_label.bot(btex $a$ etex, t[0][0]);
+edge_label.top(btex $b$ etex, t[0][1]);
+edge_label.bot(btex $a$ etex, t[1][0]);
+edge_label.top(btex $b$ etex, t[1][2]);
+edge_label.top(btex $a$ etex, t[2][0]);
 
 mark_init(n0, angle(left));
 mark_final(n1);
