@@ -19,7 +19,7 @@ Commençons par donner une vision intuitive de la machine que nous allons constr
 - un automate est une machine qui se situe à tout moment dans un certain *état*, elle a un nombre
 fini d'états possibles;
 - un automate prend en entrée un mot qu'elle lit de gauche à droite, lettre par lettre;
-- lorsque l'automate est dans un état $q$ et qu'elle lit une lettre $c$, alors il transitionne vers un état $\delta(q, c)$ qui ne dépend que de l'état actuel $q$ et de la lettre lue $c$.
+- lorsque l'automate est dans un état $q$ et qu'elle lit une lettre $c$, alors il *transitionne* vers un état $\delta(q, c)$ qui ne dépend que de l'état actuel $q$ et de la lettre lue $c$.
 
 Voici la définition formelle de cette machine :
 
@@ -32,6 +32,22 @@ Voici la définition formelle de cette machine :
     - $\delta : Q \times \Sigma \to Q$ est la **fonction de transition** de l'automate.
 
 La fonction de transition $\delta$ n'est pas nécessairement définie sur $Q \times \Sigma$ en entier, autrement dit, pour certains états $q$ et certaines lettres $c$, $\delta(q, c)$ peut ne pas être défini. Dans ce cas, on dit que l'automate **bloque** à la lecture de $c$ dans l'état $q$.
+
+Un automate se représente plus volontier sous forme d'un *graphe orienté* :
+
+<figure>
+![Exemple d'automate fini déterministe](fig/automates/afd/afd-1.svg)
+</figure>
+
+Dans cette représentation :
+
+- les sommets du graphe représentent les états de l'automate
+- les arcs représentent les transitions, l'étiquette d'un arc est la lettre lue
+- une flèche entrante marque l'état initial
+- un trait double entoure les états finaux
+
+Dans certains textes, les états finaux peuvent être marqués par une flèche sortante.
+
 
 ### B. Calcul d'un afd
 
