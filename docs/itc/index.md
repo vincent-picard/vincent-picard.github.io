@@ -10,4 +10,10 @@
 - [Base de donnée pizzeria](bdd/pizza.sqlite)
 - [Lignes transport STAS](bdd/lignes_STAS.sqlite)
 - [Météo](bdd/meteo.sqlite)
+- [Bulletins](bdd/pronote.sqlite)
+- [Chinook](bdd/Chinook_Sqlite.sqlite)
+
+## Sujets
+
+- [TP 1](bdd/sql1.pdf)
 

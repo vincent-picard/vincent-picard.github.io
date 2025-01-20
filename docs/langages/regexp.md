@@ -38,7 +38,7 @@ On notera :
     - L'ensemble de tous les mots de longueur exactement $p \in \mathbb{N}$ sur $\Sigma$ est noté $\Sigma^p$
     - L'ensemble de tous les mots sur $\Sigma$ est noté $\Sigma^*$
 
-### Concaténation de mots
+### A. Concaténation de mots
 
 !!! abstract "Définition (concaténation)"
     Soit $\Sigma$ un alphabet. Soit $u = u_1 \dots u_p \in \Sigma^p$ un mot de longueur $p$ et $v = v_1 \dots v_q \in \Sigma^q$ un mot de longueur $q$. La **concaténation** de $u$ et $v$, notée $u.v$, est le mot $u.v = u_1 \dots u_p v_1 \dots v_q$ de longueur $p + q$.
@@ -82,6 +82,29 @@ Ces conventions nous permettent d'écrire les mots de façon compacte par exempl
     2. Écrire la fonction `#!OCaml longueur : mot -> int`
     3. Écrire la fonction `#!OCaml occ : char -> mot -> int` qui compte le nombre d'occurrences d'une lettre dans un mot
 
+### B. Préfixes, suffixes, facteurs, sous-mots
+
+!!! abstract "Définition"
+    Soit $w$ un mot sur l'alphabet $\Sigma$.
+
+    - S'il existe deux mots $u, v$ tels que $w = u.v$ alors on dit que $u$ est un **préfixe** de $w$. De plus, si $u \neq w$, on dit que c'est un préfixe **propre**.
+    - S'il existe deux mots $u, v$ tels que $w = u.v$ alors on dit que $v$ est un **suffixe** de $w$. De plus, si $v \neq w$, on dit que c'est un suffixe **propre**.
+    - S'il existe trois mots $u, v, t$ tels que $w = u.t.v$ alors on dit que $t$ est un **facteur** de $w$. De plus, si $t \neq w$ on dit que le facteur est **propre**.
+
+D'après la définition, un préfixe d'un mot est aussi un facteur de ce mot, un suffixe d'un mot est aussi un facteur de ce mot.
+
+!!! abstract "Définition"
+    Soit $w = w_1 \dots w_n (w_i \in \Sigma)$ un mot de longueur $n$. Soit un entier naturel $p \leq n$. Soit $\varphi : \{1, \dots, p\} \to \{1, \dots, n\}$ une application strictement croissante. Alors le mot $u = w_{\varphi(1)}w_{\varphi(2)}\dots w_{\varphi(p)}$ est un **sous-mot** de $w$.
+
+Intuitivement les sous-mots de $w$ sont les mots qu'on peut former en séletionnant certaines lettres de $w$ sans en changer l'ordre relatif. Il est clair qu'un suffixe, un préfixe, ou un facteur d'un mot est aussi un sous-mot.
+
+!!! example "Exemples"
+    Soit $w = alienation$ alors
+
+    - $alien$ est un prefixe (propre) de $w$
+    - $nation$ est un suffixe (propre) de $w$
+    - $lien$ est un facteur (propre) de $w$
+    - $latin$ et $anion$ sont des sous-mots de $w$
 ## 2. Langages
 
 !!! abstract "Définition (langage)"
