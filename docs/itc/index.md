@@ -13,7 +13,7 @@
 - [Bulletins](bdd/pronote.sqlite)
 - [Chinook](bdd/Chinook_Sqlite.sqlite)
 
-## Sujets
+## Travaux pratiques
 
-- [TP 1](bdd/sql1.pdf)
-
+- [SQL 1](bdd/sql1.pdf)
+- **Jeu de taquin** [sujet](tp/taquin/taquin.pdf) [fichier](tp/taquin/taquin_eleves.py) [reponses](tp/taquin/fiche_reponse.pdf)
