@@ -16,4 +16,4 @@
 ## Travaux pratiques
 
 - [SQL 1](bdd/sql1.pdf)
-- **Jeu de taquin** [sujet](tp/taquin/taquin.pdf) [fichier](tp/taquin/taquin_eleves.py) [reponses](tp/taquin/fiche_reponse.pdf)
+- **Jeu de taquin** [sujet](tp/taquin/taquin.pdf) [fichier](tp/taquin/taquin_eleves.py) [fichier (version txt)](tp/taquin/taquin_eleves.txt) [reponses](tp/taquin/fiche_reponse.pdf)
