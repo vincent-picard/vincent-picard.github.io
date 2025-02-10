@@ -22,7 +22,7 @@ Vous trouverez sur ce site des [informations sur moi](aboutme) ainsi que des **r
 - Chapitre 14 : Apprentissage non supervisé
 - Chapitre 15 : Jeux d'accessibilité
 - [Chapitre 16 : Algorithmes probabilistes](algo/proba)
-- [Chapitre 17 : Couplages dans les graphes](algo/graphes)
+- [Chapitre 17 : Couplages dans les graphes](graphes/couplages)
 
 ## Compléments (hors-programme)
 
