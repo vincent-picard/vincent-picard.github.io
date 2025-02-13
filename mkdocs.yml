@@ -10,17 +10,17 @@ nav:
   - MPI:
     - Cours : 'mpi/cours.md'
   - PSI* / MP: 'itc/index.md'
-  - Généralités :
-    - Récurrence et induction : 'general/induction.md'
-  - Langages formels :
-    - Langages réguliers : 'langages/regexp.md'
-    - Théorème de Kleene : 'langages/kleene.md'
-    - Grammaires algébriques : 'langages/grammaires.md'
-  - Algorithmique :
-    - Algorithmes probabilistes : 'algo/proba.md'
-    - Couplages maximaux : 'graphes/couplages.md'
-  - Langage C:
-    - Tableaux : 'langc/tableaux.md'
+  #  - Généralités :
+  #    - Récurrence et induction : 'general/induction.md'
+  #  - Langages formels :
+  #    - Langages réguliers : 'langages/regexp.md'
+  #    - Théorème de Kleene : 'langages/kleene.md'
+  #    - Grammaires algébriques : 'langages/grammaires.md'
+  #  - Algorithmique :
+  #    - Algorithmes probabilistes : 'algo/proba.md'
+  #    - Couplages maximaux : 'graphes/couplages.md'
+  #  - Langage C:
+  #    - Tableaux : 'langc/tableaux.md'
 
 theme:
   name: material
