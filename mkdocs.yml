@@ -7,6 +7,9 @@ nav:
     - Index : 'aboutme/index.md'
     - Enseignement : 'aboutme/enseignement.md'
     - Parcours : 'aboutme/parcours.md'
+  - MPI:
+    - Cours : 'mpi/cours.md'
+  - PSI* / MP: 'itc/index.md'
   - Généralités :
     - Récurrence et induction : 'general/induction.md'
   - Langages formels :
