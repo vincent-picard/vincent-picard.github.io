@@ -14,7 +14,7 @@ Les résumés numériques suivants vous permettent de revoir le cours. Ils ne so
 - Chapitre 5 : Arbres couvrants de poids minimal
 - Chapitre 6 : Théorème de Kleene
 - [Chapitre 7 : Logique](/pdf/logique.pdf)
-- [Chapitre 8 : Apprentissage supervisé](ia/appr_supervise)
+- [Chapitre 8 : Apprentissage supervisé](/ia/appr_supervise)
 - Chapitre 9 : Décidabilité et complexité
 - [Chapitre 10 : Grammaires algébriques](/langages/grammaires)
 - Chapitre 11 : Composantes fortement connexes
