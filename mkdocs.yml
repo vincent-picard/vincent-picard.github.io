@@ -4,7 +4,7 @@ site_author: Vincent Picard
 
 nav:
   - À propos de moi :
-    - Index : 'aboutme/index.md'
+    - aboutme/index.md
     - Enseignement : 'aboutme/enseignement.md'
     - Parcours : 'aboutme/parcours.md'
   - MPI:
@@ -29,6 +29,12 @@ theme:
     - content.code.select
     - navigation.tabs
   language: fr
+  palette:
+    scheme: default
+    primary: brown
+    accent: pink
+  icon:
+    logo: fontawesome/solid/square-binary
 
 markdown_extensions:
   - admonition

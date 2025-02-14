@@ -1,4 +1,8 @@
-# Parcours académique
+---
+icon: material/school
+---
+
+# :material-school: Parcours académique
 
 - 2015 : Doctorat en informatique à l'Université de Rennes 1
 - 2012 : Agrégation de mathématiques -- option D (informatique)

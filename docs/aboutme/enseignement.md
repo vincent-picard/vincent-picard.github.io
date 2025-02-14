@@ -1,8 +1,12 @@
-# Enseignement
+---
+icon: material/human-male-board
+---
+
+# :material-human-male-board: Enseignement
 
 J'enseigne l'informatique (Numérique et Sciences Informatiques) depuis 2012.
 
-## Enseignement en CPGE 
+## :material-school: Enseignement en CPGE 
 - depuis 2023 : Informatique MPI au Lycée Leconte de Lisle
 - 2022 : Informatique MPI/MPI* au Lycée Claude Fauriel
 - 2021 : MP2I au lycée Claude Fauriel
@@ -13,13 +17,13 @@ J'enseigne l'informatique (Numérique et Sciences Informatiques) depuis 2012.
 - 2016-2021 : Colles d'informatique Scilab en ECE et ECS
 - depuis 2016 : Colles de mathématiques (MPSI, PCSI, ECE, ECS, MP* , MPI) 
 
-## Enseignement à l'université
+## :fontawesome-solid-school: Enseignement à l'université
 - 2015 : ATER à l'université de Nantes
     * Initiation à la cryptographie (L1)
     * TD/TP de programmation en C++ (L3)
     * TD/TP de bases de données relationnelles (L3)
 
-## Enseignement pendant mon doctorat
+## :material-account-school: Enseignement pendant mon doctorat
 - 2012 - 2015 : Mission d'enseignement ENS Rennes / Université de Rennes 1
     * Leçons d'agrégation à l'ENS de Rennes
     * TD de probabilités et statistiques pour informaticiens à l'ENS de Rennes 
