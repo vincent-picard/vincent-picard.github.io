@@ -278,19 +278,20 @@ La démonstration de ce théorème est importante car elle nous donne un algorit
 - Pour obtenir une suite de dérivations immédiates à partir d'un arbre de dérivation on procède par **parcours en profondeur** de l'arbre de dérivation : à chaque noeud interne rencontré, on écrit une dérivation immédiate correspondant à la règle utilisée pour ce noeud.
 
 !!! tip "Proposition"
-    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $u$ et $v$ deux mots sur $\Sigma \cup V$ alors on a équivalence entre :
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $X$ un symbole non terminal et $u$ un mot sur $\Sigma \cup V$ alors on a équivalence entre :
 
-    1. $u \Rightarrow^* v$
-    2. $u \Rightarrow_g^* v$
-    3. $u \Rightarrow_d^* v$
+    1. $X \Rightarrow^* u$
+    2. $X \Rightarrow_g^* u$
+    3. $X \Rightarrow_d^* u$
 
 ??? note "Démonstration"
 
     - (2) implique (1) et (3) implique (1) découlent directement des définitions.
-    - Montrons que (1) implique (2). On  suppose que $u \Rightarrow^* v$. Pour simplifier la preuve, ajoutons un symbole non terminal initial fictif $S_f$ et la règle $S_f \to u$. On a alors $S_f \Rightarrow u \Rightarrow^* v$. D'après le théorème sur les arbres de dérivation : il existe un arbre de dérivation de racine $S_f$ et de frontière $v$. Comme dans la preuve du théorème, on peut transformer cet arbre de dérivation en suite de **dérivations gauche** par parcours en profondeur où les fils sont explorés de gauche à droite. De plus, comme il commence à la racine d'étiquette $S_f$, cette suite de dérivation a nécessairement pour forme $S_f \Rightarrow_g u \Rightarrow_g^* v$ ce qui montre que $u \Rightarrow_g^* v$. 
-    - (1) implique (3) se montre de la même manière mais en considérant un parcours en profondeur où les fils sont explorés de droite à gauche.
+    - Si $X \rightarrow^^* u$ d'après la proposition précédente, il existe un arbre de dérivation de racine $X$ et de frontière $u$. De plus, si on suit la démonstration de cette même proposition, on s'aperçoit que la suite de dérivations immédiates proposées pour passer d'un arbre à une suite de dérivation n'utilise que des dérivations gauche (car les frontières des sous-arbres ne contiennent alors que des symboles terminaux). On a donc $X \rightarrow_g^* u$. Donc (1) implique (2).
+    - On montre de même que (1) implique (3) en construisant la suite de dérivations à l'aide d'un parcours en profondeur en considérant les fils de droite à gauche.
 
-Un intérêt possible de cette proposition est de pouvoir supposer dans une démonstration dans la quelle on sait que $u \Rightarrow^* v$ que toutes les dérivations utilisées sont gauche (ou droite).
+Une conséquence est que si on se restreint à utiliser des dérivations gauche (resp. droite) alors le langage engendré par une grammaire est inchangé.
+Un autre intérêt de cette proposition est qu'il est toujours possible supposer dans une démonstration dans la quelle on sait que $X \Rightarrow^* u \in \Sigma^* $ que toutes les dérivations utilisées sont gauche (ou droite).
 
 ### B. Ambiguïté
 
