@@ -1,4 +1,4 @@
-site_name: Vincent Picard - Informatique MPI
+site_name: Vincent Picard - Informatique CPGE
 site_description: Page personnelle de Vincent Picard et ressources pour l'informatique en MPI
 site_author: Vincent Picard
 
@@ -31,7 +31,7 @@ theme:
   language: fr
   palette:
     scheme: default
-    primary: brown
+    primary: blue grey
     accent: pink
   icon:
     logo: fontawesome/solid/square-binary
