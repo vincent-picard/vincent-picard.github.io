@@ -278,7 +278,7 @@ La démonstration de ce théorème est importante car elle nous donne un algorit
 - Pour obtenir une suite de dérivations immédiates à partir d'un arbre de dérivation on procède par **parcours en profondeur** de l'arbre de dérivation : à chaque noeud interne rencontré, on écrit une dérivation immédiate correspondant à la règle utilisée pour ce noeud.
 
 !!! tip "Proposition"
-    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $X$ un symbole non terminal et $u$ un mot sur $\Sigma \cup V$ alors on a équivalence entre :
+    Soit $G = (\Sigma, V, S, \mathcal{R})$ une grammaire algébrique, $X$ un symbole non terminal et $u$ un mot sur $\Sigma$ alors on a équivalence entre :
 
     1. $X \Rightarrow^* u$
     2. $X \Rightarrow_g^* u$
