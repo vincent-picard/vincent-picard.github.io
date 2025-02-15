@@ -287,7 +287,8 @@ La démonstration de ce théorème est importante car elle nous donne un algorit
 ??? note "Démonstration"
 
     - (2) implique (1) et (3) implique (1) découlent directement des définitions.
-    - Si $X \rightarrow^^* u$ d'après la proposition précédente, il existe un arbre de dérivation de racine $X$ et de frontière $u$. De plus, si on suit la démonstration de cette même proposition, on s'aperçoit que la suite de dérivations immédiates proposées pour passer d'un arbre à une suite de dérivation n'utilise que des dérivations gauche (car les frontières des sous-arbres ne contiennent alors que des symboles terminaux). On a donc $X \rightarrow_g^* u$. Donc (1) implique (2).
+    - Si $X \Rightarrow^* u$ d'après la proposition précédente, il existe un arbre de dérivation de racine $X$ et de frontière $u$. De plus, si on suit la démonstration de cette même proposition, on s'aperçoit que la suite de dérivations immédiates proposées pour passer d'un arbre à une suite de dérivation n'utilise que des dérivations gauche (car les frontières des sous-arbres ne contiennent alors que des symboles terminaux). On a donc $X \rightarrow_g^* u$. Donc (1) implique (2).
+    - (1) implique (3) se montre de la même manière mais en considérant un parcours en profondeur où les fils sont explorés de droite à gauche.
     - On montre de même que (1) implique (3) en construisant la suite de dérivations à l'aide d'un parcours en profondeur en considérant les fils de droite à gauche.
 
 Une conséquence est que si on se restreint à utiliser des dérivations gauche (resp. droite) alors le langage engendré par une grammaire est inchangé.
