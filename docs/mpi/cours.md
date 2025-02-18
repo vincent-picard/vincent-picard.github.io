@@ -18,7 +18,7 @@ Les résumés numériques suivants vous permettent de revoir le cours. Ils ne so
 9. :fontawesome-solid-circle-nodes: Décidabilité et complexité
 10. [:material-sigma: Grammaires algébriques](/langages/grammaires)
 11. [:fontawesome-solid-circle-nodes: Composantes fortement connexes](/algo/cfc)
-12. :fontawesome-solid-code-fork: Programmation concurrente
+12. [:fontawesome-solid-code-fork: Programmation concurrente](/algo/concur)
 13. :material-robot-outline: Apprentissage non supervisé
 14. :material-robot-outline: Jeux d'accessibilité
 15. [:fontawesome-solid-circle-nodes: Algorithmes probabilistes](/algo/proba)
