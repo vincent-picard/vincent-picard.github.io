@@ -1,4 +1,8 @@
-# Programmation concurrente
+---
+icon: fontawesome/solid-code-fork
+---
+
+# :fontawesome-solid-code-fork: Programmation concurrente
 
 ## 1. Introduction
 
@@ -28,11 +32,11 @@ Néanmoins, ces hypothèses permettent d'appréhender les principes de la progra
 
 On trouve de nombreux exemples pratiques d'utilisation de la programmation concurrente :
 
-- Rammasse-miette : quand un programme Java s'exécute, un thread spécial appelé ramasse-miette est chargé de détecter et libérer la mémoire qui n'est plus utilisée,
-- Interfaces graphiques : un thread gère le fonctionnement des fenêtres, des boutons, des évenements, etc, un autre thread gère le programme en lui-même
-- Consoles de jeux : chaque manette est gérée par un thread, l'exécution du jeu est géré par plusieurs threads, ... 
-- Serveurs Web : chaque requête du serveur par un ordinateur distant est gérée par un thread distinct
-- Calcul "parallèle" : sur un grand jeu de données, on divise les données en $N$ et chaque partie est traitée par un thread différent (ex: images)
+- **Ramasse-miette** : quand un programme Java s'exécute, un thread spécial appelé ramasse-miette est chargé de détecter et libérer la mémoire qui n'est plus utilisée,
+- **Interfaces graphiques** : un thread gère le fonctionnement des fenêtres, des boutons, des évenements, etc, un autre thread gère le programme en lui-même
+- **Consoles de jeux** : chaque manette est gérée par un thread, l'exécution du jeu est géré par plusieurs threads, ... 
+- **Serveurs Web** : chaque requête du serveur par un ordinateur distant est gérée par un thread distinct
+- **Calcul "parallèle"** : sur un grand jeu de données, on divise les données en $N$ et chaque partie est traitée par un thread différent (ex: images)
 
 C'est donc un concept important à appréhender car très utilisé en pratique mais qui peuvent conduire aussi à de nombreux bugs difficiles à comprendre et à corriger.
 
@@ -48,7 +52,7 @@ Tout thread créé par le programme doit être détruit par une opération appel
 
 Toute opération **create** doit être associée à un **join** de destruction, à l'image d'un **malloc** qui est toujours associé à un **free**.
 
-!!! example "Illustration d'un programme d'exécutant avec 3 threads"
+!!! example "Illustration d'un programme s'exécutant avec 3 threads"
     ```mermaid
     sequenceDiagram
         create participant Thread A
