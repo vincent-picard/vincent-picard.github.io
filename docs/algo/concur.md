@@ -48,6 +48,30 @@ Tout thread créé par le programme doit être détruit par une opération appel
 
 Toute opération **create** doit être associée à un **join** de destruction, à l'image d'un **malloc** qui est toujours associé à un **free**.
 
+```mermaid
+sequenceDiagram
+    Alice->>Bob: Hello Bob, how are you ?
+    Bob->>Alice: Fine, thank you. And you?
+    create participant Carl
+    Alice->>Carl: Hi Carl!
+    create actor D as Donald
+    Carl->>D: Hi!
+    destroy Carl
+    Alice-xCarl: We are too many
+    destroy Bob
+    Bob->>Alice: I agree
+```
+
+```mermaid
+sequenceDiagram
+    create participant ThreadA
+    Main->>ThreadA: create(f) 
+    Main->>ThreadB: create(g)
+    ThreadA-->>Main: join()
+    destroy ThreadA
+    ThreadB-->>Main: join()
+```
+
 ### En langage C
 
 
