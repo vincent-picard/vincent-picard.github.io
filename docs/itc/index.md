@@ -18,3 +18,5 @@
 
 - [SQL 1](bdd/sql1.pdf)
 - **Jeu de taquin** [sujet](tp/taquin/taquin.pdf) [fichier](tp/taquin/taquin_eleves.py) [fichier (version txt)](tp/taquin/taquin_eleves.txt) [reponses](tp/taquin/fiche_reponse.pdf) [solution (partie 1)](tp/taquin/taquin_part1.txt)
+- **Alignement optimal de séquences ADN** [sujet](tp/adn/adn_sujet.pdf) [fichier](tp/adn/fichier_eleve.py.txt) [réponses](tp/adn/fiche_reponse.pdf)
+
