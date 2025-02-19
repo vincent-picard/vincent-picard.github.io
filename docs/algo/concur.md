@@ -14,7 +14,7 @@ La programmation concurrente ne doit pas être confondue avec la **programmation
 
 La forme la plus complexe de programmation concurrente est la **programmation distribuée** dans laquelle différents ordinateurs exécutent des programmes simultanément en s'échangeant des messages à travers un réseau. Nous n'aborderons pas ce sujet difficile ici.
 
-### Hypothèses de travail
+### :bricks: Hypothèses de travail
 
 Dans ce cours on fera les hypothèses suivantes :
 
@@ -28,7 +28,7 @@ Dans ce cours on fera les hypothèses suivantes :
 Néanmoins, ces hypothèses permettent d'appréhender les principes de la programmtion concurrente et les problématiques en jeu.
 
 
-### Applications
+### :material-application-cog: Applications
 
 On trouve de nombreux exemples pratiques d'utilisation de la programmation concurrente :
 
@@ -187,4 +187,132 @@ On remarque donc que **l'exécution d'un programme à threads concurrents est no
 
 !!! info "Remarque : cas des fonctions à plusieurs paramètres"
     Si l'on souhaite exécuter une fonction ayant plusieurs paramètres dans un thread, c'est plus compliqué. La fonction à fournir à *create* ne doit comporter qu'un seul paramètre, il faut donc créer un type struct dédié pour regrouper les paramètres au sein d'une seule structure.
+
+### Les difficultés de la programmation concurrente
+
+La programmation concurrente est bien plus difficile que la programmation classique : de nombreux bugs peuvent être écrits si on considère mal les scénarios d'exécution possibles. Étudions un exemple.
+
+!!! example "Un compteur partagé"
+    On souhaite écrire un programme qui compte les nombres premiers entre $2$ et $1000$. Dans un esprit de parallélisation du calcul, on décide d'effectuer ce calcul avec deux threads : l'un qui compte les nombres premiers entre $2$ et $500$ et l'autre entre $501$ et $1000$. Ces deux threads ont pour effet d'incrémenter un **compteur partagé** lorsqu'ils détectent un nombre premier.
+
+    1. Implémenter la fonction `compte_premiers`, cette fonction prend en argument un pointeur vers un `struct args_s`.
+    2. Compléter la fonction `main` pour qu'elle créé les deux threads destinés à compter les nombres premiers.
+    3. Observer le résultat sur plusieurs exécutions.
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <pthread.h>
+    #include <stdbool.h>
+    #include <assert.h>
+
+    // Teste si un entier est premier
+    bool est_premier(int n) {
+        assert(n >= 2);
+        for (int k = 2; k < n; k++) {
+            if (n % k == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Une structure pour les parametres du thread
+    struct args_s {
+        int debut; // [debut, fin] est l'intervalle de recherche
+        int fin;
+        int* compteur; // adresse du compteur partagé
+    };
+
+    void* compte_premiers(void* args) {
+        // A COMPLETER
+        return NULL;
+    }
+
+    int main() {
+        int* c = malloc(sizeof(int)); // Le compteur partagé est alloué sur le tas
+        *c = 0;
+        // A COMPLETER
+        printf("Il y a %d nombres premiers\n", *c);
+        free(c);
+        return EXIT_SUCCESS;
+    }
+    ```
+
+!!! danger "Le problème est la *race condition* (spoiler)"
+    Sur certaines exécutions le résultat est faux. Cela vient du fait que l'instruction `*c = *c + 1` n'est pas atomique : entre la lecture de `c` et l'écriture de `c` il est possible qu'un autre thread effectue des opérations... Cela pose problème quand les deux threads décident de manipuler le compteur à des instants proches (race condition). Voici un exemple de scénario qui produit le bug :
+    ```mermaid
+    sequenceDiagram
+        participant Thread A
+        participant Compteur
+        participant Thread B
+        Note over Compteur: c vaut 4
+        Compteur->>Thread A: lire c 
+        Note over Thread A: c vaut 4
+        Note over Thread A: calculer c+1
+        Compteur->>Thread B: lire c 
+        Note over Thread B: c vaut 4
+        Note over Thread B: calculer c+1
+        Thread A->>Compteur: ecrire c
+        Note over Compteur: c vaut 5
+        Thread B->>Compteur: ecrire c
+        Note over Compteur: c vaut 5
+    ```
+    Au final chacun des threads a provoqué une incrémentation mais le compteur partagé n'a été augmenté que d'une seule unité.
+
+Ainsi, la programmation concurrente nécessite l'utilisation de méthodes permettant de contraindre l'entrelacement des processus afin d'éviter ce type de bugs.
+
+## 3. La synchronisation
+
+Lorsqu'on utilise la programmation concurrente, on cherche à garantir les bonnes propriétés suivantes :
+
+- L'**exclusion mutuelle** : l'exclusion mutuelle consiste à empêcher deux processus d'accéder simultanément à une ressource partagée, en particulier d'exécuter simultanément une **section critique** de code 
+- L'**absence d'interblocage** (*deadlock*): un interblocage survient lorsque l'ensemble des processus s'attendent mutuellement 
+- L'**absence de famine** (*starvation*): une famine survient lorsqu'un processus doit éternellement attendre pour accéder à une ressource, par exemple lorsque les autres processus passent toujours avant lui.  
+
+!!! info "Remarque"
+    Par définition, l'absence de famine implique l'absence d'interblocage
+
+La synchronisation est l'ensemble des méthodes utilisées pour contrôler l'entrelacement des processus afin de garantir ces bonnes propriétés.
+
+### A. :lock: Les verrous (mutex)
+
+Les **verrous**, souvent appelés **mutex**, sont le mécanisme le plus simple de synchronisation. Un mutex sert à créer une zone d'exclusion mutuelle. Il sert donc à protéger les **sections critiques** du code (celles où on veut éviter un accès simultané à une ressource partagée).
+
+Un verrou est un objet sur lequel on peut effectuer deux opérations :
+
+- **Vérouiller** (**lock**) : cette opération place le thread courant en attente jusqu'à ce que que le verrou soit libre. Lorsque le verrou est libre, il le verouille et poursuit à l'instruction suivante.
+- **Dévérouiller** (**unlock**) : cette opération libère le verrou
+
+Ainsi la section de code située entre l'instruction **lock** et l'instruction **unlock** est protégée : un seul thread à la fois peut exécuter cette section de cote.
+
+Une image mentale que vous pouvez vous faire est celui d'un vestiaire. Verouiller correspond à attendre que le vestiaire soit libre puis entrer et le verouiller. Déverouiller consiste à déverouiller le vestiaire en sortant. Si tout le monde utilise cet algorithme alors personne ne peut être dans le vestiaire en même temps que vous.
+
+!!! note "Remarque"
+    Si plusieurs processus sont en attente de libération d'un verrou, alors au moment où il est libéré le prochain procesus qui va acquérir le verrou est indéterminé. Il n'y a pas possibilité de contrôler quel processus va passer avant l'autre.
+
+!!! note "Remarque importante"
+    Pour faire fonctionner ce mécanisme, il faut que les threads concernés puissent accéder au même verrou. Le verrou doit donc être une ressource partagée entre les deux processus.
+
+#### En langage C
+
+En langage C, les mutex sont définis dans `pthread.h`. Le type des mutex est `pthread_mutex_t`. L'utilisation des *mutex* se fait à l'aide de 4 opérations :
+
+- `pthread_mutex_init(&mutex, NULL)` permet de créer un verrou qui sera enregistré dans la variable `mutex`
+- `pthread_mutex_lock(&mutex)` vérouille le verrou enregistré dans la variable `mutex`
+- `pthread_mutex_unlock(&mutex)` même chose mais dévérouille `mutex`
+- `pthread_mutex_destroy(&mutex)` détruit le mutex (doit être utilisé pour libérer les ressources)
+
+!!! example "Exercice"
+    Reprendre le programme du compteur partagé mais en le corrigeant à l'aide d'une zone d'exclusion mutuelle mise en oeuvre à l'aide d'un mutex.
+
+### B. :triangular_flag_on_post: Les sémaphores
+
+Les sémaphores permettent à des processus de communiquer en s'envoyant des signaux de type "tu peux continuer".
+
+### C. Algorithme de Peterson
+
+Les verrous et les sémaphores utilisent des instructions spéciales du processeur telles que **test-and-set** pour fonctionner. Ces instructions sont disponibles. Historiquement, les ordinateurs travaillaient séquentiellement et ne disposaient pas de telles instructions. Il fallait alors trouver des solutions algorithmiques pour synchroniser des processus.
+
+### D. Algorithme de la boulangerie de Lamport
 
