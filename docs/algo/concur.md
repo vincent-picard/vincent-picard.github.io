@@ -308,11 +308,197 @@ En langage C, les mutex sont définis dans `pthread.h`. Le type des mutex est `p
 
 ### B. :triangular_flag_on_post: Les sémaphores
 
-Les sémaphores permettent à des processus de communiquer en s'envoyant des signaux de type "tu peux continuer".
+Les sémaphores sont une méthode de synchronisation inventée par Dijkstra. Un sémaphore peut être vu comme une variable entière $S$, sur laquelle il existe deux opérations :
 
+- $P(S)$ (*Proberen*) (mnémotechnique : *Puis-je ?*) :
+    - Attendre que $S$ devienne **strictement positif**
+    - Décrémenter $S$ d'une unité et continuer
+- $V(S)$ (*Verhogen*) (mnémotechnique : *Vas-y*) :
+    - Incrémenter $S$ d'une unité
+
+!!! note "Nota Bene"
+    Les opérations $P(S)$ et $V(S)$ sont **atomiques**, elles ne posent donc pas de problème d'accès simultané.
+
+#### Utilisation comme verrou
+
+Un sémaphore peut-être utilisé comme un verrou. Dans ce cas il doit être initialisé à 1 et alors l'opération $P(S)$ peut-être vue comme un **lock**, trandis que $V(S)$ est un **unlock**. La seule différence avec un **mutex** est que le thread qui vérouille et le thread qui déverouille peuvent éventuellement être différents.
+
+Ainsi, sauf dans ce dernier cas bien précis, il est inutile de s'embêter avec un sémaphore pour créer une zone d'exclusion mutuelle et on préferera utiliser un *mutex* qui a été conçu dans ce but.
+
+#### Utilisation comme jauge limite
+
+Une généralisation du verrou est d'utiliser un sémaphore initialisé à $N$ afin qu'au plus $N$ processus ne puissent exécuter une certaine zone de code. Voici un exemple en exercice :
+
+!!! example "Exercice : Le dîner des philosophes"
+    Quatre philosophes sont assis autour d'une table carrée pour manger. Par souci d'économie (et par clair manque d'hygiène), ils décident de n'utiliser que quatre baguettes en tout pour manger : chaque philosophe a à sa gauche (resp. à sa droite) une baguette qu'il partage avec son voisin de gauche (resp. de droite). Un philosophe fonctionne avec l'algorithme suivant :
+    ```
+    PHILOSOPHE(x):
+        Tant que (vrai) Faire
+            PENSER()
+            PRENDRE(baguette_gauche(x))
+            PRENDRE(baguette_droite(x))
+            MANGER()
+            POSER(baguette_gauche(x))
+            POSER(baguette_droite(x))
+        Fin Tant que
+    ```
+
+    1. On suppose que les 4 philosophes sont exécutés chacun dans un thread. Implémenter un mécanisme de synchronisation pour empêcher qu'une baguette ne soit prise en même temps par deux philosophes.
+    2. Avec cette solution, décrire un scenario qui conduit à un interblocage des 4 philosophes.
+    3. On remarque que la situation précédente ne peut se produire lorsque 3 philosophes au plus décident de manger en même temps. En utilisant un sémaphore, résoudre le problème de l'interblocage.
+
+#### Utilisation comme moyen de signalisation
+
+Les sémaphores permettent surtout à des processus de se syncrhoniser en s'envoyant des signaux de type "tu peux poursuivre". Pour réaliser cela, on initialise le sémaphore à $S = 0$. L'opération $P(S)$ consiste alors à se placer en attente de réception du signal. A l'inverse l'opération $V(S)$.
+En langage C, cela est rendu encore plus explicite par le nom des choix de fonction : l'opération $P$ est appelée `sem_wait` tandis que l'opération $V$ est appelée `sem_post`.
+
+!!! example "Exemple : Synchronisation Ping-Pong"
+    On écrit le programme C suivant qui exécute deux threads :
+    
+    - `ping` : qui affiche des `PING` à l'écran
+    - `pong` : qui affiche des `PONG` à l'écran
+
+    Voici un extrait de code :
+    ```c
+    void* ping(void* args) {
+        for (int i = 0; i < N; i++) {
+            fprintf(stderr, "PING\n");
+            attendre(1);
+        }
+        return NULL;
+    }
+
+    void* pong(void* args) {
+        for (int i = 0; i < N; i++) {
+            fprintf(stderr, "pong\n");
+            attendre(1);
+        }
+        return NULL;
+    }
+
+    int main() {
+        pthread_t tping, tpong;
+        pthread_create(&tping, NULL, &ping, NULL);
+        pthread_create(&tpong, NULL, &pong, NULL);
+        pthread_join(tping, NULL);
+        pthread_join(tpong, NULL);
+
+        return EXIT_SUCCESS;
+    }
+    ```
+
+    D'après ce qu'on a vu, ces deux threads vont s'entrelacer de manière non détermiste : ce qu'on ne souhaite pas. On voudrait qu'un PONG ne soit produit qu'après un PING et réciproquement.
+
+    Une solution est d'utiliser des signaux implémentés à l'aide de sémaphores :
+
+    - Un signal `envoi` qui est est déclenché par `ping` lorsqu'il envoie la balle
+    - Un signal `retour` qui rest déclenché par `pong` lorsqu'il renvoie la balle
+
+    ??? note "Solution"
+        Voici corriger le programme précédent :
+        ```c
+        #include <semaphore.h>
+        (...)
+
+        struct param_s {
+            sem_t *envoi;
+            sem_t *retour;
+        };
+        typedef struct param_s param;
+
+        void* ping(void* args) {
+            param* p = (param*) args;
+            for (int i = 0; i < N; i++) {
+                fprintf(stderr, "PING\n");
+                sem_post(p->envoi);
+                attendre(1);
+                sem_wait(p->retour);
+            }
+            return NULL;
+        }
+
+        void* pong(void* args) {
+            param* p = (param*) args;
+            for (int i = 0; i < N; i++) {
+                sem_wait(p->envoi);
+                fprintf(stderr, "pong\n");
+                sem_post(p->retour);
+                attendre(1);
+            }
+            return NULL;
+        }
+
+        int main() {
+            pthread_t tping, tpong;
+
+            sem_t envoi, retour;
+            sem_init(&envoi, 0, 0);
+            sem_init(&retour, 0, 0);
+
+            param a = {.envoi = &envoi, .retour = &retour};
+
+            pthread_create(&tping, NULL, &ping, &a);
+            pthread_create(&tpong, NULL, &pong, &a);
+            pthread_join(tping, NULL);
+            pthread_join(tpong, NULL);
+
+            sem_destroy(&envoi);
+            sem_destroy(&retour);
+
+            return EXIT_SUCCESS;
+        }
+        ```
 ### C. Algorithme de Peterson
 
-Les verrous et les sémaphores utilisent des instructions spéciales du processeur telles que **test-and-set** pour fonctionner. Ces instructions sont disponibles. Historiquement, les ordinateurs travaillaient séquentiellement et ne disposaient pas de telles instructions. Il fallait alors trouver des solutions algorithmiques pour synchroniser des processus.
+Les verrous et les sémaphores utilisent des instructions spéciales du processeur telles que **test-and-set** pour fonctionner. Ces instructions sont disponibles sur les architectures récentes.
+
+Historiquement, les ordinateurs travaillaient séquentiellement et ne disposaient pas de telles instructions. Il a alors fallu trouver des solutions algorithmiques pour synchroniser des processus en se basant sur l'**attente active**.
+
+
+L'algorithme de Peterson permet de créer une zone d'exclusion mutuelle de manière algorithmique pour **deux processus uniquement**.
+
+```c
+// ALGORITHME DE PETERSON
+
+// Init
+bool veut_entrer[2] = {false, false};
+int tour;
+
+// Dans le thread 0 :
+T0: veut_entrer[0] = true;
+    tour = 1;
+    while (veut_entrer[1] && tour == 1) {} // attente active
+    // Début de la section critique
+    ...
+    // fin de la section critique
+    veut_entrer[0] = false;
+
+// Dans le thread 1 :
+T1: veut_entrer[1] = true;
+    tour = 0;
+    while (veut_entrer[0] && tour == 0) {} // attente active
+    // Début de la section critique
+    ...
+    // fin de la section critique
+    veut_entrer[1] = false;
+```
+
+!!! tip "Proposition"
+    L'algorithme de Peterson garantit l'exclusion mutuelle pour deux processus dans la zone critique associée.
+
+Supposons par l'absurde qu'il y a violation de l'exclusion mutuelle et que $0$ est le dernier thread à avoir écrit dans tour (donc tour vaut 1). Cela signifie que veut_entrer vaut vrai pour les deux processus (car fixé avant le tour). Donc le thread 0 n'a pas pu franchir le while, c'est absurde.
+
+
+!!! tip "Proposition"
+    L'algorithme de Peterson garantit l'absence de famine pour chacun des processus. En particulier, il n'y a pas d'interblocage.
+
+Supposons par l'absurde que le thread 0 est en famine, cela signifie qu'il reste bloqué éternellement dans la boucle while. Alors regardons la situation du thread 1 :
+
+- S'il se situe après sa zone critique, il a placé veut_entrer[1] à false, donc un retour à thread 0 le débloque : absurde
+- S'il se situe dans sa zone critique : il finira par en sortir et on est ramené au cas précédent
+- S'il sort de sa zone critique mais revient (boucle, ...) tente de réacceder à la zone critique : il va placer tour à 0 et comme veut_entrer[1] est à true, il entre dans une boucle infinie, le retour au thread 0 débloque alors ce dernier : absurde
+
+Donc sauf si l'ordonnanceur ne donne jamais la main au thread 0, il n'y aura pas de famine.
 
 ### D. Algorithme de la boulangerie de Lamport
 
