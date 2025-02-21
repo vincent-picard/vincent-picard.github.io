@@ -238,6 +238,55 @@ La programmation concurrente est bien plus difficile que la programmation classi
         return EXIT_SUCCESS;
     }
     ```
+    !!! note "Fausse solution"
+
+    ```c
+    #include <stdio.h>
+    #include <pthread.h>
+    #include <stdbool.h>
+    #include <stdlib.h>
+    #include <assert.h>
+
+    struct args_t {
+        int debut;
+        int fin;
+        int* compteur;
+    };
+
+    bool est_premier(int n) {
+        assert(n >= 2);
+        for (int k = 2; k < n; k++) {
+            if (n % k == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void* compte_premiers(void* args) {
+        struct args_t* param = (struct args_t*) args;
+        for (int n = param->debut; n <= param->fin; n++) {
+            if (est_premier(n)) {
+                *(param->compteur) = *(param->compteur) + 1;
+            }
+        }
+        return NULL;
+    }
+
+    int main() {
+        pthread_t t1, t2;
+        int c = 0;
+        struct args_t arg1 = {.debut = 2, .fin = 500, .compteur = &c};
+        struct args_t arg2 = {.debut = 501, .fin = 1000, .compteur = &c};
+        pthread_create(&t1, NULL, &compte_premiers, &arg1);
+        pthread_create(&t2, NULL, &compte_premiers, &arg2);
+        pthread_join(t1, NULL);
+        pthread_join(t2, NULL);
+        printf("Il y a %d nombre premiers\n", c);
+        return 0;
+    }
+    ```
+
 
 !!! danger "Le problème est la *race condition* (spoiler)"
     Sur certaines exécutions le résultat est faux. Cela vient du fait que l'instruction `*c = *c + 1` n'est pas atomique : entre la lecture de `c` et l'écriture de `c` il est possible qu'un autre thread effectue des opérations... Cela pose problème quand les deux threads décident de manipuler le compteur à des instants proches (race condition). Voici un exemple de scénario qui produit le bug :
