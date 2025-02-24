@@ -317,7 +317,7 @@ Lorsqu'on utilise la programmation concurrente, on cherche à garantir les bonne
 
 - L'**exclusion mutuelle** : l'exclusion mutuelle consiste à empêcher deux processus d'accéder simultanément à une ressource partagée, en particulier d'exécuter simultanément une **section critique** de code 
 - L'**absence d'interblocage** (*deadlock*): un interblocage survient lorsque l'ensemble des processus s'attendent mutuellement 
-- L'**absence de famine** (*starvation*): une famine survient lorsqu'un processus doit éternellement attendre pour accéder à une ressource, par exemple lorsque les autres processus passent toujours avant lui.  
+- L'**absence de famine** (*starvation*): une famine survient lorsqu'un processus souhaite accéder à une ressource mais n'obtient jamais la main à un moment où il peut y accéder. 
 
 !!! info "Remarque"
     Par définition, l'absence de famine implique l'absence d'interblocage
@@ -532,22 +532,77 @@ T1: veut_entrer[1] = true;
     veut_entrer[1] = false;
 ```
 
+
 !!! tip "Proposition"
     L'algorithme de Peterson garantit l'exclusion mutuelle pour deux processus dans la zone critique associée.
 
-Supposons par l'absurde qu'il y a violation de l'exclusion mutuelle et que $0$ est le dernier thread à avoir écrit dans tour (donc tour vaut 1). Cela signifie que veut_entrer vaut vrai pour les deux processus (car fixé avant le tour). Donc le thread 0 n'a pas pu franchir le while, c'est absurde.
+Supposons par l'absurde qu'il y a violation de l'exclusion mutuelle et que $0$ est le dernier thread à avoir écrit dans tour (donc tour vaut 1). Cela signifie que `veut_entrer` vaut vrai pour les deux processus (car fixé avant le tour). Donc le thread 0 n'a pas pu franchir le test du `while`, c'est absurde.
 
 
 !!! tip "Proposition"
     L'algorithme de Peterson garantit l'absence de famine pour chacun des processus. En particulier, il n'y a pas d'interblocage.
 
-Supposons par l'absurde que le thread 0 est en famine, cela signifie qu'il reste bloqué éternellement dans la boucle while. Alors regardons la situation du thread 1 :
+Supposons par l'absurde que le thread 0 est en famine, cela signifie qu'à chaque fois qu'il obtient la main, et qu'il effectue le test du while, le test vaux `true`. Remarquons déjà, que comme le thread 1 ne modifie `tour` que pour le mettre à `0`, cette situation ne peut se produire que si `veut_entrer[1]` est toujours à vrai quand le thread 0 obtient la main. Alors regardons la situation du thread 1 juste au moment où il va rendre la main:
 
-- S'il se situe après sa zone critique, il a placé veut_entrer[1] à false, donc un retour à thread 0 le débloque : absurde
+- S'il se situe après sa zone critique, il a placé `veut_entrer[1]` à false, donc un retour à thread 0 le débloque : absurde
 - S'il se situe dans sa zone critique : il finira par en sortir et on est ramené au cas précédent
-- S'il sort de sa zone critique mais revient (boucle, ...) tente de réacceder à la zone critique : il va placer tour à 0 et comme veut_entrer[1] est à true, il entre dans une boucle infinie, le retour au thread 0 débloque alors ce dernier : absurde
+- S'il sort de sa zone critique mais revient (boucle, ...) et tente de réacceder à la zone critique : il va placer `tour` à 0 et comme `veut_entrer[1]` est à true, il entre dans une boucle potentiellement infinie, le retour au thread 0 débloque alors ce dernier : absurde
 
-Donc sauf si l'ordonnanceur ne donne jamais la main au thread 0, il n'y aura pas de famine.
+Donc il n'y pas de famine.
+
+!!! warning "Attention"
+    L'algorithme est bien précis et doit être respecté à la lettre. Par exemple, l'absence de drapeaux `veut_entrer` rend l'algorithme faux.
 
 ### D. Algorithme de la boulangerie de Lamport
 
+L'algorithme de la boulangerie de Lamport permet de créer une zone d'exclusion mutuelle de manière algorithmique pour **un nombre fini de processus**.
+
+Son principe de fonctionnement est le suivant :
+
+- chaque thread voulant accéder à la ressource tire un ticket (plus grand que les tickets déjà tirés)
+- lorsqu'un processus veut accéder à la section critique :
+    - il vérifie que les autres threads qui aient fini de tirer leur ticket
+    - il vérifie s'il a bien le plus petit numéro par rapport aux autres
+    - en cas d'égalité, s'il a le plus petit **numéro de thread** alors il passe en premier
+- lorsqu'il a terminé, il jette son ticket
+
+```c
+    // ALGORITHME DE LA BOULANGERIE DE LAMPORT 
+
+    // Variables globales :
+
+    // Numéro de ticket tiré (0 = pas de ticket)
+    int num[N] = {0, ..., 0};
+
+    // Drapeau pour dire qu'on est en train de prendre un ticket
+    bool prends_ticket[N] = {false, ..., false};
+
+    // Le thread i demande la ressource :
+    void lock(int i) {
+        prends_ticket[i] = true;
+        num[i] = MAX(num[0], ..., num[n-1]) + 1;
+        prends_ticket[i] = false;
+        for (int p = 0; p < N; p++) {
+            while (prends_ticket[p]) // On attends que p ait terminé de prendre son ticket
+            while (num[p] != 0 && (num[p] < num[i] || (num[p] == num[i] && p < i)) {}
+    // En cas d'egalite de ticket, le thread de plus petit numero passe en premier
+        }
+    }
+
+    // Le thread i libère la ressource :
+    void unlock(int i) {
+        num[i] = 0;
+    }
+```
+
+!!! abstract "Proposition"
+    L'algorithme de Lamport garantit l'exclusion mutuelle (entre `lock` et `unlock`) ainsi que l'absence de famine.
+
+!!! warning "Attention"
+    L'algorithme est bien précis et doit être respecté à la lettre. Par exemple, l'absence de drapeaux `prends_ticket` ou de traitement du cas d'égalité rend l'algorithme faux.
+
+!!! bug "Attention"
+    Comme mentionné au début de ce chapitre, les algorithmes de *Peterson* et de la *boulangerie de Lamport* sont faux écrits comme tels dans le cadre de la programmation sur une machine moderne multi-coeurs (absence de cohérence séquentielle). Vous pouvez essayer de les programmer en langage C et vous verrez que l'exécution l'exclusion mutuelle n'est pas vérifiée...
+
+!!! note "Remarque importante"
+    Les algorithmes de *Peterson* et de la *boulangerie de Lamport* ont surtout un intérêt historique et pédagagogique. Sauf si l'énoncé le demande explicitement, préférez l'utilisation des **mutex** pour créer une zone d'exclusion mutuelle en pratique.
