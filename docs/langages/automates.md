@@ -160,13 +160,91 @@ Autrement dit, le langage reconnu est l'ensemble des mots reconnus par l'automat
     - Une seconde phase où on boucle sur l'état final, ce qui signifie qu'on accepte maintenant toute suite de lettres
 
 !!!example "Exemple : mots contenant un nombre impair de $a$"
-   On souhaite reconnaître par automate le langage des mots sur $\Sigma = \{a, b\}$ contenant un nombre impair de $a$. Pour cela, on peut proposer l'automate suivant :
+    On souhaite reconnaître par automate le langage des mots sur $\Sigma = \{a, b\}$ contenant un nombre impair de $a$. Pour cela, on peut proposer l'automate suivant :
+    <figure>
+    ![Automate reconnaissant les mots ayant un nombre impair de a](fig/automates/afd/afd-3.svg)
+    </figure>
+    Dans cet exemple, les états de l'automate servent à reprensenter les classes de congruence du nombre de $a$ modulo 2. Plus simplement, dans l'état $q_0$ le nombre de $a$ lus est pair et dans l'état $q_1$ le nombre de $a$ lus est impair. Cela explique que la lecture d'un $a$ fait passer d'un état à l'autre, tandis que la lecture d'un $b$ ne change pas l'état.
+
+!!!note "Conseil"
+    Autant que possible, faites en sorte que chaque état de l'automate ait une signification propore comme dans les exemples précédents. Cela facilite à la fois la conception et la justification de l'automate.
 
 !!!example "Exercice"
     En vous inspirant de l'exemple précédent, proposer un automate pour reconnaître les mots sur $\Sigma = \{a, b\}$ dont le nombre de $b$ est de la forme $3k + 1$ avec $k \in \mathbb{N}$.
 
 ### D. Programmation
 
+Nous avions promis que les automates étaient bien plus simples à mettre en oeuvre sur un ordinateur que les expressions régulières. Voici donc un exemple d'implémentation en OCaml.
+
+```ocaml
+    type etat = int;; (* Les etats sont representes par des numeros de 0 à |A|-1*)
+
+    type auto = {
+        taille: int; (* nombre d'états *)
+        init: etat;
+        final: etat list;
+        trans: (char * etat) list array; (* table de transitions *)
+    };;
+```
+
+Le seul point délicat de cette représentation est la *table de transitions*, c'est-à-dire la manière dont on représente la fonction de transition $\delta$.
+La représentation choisie est un tableau `trans` dans lequel chaque case `trans.(i)` contient les transitions sortantes de l'état $i$.
+Ces transitions sont représentées sous forme d'une liste de couples $(c, j)$ où $c$ est la lettre lue et $j$ l'état d'arrivée de la transition. 
+Cette représentation est analogue à celle des **listes d'adjacence** pour les graphes orientés.
+
+!!!note "Remarque"
+    Ces listes sont appelées **listes associatives**. Elles servent à associer un état d'arrivée (valeur) à une lettre lue (clef). Autrement dit il s'agit d'une implémentation concrète de la structure de données abstraite de **dictionnaire**. On a choisi les listes associatives par simplicité mais nous aurions aussi pu utiliser une **table de hachage** ou encore un **arbre binaire de recherche**.
+
+!!!example "Définition d'un automate"
+    Définissons en OCaml l'automate vu en début de chapitre :
+    <figure>
+    ![Exemple d'automate fini déterministe](fig/automates/afd/afd-1.svg)
+    </figure>
+    ```ocaml
+    let a1 = {
+        taille = 3;
+        init = 0;
+        final = [1; 2];
+        trans = [|
+            [('a', 0); ('b', 1)]; (* transitions sortantes de l'etat 0 *)
+            [('a', 0); ('b', 2)];
+            [('a', 0)]
+        |]
+    };;
+    ```
+
+Un avantage de l'utilisation des listes associatives est que la fonction `List.assoc` est déjà programmée pour vous dans la bibliothèque OCaml (sa programmation ne devrait poser aucun problème, faites-le en exercice). Cette fonction a pour signature `List.assoc : 'a -> ('a * 'b) list -> 'b'`, elle prend en argument une *clef* et une liste associative et renvoie la valeur associée à cette clef. Si la clef n'existe pas dans la liste, alors l'exception `Not_found` est levée.
+
+Pour nous, les clefs sont les lettres lues, les valeurs les états d'arrivée et l'exception `Not_found` est déclenchée lorsqu'il y a blocage. Implémentons la fonction de calcul d'un automate :
+```ocaml
+(* lit le mot u dans auto depuis l'etat q *)
+let calcul auto q u =
+    let n = String.length u in (* le mot est une chaîne de caractères *)
+    let etat_courant = ref q in (* on se sert d'une référence pour mémoriser l'état courant *)
+    for i = 0 to n-1 do
+        let nouvel_etat = List.assoc u.[i] auto.trans.(!etat_courant) in
+        etat_courant := nouvel_etat
+    done;
+    !etat_courant
+;;
+```
+Remarquons que cette fonction lève aussi l'exception `Not_found` en cas de blocage. Nous pouvons maintenant programmer la fonction
+qui teste si un mot est accepté ou non par un automate :
+```ocaml
+let est_reconnu auto u =
+    try
+        (* on calcule l'etat d'arrivée en fin de lecture du mot *)
+        let etat_fin = calcul auto auto.init u in
+        (* on teste s'il est final *)
+        List.mem etat_fin auto.final
+    with
+        (* Si Not_found est levé, il y a blocage, le mot n'est pas accepté *)
+        Not_found -> false 
+;;
+```
+
+!!!note "Les automates sont efficaces !"
+    Les automates se programment assez rapidement mais surtout ils sont efficaces. La lecture d'un mot $u$ est de complexité linéaire $O(|u|)$. Encore mieux, l'automate lit en fait une et une seule fois chaque lettre de gauche à droite.
 
 ## 2. Opérations classiques sur les automates
 
