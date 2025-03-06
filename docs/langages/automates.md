@@ -261,3 +261,103 @@ let est_reconnu auto u =
 ## 4. Automates finis non déterministes à transitions spontanées
 
 ## 5. Langages non reconnaissables par automate
+
+Il existe des langages qui ne peuvent pas être reconnus par un automate fini. Le théorème suivant permet de démontrer que certains langages ne sont pas reconnaissables.
+
+!!!tip "Théorème (Lemme de l'étoile)"
+    Soit $L$ un langage reconnu par un automate à $N$ états. Soit $u \in L$ un mot de longueur $|u| \geq N$, alors il existe 3 mots $x, y, z \in \Sigma^*$ tels que $u$ se décompose en $u = xyz$ et vérifiant :
+
+    1. $|xy| \leq N$
+    2. $y \neq \varepsilon$
+    3. $\forall k \in \mathbb{N},\  xy^kz \in L$
+
+???note "Démonstration"
+    Soit $L$ un langage reconnu par un automate $A = (Q, q_0, F, \delta)$ à $N$ états et $u \in L$ un mot de longueur $|u| \geq N$.
+    Notons $p_k$ ($0 \leq k \leq N$) le préfixe de $u$ de longeur $k$. On considère l'application
+    
+    $$
+    \begin{align}
+    \varphi : [|0, N|] &\to Q \\
+    k &\mapsto \delta^*(q_0, p_k)\\
+    \end{align}
+    $$
+
+    Remarquons que cette application est bien définie, car $u$ est reconnu par $A$ donc il n'y a pas de blocage à la lecture des préfixes de $u$.
+
+    Comme $\text{Card}([|0, N|]) = N+1$ et $\text{Card}(Q) = N$, l'application $\varphi$ n'est pas injective. Il existe donc deux entiers $0 \leq k_1 < k_2 \leq N$ tels que $\varphi(k_1) = \varphi(k_2)$. Informellement, cela signifie que la lecture de $u$ depuis l'état $q_0$ va conduire au passage par un même état à deux instants $k_1$ et $k_2$ distincts. Notons $q' = \varphi(k_1)$ cet état qui est visité au moins deux fois.
+
+    On pose alors $x = p_{k_1}$, $y$ tel que $xy = p_{k_2}$ et $z$ tel que $xyz = u$. On a alors $\delta^*(q_0, x) = \delta^*(q_0, xy) = q'$. Vérifions que cette décomposition fonctionne :
+    
+    1. $|xy| = |p_{k_2}| = k_2 \in [|0, N|]$
+    2. Si $y = \varepsilon$ alors $x = xy$ ce qui implique $k_1 = k_2$, c'est exclus.
+    3. On montre par récurrence sur $k$ que $\delta^*(q_0, xy^kz) = \delta^*(q_0, u)$ ce qui montre que $xy^kz$ est reconnu car $u$ l'est.
+
+        a. **Initialisation** : $\delta^*(q_0, xz) = \delta^*(\delta^*(q_0, x), z) = \delta^*(q', z) = \delta^*(\delta^*(q_0, xy), z) = \delta^*(q_0, xyz)$
+
+        b. **Hérédité** : on suppose la propriété vraie au rang $k \in \mathbb{N}$, montrons-là au rang $k+1$ :
+
+        $$
+        \begin{align}
+        \delta^*(q_0, xy^{k+1}z) &= \delta^*(\delta^*(\delta^*(q_0, xy), y^k), z) = \delta^*(\delta^*(q', y), z) \\
+        &= \delta^*(\delta^*(\delta^*(q_0, x), y^k), z) = \delta^*(q_0, xy^kz)\\
+        &= \delta^*(q_0, xyz) \text{ par hypothèse de récurrence}
+        \end{align}
+        $$
+
+Savoir démontrer qu'un langage n'est pas reconnaissable ne s'improvise pas et il faut étudier attentivement les méthodes permettant d'obtenir ce résultat.
+
+!!!note "Point méthode : démontrer qu'un langage $L$ n'est pas reconnaissable avec le lemme de l'étoile"
+    
+    1. On suppose par l'absurde que $L$ est reconnu par un automate à $N$ états.
+    2. On **choisit** judicieusement un mot $u \in L$ particulier de longueur $|u| \geq N$
+    3. On invoque le Lemme de l'étoile ce qui nous permet d'obtenir la décompostion $u = xyz$.
+    4. À l'aide des propriétés (1), (2) et (3) du lemme de l'étoile, on aboutit à une absurdité.
+
+!!!example "Exemple clé : $\{a^n b^n, n \in \mathbb{N}\}$"
+    Démontrons que langage $L = \{a^nb^n, n \in \mathbb{N}\}$ n'est pas reconnaissable.
+
+    1. Supposons par l'absurde que $L$ soit reconnaissable et qu'il est reconnu par un automate à $N$ états.
+    2. Considérons le mot $u = a^N b^N$, alors $u \in L$ et $|u| = 2N \geq N$.
+    3. D'après le lemme de l'étoile, il existe donc 3 mots $x, y, z \in \mathbb{N}$ tels que
+        1. $|xy| \leq N$
+        2. $y \neq \varepsilon$
+        3. $\forall k \in \mathbb{N},\ xy^kz \in L$
+    4. D'après (a), $x$ et $y$ ne contiennent que des lettres $a$. De plus, d'après (b), $y$ contient au moins un $a$. D'après (c), on doit avoir $|xy^kz|_a = |xy^kz|_b$ pour tout $k \in \mathbb{N}$ car les mots de $L$ contiennent autant de $a$ que de $b$. Ceci est absurde, car d'après nos remarques :
+
+    $$
+    |xy^kz|_a = |x|_a + k\underbrace{|y|_a}_{> 0} + |z|_a
+    $$
+
+    $$
+    |xy^kz|_b = |x|_b + |y^k|_b + |z|_b = |z|_b
+    $$
+
+    La première quantité croît **strictement** lorsque $k$ croît tandis que la seconde reste constante. C'est absurde. Donc $L$ n'est pas reconnaissable.
+
+!!!note "Point méthode : démontrer qu'un langage $L$ n'est pas reconnaissable en utilisant les propriétés de clôture"
+    Pour utiliser cette méthode, il faut exploiter un langage $L_2$ dont on sait déjà qu'il n'est pas reconnaissable (hypothèse de l'énoncé ou on l'a démontré avant).
+
+    1. On suppose par l'absurde que $L$ est reconnaissable.
+    2. On montre que $L_2$ peut s'obtenir à partir de $L$ et d'autres langages reconnaissables en utilisant des opérations qui préservent le caractère reconnaissable (complémentaire, intersection finie, union finie, ...)
+    3. On en déduit que $L_2$ est reconnaissable : c'est absurde.
+
+!!!example "Exemple clé : $\{ u \in \{a,b\}^*, |u|_a = |u|_b \}$"
+    Montrons que $L = \{ u \in \{a,b\}^*, |u|_a = |u|_b \}$ n'est pas reconnaissable. On sait que le langage $L_2 = \{a^n b^n, n \in \mathbb{N} \}$ n'est pas reconnaissable (exemple précédent).
+
+    1. Supposons par l'absurde que $L$ est reconnaissable.
+    2. On pose $K$ le langage dénoté par $a^*b^*$, il est reconnaissable (il est facile de proposer un automate).
+    On remarque de plus que $L \cap K = L_2$.
+    3. Comme l'**intersection** de deux langages reconnaissable est reconnaissable, on en déduit que $L_2$ est reconnaissable : c'est absurde.
+
+Cette seconde méthode, quand on peut l'appliquer, permet de gagner du temps en évitant d'invoquer le lemme de l'étoile. La lectrice pourra vérifier qu'on peut aussi résoudre ce deuxième exemple en utilisant la première méthode.
+
+!!!bug "Raisonnements faux usuels"
+    On retrouve souvent les raisonnements **faux** suivants :
+
+    1. *Une sous-partie d'un langage non reconnaissable est non reconnaissable* : $L \subset L'$ avec $L'$ non reconnaissable donc $L$ est non reconnaissable.
+    2. *Si je contiens une partie non reconnaissable alors je suis non reconnaissable* : $L' \subset L$ avec $L'$ non reconnaissable donc $L$ est non reconnaissable.
+
+    Dans le premier cas, cela montrerait par exemple que $\varnothing$ n'est pas reconnaissable.
+    Dans le second cas, si on prend $L = \Sigma^*$ on obtiendrait que $\Sigma^*$ n'est pas reconnaissable. 
+
+    **A RETENIR :** les raisonnements par inclusion sont faux dans ce contexte
