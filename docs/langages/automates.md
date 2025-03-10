@@ -1,4 +1,4 @@
-# Automates finis
+# :material-state-machine: Automates finis
 
 Dans le chapitre sur les [langages réguliers](/langages/regexp), nous avons défini les **mots** et les **langages formels**. Nous avons décrit une certaine famille de langages appelée **langages réguliers**, qui sont décrits par un motif appelé **expression régulière**.
 
@@ -118,8 +118,13 @@ On remarque que pour un état de départ $q$, et un mot $u$ donné, il ne peut e
 
 Ainsi, la fonction $\delta^*$ étend la fonction $\delta$ aux mots. Tout comme la fonction $\delta$, elle n'est pas forcément définie sur $Q \times \Sigma^*$ : la lecture d'un mot peut provoquer un blocage.
 
-!!! info "Notation alternative"
-    Il est aussi possible de noter $q_1.u = q_2$ lorsque $\delta^*(q_1, u) = q_2$. Cette notation plus mathématique montre qu'on peut faire *agir* le monoïde $\Sigma^*$ sur l'ensemble d'états $Q$.
+!!! info "Notations alternatives"
+    Il est aussi possible de noter :
+
+    - $q_1.u = q_2$ 
+    - ou encore $q_1 \rightarrow^u q_2$
+
+    lorsque $\delta^*(q_1, u) = q_2$. La première notation, plus mathématique, montre qu'on peut faire *agir* le monoïde $\Sigma^*$ sur l'ensemble d'états $Q$. La seconde notation met en évidence la notion de chemin dans l'automate.
 
 
 
@@ -250,7 +255,94 @@ let est_reconnu auto u =
 
 ### A. Accessibilité et émondage
 
+!!!abstract "Définition (accessibilité)"
+    Soit $A = (Q, q_0, \delta, F)$ un automate fini déterministe et $q \in Q$ un état.
+
+    - On dit que $q$ est **accessible** s'il existe un mot $u$ tel que $q_0 \rightarrow^u q$
+    - On dit que $q$ est **co-accessible** s'il existe un mot $u$ et un état final $q_F \in F$ tels que $q \rightarrow^u q_F$
+
+!!!note "Remarque : un état utile est accessible et co-accessible"
+    - Un état qui n'est pas accessible n'est jamais atteint lors d'un calcul depuis l'état $q_0$, il est donc inutile.
+    - Un calcul qui atteint un état qui n'est pas co-accessible n'aboutira jamais à un état final. 
+
+Le calcul des états accessibles peut s'obtenir simplement en réalisant un parcours de graphe depuis l'état $q_0$, en igonorant les étiquettes des transitions. 
+
+Le calcul des états co-accessibles peut s'obtenir de la même manière, en inversant le sens des transitions et en exécutant un parcours à partir de chaque état final.
+
+!!!prop "Proposition"
+    Soit $L$ un langage reconnaissable par automate fini déterministe, alors il existe un automate fini déterministe $A$ qui reconnaît $L$ et dont tous les états sont accessibles et co-accessibles.
+
+???note "Démonstration"
+    Il suffit de calculer tous les états accessibles et co-accessibles d'un automate reconnaissant $L$, puis de lui supprimer les états qui ne le sont pas. Ce faisant, on supprime bien sûr les transitions qui partent ou qui pointent d'un état supprimé. Comme un calcul réussi passe nécessairement par des états accessibles et co-accessibles, cela ne change pas le langage reconnu par l'automate.
+
+!!!info "Vocabulaire"
+    Lorsqu'on élimine les états non accessibles et non co-accessibles d'un automate, on dit qu'on **émonde** cet automate.
+
+!!! example "Exemple"
+    Considérons l'automate :
+    <figure>
+    ![Exemple d'automate non émondé](fig/automates/afd/afd-4.svg)
+    </figure>
+    Les états **accessibles** sont : $q_0, q_1, q_2, q_3, q_4$
+
+    Les états **co-accessibles** sont $q_0, q_1, q_2, q_3, q_5$
+
+    Les états $q_4$ et $q_5$ sont donc inutiles.
+
+    Si on émonde l'automate on obtient :
+    <figure>
+    ![Exemple d'automate émondé](fig/automates/afd/afd-2.svg)
+    </figure>
+
+
 ### B. Complétion d'un automate
+
+!!!abstract "Définition (automate complet)"
+    Soit $A = (Q, q_0, \delta, F)$ un automate fini déterministe. On dit que cet automate est **complet** lorsque $\delta(q, c)$ est défini pour tout état $q \in Q$ et toute lettre $c \in \Sigma$.
+
+Dans un automate complet, il n'y a jamais de blocage.
+
+!!!prop "Proposition"
+    Soit $L$ un langage reconnaissable par automate fini déterministe, alors il existe un automate fini déterministe **complet** $A$ qui reconnaît $L$.
+
+???note "Démonstration"
+    Soit $A = (Q, q_0, \delta, F)$ un automate qui reconnaît $L$ et qui n'est pas déjà complet. On construit l'automate $A' = (Q', q_0, \delta', F)$ avec $Q' = Q \cup \{q_\infty\}$ où $q_\infty$ est un nouvel état ($q_\infty \not \in Q$.) appelé *état puits*. On définit $\delta'$ ainsi :
+
+    $$
+    \forall q \in Q',\ \forall c \in \Sigma, \delta'(q, c) =
+    \begin{cases}
+    \delta(q, c) & \text{si c'est défini}\\
+    q_\infty & \text{sinon}
+    \end{cases}
+    $$
+
+    Alors $A'$ est complet et de plus $\mathcal{L}(A) = \mathcal{L}(A')$. En effet :
+
+    - si $u \in \mathcal{L}(A)$ alors il existe un calcul dans $A$ étiqueté par $u$ mentant de l'état $q_0$ à un état final. Ce calcul existe donc aussi dans $A'$, donc $u \in \mathcal{L}(A')$.
+    - réciproquement, si $u \in \mathcal{L}(A')$ alors il existe un calcul dans $A'$ étiqueté par $u$ menant de l'état $q_0$ à un état final. Comme $q_\infty$ n'est pas co-accessible, ce calcul ne passe pas par $q_\infty$ et c'est donc aussi un calcul dans $A$, donc $u \in \mathcal{L}(A)$.
+
+!!!note "Point méthode"
+    Pour compléter un automate (qui n'est pas déjà complet) :
+
+    1. On ajoute un état puits $q_\infty$
+    2. Pour tout état, on ajoute toutes les transitions sortantes manquantes, en les faisant pointer vers $q_\infty$
+    3. On n'oublie pas de réaliser l'étape 2 aussi pour l'état puits $q_\infty$
+
+!!!example "Exemple"
+    Soit l'automate suivant sur $\Sigma = \{a, b\}$ qui n'est pas complet:
+    <figure>
+    ![Exemple d'automate non complet](fig/automates/afd/afd-2.svg)
+    </figure>
+
+    En appliquant l'algorithme de complétion, on obtient :
+    <figure>
+    ![Exemple d'automate completé](fig/automates/afd/afd-5.svg)
+    </figure>
+
+
+!!!warning "Attention"
+    On peut émonder un automate, on peut compléter un automate, mais on ne peut pas toujours faire les deux opérations à la fois puisque l'état puits que l'on ajoute dans la complétion n'est pas co-accessible.
+
 
 ### C. Automate complémentaire
 
