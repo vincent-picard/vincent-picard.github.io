@@ -261,4 +261,117 @@ mark_final(q4);
 currentpicture := currentpicture scaled 2;
 endfig;
 
+% Mots commençant par aba (automate produit)
+% -----------------------
+beginfig(7);
+
+z0 = origin;
+z1 - z0 = z2 - z1 = z3 - z2 = 3cm * right;
+
+pickup pencircle scaled 1pt;
+
+path q[], t[][];
+
+for i = 0 upto 3:
+    q[i] := circle_node(z[i]);
+    draw q[i];
+endfor
+label(btex $A$ etex, z0);
+label(btex $B$ etex, z1);
+label(btex $C$ etex, z2);
+label(btex $D$ etex, z3);
+
+t[0][1] := direct_edge(q0, q1); drawarrow t[0][1];
+edge_label.top(btex $a$ etex, t[0][1]);
+t[1][2] := direct_edge(q1, q2); drawarrow t[1][2];
+edge_label.top(btex $b$ etex, t[1][2]);
+t[2][3] := direct_edge(q2, q3); drawarrow t[2][3];
+edge_label.top(btex $a$ etex, t[2][3]);
+t[3][3] := loop_edge(q3, angle(right)); drawarrow t[3][3];
+edge_label.rt(btex $a, b$ etex, t[3][3]);
+
+mark_init(q0, angle(left));
+mark_final(q3);
+
+currentpicture := currentpicture scaled 2;
+endfig;
+
+% Mots commençant contenant un nombre pair de b
+% -----------------------------------------------
+beginfig(8);
+
+z0 = origin;
+z1 - z0 = 3cm * right;
+
+pickup pencircle scaled 1pt;
+
+path q[], t[][];
+
+for i = 0 upto 1:
+    q[i] := circle_node(z[i]);
+    draw q[i];
+endfor
+label(btex $0$ etex, z0);
+label(btex $1$ etex, z1);
+
+t[0][1] := bended_edge(q0, q1, 40); drawarrow t[0][1];
+edge_label.top(btex $b$ etex, t[0][1]);
+t[0][0] := loop_edge(q0, angle(up)); drawarrow t[0][0];
+edge_label.top(btex $a$ etex, t[0][0]);
+t[1][0] := bended_edge(q1, q0, 40); drawarrow t[1][0];
+edge_label.bot(btex $b$ etex, t[1][0]);
+t[1][1] := loop_edge(q1, angle(up)); drawarrow t[1][1];
+edge_label.top(btex $a$ etex, t[1][1]);
+
+mark_init(q0, angle(left));
+mark_final(q0);
+
+currentpicture := currentpicture scaled 2;
+endfig;
+%
+% Automate produit
+% ----------------
+beginfig(9);
+
+z0 = origin;
+z1 - z0 = z2 - z1 = 0.5[z3, z4] - z2 = 3cm * right;
+z3 - z4 = 3cm * down;
+
+pickup pencircle scaled 1pt;
+
+path q[], t[][];
+
+for i = 0 upto 4:
+    q[i] := circle_node(z[i]);
+    draw q[i];
+endfor
+label(btex $A, 0$ etex, z0);
+label(btex $B, 0$ etex, z1);
+label(btex $C, 1$ etex, z2);
+label(btex $D, 1$ etex, z3);
+label(btex $D, 0$ etex, z4);
+
+t[0][1] := direct_edge(q0, q1); drawarrow t[0][1];
+edge_label.top(btex $a$ etex, t[0][1]);
+t[1][2] := direct_edge(q1, q2); drawarrow t[1][2];
+edge_label.top(btex $b$ etex, t[1][2]);
+t[2][3] := direct_edge(q2, q3); drawarrow t[2][3];
+edge_label.top(btex $a$ etex, t[2][3]);
+t[3][3] := loop_edge(q3, angle(right)); drawarrow t[3][3];
+edge_label.rt(btex $a$ etex, t[3][3]);
+t[4][4] := loop_edge(q4, angle(right)); drawarrow t[4][4];
+edge_label.rt(btex $a$ etex, t[4][4]);
+t[3][4] := bended_edge(q3, q4, 30); drawarrow t[3][4];
+edge_label.lft(btex $b$ etex, t[3][4]);
+t[4][3] := bended_edge(q4, q3, 30); drawarrow t[4][3];
+edge_label.rt(btex $b$ etex, t[4][3]);
+
+mark_init(q0, angle(left));
+mark_final(q4);
+
+currentpicture := currentpicture scaled 2;
+endfig;
+
+
+
 end;

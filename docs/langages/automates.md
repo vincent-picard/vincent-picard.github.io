@@ -400,6 +400,99 @@ Encore une fois, on peut constater sur l'exemple que l'oubli de l'étape de comp
 
 ### D. Automate produit
 
+L'automate produit de deux automates $A_1$ et $A_2$ est un automate qui fait **calculer simultanément** $A_1$ et $A_2$. On le définit ainsi :
+
+!!!abstract "Définition (automate produit)"
+    Soit $A_1 = (Q_1, q_0^1, \delta_1, F_1)$ et $A_2 = (Q_2, q_0^2, \delta_2, F_2)$ deux automates finis déterministes. On définit l'automate produit de $A_1$ et $A_2$, noté $A = A_1 \times A_2$, par $A = (Q, q_0, \delta, F)$ avec :
+
+    - $Q = Q_1 \times Q_2$ : les états sont des couples $(q_1, q_2)$ qui décrivent l'état actuel des automates $A_1$ et $A_2$
+    - $q_0 = (q_0^1, q_0^2)$
+    - $F = F_1 \times F_2$ : un état est final si les deux automates $A_1$ et $A_2$ sont dans un état final
+    - Pour tout $q_1 \in Q_1$, $q_2 \in Q_2$ et $c \in \Sigma$, $\delta((q_1, q_2), c)$ n'est défini que lorsque $\delta_1(q_1, c)$ et $\delta_2(q_2, c)$ sont définis, c'est-à-dire qu'aucun des deux automates $A_1$ et $A_2$ ne bloque. Dans ce cas, on pose :
+
+    $$
+    \delta((q_1, q_2), c) = \left( \delta_1(q_1, c), \delta_2(q_2, c) \right)
+    $$
+
+Il résulte de cette définition que l'automate produit accepte uniquement les mots qui sont acceptés par $A_1$ et $A_2$.
+
+!!!example "Exemple : mots qui commencent par $aba$ ayant un nombre pair de $b$"
+    On souhaite construire un automate qui reconnaît les mots sur $\Sigma =\{a, b\}$ qui commencent par $aba$ et qui contiennent un nombre pair de $b$. Pour cela on part des deux automates suivants $A_1$ et $A_2$ :
+    <figure>
+    ![Mots qui commencent par aba](fig/automates/afd/afd-7.svg)
+    </figure>
+    <figure>
+    ![Mots qui contiennent un nombre pair de b](fig/automates/afd/afd-8.svg)
+    </figure>
+    Le langage reconnu par $A_1$ est l'ensemble des mots qui commencent par $aba$ et celui de $A_2$ est l'ensemble des mots ayant un nombre pair de $b$. Pour alléger les écritures dans la construction de l'automate produit on a noté avec des lettres capitales les états de $A_1$ et des numéros pour les états de $A_2$.
+
+    Pour construire l'automate produit, **on ne représente en général que les états accessibles**, les autres états étant inutiles. On procède donc en partant de l'état initial $(A, 0)$ et en construisant de proche en proche les états rencontrés. On obtient :
+    <figure>
+    ![Automate produit](fig/automates/afd/afd-9.svg)
+    </figure>
+
+    Cet automate reconnaît les mots qui commencent par $aba$ et qui contiennent un nombre pair de $b$. Remarquons encore une fois que l'on n'a pas représenté les états non accessibles ($(A, 1)$, $(B, 1)$ et $(C, 0)$) bien qu'ils fassent partie de la définition de l'automate produit.
+
+On constante sur l'exemple précédent que l'automate produit reconnaît les mots qui sont reconnus par les deux automates à la fois. Démontrons maintenant formellement ce résultat.
+
+!!!tip "Proposition"
+    Soit $A_1$ et $A_2$ deux automates finis déterministes et $A_1 \times A_2$ leur automate produit, alors :
+
+    $$
+    \mathcal{L}(A_1 \times A_2) = \mathcal{L}(A_1) \cap \mathcal{L}(A_2)
+    $$
+
+???note "Démonstration"
+    Nous allons d'abord démontrer par récurrence la propriété suivante :
+
+    $$
+    P(n) : \quad \forall u \in \Sigma^n,\  \forall q_1 \in Q_1,\  \forall q_2 \in Q_2,\  \delta^*((q_1, q_2), u) = \left( \delta_1^*(q_1, u), \delta_2^*(q_2, u) \right) \text{ (sous réserve d'existence)}
+    $$
+
+    - **Initialisation** : pour tout couple d'états $(q_1, q_2)$, on a $\delta^*((q_1, q_2), \varepsilon) = (q_1, q_2) = (\delta_1^*(q_1, \varepsilon), \delta_2^*(q_2, \varepsilon))$
+    - **Hérédité** : On suppose $P(n)$ vrai et on montre $P(n+1)$. Soit $u$ un mot de longueur $n+1$ que l'on décompose en $u = v.c$ avec $c \in \Sigma$ et $(q_1, q_2)$ un couple d'états. Alors on a (sous réserve d'existence) :
+
+    $$
+    \begin{align}
+    \delta^*((q_1, q_2), u) &= \delta^*((q_1, q_2), vc) \\
+    &= \delta(\delta^*((q_1, q_2), v), c) \\
+    &= \delta\left((\delta_1^*(q_1, v), \delta_2^*(q_2, v)), c\right) \text{ par hypothèse de récurrence} \\
+    &= \left( \delta_1(\delta_1^*(q_1, v), c), \delta_2(\delta_2^*(q_2, v), c)\right) \text{ par définition de l'automate produit}\\
+    &= (\delta_1^*(q_1, vc), \delta_2^*(q_2, vc)) \\
+    &= (\delta_1^*(q_1, u), \delta_2^*(q_2, u))\\
+    \end{align}
+    $$
+
+    Puis pour tout mot $u \in \Sigma^*$ on a :
+
+    $$
+    \begin{align*}
+    u \in \mathcal{L}(A_1 \times A_2) &\Leftrightarrow \delta^*(q_0, u) \in F\\
+    &\Leftrightarrow \delta^*((q_0^1, q_0^2), u) \in F \\
+    &\Leftrightarrow (\delta_1^*(q_0^1, u), \delta_2^*(q_0^2, u)) \in F \text{ d'après la propriété démontrée ci-dessus}\\
+    &\Leftrightarrow (\delta_1^*(q_0^1, u), \delta_2^*(q_0^2, u)) \in F_1 \times F_2\\ 
+    &\Leftrightarrow \delta_1^*(q_0^1, u) \in F_1 \text { et } \delta_2^*(q_0^2, u) \in F_2 \\ 
+    &\Leftrightarrow u \in \mathcal{L}(A_1) \text { et } u \in \mathcal{L}(A_2) \\ 
+    &\Leftrightarrow u \in \mathcal{L}(A_1) \cap \mathcal{L}(A_2)
+    \end{align*}
+    $$
+
+    Donc $\mathcal{L}(A_1 \times A_2) = \mathcal{L}(A_1) \cap \mathcal{L}(A_2)$
+
+!!!tip "Corollaire"
+    Si $L_1$ et $L_2$ sont des langages reconnaissables par automate alors $L_1 \cap L_2$ est aussi reconnaissable par automate.
+
+!!!info "Remarque"
+    Si $A_1$ possède $n$ états et $A_2$ possède $m$ états alors $A_1 \times A_2$ possède $nm$ états. Même si tous ces états ne sont pas nécessairement accessibles, dans le pire cas, on peut aboutir à de grands automates avec cette construction.
+
+!!!warning "Attention"
+    Calculer un automate produit *à la main* nécessite une grande concentration. L'algorithme est facile à appliquer mais la moindre petite erreur conduit à un automate complètement faux. Vérifiez bien votre résultat en faisant calculer votre automate produit sur des mots tests. 
+
+!!!example "Exercice"
+    1. Donner un automate $A_1$ reconnaissant les mots sur $\Sigma = \{a, b\}$ ayant un nombre impair de $a$.
+    2. Donner un automate $A_2$ reconnaissant les mots sur $\Sigma = \{a, b\}$ dont le nombre de $b$ est de la forme $3k + 1$ avec $k \in \mathbb{N}$
+    3. En déduire un automate $A$ qui reconnaît les mots sur $\Sigma = \{a, b\}$ ayant un nombre impair de $a$ et un nombre de $b$ de la forme $3k + 1$.
+
 ## 3. Automates finis non déterministes
 
 ## 4. Automates finis non déterministes à transitions spontanées
