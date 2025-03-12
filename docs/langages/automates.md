@@ -269,7 +269,7 @@ Le calcul des états accessibles peut s'obtenir simplement en réalisant un parc
 
 Le calcul des états co-accessibles peut s'obtenir de la même manière, en inversant le sens des transitions et en exécutant un parcours à partir de chaque état final.
 
-!!!prop "Proposition"
+!!!tip "Proposition"
     Soit $L$ un langage reconnaissable par automate fini déterministe, alors il existe un automate fini déterministe $A$ qui reconnaît $L$ et dont tous les états sont accessibles et co-accessibles.
 
 ???note "Démonstration"
@@ -302,7 +302,7 @@ Le calcul des états co-accessibles peut s'obtenir de la même manière, en inve
 
 Dans un automate complet, il n'y a jamais de blocage.
 
-!!!prop "Proposition"
+!!!tip "Proposition"
     Soit $L$ un langage reconnaissable par automate fini déterministe, alors il existe un automate fini déterministe **complet** $A$ qui reconnaît $L$.
 
 ???note "Démonstration"
@@ -345,6 +345,58 @@ Dans un automate complet, il n'y a jamais de blocage.
 
 
 ### C. Automate complémentaire
+
+Soit $\Sigma$ un alphabet et $L$ un langage, on note $\bar{L} = \{u \in \Sigma^*, u \not \in L\}$ le **langage complémentaire** de L.
+
+!!!tip "Proposition"
+    Si $L$ est un langage reconnaissable par automate fini déterministe alors $\bar{L}$ l'est aussi.
+
+???note "Démonstration"
+    Soit $L$ un langage reconnu par l'automate fini déterministe $A$.
+    On donne un algorithme pour construire un automate fini déterministe $A'$ qui reconnaît $\bar{L}$.
+
+    - On commence par compléter l'automate $A$ et on obtient un automate complet $A_c = (Q, q_0, \delta, F)$ qui reconnaît $L$.
+    - On construit alors $A'$ en inversant les états finaux et non finaux dans $A_c$ c'est-à-dire que $A_c = (Q, q_0, \delta, Q \setminus F)$.
+
+    On a alors $\mathcal{L}(A') = \bar{L}$, en effet pour tout $u \in \Sigma^*$:
+
+    $$
+    \begin{align}
+    u \in \mathcal{L}(A') & \Leftrightarrow \delta^*(q_0, u) \in Q \setminus F \\
+    & \Leftrightarrow \delta^*(q_0, u) \not \in F \\
+    & \Leftrightarrow u \not \in \mathcal{L}(A_c) \quad \text{ car } A_c \text{ est complet} \\
+    & \Leftrightarrow u \not \in \mathcal{L}(A) \\
+    & \Leftrightarrow u \not \in L\\
+    & \Leftrightarrow u \in \bar{L}
+    \end{align}
+    $$
+
+Dans la démonstration, on remarque l'importance de compléter l'automate : cela permet de n'avoir qu'une seule cause de non non-accceptation à savoir le fait que la lecture du mot aboutit dans un état non final.
+
+!!!note "Point méthode"
+    Pour construire un automate fini déterministe $A'$ reconnaissant le complémentaire de $\mathcal{L}(A)$, on applique les étapes :
+
+    1. On complète $A$
+    2. On inverse les états finaux et non finaux
+
+!!!example "Exemple : mots qui ne commencent pas par $aba$"
+    Soit l'automate suivant sur $\Sigma = \{a, b\}$ reconnaissant les mots qui commencent par $aba$ :
+    <figure>
+    ![Mots qui commencent par aba](fig/automates/afd/afd-2.svg)
+    </figure>
+
+    On souhaite construire l'automate complémentaire c'est-à-dire un automate qui reconnaît les mots qui ne commencent pas par $aba$.
+    On commence par compléter l'automate : 
+    <figure>
+    ![Complétion de l'automate](fig/automates/afd/afd-5.svg)
+    </figure>
+
+    Puis, on inverse les états finaux et non finaux :
+    <figure>
+    ![Complétion de l'automate](fig/automates/afd/afd-6.svg)
+    </figure>
+
+Encore une fois, on peut constater sur l'exemple que l'oubli de l'étape de complétion donne un automate complémentaire faux.
 
 ### D. Automate produit
 
