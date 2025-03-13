@@ -177,6 +177,18 @@ Autrement dit, le langage reconnu est l'ensemble des mots reconnus par l'automat
 !!!example "Exercice"
     En vous inspirant de l'exemple précédent, proposer un automate pour reconnaître les mots sur $\Sigma = \{a, b\}$ dont le nombre de $b$ est de la forme $3k + 1$ avec $k \in \mathbb{N}$.
 
+!!!example "Exemple difficile : mots finissant par $ababa$"
+    On souhaite reconnaître le langage des mots sur $\Sigma = \{a, b\}$ finissant par $ababa$, c'est-à-dire ayant $ababa$ pour suffixe. Voici un automate fini déterministe reconnaissant ce langage.
+    <figure>
+    ![Automate reconnaissant les mots qui finissent par ababa](fig/automates/afd/afd-10.svg)
+    </figure>
+    Cet automate implémente en fait l'algorithme de recherche de motif de Knuth-Morris-Pratt (KMP). L'état $q_i$ représente le préfixe de longueur $i$ de $ababab$. Être dans l'état $q_i$ signifie que le plus long préfixe de $ababa$ qui est actuellement en fin de mot lu, c'est-à-dire qui est suffixe du mot lu, est celui de longueur $i$.
+
+    - Les transitions vers la droite sont faciles à comprendre : si on lit la bonne lettre, on gagne une lettre dans le préfixe de $ababa$.
+    - Les transitions retour, c'est-à-dire quand on lit la mauvaise lettre, sont plus ardues. Prenons un exemple :
+        - Lorsqu'on est dans $q_3$, le plus long suffixe du mot mot lu qui est aussi préfixe de $ababa$ est $aba$, autrement dit le mot lu est de la forme $waba$. Si on lit maintenant un $a$, le mot est $wabaa$, alors le plus long suffixe de $wabaa$ qui est préfixe de $ababa$ est $a$. C'est pourquoi on retourne en $q_1$ et pas en $q_0$. On constate en fait que malgré l'erreur de lettre, une partie de la leture de $ababa$ a déjà commencé et qu'il ne faut pas reprendre la recherche depuis le début.
+        - De même lorsqu'on est dans $q_5$, le mot lu a pour forme $wababa$. Si on lit maintenant un $b$, le mot lu sera $wababab$, et on s'aperçoit que le plus long suffixe de ce mot qui est aussi préfixe de $ababa$ est $abab$, donc on revient en $q_4$.
+
 ### D. Programmation
 
 Nous avions promis que les automates étaient bien plus simples à mettre en oeuvre sur un ordinateur que les expressions régulières. Voici donc un exemple d'implémentation en OCaml.
