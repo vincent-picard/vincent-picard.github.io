@@ -430,5 +430,160 @@ edge_label.top(btex $a$ etex, t[5][1]);
 currentpicture := currentpicture scaled 2;
 endfig;
 
+% Mots finissant par ababa (version non déterministe)
+% ---------------------------------------------------
+beginfig(11);
+
+z0 = origin;
+z1 - z0 = z2 - z1 = z3 - z2 = z4 - z3 = z5 - z4 = 3cm * right;
+
+pickup pencircle scaled 1pt;
+
+path q[], t[][];
+
+for i = 0 upto 5:
+    q[i] := circle_node(z[i]);
+    draw q[i];
+endfor
+label(btex $q_0$ etex, z0);
+label(btex $q_1$ etex, z1);
+label(btex $q_2$ etex, z2);
+label(btex $q_3$ etex, z3);
+label(btex $q_4$ etex, z4);
+label(btex $q_5$ etex, z5);
+
+t[1][2] := direct_edge(q1, q2); drawarrow t[1][2];
+edge_label.top(btex $b$ etex, t[1][2]);
+t[2][3] := direct_edge(q2, q3); drawarrow t[2][3];
+edge_label.top(btex $a$ etex, t[2][3]);
+t[3][4] := direct_edge(q3, q4); drawarrow t[3][4];
+edge_label.top(btex $b$ etex, t[3][4]);
+t[4][5] := direct_edge(q4, q5); drawarrow t[4][5];
+edge_label.top(btex $a$ etex, t[4][5]);
+
+mark_init(q0, angle(left));
+mark_final(q5);
+
+path loop.a, loop.b;
+loop.b := loop_edge(q0, angle(down)); drawarrow loop.b;
+edge_label.bot(btex $b$ etex, loop.b);
+
+
+drawoptions(withcolor blue);
+loop.a := loop_edge(q0, angle(up)); drawarrow loop.a;
+edge_label.top(btex $a$ etex, loop.a);
+t[0][1] := direct_edge(q0, q1); drawarrow t[0][1];
+edge_label.top(btex $a$ etex, t[0][1]);
+
+
+currentpicture := currentpicture scaled 2;
+endfig;
+
+
+% Automate à déterminiser
+% -----------------------
+beginfig(12);
+
+z0 = origin;
+z1 - z0 = z2 - z1 = z3 - z2 = z4 - z3 = z5 - z4 = 3cm * right;
+
+pickup pencircle scaled 1pt;
+
+path q[], t[][];
+
+for i = 0 upto 5:
+    q[i] := circle_node(z[i]);
+    draw q[i];
+endfor
+label(btex $0$ etex, z0);
+label(btex $1$ etex, z1);
+label(btex $2$ etex, z2);
+label(btex $3$ etex, z3);
+label(btex $4$ etex, z4);
+label(btex $5$ etex, z5);
+
+t[1][2] := direct_edge(q1, q2); drawarrow t[1][2];
+edge_label.top(btex $b$ etex, t[1][2]);
+t[2][3] := direct_edge(q2, q3); drawarrow t[2][3];
+edge_label.top(btex $a$ etex, t[2][3]);
+t[3][4] := direct_edge(q3, q4); drawarrow t[3][4];
+edge_label.top(btex $b$ etex, t[3][4]);
+t[4][5] := direct_edge(q4, q5); drawarrow t[4][5];
+edge_label.top(btex $a$ etex, t[4][5]);
+
+mark_init(q0, angle(left));
+mark_final(q5);
+
+path loop.a, loop.b;
+loop.b := loop_edge(q0, angle(down)); drawarrow loop.b;
+edge_label.bot(btex $b$ etex, loop.b);
+
+
+loop.a := loop_edge(q0, angle(up)); drawarrow loop.a;
+edge_label.top(btex $a$ etex, loop.a);
+t[0][1] := direct_edge(q0, q1); drawarrow t[0][1];
+edge_label.top(btex $a$ etex, t[0][1]);
+
+
+currentpicture := currentpicture scaled 2;
+endfig;
+
+% Automate des parties 
+% --------------------
+beginfig(13);
+
+graph_node_size := 2cm;
+z0 = origin;
+z1 - z0 = z2 - z1 = z3 - z2 = z4 - z3 = z5 - z4 = 3cm * right;
+
+pickup pencircle scaled 1pt;
+
+path q[], t[][];
+
+for i = 0 upto 5:
+    q[i] := circle_node(z[i]);
+    draw q[i];
+endfor
+label(btex $\{0\}$ etex, z0);
+label(btex $\{0, 1\}$ etex, z1);
+label(btex $\{0, 2\}$ etex, z2);
+label(btex $\{0, 1, 3\}$ etex, z3);
+label(btex $\{0, 2, 4\}$ etex, z4);
+label(btex $\{0, 1, 3, 5\}$ etex, z5);
+
+t[0][1] := direct_edge(q0, q1); drawarrow t[0][1];
+edge_label.top(btex $a$ etex, t[0][1]);
+t[1][2] := direct_edge(q1, q2); drawarrow t[1][2];
+edge_label.top(btex $b$ etex, t[1][2]);
+t[2][3] := direct_edge(q2, q3); drawarrow t[2][3];
+edge_label.top(btex $a$ etex, t[2][3]);
+t[3][4] := direct_edge(q3, q4); drawarrow t[3][4];
+edge_label.top(btex $b$ etex, t[3][4]);
+t[4][5] := direct_edge(q4, q5); drawarrow t[4][5];
+edge_label.top(btex $a$ etex, t[4][5]);
+
+mark_init(q0, angle(left));
+mark_final(q5);
+
+%transitions retour
+%drawoptions(withcolor red);
+t[0][0] := loop_edge(q0, angle(up)); drawarrow t[0][0];
+edge_label.top(btex $b$ etex, t[0][0]);
+t[1][1] := loop_edge(q1, angle(up)); drawarrow t[1][1];
+edge_label.top(btex $a$ etex, t[1][1]);
+t[2][0] := bended_edge(q2, q0, 40); drawarrow t[2][0];
+edge_label.bot(btex $b$ etex, t[2][0]);
+t[3][1] := bended_edge(q3, q1, -40); drawarrow t[3][1];
+edge_label.top(btex $a$ etex, t[3][1]);
+t[4][0] := bended_edge(q4, q0, 42); drawarrow t[4][0];
+edge_label.bot(btex $b$ etex, t[4][0]);
+t[5][4] := bended_edge(q5, q4, 42); drawarrow t[5][4];
+edge_label.bot(btex $b$ etex, t[5][4]);
+t[5][1] := bended_edge(q5, q1, -42); drawarrow t[5][1];
+edge_label.top(btex $a$ etex, t[5][1]);
+
+
+currentpicture := currentpicture scaled 2;
+endfig;
 
 end;

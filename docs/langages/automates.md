@@ -177,6 +177,7 @@ Autrement dit, le langage reconnu est l'ensemble des mots reconnus par l'automat
 !!!example "Exercice"
     En vous inspirant de l'exemple précédent, proposer un automate pour reconnaître les mots sur $\Sigma = \{a, b\}$ dont le nombre de $b$ est de la forme $3k + 1$ avec $k \in \mathbb{N}$.
 
+<a id="KMP"></a>
 !!!example "Exemple difficile : mots finissant par $ababa$"
     On souhaite reconnaître le langage des mots sur $\Sigma = \{a, b\}$ finissant par $ababa$, c'est-à-dire ayant $ababa$ pour suffixe. Voici un automate fini déterministe reconnaissant ce langage.
     <figure>
@@ -186,8 +187,8 @@ Autrement dit, le langage reconnu est l'ensemble des mots reconnus par l'automat
 
     - Les transitions vers la droite sont faciles à comprendre : si on lit la bonne lettre, on gagne une lettre dans le préfixe de $ababa$.
     - Les transitions retour, c'est-à-dire quand on lit la mauvaise lettre, sont plus ardues. Prenons un exemple :
-        - Lorsqu'on est dans $q_3$, le plus long suffixe du mot mot lu qui est aussi préfixe de $ababa$ est $aba$, autrement dit le mot lu est de la forme $waba$. Si on lit maintenant un $a$, le mot est $wabaa$, alors le plus long suffixe de $wabaa$ qui est préfixe de $ababa$ est $a$. C'est pourquoi on retourne en $q_1$ et pas en $q_0$. On constate en fait que malgré l'erreur de lettre, une partie de la leture de $ababa$ a déjà commencé et qu'il ne faut pas reprendre la recherche depuis le début.
-        - De même lorsqu'on est dans $q_5$, le mot lu a pour forme $wababa$. Si on lit maintenant un $b$, le mot lu sera $wababab$, et on s'aperçoit que le plus long suffixe de ce mot qui est aussi préfixe de $ababa$ est $abab$, donc on revient en $q_4$.
+        - Lorsqu'on est dans $q_3$, le plus long suffixe du mot lu qui est aussi préfixe de $ababa$ est $aba$, autrement dit le mot lu est de la forme $waba$. Si on lit maintenant un $a$, le mot est $wabaa$, alors le plus long suffixe de $wabaa$ qui est préfixe de $ababa$ est $a$. C'est pourquoi on retourne en $q_1$ et pas en $q_0$. On constate en fait que malgré l'erreur de lettre, une partie de la lecture de $ababa$ a déjà commencé et qu'il ne faut pas reprendre la recherche depuis le début.
+        - De même lorsqu'on est dans $q_5$, le mot lu a pour forme $wababa$. Si on lit maintenant un $b$, le mot lu sera $wababab$, et on s'aperçoit que le plus long suffixe de ce mot qui est aussi préfixe de $ababa$ est $abab$, donc on revient en $q_4$. Vous pouvez tester cela en regardant la lecture du mot $ababababa$ par exemple.
 
 ### D. Programmation
 
@@ -507,9 +508,210 @@ On constante sur l'exemple précédent que l'automate produit reconnaît les mot
 
 ## 3. Automates finis non déterministes
 
-## 4. Automates finis non déterministes à transitions spontanées
+Les automates finis déterministes sont simples et faciles à implémenter sur ordinateur. L'inconvénient principal est qu'ils peuvent être difficile à concevoir d'un point de vue humain.
 
-## 5. Langages non reconnaissables par automate
+Prenons l'exemple du langage $L$ sur $\Sigma = \{a, b\}$ des mots qui finissent par $ababa$. Écrire une expression régulière qui dénote $L$ est très facile : $e = (a|b)*ababa$. Par contre, concevoir un automate fini déterministe qui reconnaît ce langage est nettement plus complexe, comme on l'a vu dans l'[exemple plus haut](#KMP).
+
+On aimerait dessiner un automate simple ayant cette allure :
+    <figure>
+    ![Automate non déterministe](fig/automates/afd/afd-11.svg)
+    </figure>
+Dans cet automate on lit un certain nombre de lettres $a$ ou $b$ en bouclant sur l'état initial, puis on termine la lecture en lisant $ababa$.
+
+Malheureusement, cette figure ne correspond pas à celle d'un automate fini déterministe. En effet $\delta(q_0, a)$ aurait 2 images, ce qui est impossible pour une fonction... Une autre façon de le dire est que lorsqu'on est dans l'état $q_0$ et qu'on lit un $a$, on ne sait pas s'il faut aller en $q_1$ ou rester en $q_0$ : cet automate est **non déterministe**.
+
+Nous allons voir dans cette partie qu'il est tout à fait possible de travailler avec ce type de machine non déterministe.
+
+### A. Définition
+
+!!!abtract "Définition (automate fini non déterministe)"
+    Un **automate fini non déterministe** est un quadruplet $A = (Q, I, F, T)$ dans lequel :
+
+    - $Q$ est l'ensemble fini des états
+    - $I \subset Q$ est l'ensemble des **états initiaux**
+    - $F \subset Q$ est l'ensemble des **états finaux**
+    - $T \subset Q \times \Sigma \times Q$ est l'ensemble des **transitions**
+
+On remarque deux différences par rapport aux automates finis déterministes :
+    1. La possibilité d'avoir plusieurs états initiaux (on démarre de manière non déterministe).
+    2. Les transitions qui sont notées sont forme de triplets : le triplet $(q, c, q')$ signifie que l'automate peut transiter de $q$ à $q'$ en listant la lettre $c$. Ce que l'on notera $q \rightarrow^c q'$ comme on l'a fait avec les automates déterministes.
+
+!!!warning "Un automate déterministe est un automate non déterministe"
+    On peut toujours voir un automate fini déterministe $A = (Q, q_0, \delta, F)$ comme un automate fini non déterministe. Dans ce cas :
+
+    1. L'ensemble d'états initiaux est le singleton $I = \{q_0\}$.
+    2. On peut construire $T$ itérativement. Pour tout état $q \in Q$ et toute lettre $c \in \Sigma$, si $\delta(q, c)$ est défini alors on a ajoute la transition $(q, c, \delta(q, c))$ dans $T$.
+    
+    La plupart du temps on fera l'abus et on dira qu'un automate déterministe n'est qu'un cas particulier d'automate non déterministe.
+
+!!!example "Exemple"
+    L'automate non déterministe ci-dessus
+    <figure>
+    ![Automate non déterministe](fig/automates/afd/afd-11.svg)
+    </figure>
+    est défini par $A = (Q, I, F, T)$ avec :
+
+    - $Q = \{q_0, q_1, q_2, q_3, q_4, q_5\}$
+    - $I = \{q_0\}$
+    - $F = \{q_5\}$
+    - $T = \{(q_0, a, q_0), (q_0, b, q_0), (q_0, a, q_1), (q_1, b, q_2), (q_2, a, q_3), (q_3, b, q_4), (q_4, a, q_5)\}$
+
+### B. Calcul non déterministe
+
+Il y a deux façons de voir le calcul dans un automate non déterministe :
+
+- **vision clonage** : à chaque fois qu'on est confronté à un choix non déterministe, on imagine que le processus se clone, chaque clone envisage une des possibilités offertes. Si **l'un des clones** réussit le calcul, alors le calcul est considéré réussi.
+- **vision oracle** : si à chaque fois qu'on est confronté à un choix non déterminsite, il existe un *oracle* capable de me dire le bon chemin qui me mènera vers un calcul réussi, alors le calcul est réussi.
+
+Ces deux visions sont équivalentes, mais il est peut-être plus simple de comprendre la première. Formalisons cela, en définissant la fonction de transition $\delta$ puis la fonction de transition étendue $\delta^*$ d'un automate non déterministe.
+
+!!!abstract "Définition (fonction de transition d'un automate non déterministe)"
+    Soit $A = (Q, I, F, T)$ un automate fini non déterministe, alors sa fonction de transition est l'**application** $\delta : Q \times \Sigma \to \mathfrak{P}(Q)$ définie par :
+
+    $$
+    \forall q \in Q, \ \forall c \in \Sigma, \ \delta(q, c) = \{ q' \in Q, (q, c, q') \in T\}
+    $$
+
+Ainsi $\delta(q, c)$ donne l'ensemble des états qu'on peut atteindre en lisant $c$ depuis $q$. Notons que contrairement aux automates non déterministes $\delta$ est cette fois une application, c'est-à-dire définie sur $Q \times \Sigma$ en entier. La notion de **blocage** correspond donc au cas où $\delta(q, c) = \varnothing$.
+
+
+!!!abstract "Définiton (fonction de transtion étendue)"
+    Soit $A = (Q, I, F, T)$ un automate fini non déterministe. La fonction de transtion étendue est l'application $\delta^* : Q \times \Sigma^* \to \mathfrak{P}(Q)$ définie par :
+
+    $$
+    \forall q \in Q,\ 
+    \begin{cases}
+    \delta^*(q, \varepsilon) = \{q\} \\
+    \forall v \in \Sigma^*, \ \forall c \in \Sigma, \delta^*(q, v.c) = \displaystyle \bigcup_{q' \in \delta^*(q, v)} \delta(q', c)\\
+    \end{cases}
+    $$
+
+Cette fonction doit se comprendre ainsi : $\delta^*(q, u)$ est l'ensemble des états atteints par mes clones (ou moi) lorsque je pars de l'état $q$ et que je lis $u$. Dans la définition pour calculer $\delta^*(q, v.c)$, on commence par regarder tous les états $q'$ atteints par mes clones (ou moi) lors de la lecture de $v$, puis pour chacun de ces états on ajoute au résultat les états qu'on peut atteindre en lisant la dernière lettre $c$.
+
+!!!example "Exemple de calcul"
+    Reprenons l'automate censé reconnaître les mots finissant par $ababa$ :    
+    <figure>
+    ![Automate non déterministe](fig/automates/afd/afd-11.svg)
+    </figure>
+    et effectuons le calcul pas à pas de $\delta^*(q_0, abab)$ (lecture de $abab$ depuis $q_0$) :
+
+    - $\delta^*(q_0, \varepsilon) = \{q_0\}$
+    - $\delta^*(q_0, a) = \{q_0, q_1\}$
+    - $\delta^*(q_0, ab) = \{q_0, q_2\}$ 
+    - $\delta^*(q_0, aba) = \{q_0, q_1, q_3\}$ 
+    - $\delta^*(q_0, abab) = \{q_0, q_2, q_4\}$ 
+
+    Ainsi lorsque je lis $abab$ depuis $q_0$ je peux me retrouver au choix en $q_0$, en $q_2$ ou en $q_4$.
+
+!!!tip "Proposition"
+    Pour tout mot $u \in \Sigma^*$, pour tout états $q, q' \in Q$, 
+    $q' \in \delta^*(q, u)$ si et seulement s'il existe au moins un chemin dans l'automate menant de $q$ à $q'$ et étiqueté par $u$.
+
+???note "Démonstration"
+    La démonstration par récurrence sur la longueur du mot $u$ est laissée en exercice au lecteur ou à la lectrice.
+
+Cette proposition nous invite naturellement à noter $q \rightarrow^u q'$ lorsque $q' \in \delta^*(q, u)$. Cela coïncide avec nos notations pour les automates déterministes.
+
+### C. Langage reconnu
+
+Nous pouvons maintenant décrire les mots acceptés par un automate non déterministe.
+
+!!!abstract "Définition (mot reconnu)"
+    Soit $A = (Q, I, F, T)$ un automate fini non déterministe. Un mot $u \in \Sigma^*$ est **reconnu** (on dit aussi **accepté**) par $A$ lorsqu'il existe au moins un état initial $q_0 \in I$ tel que $\delta^*(q_0, u)$ contienne au moins un état final. Autrement dit :
+    
+    $$
+    u \text{ accepté } \Leftrightarrow \exists q_0 \in I, \ \delta^*(q_0, u) \displaystyle \cap F \not = \varnothing
+    $$
+
+Deux autres façons de dire la même chose :
+    1. Un mot $u$ est accepté s'il existe au moins un chemin dans $A$ menant d'un état initial à un état final et etiqueté par $u$.
+    2. Un mot $u$ est accepté si l'un de mes clones (avec un clone par état initial ininitialement) aboutit sur un état final lors de la lecture de $u$.
+
+
+!!!abstract "Définition (langage reconnu)"
+    Soit $A = (Q, I, F, T)$ un automate fini déterministe. Le **langage reconnu** (aussi appelé **langage accepté**) par l'automate $A$, noté $\mathcal{L}(A)$ est :
+
+    $$
+    \mathcal{L}(A) = \{ u \in \Sigma^*, A \text{ accepte } u \}
+    $$
+
+### D. Déterminisation
+
+Nous venons de définir les automates finis non déterministes et décrire leur fonctionnement. Deux questions se posent naturellement :
+
+1. L'avantage des automates était la simplicité de mise en oeuvre sur machine et l'efficacité du calcul. Or, on vient de perdre les deux avantages : le calcul nécessite maintenant de mémoriser une liste d'états, de plus le calcul $\delta^*(q, u)$ est maintenant de complexité exponentielle en $|u|$ alors qu'elle était linéaire pour les automates finis déterministes.
+2. Les langages reconnaissables par automate fini non déterministes sont-ils les mêmes que ceux reconnus par automate fini déterministe ? N'a-t-on pas créé une machine plus puissante en introduisant le non déterminisme ?
+
+La réponse à la seconde question est remarquablement : non. Nous allons voir dans cette partie que les automates non déterministes ont la même puissance d'expression que les automates non déterministes.
+
+!!!abstract "Définition (Automate des parties)"
+    Soit $A = (Q, I, F, T)$ un automate fini non déterministe, on définit l'automate fini **déterministe** $A_p = (Q_p, q_0, F_p, \delta_p)$ suivant :
+
+    - $Q_p = \mathfrak{P}(Q)$
+    - $q_0 = I$
+    - $F_p = \{ X \subset Q, X \cap F \not = \varnothing\}$
+    - $\delta(X, c) = \displaystyle \bigcup_{x \in X} \delta(x, c)$ où $\delta$ est la fonction de transtion de $A$
+
+    Cet automate est appelé **automate des parties** car ses états sont des parties de l'ensemble d'états $Q$.
+
+!!!note "Point méthode : algorithme de déterminisation"
+    Pour calculer $A_p$ à partir de $A$, on procède pas à pas en ne représentant que les états accessibles.
+
+    1. On commence par introduire l'état $q_0 = I$.
+    2. Pour chaque état $X$ non traité, pour chaque lettre $c \in \Sigma$, on calcule $\displaystyle\cup_{x \in X} \delta(x, c)$, c'est-à-dire les états qu'on peut atteindre depuis $X$ en lisant une lettre $c$.
+    3. On dessine les nouveaux états et les nouvelles transitions obtenus.
+    4. On recommence avec les états non traités.
+
+    Il peut être agréable représenter cette démarche sous forme d'une table.
+
+!!!example "Exemple : déterminisation d'un automate"
+    On veut déterminiser l'automate qui reconnaît les mots qui finissent par $ababa$, c'est-à-dire calculer son automate des parties. Pour alléger les écritures, on a noté $\{0, 1, 2, 3, 4, 5\}$ l'ensemble d'états :
+    <figure>
+    ![Automate non déterministe](fig/automates/afd/afd-12.svg)
+    </figure>
+
+    On construit pas à pas la table des transitions comme expliqué dans le point méthode :
+
+    | états $X$ | lettre $c$ | arrivée $\delta_p(X, c)$ |
+    |:-:|:-:|:-:|
+    | $\{0\}$ | $a$ | $\{0, 1\}$ |
+    | $\{0\}$ | $b$ | $\{0\}$ |
+    | $\{0, 1\}$ | $a$ | $\{0, 1\}$ |
+    | $\{0, 1\}$ | $b$ | $\{0, 2\}$ |
+    | $\{0, 2\}$ | $a$ | $\{0, 1, 3\}$ |
+    | $\{0, 2\}$ | $b$ | $\{0\}$ |
+    | $\{0, 1, 3\}$ | $a$ | $\{0, 1\}$ |
+    | $\{0, 1, 3\}$ | $b$ | $\{0, 2, 4\}$ |
+    | $\{0, 2, 4\}$ | $a$ | $\{0, 1, 3, 5\}$ |
+    | $\{0, 2, 4\}$ | $b$ | $\{0\}$ |
+    | $\{0, 1, 3, 5\}$ | $a$ | $\{0, 1\}$ |
+    | $\{0, 1, 3, 5\}$ | $b$ | $\{0, 2, 4\}$ |
+
+    On obtient l'automate suivant qui est isomorphe à l'automate obtenu lorsqu'on a voulu directement concevoir un automate déterministe pour ce langage. Il reconnaît donc aussi les mots qui finissent par $ababa$.
+    <figure>
+    ![Automate des parties](fig/automates/afd/afd-13.svg)
+    </figure>
+    Encore une fois remarquons qu'on n'a représenté que les **états accessibles** de l'automate des parties qui en contient réellement $2^6 = 64$ dans cet exemple.
+
+!!!tip "Proposition"
+    Soit $A$ un automate fini non déterministe, soit $A_p$ son automate des parties alors :
+
+    $$
+    \mathcal{L}(A) = \mathcal{L}(A_p)
+    $$
+
+???note "Démonstration"
+    On montre par récurrence sur la longueur du mot que pour tout mot $u \in \Sigma^*$ et pour tout ensemble d'états $X \subset Q$, $\delta_p^*(X, u) = \displaystyle\bigcup_{x \in X} \delta^*(x, u)$. Ainsi avec l'ensemble de départ $q_0$ choisi le calcul dans l'automate des parties nous donne l'ensemble des états qu'on peut atteindre par la lecture de $u$ dans $A$ depuis un des états initiaux. L'ensemble $F_p$ est choisi de telle sorte à ce $A_p$ n'accepte cet ensemble d'états que lorsqu'il contient au moins un état final.
+
+!!!tip "Corollaire"
+    La classe des langages sur $\Sigma$ reconnaissables par automate fini déterministe et par automate fini non déterministe sont les mêmes. On notera $\rec{\Sigma}$ l'ensemble des langages reconnaissables par automate (déterministe ou non).
+
+La conclusion de cette partie est que les automates non déterministes reconnaissent exactement les mêmes langages que les automates déterministes. Si on veut un automate déterministe pour reconnaître efficacement un langage en machine, on peut le concevoir de manière non-déterministe puis lui appliquer l'algorithme de déterminisation. Évidemment cet algorithme est très coûteux dans le pire cas, car il peut produire $2^{|Q|}$ états. Cependant on ne réalise cette étape qu'une seule fois, on peut ensuite utiliser l'automate déterministe obtenu autant de fois que voulu.
+
+
+<!--- ## 4. Automates finis non déterministes à transitions spontanées --->
+
+## 4. Langages non reconnaissables par automate
 
 Il existe des langages qui ne peuvent pas être reconnus par un automate fini. Le théorème suivant permet de démontrer que certains langages ne sont pas reconnaissables.
 
