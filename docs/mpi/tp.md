@@ -33,3 +33,4 @@
 - **Arbre des préfixes et des suffixes** [[:bookmark: sujet]](ptree.pdf) [[:white_check_mark: corrigé]](ptree_corrige.ml)
 - **Résolution du Sudoku par backtracking** [[:bookmark: sujet]](sudoku.pdf) [[:white_check_mark: corrigé]](sudoku_corrige.ml)
 - **Tri topologique et algorithme de Kosaraju** [[:bookmark: sujet]](tritopo.pdf) [[:white_check_mark: corrigé]](tritopo_corrige.ml)
+- **Alignement de séquences ADN par programmation dynamique** [[:bookmark: sujet]](adn.pdf) 
