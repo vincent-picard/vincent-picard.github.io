@@ -9,6 +9,7 @@ nav:
     - Parcours : 'aboutme/parcours.md'
   - MPI:
     - Cours : 'mpi/cours.md'
+    - Travaux pratiques : 'mpi/tp.md'
   - PSI* / MP: 'itc/index.md'
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
