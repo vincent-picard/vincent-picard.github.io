@@ -10,6 +10,7 @@ nav:
   - MPI:
     - Cours : 'mpi/cours.md'
     - Travaux pratiques : 'mpi/tp.md'
+    - Travaux dirigés : 'mpi/td.md'
   - PSI* / MP: 'itc/index.md'
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
