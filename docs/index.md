@@ -22,7 +22,7 @@ Bienvenue, ce site contient des ressources pour les cours d'informatique CPGE au
     Informations et contact
 
 
--   :link:{ .lg .middle } [__Liens utiles__](#)
+-   :link:{ .lg .middle } [__Liens utiles__](/links)
 
     ---
 

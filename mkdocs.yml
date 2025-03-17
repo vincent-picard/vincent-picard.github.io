@@ -12,6 +12,7 @@ nav:
     - Travaux pratiques : 'mpi/tp.md'
     - Travaux dirigés : 'mpi/td.md'
   - Informatique tronc commun: 'itc/index.md'
+  - Liens utiles: 'links.md'
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
   #  - Langages formels :
