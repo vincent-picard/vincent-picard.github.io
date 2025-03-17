@@ -11,7 +11,7 @@ nav:
     - Cours : 'mpi/cours.md'
     - Travaux pratiques : 'mpi/tp.md'
     - Travaux dirigés : 'mpi/td.md'
-  - PSI* / MP: 'itc/index.md'
+  - Informatique tronc commun: 'itc/index.md'
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
   #  - Langages formels :
