@@ -10,11 +10,14 @@ Les résumés numériques suivants vous permettent de revoir le cours. Ils ne so
 1. [:material-set-none: Induction et récurrence](/general/induction)
 2. [:material-sigma: Langages réguliers, expressions régulières](/langages/regexp)
 3. [:fontawesome-solid-circle-nodes: Parcours de graphes et algorithme A:material-star:](/pdf/parcours_graphes.pdf)
+    - [Parcours : illustrations](/pdf/parcours_exemples)
 4. [:material-sigma: Automates finis](/langages/automates)
 5. :fontawesome-solid-circle-nodes: Arbres couvrants de poids minimal
 6. :material-sigma: Théorème de Kleene
 7. [:material-gate-xor: Logique propositionnelle, logique des prédicats, déduction naturelle](/pdf/logique.pdf)
-8. [:material-robot-outline: Apprentissage supervisé](/ia/appr_supervise)
+8. :material-robot-outline: Apprentissage supervisé
+    - [Algorithme ID3 : le choixpeau magique](/pdf/id3.pdf)
+    - [Arbres k-dimensionnels : illustrations](/pdf/kdtree.pdf)
 9. [:fontawesome-solid-circle-nodes: Décidabilité et complexité](/pdf/decicomp.pdf)
 10. [:material-sigma: Grammaires algébriques](/langages/grammaires)
 11. [:fontawesome-solid-circle-nodes: Composantes fortement connexes](/algo/cfc)
