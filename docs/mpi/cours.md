@@ -15,17 +15,17 @@ Les résumés numériques suivants vous permettent de revoir le cours. Ils ne so
 5. :fontawesome-solid-circle-nodes: Arbres couvrants de poids minimal
 6. :material-sigma: Théorème de Kleene
 7. [:material-gate-xor: Logique propositionnelle, logique des prédicats, déduction naturelle](/pdf/logique.pdf)
-8. :material-robot-outline: Apprentissage supervisé
+8. [:material-robot-outline: Apprentissage supervisé](/pdf/ia.pdf)
     - [Algorithme ID3 : le choixpeau magique](/pdf/id3.pdf)
     - [Arbres k-dimensionnels : illustrations](/pdf/kdtree.pdf)
 9. [:fontawesome-solid-circle-nodes: Décidabilité et complexité](/pdf/decicomp.pdf)
 10. [:material-sigma: Grammaires algébriques](/langages/grammaires)
 11. [:fontawesome-solid-circle-nodes: Composantes fortement connexes](/algo/cfc)
 12. [:fontawesome-solid-code-fork: Programmation concurrente](/algo/concur)
-13. :material-robot-outline: Apprentissage non supervisé
+13. [:material-robot-outline: Apprentissage non supervisé](/pdf/ia.pdf)
 14. [:fontawesome-solid-circle-nodes: Algorithmes probabilistes](/algo/proba)
 15. [:fontawesome-solid-circle-nodes: Couplages dans les graphes](/graphes/couplages)
-16. :material-robot-outline: Jeux d'accessibilité
+16. [:material-robot-outline: Jeux d'accessibilité](/pdf/ia.pdf)
 
 ## :material-book-sync: Notions de MP2I
 
