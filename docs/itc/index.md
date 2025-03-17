@@ -5,6 +5,7 @@
 1. [Révisions et compléments sur le langage Python](cours/chap1_python.pdf)
 2. [Bases de données](cours/chap2_bdd.pdf)
 3. [Programmation dynamique](cours/chap3_programmation_dynamique.pdf)
+4. [Intelligence artificielle](cours/chap4_ia.pdf)
 
 ## Bases de données
 
