@@ -25,6 +25,7 @@ Les résumés numériques suivants vous permettent de revoir le cours. Ils ne so
 13. [:material-robot-outline: Apprentissage non supervisé](/pdf/ia.pdf)
 14. [:fontawesome-solid-circle-nodes: Algorithmes probabilistes](/algo/proba)
 15. [:fontawesome-solid-circle-nodes: Couplages dans les graphes](/graphes/couplages)
+    - [Chemin augmentants, graphe résiduel : exemple](/pdf/couplage_exemple.pdf)
 16. [:material-robot-outline: Jeux d'accessibilité](/pdf/ia.pdf)
 
 ## :material-book-sync: Notions de MP2I
