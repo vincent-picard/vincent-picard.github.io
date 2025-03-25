@@ -118,9 +118,9 @@ Les chemins augmentants permettent d'obtenir une méthode efficace pour la reche
     Soit $G = (S, A)$ un graphe et $M$ un couplage pour ce graphe. Un chemin est dit **alternant relativement à $M$**, s'il alterne entre une arête dans $M$ et une arête n'appartenant pas à $M$.
 
 !!!note "Remarque"
-    Dans la définition de chemin alternant, l'alternance peut commencer ou non par une arête dans $M$.
+    Dans la définition de chemin alternant, l'alternance peut commencer ou non par une arête dans $M$. Mais ce ne sera plus le cas du chemin augmentant dans la suite du cours.
 
-!!!abstract "Définition"
+!!!abstract "Définition (chemin augmentant)"
     Soit $G = (S, A)$ un graphe, $M$ un couplage et $C$ un chemin dans $G$. Le chemin $C$ est dit **augmentant** pour notre couplage $M$ si :
 
     1. $C$ est un chemin alternant relativement à $M$
@@ -147,7 +147,7 @@ Pour simplifier les notations, on confondra par abus un chemin avec son ensemble
 
 Cette proposition est intéressante car elle donne une méthode pour améliorer un couplage $M$ : rechercher un chemin augmentant. Tant qu'on trouve un chemin augmentant dans le graphe, on peut trouver un cardinal plus grand d'une unité. On ne sait toutefois pas encore si un couplage qui n'admet pas de chemin augmentant est bien un couplage maximal. C'est l'objet du théorème suivant.
 
-!!!tip "Théorème (Berge)"
+!!!tip "Théorème (Lemme de Berge, 1953)"
     Un couplage $M$ est maximal si et seulement s'il n'admet pas de chemin augmentant.
 
 !!!note "Démonstration"
