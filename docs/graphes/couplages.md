@@ -239,14 +239,15 @@ qui conduit au couplage $M =\{(u_1, v_3), (u_2, v_4), (u_3, v_1), (u_4, v_2)\}$ 
 
 Il n'y a maintenant plus de chemin améliorant. Le couplage obtenu est alors un couplage maximal d'après le théorème de Berge.
 
-!!! example "Exercice"
-    En appliquant l'algorithme des chemins augmentants, calculer un couplage maximal pour le graphe biparti :
+!!! example "Exercice (marché de l'emploi)"
+    Cinq personnes (à gauche sur la figure) sont à la recherche d'un emploi. Il y a aussi cinq offres d'emploi (à droite sur la figure) disponibles. On dessine une arête entre une personne et un emploi lorsque la personne est qualifiée pour effectuer ce travail. Combien de personnes au total pourra-t-on employer au maximum ?
     <figure>
-    ![Un graphe biparti](fig/bipartite/bipartite-1.svg)
+    ![Marché de l'emploi](fig/bipartite/bipartite-2.svg)
     </figure>
+    Résoudre le problème en employant l'algorithme des chemins augmentants.
 
 !!!note "Complexité"
-    Cet algorithme effectue au plus $|U|$ recherches de chemin augmentant. Chaque recherche est un parcours de graphe qui a une complexité $O(|U| + |V| + |A|)$ (complexité linaire). Ainsi la complexité en temps de cet algorithme est :
+    Cet algorithme effectue au plus $|U|$ recherches de chemin augmentant. Chaque recherche est un parcours de graphe qui a une complexité $O(|U| + |V| + |A|)$ (complexité linéaire). Ainsi la complexité en temps de cet algorithme est :
 
     $$
     O(|U|(|U| + |V| + |A|))
