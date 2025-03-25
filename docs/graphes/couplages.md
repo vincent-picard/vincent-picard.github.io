@@ -2,11 +2,11 @@
 
 ## 1. Graphes bipartis
 
-Les **graphes bipartis** sont une classe de graphes utile pour modéliser des situations pratiques.
+Les **graphes bipartis** sont une classe de graphes utiles pour modéliser des situations pratiques.
 
 **Notation :** Si $G = (S, A)$ est un graphe orienté ou non, on notera $xy \in A$ pour dire l'arc $(x, y)$ ou l'arête $\{x, y\}$ est dans $A$.
 
-!!! abstract "Définition"
+!!! abstract "Définition (graphe biparti)"
     Un graphe $G = (S, A)$ orienté ou non est **biparti** s'il existe une **partition** de $S$ en deux ensembles $S = U \sqcup V$ tels que :
 
     $$ \forall xy \in A, \quad (x \in U \land y \in V) \lor (x \in V \land y \in U)$$
@@ -35,7 +35,7 @@ Dans les cas pratiques, la bipartition considérée est souvent imposée par la 
     <figcaption>Extrait de "Bipartite graphs in systems biology and medicine: a survey of methods and applications", Gigascience, Pavlopoulos *et al.*, 2018</figcaption>
     </figure>
 
-D'après la proposition suivante, il existe d'autres manières de parler de graphes bipartis sans les nommer.
+Parfois, un problème traite de graphe biparti sans le dire. Il existe en effet d'autres manières de parler de graphes bipartis sans les nommer. C'est ce que montre la proposition suivante.
 
 !!! tip "Proposition"
     Soit $G = (S, A)$ un graphe non orienté, on a équivalence entre :
@@ -48,7 +48,7 @@ D'après la proposition suivante, il existe d'autres manières de parler de grap
     
     - (1) implique (2) : il suffit de colorer tous les sommets de $U$ en bleu et tous les sommets de $V$ en rouge
     - (2) implique (3) : si on considère par l'absurde un cycle de longueur impaire $(x_1, \dots, x_{n-1}, x_n = x_1)$ de $G$ qui est 2-coloré, alors par imparité, la couleur de $x_1$ est égale à celle de $x_{n-1}$ ce qui est absurde.
-    - (3) implique (1) : on travaille composante connexe par composante connexe. Dans une composante connexe, on réalise un parcours de graphe en largeur depuis un sommet $x$, tous les sommets situés à distance paire de $x$ sont placés dans $U$ et ceux à distance impaire dans $V$. S'il existe un arc $st \in A$ entre $s \in U$ et $t \in U$ alors $s$ et $t$ font partie d'un cycle de longueur impaire : c'est absurde. 
+    - (3) implique (1) : on travaille composante connexe par composante connexe. Dans une composante connexe, on réalise un parcours de graphe en largeur depuis un sommet $x$, tous les sommets situés à distance paire de $x$ sont placés dans $U$ et ceux à distance impaire dans $V$. S'il existe un arc $st \in A$ entre $s \in U$ et $t \in V$ alors $s$ et $t$ font partie d'un cycle de longueur impaire : c'est absurde. 
    
 Cette proposition nous fait aussi remarquer que les graphes acycliques (les arbres et les forêts) sont des graphes bipartis.
 
@@ -58,7 +58,7 @@ Cette proposition nous fait aussi remarquer que les graphes acycliques (les arbr
     Soit $G = (S, A)$ un graphe, si $xy \in A$ est une arête (resp. un arc) du graphe alors on dit que $xy$ est incidente au sommet $x$ (et aussi au sommet $y$)
 
 !!!abstract "Définition (couplage)"
-    Soit $G = (S, A)$ un graphe, un **couplage** $M$ est une ensemble d'arêtes (ou d'arcs) qui n'ont pas de sommets en commun, c'est-à-dire tel qu'il n'existe pas deux arêtes (ou arcs) incidentes à un même sommet.
+    Soit $G = (S, A)$ un graphe, un **couplage** $M$ est un ensemble d'arêtes (ou d'arcs) qui n'ont pas de sommets en commun, c'est-à-dire tel qu'il n'existe pas deux arêtes (ou arcs) incidentes à un même sommet.
 
 !!!example "Exemple : couplage dans un graphe non orienté"
     Dans le graphe non orienté ci-dessous, $M = \{BH, CD, EG\}$ est un exemple de couplage, mais il y en a d'autres...
@@ -81,11 +81,12 @@ Soit $G = (U \sqcup V, A)$ un graphe biparti, on suppose que les sommets de $U$ 
 - Sinon $T[i] = -1$
 
 !!!exercise "Exercice"
-    Écrire une fonction en langage C vérifiant si un couplage est correct :
+    1. Écrire une fonction en langage C vérifiant si un couplage représenté avec le codage proposé ci-dessus correct :
     ```c
     bool verifie(int adj[MAX][MAX], int T[MAX], int n, int m)
     ```
     Dans ce prototype `MAX` designe une constante supérieure à $n+m$ et `adj` est un tableau bi-dimensionnel stockant la *matrice d'adjacence* du graphe. On suppose que les sommets de $U$ sont les sommets numérotés de $0$ à $n-1$ et les sommets de $V$ les sommets de $n$ à $n+m-1$.
+    2. Que dire du problème de décision dont l'instance est un graphe biparti et une constante entière $K$, et la question est : existe-t-il un couplage de cardinal $K$ ?
 
 ## 3. Couplages maximaux
 
@@ -107,14 +108,7 @@ On dira que $\mathrm{Card}(M)$ est la **taille du couplage**. Un couplage maxima
 Soit $G = (S, A)$ un graphe.
 La méthode exhaustive peut être employée pour déterminer un couplage maximal. Par exemple, on construit un arbre binaire de hauteur $|A|$ chaque profondeur représente le choix de prendre ou de ne pas prendre l'arête numéro $i$ dans le couplage. Chaque feuille de l'arbre correspond donc à une partie de $A$ : on vérifie s'il s'agit d'un couplage et conserve celui de cardinal maximum.
 
-Cette méthode est très coûteuse : $O(2^{|A|})$.
-
-On peut l'améliorer en :
-
-- vérifiant à chaque arête s'il est possible de la prendre dans le couplage en cours de construction (et donc élaguer le choix 'oui' dans le cas où c'est impossible)
-- utiliser la méthode de *séparation et évaluation* (*Branch and bound*) : on peut au fur et a mesure de la recherche éliminer les arêtes incidentes à un sommet déjà choisi, le nombre d'arêtes restantes nous permet alors de majorer la taille du couplage que l'on pourra former.
-
-Dans tous les cas, cette méthode est coûteuse.
+On peut améliorer l'exploration en élagant les branches dès que deux arêtes choisies dans le couplage sont incidentes à un même sommet. Cependant, la méthode est évidemment très coûteuse dans le pire cas : $O(2^{|A|})$ et inutilisable pour de grands graphe.
 
 ### B - Chemins augmentants
 
@@ -124,16 +118,17 @@ Les chemins augmentants permettent d'obtenir une méthode efficace pour la reche
     Soit $G = (S, A)$ un graphe et $M$ un couplage pour ce graphe. Un chemin est dit **alternant relativement à $M$**, s'il alterne entre une arête dans $M$ et une arête n'appartenant pas à $M$.
 
 !!!note "Remarque"
-    L'alternance peut commencer ou non par une arête dans $M$.
+    Dans la définition de chemin alternant, l'alternance peut commencer ou non par une arête dans $M$.
 
 !!!abstract "Définition"
     Soit $G = (S, A)$ un graphe, $M$ un couplage et $C$ un chemin dans $G$. Le chemin $C$ est dit **augmentant** pour notre couplage $M$ si :
 
     1. $C$ est un chemin alternant relativement à $M$
-    2. $C$ commence et termine par un sommet qui n'est pas aparié dans le couplage $M$ (il n'existe pas d'arête du couplage incidente à ce sommet).
+    2. $C$ commence et termine par un sommet qui n'est pas apparié dans le couplage $M$ (il n'existe pas d'arête du couplage incidente à ce sommet).
 
 
-Un chemin est augmentant si il commence et finit par un sommet non apparié.
+!!!note "Remarque"
+    Ainsi un chemin est augmentant est un alternant qui commence et finit par un sommet non apparié. Cela implique que l'alternance commence et finit par **une arête non choisie** et que **sa longueur est impaire**. 
 
 Dans la suite on utilisera l'opérateur de **différence symétrique** entre deux ensembles :
 
@@ -145,17 +140,19 @@ Pour simplifier les notations, on confondra par abus un chemin avec son ensemble
     Soit $G = (S, A)$ un graphe, $M$ un couplage de cardinal $k$ et $C$ un chemin augmentant, alors $M \Delta C$ est un couplage de cardinal $k + 1$.
 
 !!!note "Démonstration"
-    - Comme les sommets de départ et d'arrivée ne sont pas appariés et que $C$ est alternant, on voit que $M' = M \Delta C$ contiendra une arete de plus que $M$, d'ou le cardinal $k + 1$. 
-    - Il faut maintenant vérifier que c'est bien un couplage. Soit $(x,y)$ une arete dans $M' = M \Delta C$. Dans le chemin $C$, il apparaît le sous-chemin $(a, x, y, b)$ tel que $(a, x) \in M$,  $(x, y) \not \in M$ et $(y, b) \in M$. Comme $M$ est un couplage $(a, x)$ est la seule arete incidente à $x$ donc si on l'enleve $x$ n'est touché par plus personne donc (x, y) est la seule arête incidente à $x$ dans $M'$. Il en va de meme pour $y$. Donc $M'$ est bien un couplage.
+    - Comme les sommets de départ et d'arrivée ne sont pas appariés et que $C$ est alternant, $C$ contient nécessairement $p$ sommets dans $M$ et $p+1$ sommets dans $\bar{M}$. Ainsi $M' = M \Delta C$ contiendra une arete de plus que $M$ (on retire $p$ arêtes et on en ajoute $p+1$, d'ou le cardinal $k + 1$. 
+    - Il faut maintenant vérifier que c'est bien un couplage. Soit $(x,y)$ une arete dans $M' = M \Delta C$. 
+        - Si $(x, y) \in M \setminus C$ : alors (x, y) n'est pas incidente à une autre arête $u$ de $M'$. En effet, soit $u \in M$ ce qui est exclus car $M$ est un couplage, soit $u \in C$ et alors chacune des extremités de $u$ appartiennent à un arc de $M$ qui est dans $C$ donc différent de $(x, y)$, c'est exclus car $M$ est un couplge.
+        - Si $(x, y) \in C \setminus M$ : dans le chemin $C$, il apparaît le sous-chemin $(a, x, y, b)$ tel que $(a, x) \in M$,  $(x, y) \not \in M$ et $(y, b) \in M$. Soit $u$ une arête de $M'$ incidente à $x$ (par exemple) qui n'est pas dans $C$. Alors $u \in M$, c'est absurde car $u$ et $(a, x)$ seraient incidentes à un même sommet et que $M$ est un couplage. 
 
-Cette proposition est intéressante car elle donne une méthode pour améliorer un couplage $M$ : rechercher un chemin augmentant. On ne sait toutefois pas encore si un couplage qui n'admet pas de chemin augmentant est bien maximal. C'est l'objet du théorème suivant.
+Cette proposition est intéressante car elle donne une méthode pour améliorer un couplage $M$ : rechercher un chemin augmentant. Tant qu'on trouve un chemin augmentant dans le graphe, on peut trouver un cardinal plus grand d'une unité. On ne sait toutefois pas encore si un couplage qui n'admet pas de chemin augmentant est bien un couplage maximal. C'est l'objet du théorème suivant.
 
 !!!tip "Théorème (Berge)"
     Un couplage $M$ est maximal si et seulement s'il n'admet pas de chemin augmentant.
 
 !!!note "Démonstration"
     - La proposition précédente montre le sens direct par contraposition
-    - Montrons le sens réciproque : soit $G = (S, A)$ un graphe et $M$ un couplage n'admettant pas de chemin augmentant. Supposons par l'absurde que $M$ ne soit pas maximal et notons $M'$ un meilleur couplage. On considère alors $H$ le sous-graphe de $G$ induit par les arêtes de l'ensemble $M \Delta M'$. Dans ce graphe un sommet ne peut être incident qu'à au plus deux arêtes : une de $M$ et une de $M'$, les composantes connexes de $H$ sont donc de trois types possibles :
+    - Montrons le sens réciproque : soit $G = (S, A)$ un graphe et $M$ un couplage n'admettant pas de chemin augmentant. Supposons par l'absurde que $M$ ne soit pas maximal et notons $M'$ un meilleur couplage. On considère alors $H$ le sous-graphe de $G$ dont l'ensemble des arêtes est $M \Delta M'$. Dans ce graphe un sommet ne peut être incident qu'à au plus deux arêtes : une de $M$ et une de $M'$, les composantes connexes de $H$ sont donc de trois types possibles :
         1. Un sommet isolé
         2. Un cycle alternant entre des arêtes de $M$ et de $M'$
         3. Un chemin alternant entre des arêtes de $M$ et de $M'$ de longueur impaire. 
@@ -167,20 +164,92 @@ On obtient donc une méthode algorithmique pour construire un couplage de cardin
 2. Tant qu'il existe un chemin augmentant $C$, faire $M \gets M \Delta C$
 3. Retourner $M$
 
-Dans le cas d'un graphe biparti, la recherche d'un chemin augmentant peut s'obtenir facilement à l'aide d'un parcours de graphe en faisant les quelques remarques suivantes :
-- Le chemin est alterné, donc dans le parcours on prend garde à alternativement prendre un arc pas dans $M$ et un arc dans $M$. 
-- Le chemin doit commencer et terminer par un sommet non apparié. On peut arrêter le parcours dès que l'on a trouvé un chemin augmentant, c'est-à-dire quand on tombe sur un sommet non apparié.
-- Il est de longueur impaire donc commence par un sommet de $U$ (resp. V) et termine par un sommet de $V$ (resp. U)$. On peut donc se restreindre par symétrie aux sommets de $U$ comme point de départ.
+### C - Calcul des chemins augmentants avec le graphe résiduel
 
-Ainsi la recherche de chemin augmentant s'effectue avec une complexité $O(|U| + |V| + |A|)$. Cette recherche est répétée au plus $k$ fois où $k \leq \min(|U|, |V|)$ est la taille d'un couplage maximal.
+Dans le cas d'un graphe biparti, la recherche de chemins augmentant est facilitée. Considérons l'exemple suivant :
+<figure markdown="span">
+![Un graphe biparti](fig/couplage/figcouplage1.png)
+<figcaption>Un graphe biparti</figcaption>
+</figure>
 
-### C - Lien avec les problèmes de flot
+On souhaite calculer un chemin augmentant c'est-à-dire : qui commence par un sommet non apparié de $U$ (par exemple), qui alterne et qui termine par un sommet nécessairement dans $V$ (longueur impaire du chemin augmentant) et non apparié également. On construit pour cela **le graphe résiduel** du graphe biparti relativement au couplage $M$ actuel. C'est un graphe **orienté** construit à partir des sommets de $G$ et de $M$, en utilisant les règles suivantes :
 
-Soit $G = (U \sqcup V, A)$ un graphe biparti. On considère que le graphe est orienté avec les arcs allant de $U$ vers $V$. On ajoute deux sommets fictifs :
+- On ajoute un sommet de départ $s$ et un sommet cible $t$.
+- Le sommet de départ $s$ pointe sur chaque sommet non apparié de $U$
+- Les sommets non appariés de $V$ pointent sur le sommet cible $t$
+- Si $(u, v) \in M$ on a ajoute un arc $(u, v)$ pour autoriser le passage de gauche à droite
+- Si $(u, v) \not \in M$ on ajoute un arc $(v, u)$ pour autoriser le passage de droite à gauche
 
-- un sommet **source** $s$ ayant pour voisins sortants tous les sommets de $U$
-- un sommet **puits** $t$ ayant pour voisins entrants tous les sommets de $V$.
+### 1ère itération
+Voici initialement ($M = \varnothing$) le graphe résiduel de notre exemple :
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage2.png)
+<figcaption>Graphe résiduel pour le couplage initial vide</figcaption>
+</figure>
 
-On imagine que chaque arc est un tuyau de capacité de début $1L / s$. On souhaite faire transiter un maximum d'eau depuis la source vers le puits. Il faut donc choisir quels tuyaux seront utilisés $1L/ s$  ou non utiliés $0L /s$. Une solution à ce problème consiste à calculer le couplage maximal et faire transiter $1L/ s$ dans chaque tuyau choisi par le couplage.
+Un chemin de $s$ à $t$ correspond alors à un chemin augmentant ! En effet, il commence et termine nécessairement par des sommets non appariés, et il est bien alternant : comme le graphe est biparti, un chemin alterne avec des arcs de gauche à droite (dans $M$) et de droite à gauche (dans $\bar{M}$).
 
-Le problème de flot maximal dans un graphe est plus général : on peut avoir des capacités différentes de 1 selon les tuyaux. Toutefois, il existe des approches algorithmiques similaires, on peut par exemple évoquer l'algorithme de Ford-Fulkerson qui trouve un flot maximal dans un graphe à l'aide de chemins augmentants.
+Voici un exemple de chemin de $s$ à $t$ qui correspond à un chemin augmentant dans $G$ :
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage3.png)
+<figcaption>Un chemin augmentant</figcaption>
+</figure>
+
+Ainsi, ce chemin augmentant nous donne le nouveau couplage $M \gets M \Delta C = \{(u_1, v_1)\}$. Le graphe résiduel doit ensuite être mis à jour :
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage4.png)
+<figcaption>Mise à jour du graphe résiduel</figcaption>
+</figure>
+
+### 2e itération
+
+On trouve maintenant le chemin améliorant
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage5.png)
+</figure>
+
+qui conduit au couplage $M =\{(u_1, v_1), (u_2, v_2)\}$ et au nouveau graphe résiduel :
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage6.png)
+</figure>
+
+### 3e itération
+
+On trouve maintenant le chemin améliorant
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage7.png)
+</figure>
+
+qui conduit au couplage $M =\{(u_1, v_3), (u_2, v_2), (u_3, v_1)\}$ et au nouveau graphe résiduel :
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage8.png)
+</figure>
+
+### 4e itération
+
+Enfin, on trouve maintenant le chemin améliorant
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage9.png)
+</figure>
+
+qui conduit au couplage $M =\{(u_1, v_3), (u_2, v_4), (u_3, v_1), (u_4, v_2)\}$ et au nouveau graphe résiduel :
+<figure markdown="span">
+![Graphe résiduel](fig/couplage/figcouplage10.png)
+</figure>
+
+Il n'y a maintenant plus de chemin améliorant. Le couplage obtenu est alors un couplage maximal d'après le théorème de Berge.
+
+!!! example "Exercice"
+    En appliquant l'algorithme des chemins augmentants, calculer un couplage maximal pour le graphe biparti :
+    <figure>
+    ![Un graphe biparti](fig/bipartite/bipartite-1.svg)
+    </figure>
+
+!!!note "Complexité"
+    Cet algorithme effectue au plus $|U|$ recherches de chemin augmentant. Chaque recherche est un parcours de graphe qui a une complexité $O(|U| + |V| + |A|)$ (complexité linaire). Ainsi la complexité en temps de cet algorithme est :
+
+    $$
+    O(|U|(|U| + |V| + |A|))
+    $$
+
+    Si $n = |U| + |V|$ est le nombre total de sommets alors $|A| = O(n^2)$, ce qui montre que dans le pire cas, cet algorithme est de complexité cubique $O(n^3)$.
