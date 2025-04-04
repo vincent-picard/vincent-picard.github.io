@@ -47,3 +47,8 @@ Les documents suivants permettent, à celles et ceux qui le veulent, d'aller un 
 - [:fontawesome-solid-circle-nodes: Machines de Turing](/pdf/turing.pdf)
 - Algorithme CYK
 - Analyseurs syntaxiques LL(1)
+
+## Checklist de révision pour les écrits
+
+Ce document est une aide pour faire le point dans vos révisions.
+- [Checklist de révision](/pdf/checklist.pdf)
