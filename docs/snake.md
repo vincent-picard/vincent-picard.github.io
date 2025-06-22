@@ -281,4 +281,123 @@ Voilà ce que vous devriez obtenir à l'état actuel du jeu :
     - On remplit (fill) `bloc` avec la bonne couleur
     - On dessine (draw) `bloc` avec la couleur de contour des blocs
 
+Bon, nous avonçons bien mais il reste encore un petit problème : il n'y a pas de murs au bord de notre grille de jeu : le serpent pourrait s'échapper. Écrivons une petite fonction pour ajouter des murs tout autour de l'arène.
+
+!!! tip "Exercice : mur d'enceinte"
+    Écrire une fonction `void mur_enceinte(Arena mat)` qui assigne la valeur `WALL` à toutes les cases sur le pourtour de la grille `mat`.
+
 ## 4. Une structure de données pour le serpent
+
+Dans cette partie, nous allons proposer une structure de données pour gérer le serpent. Le serpent peut être implémenté sous forme d'une **liste simplement chaînée** de blocs. Cette structure permet aisément de faire évoluer le serpent lorsqu'il avance ou lorsqu'il grandit.
+
+### A. Compilation séparée
+
+Comme le code se complexifie, il serait bon de commencer à le **séparer** dans plusieurs fichiers. On introduit un nouveau fichier d'en-tête :
+
+???example "Fichier `serpent.h`"
+    ```c
+    #ifndef SERPENT_H
+    #define SERPENT_H
+
+    #include <stdbool.h>
+    #include "options.h"
+
+    struct maillon_s {
+        /* Coordonnées du bloc */
+        int x;
+        int y;
+
+        /* Maillon suivant (de la queue vers la tête) */
+        struct maillon_s *suivant;
+    };
+    typedef struct maillon_s Maillon;
+
+    /* Sens de déplacement */
+    #define RIGHT 0
+    #define UP 1
+    #define DOWN 2
+    #define LEFT 3
+
+    struct serpent_s {
+        Maillon *queue; /* Premier maillon : fin du serpent */
+        Maillon *tete; /* Dernier maillon : tête du serpent */
+        int direction; /* Sens de déplacement */
+    };
+    typedef struct serpent_s Serpent;
+
+    /* Coordonnées du bloc vers lequel va le serpent */
+    extern int prochain_x(const Serpent *s);
+    extern int prochain_y(const Serpent *s);
+
+    /* Teste si la case est occupée par le serpent */
+    extern bool appartient(const Serpent *s, int x, int y);
+
+    /* Fait avancer le serpent */
+    extern void avancer(Serpent *s);
+
+    /* Fait grandir le serpent */
+    extern void grandir(Serpent *s);
+
+    /* Créer un serpent de longueur 1 positionné en (x, y) et
+       se déplacant dans la direction dir */
+    Serpent *creer_serpent(int x, int y, int dir);
+
+    /* Marque dans l'arene mat les cases occupees par le serpent */
+    extern void place_serpent(const Serpent *s, int mat[ARENA_W][ARENA_H]);
+
+    #endif
+    ```
+
+Ce fichier d'en-tête déclare les structures de données implémentant le serpent ainsi que les fonctions utiles pour le manipuler. Ces fonctions seront implémentées dans le fichier `serpent.c`, ressemblant à :
+
+```c title="serpent.c"
+#include "serpent.h"
+
+int prochain_x(const Serpent* s) {
+    /* A VOUS DE JOUER */
+}
+/* etc */
+```
+
+Votre projet contient maintenant 4 fichiers : `main.c`, `options.h`, `serpent.h`, `serpent.c`. Et la compilation s'obtient avec les commandes :
+```sh
+    gcc -c main.c $(sdl2-config --cflags)
+    gcc -c serpent.c
+    gcc main.o serpent.o -o snake $(sdl2-config --cflags --libs)
+```
+C'est fastidieux ! De plus à chaque modification du projet, on peut se torturer à savoir quel(s) fichier(s) doivent être recompilés ou pas et dans quel ordre...
+
+Nous allons utiliser le logiciel `make` pour nous faciliter la tache. Pour fonctionner, cet outil a besoin de disposer d'un fichier nommé `Makefile` à la racine de notre projet. Ce fichier décrit un ensemble de **cibles**, c'est-à-dire de fichiers à compiler, suivi de ses **dépendances** et de la commande de compilation. Écrivons ce fichier :
+
+!!! example "Fichier `Makefile`"
+    Attention, les tabulations utilisées sont importantes et doivent être de vraies tabulation (pas une succession d'espaces). Il faudra aussi adapter les valeurs de `CC`, `CFLAGS` et `LIBS` selon votre propre configuration.
+    ```makefile title="Makefile"
+    CC=gcc # nom du compilateur
+
+    # Resultat de la commande sdl2-config --cflags
+    CFLAGS= -I/usr/local/include -I/usr/local/include/SDL2 -D_REENTRANT -D_THREAD_SAFE
+
+    # Resultat de la commande sdl2-config --libs
+    LIBS= -L/usr/local/lib -lSDL2
+
+    .PHONY: clean
+
+    snake: main.o serpent.o
+        $(CC) main.o serpent.o -o snake $(CFLAGS) $(LIBS)
+
+    main.o: options.h serpent.h main.c
+        $(CC) -c main.c $(CFLAGS)
+
+    serpent.o: options.h serpent.h serpent.c
+        $(CC) -c serpent.c
+
+    clean:
+        rm *.o
+    ```
+
+Une fois ce fichier renseigné, l'appel à la commande `make` compile automatiquement la premiere cible, c'est-à-dire l'exécutable `snake` dans notre cas. En cas de modification du code, `make` est capable de savoir exactement ce qui a besoin d'être recompilé : cela évite de recompiler entièrement un projet à chaque une petite modification.
+
+De plus nous avons ajouté une *fausse* (PHONY) règle `clean` qui fait le ménage en supprimant les fichiers intermédiaires devenus inutiles.
+
+Résumons `make` permet de tout compiler. `make clean` permet de faire le ménage.
+
