@@ -404,3 +404,101 @@ De plus nous avons ajouté une *fausse* (PHONY) cible `clean` qui fait le ménag
 
 Résumons, désormais la commande `make` permet compiler ou recompuler tout le projet. La commande `make clean` permet de faire le ménage.
 
+### B. Implémentation des opérations
+
+Nous allons maintenant implémenter dans `serpent.c` les opérations décrites dans le fichier d'en-ête `serpent.h`. Rappelons les structures de données mises en jeu :
+```c title="Rappel de serpent.h"
+    struct maillon_s {
+        /* Coordonnées du bloc */
+        int x;
+        int y;
+
+        /* Maillon suivant (de la queue vers la tête) */
+        struct maillon_s *suivant;
+    };
+    typedef struct maillon_s Maillon;
+
+    /* Sens de déplacement */
+    #define RIGHT 0
+    #define UP 1
+    #define DOWN 2
+    #define LEFT 3
+
+    struct serpent_s {
+        Maillon *queue; /* Premier maillon : fin du serpent */
+        Maillon *tete; /* Dernier maillon : tête du serpent */
+        int direction; /* Sens de déplacement */
+    };
+    typedef struct serpent_s Serpent;
+```
+
+Voici une représentation schématique d'un serpent qui occupe les blocs de coordonnées $(4,4)$, $(5, 4)$, $(6, 4)$ et qui se déplace vers la droite. Notez bien que la liste commence avec l'élément de fin du serpent, et remonte jusque la case de tête du serpent (en dernière position dans la liste). La structure `Serpent` contient un pointeur permettant d'atteindre la tête du serpent en temps $O(1)$.
+
+```mermaid
+flowchart LR
+    direction LR
+    subgraph Serpent
+        queue
+        tete
+        direction[direction = RIGHT]
+    end
+    queue --> M1
+    tete --> M3
+    subgraph M1[Maillon]
+        direction LR
+        x1[x = 4]
+        y1[y = 4]
+        suivant1[suivant]
+    end
+    suivant1 --> M2
+    subgraph M2[Maillon]
+        direction LR
+        x2[x = 5]
+        y2[y = 4]
+        suivant2[suivant]
+    end
+    suivant2 --> M3
+    subgraph M3[Maillon]
+        direction LR
+        x3[x = 6]
+        y3[y = 4]
+        suivant3[suivant]
+    end
+    N@{shape: lin-rect, label: "NULL", color: blue}
+    suivant3 --> N
+```
+
+!!! tip "Exercice : Implémentation des opérations"
+    Dans le fichier `serpent.c`, implémentez les opérations :
+    
+    1. `creer_serpent`
+    2. `prochain_x` et `prochain_y`
+    3. `appartient`
+    4. `avancer`
+    5. `grandir`
+    6. `place_serpent`
+
+    Des indications sont fournies ci-dessous.
+
+Voici quelques indications pour vous aider dans votre tâche :
+
+1. `creer_serpent` : il faudra allouer de la mémoire sur le tas pour la structure et pour le premier et unique maillon
+2. `prochain_x` et `prochain_y` : les coordonnées de la prochaine case se calculent à partir de celles de la tête et de la direciton actuelle
+3. `appartient` : c'est un parcours de liste
+4. `avancer` : c'est ici que la structure proposée est vraiment intéressante : il suffit de calculer la prochaine case occupée et d'ajouter un maillon pour cet emplacement qui sera la nouvelle tête, le maillon de queue quant à lui sera supprimé (ne pas oublier de libérer la mémoire...).
+5. `grandir` : même chose que l'opération précédente, mais on ne supprime pas cette fois l'élément de queue : la longueur de la liste augmente donc de 1.
+6. `place_serpent` : pas de difficulté particulière, on parcourt la liste et on modifie les cases correspondantes de l'arène.
+
+!!! warning "Remarque"
+    Pour le moment on ne se préoccupe pas de savoir si les déplacements sont effectivement possibles (murs, collisions, sortie de l'arène, ...).
+
+!!! bug "Attention"
+    **Pensez bien aux cas limites de votre structure de liste !**
+
+!!! tip "Exercice : Nettoyage"
+    Ajouter une opération `destroy_serpent` dont le but est de libérer
+    la mémoire allouée par un serpent. Vous ajouterez cette opération
+    dans le fichier `serpent.h` en vous inspirant des autres prototypes,
+    puis vous coderez l'implémentation dans `serpent.c`.
+
+
