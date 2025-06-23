@@ -501,4 +501,73 @@ Voici quelques indications pour vous aider dans votre tâche :
     dans le fichier `serpent.h` en vous inspirant des autres prototypes,
     puis vous coderez l'implémentation dans `serpent.c`.
 
+### C. Un serpent animé !
+
+Nous sommes maintenant prêt pour créer une petite animation de serpent qui se déplace.
+
+Nous allons commencer par créer un serpent de taille 1 en position (3, 3) avec un déplacement
+vers la droite, puis le faire grandir 5 fois pour obtenir un serpent de taille 5.
+
+Ensuite, nous dessinons la scène du jeu : on part d'une arène vide, on ajoute le mur d'enceinte, puis on place le serpent. On met à jour l'affichage pour voir le résultat.
+
+Pour faire déplacer le serpent, on utilise la fonction `avance` mais il faut alors recommencer le dessin complet de la scène : remettre tout à vide, mettre les murs, placer le serpent, actualiser l'affichage.
+
+Bref, en réalisant plusieurs fois ces opérations et en ajoutant des petites pauses de 0,5s entre chaque image, on obtient une animation. Testez maintenant votre code avec l'animation proposée ci-dessous !
+
+!!!example Un serpent animé
+    ```c title="fonction main"
+    int main(int argc, char * argv[]) {
+        SDL_Init(SDL_INIT_VIDEO);
+        SDL_Window *fenetre = SDL_CreateWindow("Snake974", WIN_X, WIN_Y, WIN_W, WIN_H, 0);
+        SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
+
+        Serpent *s = creer_serpent(3, 3, RIGHT);
+        for (int k = 0; k < 5; k++) {
+            grandir(s);
+        }
+
+        Arena mat;
+
+        for (int k = 0; k < 8; k++) {
+            init_arena(mat);
+            mur_enceinte(mat);
+            place_serpent(s, mat);
+            draw_arena(renderer, mat);
+            SDL_RenderPresent(renderer);
+
+            SDL_Delay(500);
+            avancer(s);
+        }
+        s->direction = DOWN;
+        for (int k = 0; k < 3; k++) {
+            init_arena(mat);
+            mur_enceinte(mat);
+            place_serpent(s, mat);
+            draw_arena(renderer, mat);
+            SDL_RenderPresent(renderer);
+
+            SDL_Delay(500);
+            avancer(s);
+        }
+        s->direction = LEFT;
+        for (int k = 0; k < 8; k++) {
+            init_arena(mat);
+            mur_enceinte(mat);
+            place_serpent(s, mat);
+            draw_arena(renderer, mat);
+            SDL_RenderPresent(renderer);
+
+            SDL_Delay(500);
+            avancer(s);
+        }
+
+
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(fenetre);
+        SDL_Quit();
+
+        return EXIT_SUCCESS;
+    }
+    ```
+
 
