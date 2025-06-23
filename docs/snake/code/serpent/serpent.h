@@ -2,7 +2,7 @@
 #define SERPENT_H
 
 #include <stdbool.h>
-#include "options.h"
+#include "main.h"
 
 struct maillon_s {
     /* Coordonnées du bloc */
@@ -45,6 +45,6 @@ extern void grandir(Serpent *s);
 Serpent *creer_serpent(int x, int y, int dir);
 
 /* Marque dans l'arene mat les cases occupees par le serpent */
-extern void place_serpent(const Serpent *s, int mat[ARENA_W][ARENA_H]);
+extern void place_serpent(const Serpent *s, Arena mat);
 
 #endif

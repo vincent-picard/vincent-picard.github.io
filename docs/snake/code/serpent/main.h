@@ -1,5 +1,5 @@
-#ifndef OPTIONS_H
-#define OPTIONS_H
+#ifndef MAIN_H
+#define MAIN_H
 
 // Position et dimensions de la fenetre
 #define WIN_W 640
@@ -17,5 +17,8 @@
 #define WALL 1
 #define COCO 2
 #define SNAKE 4
+
+// Type de l'arene
+typedef int Arena[ARENA_W][ARENA_H];
 
 #endif

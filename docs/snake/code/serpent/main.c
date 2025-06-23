@@ -1,9 +1,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "options.h"
-
-typedef int Arena[ARENA_W][ARENA_H];
+#include "main.h"
 
 /* Construit une arène entièrement vide */
 void init_arena(Arena mat) {

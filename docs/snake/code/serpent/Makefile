@@ -11,11 +11,11 @@ LIBS= -L/usr/local/lib -lSDL2
 snake: main.o serpent.o
 	$(CC) main.o serpent.o -o snake $(CFLAGS) $(LIBS)
 
-main.o: options.h serpent.h main.c
+main.o: main.h serpent.h main.c
 	$(CC) -c main.c $(CFLAGS)
 
-serpent.o: options.h serpent.h serpent.c
+serpent.o: main.h serpent.h serpent.c
 	$(CC) -c serpent.c
 
 clean:
-	rm *.o
+	rm -f *.o
