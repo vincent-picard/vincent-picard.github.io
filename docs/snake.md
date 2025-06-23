@@ -108,17 +108,17 @@ Commençons maintenant à définir à quoi ressemblera le jeu. Notre jeu sera se
 
 L'arène pourra contenir les types de bloc suivants :
 
-- `VIDE` : aucun bloc
+- `VIDE` : bloc vide
 - `WALL` : qui représente un mur
 - `COCO` : qui représente une noix de coco
 - `SNAKE` : qui représente une partie du corps du serpent
 
-Cela fait de nombreuses constantes à définir, nous utilisons pour cela un fichier d'en-tête `option.h` :
+Cela fait de nombreuses constantes à définir, nous utilisons pour cela un fichier d'en-tête `main.h` pour déclarer les valeurs publiques (que tout le code peut du projet peut utiliser).
 
-!!! example "Fichier d'options `options.h`"
+!!! example "Fichier `main.h`"
     ```c
-    #ifndef OPTIONS_H
-    #define OPTIONS_H
+    #ifndef MAIN_H
+    #define MAIN_H
 
     // Position et dimensions de la fenetre
     #define WIN_W 640
@@ -137,12 +137,16 @@ Cela fait de nombreuses constantes à définir, nous utilisons pour cela un fich
     #define COCO 2
     #define SNAKE 4
 
+    /* L'arene est définie comme une matrice
+       de blocs */
+    typedef int Arena[ARENA_W][ARENA_H];
+
     #endif
     ```
 
 Il suffira ensuite d'inclure ce fichier d'en-tête dans n'importe quel fichier .c pour pouvoir utiliser ces définitions :
 ```c
-#include "options.h"
+#include "main.h"
 ```
 
 !!! warning "Attention"
@@ -203,12 +207,12 @@ Il existe ensuite une multitude de fonctions de dessin, prenant en paramètre l'
 | `SDL_RenderPresent(renderer)` | **Met à jour l'affichage** |
 
 !!! warning "Attention"
-    Noter l'importance de la fonction `SDL_SetRenderPresent`. Tout dessin ne sera visible qu'une fois la mise à jour de l'affichage effectué.
+    Noter l'importance de la fonction `SDL_RenderPresent`. Tout dessin ne sera visible qu'une fois la mise à jour de l'affichage effectué.
 
-Notre grille étant rectangulaire, ces fonctions primitives de dessins devraient suffire. Voici quelques remarques pour bien comprendre ces fonctions :
+Notre grille étant rectangulaire, ces fonctions primitives de dessin devraient suffire. Voici quelques remarques pour bien comprendre ces fonctions :
 
 !!! info "Les couleurs"
-    En SDL les couleurs sont codées avec 4 octets, c'est-à-dire 4 valeurs entières $(r, g, b, a)$ entre 0 et 255 pour les composantes rouge (r), vert (g) et bleu (b); la composante alpha (a) représente le niveau de transparence (0 = transparent, 255 = opaque).
+    En SDL les couleurs sont codées sur 4 octets, c'est-à-dire 4 valeurs entières $(r, g, b, a)$ entre 0 et 255 pour les composantes rouge (r), vert (g) et bleu (b); la composante alpha (a) représente le niveau de transparence (0 = transparent, 255 = opaque).
 
 !!! info "Les rectangles"
     SDL implémente son propre type `SDL_Rect` pour représenter un rectangle. Voici un exemple de fonctionnement :
@@ -224,9 +228,8 @@ Notre grille étant rectangulaire, ces fonctions primitives de dessins devraient
     #include <SDL2/SDL.h>
     #include <stdio.h>
     #include <stdlib.h>
-    #include "options.h"
+    #include "main.h"
 
-    typedef int Arena[ARENA_W][ARENA_H];
 
     /* Construit une arène entièrement vide */
     void init_arena(Arena mat) {
@@ -300,7 +303,7 @@ Comme le code se complexifie, il serait bon de commencer à le **séparer** dans
     #define SERPENT_H
 
     #include <stdbool.h>
-    #include "options.h"
+    #include "main.h"
 
     struct maillon_s {
         /* Coordonnées du bloc */
@@ -343,7 +346,7 @@ Comme le code se complexifie, il serait bon de commencer à le **séparer** dans
     Serpent *creer_serpent(int x, int y, int dir);
 
     /* Marque dans l'arene mat les cases occupees par le serpent */
-    extern void place_serpent(const Serpent *s, int mat[ARENA_W][ARENA_H]);
+    extern void place_serpent(const Serpent *s, Arena mat);
 
     #endif
     ```
@@ -359,15 +362,15 @@ int prochain_x(const Serpent* s) {
 /* etc */
 ```
 
-Votre projet contient maintenant 4 fichiers : `main.c`, `options.h`, `serpent.h`, `serpent.c`. Et la compilation s'obtient avec les commandes :
+Votre projet contient maintenant 4 fichiers : `main.c`, `main.h`, `serpent.h`, `serpent.c`. Et la compilation s'obtient avec les commandes :
 ```sh
     gcc -c main.c $(sdl2-config --cflags)
     gcc -c serpent.c
     gcc main.o serpent.o -o snake $(sdl2-config --cflags --libs)
 ```
-C'est fastidieux ! De plus à chaque modification du projet, on peut se torturer à savoir quel(s) fichier(s) doivent être recompilés ou pas et dans quel ordre...
+Cela devient fastidieux ! De plus à chaque modification du projet, on peut se torturer à se demander quel(s) fichier(s) doivent être recompilés ou pas et dans quel ordre...
 
-Nous allons utiliser le logiciel `make` pour nous faciliter la tache. Pour fonctionner, cet outil a besoin de disposer d'un fichier nommé `Makefile` à la racine de notre projet. Ce fichier décrit un ensemble de **cibles**, c'est-à-dire de fichiers à compiler, suivi de ses **dépendances** et de la commande de compilation. Écrivons ce fichier :
+Nous allons utiliser le logiciel `make` pour nous faciliter la tâche. Pour fonctionner, cet outil a besoin de disposer d'un fichier nommé `Makefile` à la racine de notre projet. Ce fichier décrit un ensemble de **cibles**, c'est-à-dire de fichiers à compiler, suivi de ses **dépendances** et de la commande de compilation. Écrivons ce fichier :
 
 !!! example "Fichier `Makefile`"
     Attention, les tabulations utilisées sont importantes et doivent être de vraies tabulation (pas une succession d'espaces). Il faudra aussi adapter les valeurs de `CC`, `CFLAGS` et `LIBS` selon votre propre configuration.
@@ -385,19 +388,19 @@ Nous allons utiliser le logiciel `make` pour nous faciliter la tache. Pour fonct
     snake: main.o serpent.o
         $(CC) main.o serpent.o -o snake $(CFLAGS) $(LIBS)
 
-    main.o: options.h serpent.h main.c
+    main.o: main.h serpent.h main.c
         $(CC) -c main.c $(CFLAGS)
 
-    serpent.o: options.h serpent.h serpent.c
+    serpent.o: main.h serpent.h serpent.c
         $(CC) -c serpent.c
 
     clean:
-        rm *.o
+        rm -f *.o
     ```
 
-Une fois ce fichier renseigné, l'appel à la commande `make` compile automatiquement la premiere cible, c'est-à-dire l'exécutable `snake` dans notre cas. En cas de modification du code, `make` est capable de savoir exactement ce qui a besoin d'être recompilé : cela évite de recompiler entièrement un projet à chaque une petite modification.
+Une fois ce fichier renseigné, l'appel à la commande `make` compile automatiquement la premiere cible. Ici, la première cible est l'exécutable `snake`. En cas de modification du code, `make` est capable de savoir exactement ce qui a besoin d'être recompilé : cela évite de recompiler entièrement un projet à chaque une petite modification.
 
-De plus nous avons ajouté une *fausse* (PHONY) règle `clean` qui fait le ménage en supprimant les fichiers intermédiaires devenus inutiles.
+De plus nous avons ajouté une *fausse* (PHONY) cible `clean` qui fait le ménage en supprimant les fichiers intermédiaires devenus inutiles.
 
-Résumons `make` permet de tout compiler. `make clean` permet de faire le ménage.
+Résumons, désormais la commande `make` permet compiler ou recompuler tout le projet. La commande `make clean` permet de faire le ménage.
 
