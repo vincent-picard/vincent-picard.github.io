@@ -1,5 +1,9 @@
 # :snake: Projet en C : jeu Snake
 
+<figure markdown="span">
+![Jeu du Snake](snake/snake.png){ align = center }
+<figcaption> Le jeu Snake </figcaption>
+</figure>
 
 ## 1. Installer la bibliothèque de développement
 
