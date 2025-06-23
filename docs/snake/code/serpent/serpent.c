@@ -91,7 +91,7 @@ void grandir(Serpent *s) {
 void place_serpent(const Serpent *s, Arena mat) {
     Maillon *actuel = s->queue;
     while (actuel != NULL) {
-        mat[actuel->x][actuel->y] = WALL;
+        mat[actuel->x][actuel->y] = SNAKE;
         actuel = actuel -> suivant;
     }
 }
