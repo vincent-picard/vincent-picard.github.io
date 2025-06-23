@@ -12,6 +12,18 @@ void init_arena(Arena mat) {
     }
 }
 
+/* Construit un mur d'enceinte */
+void mur_enceinte(Arena mat) {
+    for (int x = 0; x < ARENA_W; x++) {
+        mat[x][0] = WALL;
+        mat[x][ARENA_H - 1] = WALL;
+    }
+    for (int y = 0; y < ARENA_H; y++) {
+        mat[0][y] = WALL;
+        mat[ARENA_W - 1][y] = WALL;
+    }
+}
+
 void draw_arena(SDL_Renderer *renderer, Arena mat) {
     SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
     SDL_RenderClear(renderer);
@@ -56,13 +68,14 @@ int main(int argc, char * argv[]) {
 
     Arena mat;
     init_arena(mat);
+    mur_enceinte(mat);
     mat[3][5] = WALL; // Pour tester
     mat[6][6] = SNAKE; // Toujours pour tester
     mat[6][7] = SNAKE;
     mat[6][8] = SNAKE;
     mat[15][2] = COCO;
     draw_arena(renderer, mat);
-
+    
     SDL_RenderPresent(renderer);
 
     SDL_Delay(5000); // Attendre 5 sec

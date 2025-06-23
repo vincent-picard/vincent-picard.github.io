@@ -47,4 +47,6 @@ Serpent *creer_serpent(int x, int y, int dir);
 /* Marque dans l'arene mat les cases occupees par le serpent */
 extern void place_serpent(const Serpent *s, Arena mat);
 
+extern void destroy_serpent(Serpent *s);
+
 #endif
