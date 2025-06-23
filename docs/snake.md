@@ -570,4 +570,112 @@ Bref, en réalisant plusieurs fois ces opérations et en ajoutant des petites pa
     }
     ```
 
+## 5. La boucle principale
+
+Nous nous approchons du but. Il nous reste à programmer la **boucle principale** du jeu. En effet, le jeu est en fait une boucle infinie dans laquelle on effectue les actions suivantes :
+
+1. Dessiner la scène
+2. Attendre
+3. Lire et prendre en compte les actions du joueur
+4. Mettre à jour le serpent
+
+### A. Lire les événements clavier
+
+Les **événements** sont toutes les actions extérieures qui peuvent être prises en compte par notre programme : appui sur des touches clavier, actions de la souris ou de la manette de jeu, utilisation de boutons de la fenêtre, etc.
+
+SDL a un fonctionnement très simple pour gérer les événements. À chaque fois qu'un événement se produit il est enregistré dans une file FIFO interne. Il existe ensuite une fonction de signature `int SDL_PollEvent(SDL_Event *event)` qui a pour but d'extraire un élément de cette file. Elle retourne 1 si un événement est effectivement défilé et 0 si la file est vide.
+
+De plus, cette fonction attend un argument un pointeur vers une structure de type `SDL_Event` qui permet d'enregistrer les informations sur l'événement qui vient d'être extrait de la file. Notons `event` cette variable, nous aurons besoin des champs suivants :
+
+- `event.type` : décrit le type d'événement produit. On écoutera les événements de type `SDL_KEYDOWN` (une touche est pressée) 
+- `event.key.keysim.sym` : dans le cas où l'événement concerne une touche, ce champ contient le caractère concerné
+
+Pour résumer, voilà à quoi ressemble notre boucle principale :
+
+!!! example "Boucle principale"
+    ```c
+    int main(int argc, char * argv[]) {
+        SDL_Init(SDL_INIT_VIDEO);
+        SDL_Window *fenetre = SDL_CreateWindow("Snake974", WIN_X, WIN_Y, WIN_W, WIN_H, 0);
+        SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
+
+        Serpent *s = creer_serpent(3, 3, RIGHT);
+        for (int k = 0; k < 5; k++) {
+            grandir(s);
+        }
+
+        Arena mat;
+
+        bool run = true;
+
+        while (run) {
+            init_arena(mat);
+            mur_enceinte(mat);
+            place_serpent(s, mat);
+            draw_arena(renderer, mat);
+            SDL_RenderPresent(renderer);
+
+            SDL_Delay(200);
+            SDL_Event event;
+            while (SDL_PollEvent(&event) != 0) {
+                if (event.type == SDL_KEYDOWN) {
+                    fprintf(stderr, "Touche pressée : %c \n", event.key.keysym.sym); 
+                }
+                if (event.key.keysym.sym == 'x') {
+                    run = false; // touche pour quitter le jeu
+                }
+            }
+            avancer(s);
+        }
+
+        destroy_serpent(s);
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(fenetre);
+        SDL_Quit();
+
+        return EXIT_SUCCESS;
+    }
+    ```
+
+Dans le code proposé, le jeu est une boucle principale qui fait avancer le serpent à chaque itération et qui s'arrête lorsque le joueur appuie sur la touche `x`.
+
+
+!!! tip "Exercice : Diriger le serpent"
+    Modifiez la boucle principale proposée pour qu'elle puisse prendre en compte des commandes de déplacement `q` (gauche), `s` (bas), `d` (droite), `z` (haut). L'action a effectué consiste à modifier la direction de déplacement du serpent.
+
+Et voilà, notre jeu commence à être jouable ! Essayez et étudiez le comportement du jeu lorsque le serpent percute un mur, marche sur lui-même ou sors de la zone de jeu...
+
+### B. Gestion des collisions
+
+Nous allons maintenant gérer la mise à jour du serpent. Pour l'instant le serpent ne fait qu'avancer... nous allons affiner son comportement.
+
+!!! tip "Exercice : Gestion des collisions"
+    Modifiez votre code pour que le jeu s'arrête lorsque le bloc vers lequel on va avancer est un **mur** ou appartient déjà au serpent. Dans ce cas, la partie est perdue.
+
+### C. Gestion de la noix de coco
+
+!!! tip "Exercice : Noix de coco"
+    1. Ajouter dans votre fonction `main` deux variables locales :
+    ```c
+    int coco_x;
+    int coco_y;
+    ```
+    qui représentent la position d'une noix de coco. Cette position doit être
+    choisie aléatoirement pour correspondre à une case vide de l'arène.
+    2. Programmer le comportement suivant : si la case suivante est une noix de coco, alors plutôt qu'avancer on fait **grandir** le serpent. On choisit ensuite une nouvelle position valide de noix de coco.
+
+
+## 6. Aller plus loin
+
+Voilà ! vous avez un jeu fonctionnel minimal et il vous appartient maintenant de le faire évoluer ! Voici des pistes non limitatives :
+
+- Programmer une touche *pause*
+- Proposer des notions de score et de niveau. Plus le niveau augmente, plus le serpent est rapide.
+- Ajouter des sons.
+- Si la noix de coco reste trop longtemps en jeu alors elle devient un cocotier (= 1 mur)
+- Possibilité d'avoir plusieurs noix de coco
+- Possibilité d'avoir des pommes empoisonnées en plus des noix de coco
+- Possibilité d'avoir un bonus à ramasser qui fait diminuer la longueur du serpent
+- ...
+
 
