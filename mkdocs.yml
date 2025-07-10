@@ -16,6 +16,7 @@ nav:
   - Émulateur i8080: 
     - Introduction : 'i8080/index.md'
     - Architecture générale: 'i8080/architecture.md'
+    - Les flags: 'i8080/flags.md'
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
   #  - Langages formels :
