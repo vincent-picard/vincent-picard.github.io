@@ -18,6 +18,7 @@ nav:
     - Architecture générale: 'i8080/architecture.md'
     - Les flags: 'i8080/flags.md'
     - Makefile et tests unitaires: 'i8080/makefile.md'
+    - Les instructions carry: 'i8080/carry.md'
 
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
