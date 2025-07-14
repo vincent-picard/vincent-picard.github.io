@@ -1,6 +1,11 @@
 # Les instructions du *carry bit*
 
+**Fichiers :** `carry.h` `carry.c`
+
 On s'attaque maintenant à la programmation des instructions du i8080. Pour chaque instruction du jeu d'instruction, on écrira dans le projet une fonction `void instr_XXX(Computer *comp)` où `XXX` est le nom de l'instruction programmée. Cette fonction mettra à jour `comp` en exécutant l'instruction `XXX`.
+
+!!!warning "Et le *program counter* ?"
+    Sauf mention du contraire, les fonctions `instr_XXX` ne s'occuperont pas de mettre à jour le registre *program counter* (PC).
 
 Dans le manuel Intel, ces fonctions sont regroupées par catégories :
 
@@ -50,6 +55,8 @@ extern void instr_stc(Computer *comp);
     2. `void instr_cmc(Computer *comp)`
 
     qui implémentent STC et CMC respectivement.
+
+    NB : Il vous faudra déterminer les instructions `#include` à utiliser, je ne les indiquerai plus systématiquement.
 
 
 !!!example "Exercice"

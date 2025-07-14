@@ -1,5 +1,7 @@
 # Les flags
 
+**Fichiers :** `flags.h` `flags.c`
+
 Dans la section précédente, nous avons expliqué que le processeur garde en mémoire 5 états binaires appelés flags. Ces flags sont :
 
 - *Sign (S)* : signe
