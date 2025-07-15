@@ -58,6 +58,8 @@ extern void instr_stc(Computer *comp);
 
     NB : Il vous faudra déterminer les instructions `#include` à utiliser, je ne les indiquerai plus systématiquement.
 
+!!!warning "Attention"
+    Les valeurs des **flags** sont modifiées ou lues grâce à nos fonctions **set**, **reset** et **get** définies précédemment. C'est d'ailleurs pour cela qu'on les a définies. Cette remarque reste valable pour toute la suite du projet.
 
 !!!example "Exercice"
     1. Mettre à jour le `Makefile` avec la nouvelle unité `carry`.
