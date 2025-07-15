@@ -130,6 +130,8 @@ On ajoute le fichier d'en-tête suivant :
 #ifndef ROTATE_H
 #define ROTATE_H
 
+#include "computer.h"
+
 extern void instr_rlc(Computer *comp);
 extern void instr_rrc(Computer *comp);
 extern void instr_ral(Computer *comp);
