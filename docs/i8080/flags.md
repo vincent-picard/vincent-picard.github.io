@@ -1,6 +1,7 @@
 # Les flags
 
-**Fichiers :** `flags.h` `flags.c`
+**Nouveaux fichiers :** `flags.h` `flags.c`
+**Fichiers modifiés:** `computer.c`
 
 Dans la section précédente, nous avons expliqué que le processeur garde en mémoire 5 états binaires appelés flags. Ces flags sont :
 
@@ -164,7 +165,7 @@ Le flag *parity* (P) est **set** s'il y a un nombre pair de bits ayant pour vale
     Écrire l'implémentation de la fonction `update_flag_p`
 
 !!!example "Exercice"
-    Écrire l'implémentation de la fonction `update_flag_szp` qui met à jour simultanément les flags S, Z et P en fonction d'un résultat de calcul.
+    Écrire l'implémentation de la fonction `update_flags_szp` qui met à jour simultanément les flags S, Z et P en fonction d'un résultat de calcul.
 
 ### D. Les autres
 

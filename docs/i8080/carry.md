@@ -1,6 +1,6 @@
 # Les instructions du *carry bit*
 
-**Fichiers :** `carry.h` `carry.c`
+**Nouveaux fichiers :** `carry.h` `carry.c`
 
 On s'attaque maintenant à la programmation des instructions du i8080. Pour chaque instruction du jeu d'instruction, on écrira dans le projet une fonction `void instr_XXX(Computer *comp)` où `XXX` est le nom de l'instruction programmée. Cette fonction mettra à jour `comp` en exécutant l'instruction `XXX`.
 

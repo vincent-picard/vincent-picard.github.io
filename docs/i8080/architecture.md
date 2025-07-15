@@ -1,6 +1,6 @@
 # Architecture générale du processeur
 
-**Fichiers :** `computer.h` `computer.c`
+**Nouveaux fichiers :** `computer.h` `computer.c`
 
 Commençons par présenter le processeur i8080 du point de vue de son mode de fonctionnement. Nous ne rentrerons pas dans les détails de l'architecture matérielle de ce processeur.
 

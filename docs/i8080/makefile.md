@@ -1,6 +1,6 @@
 # Makefile et tests unitaires
 
-**Fichiers :** `Makefile` `main.c`
+**Nouveaux fichiers :** `Makefile` `main.c`
 
 Le projet avance bien et comporte déjà plusieurs fichiers source. Le projet final en comportera bien davantage, il est donc temps de regrouper tous les fichiers `computer.c`, `computer.h`, `flags.h`, `flags.c` dans un même répertoire (si ce n'est pas déjà fait) et d'y ajouter un fichier nommé `Makefile`. Le but de ce fichier est de permettre à un outil nommé `make` de réaliser en une seule commande la compilation ou la re-compilation du projet.
 
