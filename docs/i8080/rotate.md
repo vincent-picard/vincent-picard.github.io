@@ -141,6 +141,9 @@ extern void instr_rar(Computer *comp);
 !!!example "Exercice"
     Dans un nouveau fichier `rotate.c`, écrire l'implémentation des 4 fonctions déclarées dans `rotate.h`. Comme expliqué, ces fonctions agiront sur le registre A et le flag de retenue CY.
 
+!!!note "Indication"
+    Bien sûr il faut implémenter ces fonctions en se servant des opérateurs `>>` et `<<` du langage C. Pensez simplement à "sauvegarder" le bit perdu lors d'un tel décalage.
+
 Au risque de me répéter, à chaque nouvelle unité de compilation :
 
 !!!example "Exercice"
