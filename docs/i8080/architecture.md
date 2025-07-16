@@ -6,12 +6,37 @@ Commençons par présenter le processeur i8080 du point de vue de son mode de fo
 
 ## 1. Composants du processeur
 
-Voici un schéma des principaux composants d'un processeur i8080 :
+Voici un schéma des principaux composants d'un processeur i8080 (en jaune):
 
-<figure markdown="span">
-![Registres du Intel 8080](i8080_registers.png){width="800", align =center }
-<figcaption> Schéma des registres d'un i8080 (source : 8080/8085 assembly language programming) </figcaption>
-</figure>
+```mermaid
+block-beta
+  columns 3
+  block:cpu:3
+      columns 3
+      block
+          columns 1
+          alu[\"Unité arithmétique et logique (ALU)"/]
+          control[["Unité de contrôle"]]
+          decode(["Décodeur d'instructions"])
+      end
+      block:reg
+        columns 2
+        a["Accumulateur (A)"] f["Flags"] b["B"] c["C"] d["D"] e["E"] h["H"] l["L"]
+      end
+      block:pcsp
+        columns 2
+        sp["Stack pointer"]:1
+        pc["Program counter"]:1
+      end
+  end
+  blockArrowId6<["Bus de données"]>(up, down)
+  space
+  blockArrowId4<["Bus d'adresses"]>(down)
+  mem["Mémoire 64kio (programmes + données)"]:3
+  io[("Périphériques E/S")]:3
+  style mem fill:#bbf,stroke:blue
+  style io fill:#bfb,stroke:green
+```
 
 À l'interieur d'un processeur i8080, on trouve :
 
