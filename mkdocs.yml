@@ -21,6 +21,7 @@ nav:
     - Les instructions du carry bit: 'i8080/carry.md'
     - Les instructions de décalage: 'i8080/rotate.md'
     - Les instructions de transfert: 'i8080/datatransfer.md'
+    - Les instructions à adressage direct: 'i8080/direct.md'
 
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
