@@ -181,5 +181,11 @@ Ajouter au fichier d'en-tête :
 uint8_t op_sub(Computer *comp, uint8_t a, uint8_t b, uint8_t borrow);
 ```
 
+!!!example "Exercice"
+    Dans le fichier `alu.c`, implémentez la fonction `op_sub`. Cette fonction procédera comme indiqué ci-dessus : on provoquera le bon appel à `op_add` puis on inverse le flag **CY** à la fin. C'est donc `op_add` qui détermine la valeur des autres flags.
+
 ## 3. Les opérations logiques bit à bit
 
+## 4. Tester, tester et tester !
+
+Après avoir compilé tout cela, je vous encourage sincèrement à écrire des tests unitaires fournis pour vos fonctions `op_XXX`. En particulier : vérifier non seulement la valeur du résultat, mais aussi que les flags sont correctement définis après chaque opération. Ces fonctions sont source d'erreur, en particulier sur les flags... 
