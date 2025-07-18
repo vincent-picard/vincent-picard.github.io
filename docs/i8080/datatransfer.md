@@ -68,6 +68,9 @@ Créer le fichier d'en-tête :
 #ifndef DATATRANSFER_H
 #define DATATRANSFER_H
 
+#include "computer.h"
+#include <stdint.h>
+
 /* Exécute l'instruction MOV sur l'ordinateur comp.
  * instr est la valeur d'octet de l'instruction */
 extern void instr_mov(Computer *comp, uint8_t instr);

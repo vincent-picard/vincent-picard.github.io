@@ -114,10 +114,17 @@ retunues (emprunts) :      -  1 1
 La différence est surtout liée à la retenue (appelée *emprunt* dans le cas de la
 soustraction) qui devra cette fois être retirée à la colonne supérieure.
 
-### Transformer une soustraction en somme
-
 Toutefois, le processeur 8080 ne procède pas ainsi : il va habilement utiliser les circuits
 déjà présents (l'additionneur 8-bits) et l'astuce du complément à 2 pour réaliser sa soustraction.
+
+### Transformer une soustraction en somme
+
+!!! Remarque
+    Cette section est construite à partir de ma compréhension des mécanismes impliqués. J'ai dû faire quelques recherches à gauche et à droite car le manuel est peu bavard sur le sujet. Par exemple pour la soustraction avec emprunt, il indique seulement :
+    >The Carry bit is internally added to the contents of the specified byte. This value is then subtracted
+     from the accumulator using two's complement arithmetic.
+
+    sans préciser comment la retenue est *ajoutée en interne* ni comment est utilisé le complément à 2.
 
 L'idée est que comme on travaille sur 8-bits ajouter $2^8$ ne change rien au résultat et donc : 
 $a - b \equiv a - b + 2^8 = a + (2^8 - 1 - b) + 1$. Or $2^8 - 1 = 0b11111111$, donc soustraire $b$
@@ -185,6 +192,49 @@ uint8_t op_sub(Computer *comp, uint8_t a, uint8_t b, uint8_t borrow);
     Dans le fichier `alu.c`, implémentez la fonction `op_sub`. Cette fonction procédera comme indiqué ci-dessus : on provoquera le bon appel à `op_add` puis on inverse le flag **CY** à la fin. C'est donc `op_add` qui détermine la valeur des autres flags.
 
 ## 3. Les opérations logiques bit à bit
+
+On va pouvoir souffler avec quelques opérations plus simples à comprendre : le AND, le XOR et le OR bit à bit. Ce sont exactement les mêmes opérations que `&`, `^` et `|` en langage C.
+
+Le seul point d'attention est de mettre à jour correctement les flags. Les flags **S**, **Z**, et **P** se mettent à jour normalement en fonction du résultat : on peut utiliser notre fonction `update_flags_szp` pour cela. Pour les flags **CY** (*Carry*) et **AC** (*Auxiliary Carry*), les règles sont les suivantes :
+
+| Opération | **CY** | **AC** |
+| :-: | :-: | :-: |
+| AND | **reset** | défini comme le OU des deux bits 3 des opérandes |
+| XOR | **reset** | **reset** |
+| OR | **reset** | **reset** |
+
+Dans l'exemple :
+```
+bit      7654 3210                  
+
+         1010 1010
+    AND  0110 0110
+    --------------
+         0010 0010
+```
+le flag **CY** sera **reset** (dans tous les cas), et le flag **AC** sera **set** car les bits 3 (c'est-à-dire les 4e bits en comptant de la droite vers la gauche) valent respectivement `1` et `0` et que `1 OU 0 = 1`.
+
+!!!warning "Remarques"
+    Je vous ai maché ici beaucoup de travail de recherche dans les documentations... En effet :
+
+    Le *Intel 8080 Assembly Language Programming Manual* stipule que le flag **AC** n'est pas modifié, mais cela est contredit par d'autres sources y compris de chez Intel : le *Intel 8080 Microcomputer Systems Users Manual* indique que **AC** est affecté, mais sans dire comment. Enfin le *8080/8085 Assembly Programming Manual* explique (p 1-12) que **AC** est affecté comme expliqué ci-dessus...
+
+    **Cet exemple doit vous rappeler à quel point la spécification et la documentation est importante en informatique**
+
+Bon, passons à la programmation. On ajoute dans le fichier d'en-tête les prototypes pour ces trois opérations.
+
+```c title="alu.h"
+/* Ces fonctions calculent l'opération bit à bit entre a et b
+ * et retournent le résultat.
+ * Tous les flags : CY AC S Z P sont affectés */
+uint8_t op_and(Computer *comp, uint8_t a, uint8_t b);
+uint8_t op_xor(Computer *comp, uint8_t a, uint8_t b);
+uint8_t op_or(Computer *comp, uint8_t a, uint8_t b);
+```
+
+!!!example "Exercice"
+    Dans le fichier `alu.c`, proposer une implémentation des ces trois fonctions. On utilisera évidemment les opérateurs `&`, `^` et `|` du langage C pour effectuer les calculs.
+
 
 ## 4. Tester, tester et tester !
 
