@@ -20,6 +20,9 @@ On ajoute le fichier d'en-tête suivant :
 #ifndef IMMEDIATE_H
 #define IMMEDIATE_H
 
+#include "computer.h"
+#include <stdint.h>
+
 void instr_lxi(Computer *comp, uint8_t instr, uint8_t low_data, uint8_t high_data);
 void instr_mvi(Computer *comp, uint8_t instr, uint8_t data);
 void instr_adi(Computer *comp, uint8_t data);
@@ -28,7 +31,6 @@ void instr_sui(Computer *comp, uint8_t data);
 void instr_sbi(Computer *comp, uint8_t data);
 void instr_ani(Computer *comp, uint8_t data);
 void instr_ori(Computer *comp, uint8_t data);
-void instr_adi(Computer *comp, uint8_t data);
 void instr_xri(Computer *comp, uint8_t data);
 void instr_cpi(Computer *comp, uint8_t data);
 
