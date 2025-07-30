@@ -44,6 +44,9 @@ Le format général d'un Makefile est le suivant : le fichier contient une liste
 
 Une cible est suivie après les `:` de la liste de ses dépendances, c'est-à-dire des fichiers qui sont utilisés dans la compilation pour produire la cible. Sous la cible, indentée par une tabulation, on trouve la commande de compilation à exécuter pour produire la cible. Par exemple, j'ai indiqué que le programme principal `i8080` a besoin de tous les fichiers objets `.o` (regroupés dans une variable `OBJ`) et du fichier `main.c`. De même, j'ai précisé que la compilation de `flags` dépend de `computers.h` et `flags.h` car on fait des `#include` de ces en-têtes, mais aussi du fichier `flags.c` évidemment.
 
+!!!bug "Attention"
+    La variable automatique `$<` fait référence à la dernière dépendance listée. C'est pourquoi mes commandes de compilation ne sont correctes que si on a pris soin de placer le fichier source `.c` en dernier dans la liste de dépendance. J'ai procédé ainsi pour avoir toujours la même commande de compilation pour chaque unité. Je ne me préoccupe alors que de la liste de dépendances à chaque fois.
+
 La cible `clean` est une fausse cible car elle ne produit aucun fichier. C'est pourquoi elle est marquée comme `.PHONY`. 
 
 !!!note "Utilisation de la commande Make"
