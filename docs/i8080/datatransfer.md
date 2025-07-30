@@ -28,7 +28,7 @@ Les trois bits `DDD` désignent la destination et les trois bits `SSS` désignen
 | Mémoire    | `110` |
 | Registre A | `111` |
 
-Il y a donc possiblement 64 valeurs d'octet du langage machine qui correspondent à une instruction **MOV**, c'est d'ailleurs pourquoi le [tableau du jeu d'instructions](pastraiser.com/cpu/i8080/i8080_opcodes.html) est fourni en instructions **MOV**. Par exemple, l'instruction `0x6A = 0b 0110 1010 = 0b 01 110 010` correspond à lire la donnée située dans le registre D et à la copier (en écrasant) dans le registre L, ce que l'on notera plus précisément **MOV L,D**.
+Il y a donc possiblement 64 valeurs d'octet du langage machine qui correspondent à une instruction **MOV**, c'est d'ailleurs pourquoi le [tableau du jeu d'instructions](pastraiser.com/cpu/i8080/i8080_opcodes.html) est fourni en instructions **MOV**. Par exemple, l'instruction `0x6A = 0b 0110 1010 = 0b 01 101 010` correspond à lire la donnée située dans le registre D et à la copier (en écrasant) dans le registre L, ce que l'on notera plus précisément **MOV L,D**.
 
 !!!bug "Attention"
     Il est interdit d'avoir MEM à la fois comme source et destination. Le code `0b01110110` est reservée pour une autre instruction (l'instruction HLT). Par contre tous les autres cas sont valides, même si la source et la destination sont les mêmes.
