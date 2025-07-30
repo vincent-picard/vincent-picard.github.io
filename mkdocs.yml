@@ -23,6 +23,7 @@ nav:
     - Les instructions de transfert: 'i8080/datatransfer.md'
     - Les instructions à adressage direct: 'i8080/direct.md'
     - L'unité arithmétique et logique: 'i8080/alu.md'
+    - Les instructions immédiates: 'i8080/immediate.md'
 
   #  - Généralités :
   #    - Récurrence et induction : 'general/induction.md'
