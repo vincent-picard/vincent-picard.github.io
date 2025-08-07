@@ -50,14 +50,14 @@ Pour l'implémentation on ajoute le fichier d'en-tête suivant :
 #include "computer.h"
 #include <stdint.h>
 
-void instr_add(Computer *comp, uint8_t instr, uint8_t data);
-void instr_adc(Computer *comp, uint8_t instr, uint8_t data);
-void instr_sub(Computer *comp, uint8_t instr, uint8_t data);
-void instr_sbb(Computer *comp, uint8_t instr, uint8_t data);
-void instr_ana(Computer *comp, uint8_t instr, uint8_t data);
-void instr_ora(Computer *comp, uint8_t instr, uint8_t data);
-void instr_xra(Computer *comp, uint8_t instr, uint8_t data);
-void instr_cmp(Computer *comp, uint8_t instr, uint8_t data);
+void instr_add(Computer *comp, uint8_t instr);
+void instr_adc(Computer *comp, uint8_t instr);
+void instr_sub(Computer *comp, uint8_t instr);
+void instr_sbb(Computer *comp, uint8_t instr);
+void instr_ana(Computer *comp, uint8_t instr);
+void instr_ora(Computer *comp, uint8_t instr);
+void instr_xra(Computer *comp, uint8_t instr);
+void instr_cmp(Computer *comp, uint8_t instr);
 
 #endif
 
