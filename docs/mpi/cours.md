@@ -1,13 +1,15 @@
 # :fontawesome-solid-book: Cours MPI
 
-!!! warning "Attention"
+!!! info "Work in progress"
     Ce section est en cours de construction. Merci de me signaler les erreurs éventuelles.
 
 ## :octicons-book-16: Résumés des chapitres
 
-Les résumés numériques suivants vous permettent de revoir le cours. Ils ne sont en aucun cas exhaustifs et ne dispensent certainement pas d'une **écoute** et d'une **prise de notes** actives en cours.
+!!!warning "Avertissement"
+    Les résumés numériques suivants vous permettent de revoir le cours. Ils ne sont en aucun cas exhaustifs et ne dispensent certainement pas d'une **écoute** et d'une **prise de notes** actives en cours. **En cas de manque de prises de notes, je retirerai l'accès à ces documents**.
 
 1. [:material-set-none: Induction et récurrence](/general/induction)
+<!--
 2. [:material-sigma: Langages réguliers, expressions régulières](/langages/regexp)
 3. [:fontawesome-solid-circle-nodes: Parcours de graphes et algorithme A:material-star:](/pdf/parcours_graphes.pdf)
     - [Parcours : illustrations](/pdf/parcours_exemples.pdf)
@@ -27,6 +29,7 @@ Les résumés numériques suivants vous permettent de revoir le cours. Ils ne so
 15. [:fontawesome-solid-circle-nodes: Couplages dans les graphes](/graphes/couplages)
     - [Chemin augmentants, graphe résiduel : exemple](/pdf/couplage_exemple.pdf)
 16. [:material-robot-outline: Jeux d'accessibilité](/pdf/ia.pdf)
+-->
 
 ## :material-book-sync: Notions de MP2I
 
@@ -40,6 +43,7 @@ Je mets également ici des documents liés concernant les notions de MP2I. Il es
 
 Les documents suivants permettent, à celles et ceux qui le veulent, d'aller un peu plus loin sur les notions vues en cours. Leur lecture est vivement conseillée à celles et ceux qui préparent les concours les plus sélectifs.
 
+<!--
 - [:material-sigma: Théorème de Myhill-Nerode et applications](/pdf/myhill.pdf)
 - [:material-sigma: Langages réguliers et reconnaissance par monoïde](/pdf/monoides.pdf)
 - [:material-sigma: Lemme d'Arden et applications](/pdf/arden.pdf)
@@ -47,8 +51,12 @@ Les documents suivants permettent, à celles et ceux qui le veulent, d'aller un 
 - [:fontawesome-solid-circle-nodes: Machines de Turing](/pdf/turing.pdf)
 - Algorithme CYK
 - Analyseurs syntaxiques LL(1)
+-->
 
+<!--
 ## Checklist de révision pour les écrits
 
 Ce document est une aide pour faire le point dans vos révisions.
+
 - [Checklist de révision](/pdf/checklist.pdf)
+-->

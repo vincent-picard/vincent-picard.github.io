@@ -1,7 +1,7 @@
 # :computer: Travaux pratiques
 
 ## Sujets traités en classe
-
+<!--
 - :simple-ocaml: **Révisions sur le langage OCaml : listes** [[:bookmark: sujet]](rev_listes.pdf)
 - :simple-c: **Révisions sur le langage C : calculatrice RPN** [[:bookmark: sujet]](calc.pdf) [[:white_check_mark: corrigé]](calc_corrige.zip)
 - :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf)
@@ -27,10 +27,13 @@
 - :simple-ocaml: **Optimisation du sac à dos par séparation-évaluation (branch and bound)** [[:bookmark: sujet]](sacados.pdf) [[:white_check_mark: corrigé]](sacados_corrige.ml)
 - :simple-c: **Une intelligence artificielle pour jouer au puissance 4** [[:bookmark: sujet]](puissance4.pdf) [[:file_folder: ressources]](puissance4_eleve.c) [[:white_check_mark: corrigé]](puissance4.c)
 
+-->
 ## Sujets pouvant être traités en autonomie à la maison
 
+<!--
 - **Enveloppe convexe et algorithme de Graham** [[:bookmark: sujet]](graham.pdf) [[:white_check_mark: corrigé]](graham_corrige.ml)
 - **Arbre des préfixes et des suffixes** [[:bookmark: sujet]](ptree.pdf) [[:white_check_mark: corrigé]](ptree_corrige.ml)
 - **Résolution du Sudoku par backtracking** [[:bookmark: sujet]](sudoku.pdf) [[:white_check_mark: corrigé]](sudoku_corrige.ml)
 - **Tri topologique et algorithme de Kosaraju** [[:bookmark: sujet]](tritopo.pdf) [[:white_check_mark: corrigé]](tritopo_corrige.ml)
 - **Alignement de séquences ADN par programmation dynamique** [[:bookmark: sujet]](adn.pdf) 
+-->
