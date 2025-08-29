@@ -1,8 +1,8 @@
 # :computer: Travaux pratiques
 
 ## Sujets traités en classe
-<!--
 - :simple-ocaml: **Révisions sur le langage OCaml : listes** [[:bookmark: sujet]](rev_listes.pdf)
+<!--
 - :simple-c: **Révisions sur le langage C : calculatrice RPN** [[:bookmark: sujet]](calc.pdf) [[:white_check_mark: corrigé]](calc_corrige.zip)
 - :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf)
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
