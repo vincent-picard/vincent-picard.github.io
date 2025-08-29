@@ -1,7 +1,7 @@
 # :person_lifting_weights_tone5: Travaux dirigés
 
-<!--
 - **Expressions régulières** [[:bookmark: planche]](regexp.pdf)
+<--
 - **Graphes et parcours** [[:bookmark: planche]](graphes.pdf)
 - **Graphes pondérés, chemins optimaux** [[:bookmark: planche]](graphes2.pdf)
 - **Automates finis déterministes** [[:bookmark: planche]](afd.pdf)
