@@ -14,6 +14,7 @@ nav:
     - Programmes de colles : 'mpi/colles.md'
   - Informatique tronc commun: 'itc/index.md'
   - Liens utiles: 'links.md'
+  - Configuration machine: 'config.md'
   - Émulateur i8080: 
     - Introduction : 'i8080/index.md'
     - Architecture générale: 'i8080/architecture.md'
@@ -74,6 +75,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
 
 extra_javascript:
   - javascripts/mathjax.js

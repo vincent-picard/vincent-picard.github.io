@@ -28,6 +28,11 @@ Bienvenue, ce site contient des ressources pour les cours d'informatique CPGE au
 
     Quelques liens intéressants...
 
+-   :computer:{ .lg .middle } [__Configurer sa machine__](/config)
+
+    ---
+
+    Tutos pour configurer sa machine et utiliser certains outils pratiques
 </div>
 
 !!! warning "Travaux en cours"
