@@ -3,8 +3,8 @@
 ## Sujets traités en classe
 - :simple-ocaml: **Révisions sur le langage OCaml : listes** [[:bookmark: sujet]](rev_listes.pdf)
 - :simple-c: **Révisions sur le langage C : calculatrice RPN** [[:bookmark: sujet]](calc.pdf) <!-- [[:white_check_mark: corrigé]](calc_corrige.zip) -->
+- :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf) [[:file_folder: ressources]](regexp_eleve.tar.gz)
 <!--
-- :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf)
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
 - :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 - :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf) [[:white_check_mark: corrigé]](automates_corrige.ml)
