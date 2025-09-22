@@ -43,6 +43,7 @@ Je mets également ici des documents liés concernant les notions de MP2I. Il es
 
 Les documents suivants permettent, à celles et ceux qui le veulent, d'aller un peu plus loin sur les notions vues en cours. Leur lecture est vivement conseillée à celles et ceux qui préparent les concours les plus sélectifs.
 
+- [:fontawesome-solid-circle-nodes: Arbres et tas binomiaux](/pdf/binheap.pdf)
 <!--
 - [:material-sigma: Théorème de Myhill-Nerode et applications](/pdf/myhill.pdf)
 - [:material-sigma: Langages réguliers et reconnaissance par monoïde](/pdf/monoides.pdf)
