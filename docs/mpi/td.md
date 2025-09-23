@@ -1,10 +1,10 @@
 # :person_lifting_weights_tone5: Travaux dirigés
 
 - **Expressions régulières** [[:bookmark: planche]](regexp.pdf)
+- **Automates finis déterministes** [[:bookmark: planche]](afd.pdf)
 <!--
 - **Graphes et parcours** [[:bookmark: planche]](graphes.pdf)
 - **Graphes pondérés, chemins optimaux** [[:bookmark: planche]](graphes2.pdf)
-- **Automates finis déterministes** [[:bookmark: planche]](afd.pdf)
 - **Automates finis non déterministes** [[:bookmark: planche]](afnd.pdf)
 - **Arbres couvrants** [[:bookmark: planche]](graphes3.pdf)
 - **Théorème de Kleene** [[:bookmark: planche]](kleene.pdf)
