@@ -176,6 +176,17 @@ let astar grille =
                     diminuer (i, j) f.(i).(j) file;
                     parcours q
                  end
+            | (i, j)::q when
+                (grille.(i).(j) = noir &&
+                 g.(x).(y) + 1 < g.(i).(j)) ->
+                 begin (* Réouverture *)
+                    grille.(i).(j) <- gris;
+                    g.(i).(j) <- g.(x).(y) + 1;
+                    f.(i).(j) <- g.(i).(j) + h (i, j);
+                    pred.(i).(j) <- direction (i, j) (x, y);
+                    inserer (i, j) f.(i).(j) file;
+                    parcours q
+                 end
             | _::q -> parcours q
         in parcours vois
     done;
