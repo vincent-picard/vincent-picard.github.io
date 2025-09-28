@@ -4,7 +4,7 @@
 - :simple-ocaml: **Révisions sur le langage OCaml : listes** [[:bookmark: sujet]](rev_listes.pdf)
 - :simple-c: **Révisions sur le langage C : calculatrice RPN** [[:bookmark: sujet]](calc.pdf) [[:white_check_mark: corrigé]](calc_corrige.zip)
 - :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf) [[:file_folder: ressources]](regexp_eleve.tar.gz)
-- :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) <!--[[:white_check_mark: corrigé]](astar_corrige.ml) -->
+- :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
     <figure>
     ![Algorithme A* sur une grille](astar.png)
     <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
