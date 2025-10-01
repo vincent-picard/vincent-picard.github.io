@@ -1,14 +1,14 @@
 N = 10
 
-g = [ [False for j in range(N)] for i in range(N)]
+g = [ [0 for j in range(N)] for i in range(N)]
 c = [ [float('inf') for j in range(N)] for i in range(N)]
 
 print(g)
 print(c)
 
 def newarc(i, j, p):
-    g[i, j] = True
-    c[i, j] = p
+    g[i][j] = 1
+    c[i][j] = p
 
 newarc(0, 1, 6)
 newarc(0, 2, 5)
