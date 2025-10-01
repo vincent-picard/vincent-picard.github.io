@@ -9,6 +9,7 @@
     ![Algorithme A* sur une grille](astar.png)
     <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
     </figure>
+- :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)
 <!--
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
 - :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
