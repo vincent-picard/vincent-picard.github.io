@@ -13,7 +13,6 @@
 3. [:fontawesome-solid-circle-nodes: Parcours de graphes et algorithme A:material-star:](/pdf/parcours_graphes.pdf)
     - [Parcours : illustrations](/pdf/parcours_exemples.pdf)
 4. [:material-sigma: Automates finis](/langages/automates)
-<!--
 5. :fontawesome-solid-circle-nodes: Arbres couvrants de poids minimal
 6. :material-sigma: Théorème de Kleene
 7. [:material-gate-xor: Logique propositionnelle, logique des prédicats, déduction naturelle](/pdf/logique.pdf)
@@ -29,7 +28,6 @@
 15. [:fontawesome-solid-circle-nodes: Couplages dans les graphes](/graphes/couplages)
     - [Chemin augmentants, graphe résiduel : exemple](/pdf/couplage_exemple.pdf)
 16. [:material-robot-outline: Jeux d'accessibilité](/pdf/ia.pdf)
--->
 
 ## :material-book-sync: Notions de MP2I
 
