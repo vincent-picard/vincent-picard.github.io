@@ -10,7 +10,7 @@
 ## Bases de données
 
 - [Base de donnée pizzeria](bdd/pizza.sqlite)
-- [Disquaire](bdd/disquaire.bd)
+- [Disquaire](bdd/disquaire.db)
 - [Lignes transport STAS](bdd/lignes_STAS.sqlite)
 - [Météo](bdd/meteo.sqlite)
 - [Bulletins](bdd/pronote.sqlite)
