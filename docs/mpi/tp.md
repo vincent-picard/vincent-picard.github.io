@@ -10,11 +10,11 @@
     <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
     </figure>
 - :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)[[:file_folder: graphviewer]](graphviewer.tar.gz) 
+- :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
 <!--
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
 - :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 - :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf) [[:white_check_mark: corrigé]](automates_corrige.ml)
-- :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
 - :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
     <figure>
     ![Algorithme A* sur une grille](astar.png)
