@@ -63,7 +63,7 @@ Algorithme général pour construire un arbre couvrant $H = (S, A')$ de $G = (S,
 4. Fusionner les composantes connexes de $x$ et $y$ : $union(x, y)$
 5. Si $H$ n'est pas connexe, aller en 3.
 
-### 3. Algorithme de Kruskal
+## 3. Algorithme de Kruskal
 
 !!!abstract "Définition : arbre couvrant de poids minimal"
     Soit $G = (S, A, p)$ un graphe non orienté pondéré. Un **arbre couvrant de poids minimal** (ACM) est :
@@ -74,6 +74,14 @@ Algorithme général pour construire un arbre couvrant $H = (S, A')$ de $G = (S,
 Il y a un nombre fini d'arbres couvrants dans un graphe $G$, donc un tel arbre existe nécessairement. Il peut cependant il y en avoir plusieurs qui sont de poids minimal.
 
 Algorithme de Kruskal
+
+1. Initialiser $A' \gets \varnothing$
+2. Initialiser une structure union find avec pour singletons les sommets de $G$
+3. **Trier par ordre de poids croissant les arêtes de G**
+4. Pour tout arc $xy$ dans *l'ordre obtenu* :
+    - Si $find(x) = find(y)$ ne rien faire (l'arête créé un cycle)
+    - Sinon $A' \gets A' \cup \{xy\}$
+    - Et $fusion(x, y)$
 
 Complexité
 
