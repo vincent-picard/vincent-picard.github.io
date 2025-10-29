@@ -9,18 +9,12 @@
     ![Algorithme A* sur une grille](astar.png)
     <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
     </figure>
-- :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)[[:file_folder: graphviewer]](graphviewer.tar.gz) 
+- :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)[[:file_folder: graphviewer]](graphviewer.tar.gz) [[:white_check_mark: corrigé]](automates_corrige.ml)
 - :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
+- :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 <!--
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
 - :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
-- :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf) [[:white_check_mark: corrigé]](automates_corrige.ml)
-- :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
-    <figure>
-    ![Algorithme A* sur une grille](astar.png)
-    <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
-    </figure>
-- :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 - :simple-ocaml: **Algorithme de Kruskal** [[:bookmark: sujet]](kruskal.pdf) 
 - :simple-ocaml: **Automates de Glushkov** [[:bookmark: sujet]](glushkov.pdf) 
 - :simple-ocaml: **Algorithme ID3** [[:bookmark: sujet]](id3.pdf) [[:file_folder: ressources]](id3_eleve.ml) [[:white_check_mark: corrigé]](id3_corrige.ml)
