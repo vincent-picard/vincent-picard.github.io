@@ -8,4 +8,5 @@
 - **Induction, langages réguliers, parcours de graphes, Automates finis déterminstes, non déterministes, à transitions instantanées** [[:bookmark: Programme semaine 6]](colle6.pdf)
 - Semaine 7 : pas de changements, voir programme précédent
 - **Langages réguliers et automates, parcours de graphes, arbres couvrants de poids minimal** [[:bookmark: Programme semaine 8]](colle8.pdf)
+- **Langages réguliers et automates, arbres couvrants de poids minimal, théorème de Kleene (début)** [[:bookmark: Programme semaine 9]](colle9.pdf)
 
