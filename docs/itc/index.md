@@ -22,6 +22,8 @@
 - **Révisions sur les graphes** [[sujet]](tp/graphes_dijkstra.pdf) [[fichier]](tp/graphe_exemple.py)
 - [SQL 1 : requêtes, jointures](tp/sql1.pdf)
 - [SQL 2 : fonctions d'agrégation](tp/sql2.pdf)
+- **Recherche de motif dans une séquence ADN** [[sujet]](tp/adn_txt/adn_txt.pdf) [[fiche réponse]](tp/adn_txt/fiche_reponse.pdf)
+
 <!--
 - **Jeu de taquin** [sujet](tp/taquin/taquin.pdf) [fichier](tp/taquin/taquin_eleves.py) [fichier (version txt)](tp/taquin/taquin_eleves.txt) [reponses](tp/taquin/fiche_reponse.pdf) [solution (partie 1)](tp/taquin/taquin_part1.txt)
 - **Alignement optimal de séquences ADN** [sujet](tp/adn/adn_sujet.pdf) [fichier](tp/adn/fichier_eleve.py.txt) [réponses](tp/adn/fiche_reponse.pdf)
