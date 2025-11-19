@@ -14,9 +14,9 @@
 - :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 - :simple-ocaml: **Algorithme de Kruskal** [[:bookmark: sujet]](kruskal.pdf) 
 - :simple-ocaml: **Automates de Glushkov** [[:bookmark: sujet]](glushkov.pdf) 
+- :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 <!--
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
-- :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 - :simple-ocaml: **Algorithme ID3** [[:bookmark: sujet]](id3.pdf) [[:file_folder: ressources]](id3_eleve.ml) [[:white_check_mark: corrigé]](id3_corrige.ml)
 - :simple-c: **Détection automatique de langue** [[:bookmark: sujet]](langue.pdf) [[:file_folder: ressources]](langue_eleve.zip) 
 - :simple-ocaml: **Les perles de Dijkstra** [[:bookmark: sujet]](perles.pdf) 
