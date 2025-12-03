@@ -43,6 +43,7 @@ Les documents suivants permettent, à celles et ceux qui le veulent, d'aller un 
 
 - [:fontawesome-solid-circle-nodes: Arbres et tas binomiaux](/pdf/binheap.pdf)
 - [:material-sigma: Langages réguliers et reconnaissance par monoïde](/pdf/monoides.pdf)
+- [:fontawesome-solid-circle-nodes: Programmation par continuation](/pdf/continuation.pdf)
 <!--
 - [:material-sigma: Théorème de Myhill-Nerode et applications](/pdf/myhill.pdf)
 - [:material-sigma: Lemme d'Arden et applications](/pdf/arden.pdf)
