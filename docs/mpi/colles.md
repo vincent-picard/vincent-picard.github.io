@@ -12,3 +12,4 @@
 - Semaine 10 : pas de changements, voir programme précédent
 - **Automates, arbres couvrants de poids minimal, théorème de Kleene, Apprentissage supervisé (début)** [[:bookmark: Programme semaine 11]](colle11.pdf)
 - **Automates, arbres couvrants de poids minimal, théorème de Kleene, Apprentissage supervisé** [[:bookmark: Programme semaine 12](colle12.pdf)
+- **Arbres couvrants de poids minimal, théorème de Kleene (et conséquences), Apprentissage supervisé, logique propositionnelle** [[:bookmark: Programme semaine 13](colle13.pdf)
