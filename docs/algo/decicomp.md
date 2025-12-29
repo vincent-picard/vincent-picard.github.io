@@ -7,7 +7,8 @@ Cette étude permet de mieux comprendre les **limites théoriques** de l'informa
 - **Les problèmes indécidables** : pour lesquels on sait qu'il ne peut pas exister d'algorithme pour les résoudre
 - **Les problèmes NP-complets** : pour lesquels on ignore aujourd'hui s'il existe des algorithmes efficaces pour les résoudre
 
-## Problèmes de décision
+## 1. Introduction
+### A. Problèmes de décision
 
 La premier point que nous abordons est la définition de ce qu'on considère être un problème à résoudre :
 
@@ -16,8 +17,33 @@ La premier point que nous abordons est la définition de ce qu'on considère êt
 
 Attention, tous les problèmes ne sont pas des problèmes de décision, mais la hiérarchie de difficulté qu'on va établir concerne ce type de problèmes.
 
+
+!!!abstract "Définition (taille de l'instance)"
+    La **taille** d'une instance d'un problème de décision est l'espace qu'elle occupe en mémoire (en octets par exemple). Pour simplifier, on utilisera les conventions suivantes selon le type d'instance :
+
+    - *un entier $n$ non borné* : $log_2(n)$ (le nombre est écrit en binaire)
+    - *un tableau ou une liste de longueur $n$* : $n$ (les cases du tableau occupent un même espace constant)
+    - *un graphe de $n$ sommets et $m$ arêtes/arcs* : $n + m$ (listes d'adjacence) ou $n^2$ (matrice d'adjacence)
+    - *un arbre* (arbre binaire, formule logique, expression régulière, etc) : la taille de l'arbre (nombre de noeuds et de feuilles)
+
+La manière exacte de compter la taille de l'instance ne change pas la théorie qui va suivre, à condition de rester raisonnable sur la manière dont l'instance est codée et mesurée. Par exemple on ne va pas coder un entier non borné en base 1...
+
+### B. Modèle de calcul
+
+Maintenant, nous avons besoin de définir ce qu'est un ordinateur et comment on mesure le temps et l'espace consommé pour résoudre un problème. Malheureusement, il y a beaucoup d'ordinateurs différents c'est pourquoi il est nécessaire de se baser sur un *modèle de machine* théorique qui décrit ce qu'un ordinateur est capable de calculer ou non. Le modèle théorique de référence est la *machine de Turing* mais elle n'est pas au programme en MP2I/MPI.
+
+Pour simplifier, nous utiliserons dans ce cours le terme général de *machine* pour parler d'un ordinateur qui prend des données en entrée, réalise un calcul algorithmique et produit un résultat en sortie. **Le calcul effectué sera décrit au choix :**
+
+- par un *algorithme écrit en pseudo-code*
+- par un *programme ou une fonction écrite en C*
+- par un *programme ou une fonction écrire en OCaml*
+
+Le temps d'exécution sera compté en *nombre d'opérations élémentaires* effectuées et l'espace utilisé par le *nombre de cases mémoires* utilisées. Autrement dit on compte le temps et l'espace comme vous avez pris l'habitude de le faire en première année (MP2I).
+
+### C. Problèmes décidables
+
 !!!abstract "Définition (problème décidable)"
-    Un problème de décision est **décidable** s'il existe une *machine* qui prend en entrée une instance du problème, **qui termine sur toute entrée**, et qui donne en sortie la bonne réponse *oui* ou *non* pour l'intance donnée.
+    Un problème de décision est **décidable** s'il existe une *machine* qui prend en entrée une instance du problème, **qui termine sur toute entrée**, et qui donne en sortie la bonne réponse *oui* ou *non* pour l'instance donnée.
 
 ## La classe P
 
