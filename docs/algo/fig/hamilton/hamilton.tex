@@ -1,0 +1,94 @@
+\startMPpage
+
+dx := 4cm;
+dy := 4cm;
+
+z0 = origin;
+for i = 1 upto 5:
+    y[i] = y[i+1];
+    x[i+1] - x[i] = dx;
+endfor;
+for i = 7 upto 11:
+    y[i] = y[i+1];
+    x[i+1] - x[i] = dx;
+endfor;
+for i = 13 upto 17:
+    y[i] = y[i+1];
+    x[i+1] - x[i] = dx;
+endfor;
+2x0 = x1 + x6;
+x1 = x7;
+x7 = x13;
+y0 - y1 = y1 - y7 = y7 - y13 = dy;
+
+x19 = x0;
+y18-y19= dy;
+path n[];
+for i = 0 upto 19:
+    n[i] := fullcircle scaled 1.6cm shifted z[i];
+    draw n[i] withpen pencircle scaled 1.5pt;
+endfor;
+
+vardef connect(expr i, j, p) =
+    p cutbefore n[i] cutafter n[j]
+enddef;
+
+drawoptions(withpen pencircle scaled 2pt withcolor blue);
+
+drawarrow connect(0, 1, z0{left}..{down}z1);
+drawarrow connect(0, 6, z0{right}..{down}z6);
+drawarrow connect(1, 12, z1{down}.. tension 3 ..{down}z12);
+drawarrow connect(6, 7, z6{down}.. tension 3 ..{down}z7);
+drawarrow connect(1, 7, z1--z7);
+drawarrow connect(6, 12, z6--z12);
+drawarrow connect(13, 19, z13{down}..{right}z19);
+drawarrow connect(18, 19, z18{down}..{left}z19);
+
+for i = 1 upto 5:
+    drawoptions(withpen pencircle scaled 2pt withcolor darkgreen);
+    drawarrow connect(i, i+1, z[i]{up+right}..{down+right}z[i+1]);
+    drawoptions(withpen pencircle scaled 2pt withcolor red);
+    drawarrow connect(i+1, i, z[i+1]{down+left}..{up+left}z[i]);
+endfor;
+for i = 7 upto 11:
+    drawoptions(withpen pencircle scaled 2pt withcolor darkgreen);
+    drawarrow connect(i, i+1, z[i]{up+right}..{down+right}z[i+1]);
+    drawoptions(withpen pencircle scaled 2pt withcolor red);
+    drawarrow connect(i+1, i, z[i+1]{down+left}..{up+left}z[i]);
+endfor;
+for i = 13 upto 17:
+    drawoptions(withpen pencircle scaled 2pt withcolor darkgreen);
+    drawarrow connect(i, i+1, z[i]{up+right}..{down+right}z[i+1]);
+    drawoptions(withpen pencircle scaled 2pt withcolor red);
+    drawarrow connect(i+1, i, z[i+1]{down+left}..{up+left}z[i]);
+endfor;
+
+drawoptions();
+label("$s$",  z0);
+label("$\dots$", 0.5[z3,z4]);
+label("$\dots$", 0.5[z9,z10]);
+label("$\dots$", 0.5[z15,z16]);
+label("$\vdots$", 0.5[z12,z13]);
+label("$\vdots$", 0.5[z7,z13]);
+label("$\vdots$", 0.5[z12,z18]);
+
+label("$v_{1, 1}$", z1);
+label("$v_{1, 2}$", z2);
+label("$v_{1, 3}$", z3);
+label("$v_{1, 2m-2}$", z4);
+label("$v_{1, 2m-1}$", z5);
+label("$v_{1, 2m}$", z6);
+label("$v_{2, 1}$", z7);
+label("$v_{2, 2}$", z8);
+label("$v_{2, 3}$", z9);
+label("$v_{2, 2m-2}$", z10);
+label("$v_{2, 2m-1}$", z11);
+label("$v_{2, 2m}$", z12);
+label("$v_{n, 1}$", z13);
+label("$v_{n, 2}$", z14);
+label("$v_{n, 3}$", z15);
+label("$v_{n, 2m-2}$", z16);
+label("$v_{n, 2m-1}$", z17);
+label("$v_{n, 2m}$", z18);
+label("$t$",  z19);
+\stopMPpage
