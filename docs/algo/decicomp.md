@@ -91,6 +91,105 @@ Le temps d'exécution sera compté en *nombre d'opérations élémentaires* effe
 
 Il est difficile de se l'imaginer pour le moment mais nous verrons que certains problèmes ne sont pas décidables. On dit qu'il alors qu'ils sont indécidables.
 
+### D. Réductions d'un problème à l'autre
+
+Comme annoncé dans l'introduction, un des buts de ce chapitre est de classer les problèmes à traiter selon leur difficulté. Pour cela on va se reposer sur le principe suivant. Supposons qu'on possède un problème $A$ par exemple "Eteindre une bougie" et un problème $B$ par exemple "Eteindre un incendie".
+
+Si je dispose d'une méthode $M$ pour résoudre $B$ (par exemple utiliser une lance à incendie), je peux certainement utiliser cette méthode $M$ pour résoudre $A$. On dira dans ce cas que $B$ est plus difficile que $A$ puisque si je sais résoudre $B$ je sais résoudre $A$.
+
+L'inverse n'est pas vrai : si je dispose d'une méthode pour éteindre une bougie (par exemple souffler dessus), il est peu vraisemblable que cette méthode me permette d'éteindre un incendie. Formalisons cela pour les problèmes de decision.
+
+!!!abstract "Définition (réduction et réduction polynomiale)"
+    Soit $A$ et $B$ deux problèmes de décision. On dit que $A$ **se réduit à** $B$ s'il existe une machine $R$ prenant en entrée une instance $I_A$ de $A$ et produisant en sortie une instance $I_B$ de $B$ et vérifiant :
+
+    - (i) La machine $R$ termine sur toute entrée 
+    - (ii) $I_A$ est une instance positive $\Leftrightarrow$ $I_B = R(I_A)$ est une instance positive
+
+    Dans ce cas on notera $A \leq B$.
+
+    **Si de plus,** il existe un réel $k > 0$ tel que 
+
+    - (iii) Le temps d'exécution pire cas de $R$ est en $O(|I_A|^k)$
+
+    alors on dit que la **réduction est polynomiale** et on notera alors $A \leq_P B$.
+
+    ```mermaid
+    flowchart LR
+        classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+        classDef machine fill:pink;
+        classDef reduction fill:lightgreen,stroke:green;
+        classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+        I["$$I_A$$"] --> R@{ shape: delay };
+        R--> J["$$I_B$$"];
+        class I,J instance;
+        class R reduction;
+    ```
+
+Autrement dit une réduction d'un problème $A$ vers un problème $B$ est une *traduction* des instances d'un problème à l'autre qui préserve la réponse oui/non. Ainsi pour résoudre une instance du problème $A$ on peut considérer sa traduction en problème $B$ est résoudre ce nouveau problème. Donc si on sait résoudre $B$, on sait résoudre $A$ : $B$ est **plus difficile** que $A$.
+
+La réduction est polynomiale lorsque le temps de calcul de la traduction est polynomial en fonction de la taille de l'instance $I_A$.
+
+!!!tip "Proposition"
+    Soit $A$ et $B$ deux problèmes de décision. Si $B$ est décidable et si $A \leq B$ alors $A$ est décidable.
+    
+!!!note "Démonstration"
+    Soit $A$ et $B$ deux problèmes de décision vérifiant les hyptohèses de départ :
+
+    - $B$ est décidable : il existe donc une machine $M$ qui décide $B$.
+    - $A \leq B$ : il existe donc une machine $R$ qui transforme correctement les instances de $A$ en instances de $B$.
+
+    On **pose** la machine suivante :
+
+    ```mermaid
+    flowchart LR
+        classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+        classDef machine fill:pink;
+        classDef reduction fill:lightgreen,stroke:green;
+        classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+        subgraph MM["$$M'$$"]
+        R--> J["$$I_B$$"];
+        J--> M["$$M$$"];
+        end
+
+        I["$$I_A$$"] --> R@{ shape: delay };
+        M--> X["oui/non"];
+        class I,J instance;
+        class R reduction;
+        class M machine;
+        class X answer;
+    ```
+
+    Cette machine prend donc en entrée une instance de $A$ et répond oui/non. De plus :
+
+    1. $M'$ termine sur toute entrée, car $R$ termine et $M$ termine par définition.
+    2. $I_A$ est une instance positive $\Leftrightarrow$ $I_B$ est une instance positive $\Leftrightarrow$ $M(I_B) = oui$ $\Leftrightarrow$ $M'(I_A) = oui$.
+
+    Donc $M'$ décide $A$, donc $A$ est décidable.
+
+!!!note "Remarque"
+    Dans la démonstration précédente, la machine $M'$ a été introduite par un schéma mais on aurait tout aussi bien pu la donner sous d'algorithme en pseudo-code :
+    ```
+    Entrée : I_A
+    I_B <- R(I_A)
+    rep <- M(I_B)
+    Répondre rep
+    ```
+    ou même de fonction pseudo-code :
+    ```
+    MPRIME(I_A)
+        I_B <- R(I_A)
+        return M(I_B)
+    ```
+    ou encore de fonction C ou OCaml :
+    ```c
+    bool Mprime(Instance ia) {
+        Instance ib = R(ia);
+        return M(ib);
+    }
+    ```
+    Toutes les approches sont valides
+
 ## 2. La classe **P**
 
 Le fait qu'un problème soit décidable ne suffit pas à dire qu'on sait le traiter en pratique. En effet, il se peut que les algorithmes qu'on conait pour le résoudre soit de complexité trop élevés pour pouvoir être utilisés en pratique. Nous allons donc maintenant ajouter une condition sur la complexité de la machine qui résout le problème.
@@ -209,6 +308,20 @@ Cette notion correspond à la classe de problèmes appelée **NP**.
     
     1. $V(I, C)$ s'exécute dans le pire cas en temps $O(n^k)$ avec $n = |I|$ la taille de l'instance.
     2. $I$ est une instance positive de $A$ $\Leftrightarrow$ il existe une entrée $C$ telle que $V(I, C) = oui$.
+
+    ```mermaid
+    %%{init: { "flowchart": { "curve": "stepAfter" } }}%%
+    flowchart LR
+        classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+        classDef machine fill:pink;
+        classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+        I["instance I"] --> V["vérificateur V"];
+        C["certificat C"] --> V;
+        V --> R[oui/non];
+        class I,C instance;
+        class M machine;
+        class R answer;
+    ```
 
 Informellement, la classe **NP** est la classe des probèmes pour lesquels les instances *positives* admettent une *preuve de positivité* $C$ qui peut être *vérifiée* en temps polynomial par un algorithme. Dans le cas de *SAT* par exemple, un certificat est une valuation qui satisfait la formule F donnée.
 
