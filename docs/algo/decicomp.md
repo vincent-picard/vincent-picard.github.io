@@ -91,13 +91,13 @@ Le temps d'exécution sera compté en *nombre d'opérations élémentaires* effe
 
 Il est difficile de se l'imaginer pour le moment mais nous verrons que certains problèmes ne sont pas décidables. On dit qu'il alors qu'ils sont indécidables.
 
-## La classe P
+## 2. La classe **P**
 
 Le fait qu'un problème soit décidable ne suffit pas à dire qu'on sait le traiter en pratique. En effet, il se peut que les algorithmes qu'on conait pour le résoudre soit de complexité trop élevés pour pouvoir être utilisés en pratique. Nous allons donc maintenant ajouter une condition sur la complexité de la machine qui résout le problème.
 
-La classe P est la classe des problèmes pour lesquels il existe un algorithme de complexité polynomiale pour les résoudre.
+La classe **P** est la classe des problèmes pour lesquels il existe un algorithme de complexité polynomiale pour les résoudre.
 
-!!!abstract "Définition (classe P)"
+!!!abstract "Définition (classe **P**)"
     Un problème de décision est dans la **classe P**, s'il existe un nombre réel $k > 0$ et une machine $M$ prenant en entrée une instance $I$ telle que :
 
     1. $M$ donne en sortie la bonne réponse *oui* ou *non* pour l'instance $I$
@@ -114,9 +114,9 @@ La classe P est la classe des problèmes pour lesquels il existe un algorithme d
         class M machine;
         class R answer;
     ```
-On remarque que la condition (2) implique nécessairement que la machine termine sur toute entrée et qu'un problème dans la classe P est toujours un problème décidable.
+On remarque que la condition (2) implique nécessairement que la machine termine sur toute entrée et qu'un problème dans la classe **P** est toujours un problème décidable.
 
-Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un polynôme $Q$ tel que le temps d'exécution pire cas est en $O(Q(n))$. Cela est totalement équivalent à la définition donnée et c'est aussi pour cela que la classe s'appelle $P$ comme *polynome*.
+Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un polynôme $Q$ tel que le temps d'exécution pire cas est en $O(Q(n))$. Cela est totalement équivalent à la définition donnée et c'est aussi pour cela que la classe s'appelle **P** comme *polynome*.
 
 !!!example "Exemple"
     Soit le problème de décision suivant qu'on appellera *TABTRIE* :
@@ -124,7 +124,7 @@ Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un po
     - **Instance :** un tableau $T$ d'entiers
     - **Question :** le tableau $T$ est-il trié par ordre croissant ? 
 
-    Montrer que le problème *TABTRIE* appartient à $P$.
+    Montrer que le problème *TABTRIE* appartient à **P**.
     ???note "Solution"
         On considère l'algorithme en pseudo-code suivant :
         ```
@@ -138,7 +138,7 @@ Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un po
         Répondre OUI
         ```
         Cet algorithme répond correctement à la question.
-        Dans le pire cas sa complexité est $O(n)$ qui est bien polynomiale en fonction de la taille de l'instance ($n$). Donc *TABTRIE* $\in P$.
+        Dans le pire cas sa complexité est $O(n)$ qui est bien polynomiale en fonction de la taille de l'instance ($n$). Donc *TABTRIE* $\in$ **P**.
 
         Remarquer que cela implique forcément que *TABTRIE* est décidable...
 
@@ -149,7 +149,7 @@ Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un po
     - **Instance :** un entier naturel $n$ 
     - **Question :** $n$ est-il premier ? 
 
-    Montrer que *PRIME* est dans P.
+    Montrer que *PRIME* est dans **P**.
     ???bug "Solution fausse"
         On considère l'algorithme en pseudo-code suivant :
         ```
@@ -163,27 +163,39 @@ Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un po
         ```
         Cet algorithme répond correctement à la question. Dans le pire cas sa complexité est $O(n)$ **MAIS ATTENTION** dans ce cas $n$ n'est pas la **TALLE DE L'INSTANCE** donc on ne peut pas conclure que *PRIME* $\in P$.
 
-        En effet, ici dans ce problème $n$ est un entier quelconque aussi grand qu'on veut et sa taille en octets (si on l'écrit en binaire) est de l'ordre de $p = \log_2(n)$. Il fallait donc exprimer la complexité en fonction de $p$ (la taille de l'instance) et non de $n$. Avec notre algorithme on trouve donc que la complexité est $O(2^p)$ (exponentielle) ce qui ne permet pas de conclure que *PRIME* $\in P$.
+        En effet, ici dans ce problème $n$ est un entier quelconque aussi grand qu'on veut et sa taille en octets (si on l'écrit en binaire) est de l'ordre de $p = \log_2(n)$. Il fallait donc exprimer la complexité en fonction de $p$ (la taille de l'instance) et non de $n$. Avec notre algorithme on trouve donc que la complexité est $O(2^p)$ (exponentielle) ce qui ne permet pas de conclure que *PRIME* $\in$ **P**.
 
-    En réalité *PRIME* est bien un problème dans $P$ mais la démonstration de ce résultat est très difficile et n'a été résolue qu'en 2002 par 3 chercheurs indiens qui ont mis au point l['algorithme AKS](https://en.wikipedia.org/wiki/AKS_primality_test). Bien que cet algorithme soit de complexité polynomiale, il n'est pas adapté à l'usage pratique...
+    En réalité *PRIME* est bien un problème dans **P** mais la démonstration de ce résultat est très difficile et n'a été résolue qu'en 2002 par 3 chercheurs indiens qui ont mis au point l['algorithme AKS](https://en.wikipedia.org/wiki/AKS_primality_test). Bien que cet algorithme soit de complexité polynomiale, il n'est pas adapté à l'usage pratique...
 
-Bien évidemment il y a beaucoup d'autres exemples de problèmes qui sont dans $P$. Si on y réfléchit bien, la grande majorité des algorithmes que vous avez étudiés jusqu'à présent ont des complexités polynomiales et permettent donc de répondre en temps polynomial à des problèmes de décision.
+Bien évidemment il y a beaucoup d'autres exemples de problèmes qui sont dans **P**. Si on y réfléchit bien, la grande majorité des algorithmes que vous avez étudiés jusqu'à présent ont des complexités polynomiales et permettent donc de répondre en temps polynomial à des problèmes de décision.
 
-En informatique théorique, on considère donc que la classe $P$ est l'ensemble des problèmes qu'on peut résoudre sur ordinateur *en temps raisonnable* (bien que cela soit une simplification très grossière).
+En informatique théorique, on considère donc que la classe **P** est l'ensemble des problèmes qu'on peut résoudre sur ordinateur *en temps raisonnable* (bien que cela soit une simplification très grossière).
 
-## La classe **NP**
+## 3. La classe **NP**
 
 Certains problèmes que l'on rencontre en informatique sont difficiles à résoudre efficacement. Cependant si on vous donne une solution au problème, il est facile de vérifier que cette solution est la bonne.
 
-Un exemple est le problème très important appelé *SAT* :
+Un exemple important est celui du problème appelé *SAT* :
 
 - **Instance :** une formule $F$ de la logique propositionnelle
 - **Question :** $F$ est elle satisfiable ?
 
 Il est difficile de concevoir un algorithme qui permette de répondre à cette question en temps polynomial par rapport à la taille de la formule. Vous connaissez bien quelques algorithmes pour le résoudre (dresser la table de vérité de la formule, algorithme de Quine) mais ils sont tous de complexité exponentielle.
 
-Par contre, si on vous donne une valuation $\varphi$ qui satisfait $F$, alors il est très facile de **vérifier** que cet valuation convient bien, c'est-à-dire que $⟦F⟧_\varphi = true$.
-Autrement dit, on peut facilement écrire un algorithme à **deux entrées** une pour une formule et l'autre pour une valuation et qui vérifie si la valuation donnée satisfait bien la formule, tout cela en temps polynomial par rapport à la la taille de la formule.
+Par contre, si on vous donne une valuation $\varphi$ qui satisfait $F$, alors il est très facile de **vérifier** que cette valuation convient bien, c'est-à-dire que $⟦F⟧_\varphi = true$.
+Autrement dit, on peut facilement écrire un algorithme à **deux entrées** une pour une formule et l'autre pour une valuation et qui vérifie si la valuation donnée satisfait bien la formule, tout cela en temps polynomial par rapport à la la taille de la formule. On peut par exemple procéder par récurrence en OCaml, comme ceci:
+
+```ocaml title="Vérificateur pour SAT"
+    type formule = Var of int | Not of formule | Et of formule | Ou of formule;;
+
+    let rec verificateur f phi = match f with
+    | Var(i) -> phi.(i) (* valuation donnée sous forme d'un bool array *)
+    | Not g -> not (verificateur g phi)
+    | Et(g, h) -> (verificateur g phi) && (verificateur h phi)
+    | Ou(g, h) -> (verificateur g phi) || (verificateur h phi)
+    ;;
+```
+
 
 Cette notion correspond à la classe de problèmes appelée **NP**.
 
@@ -196,25 +208,25 @@ Cette notion correspond à la classe de problèmes appelée **NP**.
     et qui répond oui/non avec le comportement suivant :
     
     1. $V(I, C)$ s'exécute dans le pire cas en temps $O(n^k)$ avec $n = |I|$ la taille de l'instance.
-    2. $I$ est une instance positive de $A$ si et seulement si il existe une entrée $C$ telle que $V(I, C) = oui$.
+    2. $I$ est une instance positive de $A$ $\Leftrightarrow$ il existe une entrée $C$ telle que $V(I, C) = oui$.
 
-Informellement, la classe NP est la classe des probèmes pour lesquels les instances *positives* admettent une *preuve de positivité* $C$ qui peut être *vérifiée* en temps polynomial par un algorithme.
+Informellement, la classe **NP** est la classe des probèmes pour lesquels les instances *positives* admettent une *preuve de positivité* $C$ qui peut être *vérifiée* en temps polynomial par un algorithme. Dans le cas de *SAT* par exemple, un certificat est une valuation qui satisfait la formule F donnée.
 
 !!!tip "Théorème"
-    $P \subset NP$
+    **P** $\subset$ **NP**
 
 ???note "Démonstration"
-    Soit $A$ un problème dans $P$. Il existe donc un réel $k > 0$ et une machine $M$ qui décide $A$ en temps $O(n^k)$ avec $n$ la taille de l'instance. On **pose** la machine $V$ définie par $V(I, C) = M(I)$. On a alors :
+    Soit $A$ un problème dans **P**. Il existe donc un réel $k > 0$ et une machine $M$ qui décide $A$ en temps $O(n^k)$ avec $n$ la taille de l'instance. On **pose** la machine $V$ définie par $V(I, C) = M(I)$. On a alors :
 
     - La machine $V$ s'exécute en pire cas en temps $O(n^k)$.
     - Si la réponse à $I$ est oui, alors en prenant n'importe quel certificat, par exemple le certficat vide $C = \varnothing$, on a $V(I, C) = M(I) = oui$.
     - Réciproquement, s'il existe $C$ tel que $V(I, C) = oui$ alors $M(I) = V(I, C) = oui$ donc $I$ est positive.
 
 
-J'espère que ce théorème chassera en vous l'idée que NP signifierait "non polynomial"...
+J'espère que ce théorème chassera en vous l'idée que **NP** signifierait "non polynomial"...
 
 !!!tip "Problème ouvert depuis 1971"
-    On ne sait pas aujourd'hui si $P = NP$ ou si $P \neq NP$.
+    On ne sait pas aujourd'hui si **P** = **NP** ou si **P** $\neq$ **NP**.
 
 ## La classe NP-complet
 
