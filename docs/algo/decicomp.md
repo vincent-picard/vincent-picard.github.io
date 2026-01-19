@@ -190,11 +190,47 @@ La réduction est polynomiale lorsque le temps de calcul de la traduction est po
     ```
     Je trouve la représentation schématique plus claire mais toutes ces propositions sont valides
 
+La proposition suivante établit que la réduction (polynomiale) se comporte presque comme un ordre (il manque l'antisymétrie) sur les problèmes de décision.
+
+!!!tip "Proposition"
+    Soit $A$, $B$, $C$ trois problèmes de décision alors :
+
+    1. $A \leq A$
+    2. $A \leq_P A$
+    3. $A \leq B$ et $B \leq C \Rightarrow A \leq C$
+    4. $A \leq_p B$ et $B \leq_P C \Rightarrow A \leq_P C$
+
+!!!note "Démonstration"
+    - Les points (1) et (2) sont évidents, il suffit de prendre la *machine identité* (recopie l'entrée sur la sortie) pour établir la réduction. 
+    - Montrons (3) : soit $R_1$ la machine qui réduit de $A$ à $B$ et $R_2$ la machine qui réduit de $A$ à $C$. On construit la machine $R$ suivante :
+    ```mermaid
+    flowchart LR
+        classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+        classDef machine fill:pink;
+        classDef reduction fill:lightgreen,stroke:green;
+        classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+        subgraph R["$$R$$"]
+        RA["$$R_1$$"]--> J["$$I_B$$"];
+        J--> RB["$$R_2$$"];
+        end
+
+        I["$$I_A$$"] --> RA@{ shape: delay };
+        RB@{ shape: delay } --> K["$$I_C$$"];
+        class I,J,K instance;
+        class RA,RB reduction;
+    ```
+    Cette machine termine sur toute entrée (car $R_1$ et $R_2$ terminent). De plus, $I_A$ est positive ssi $I_B$ est positive (d'après la réduction 1) ssi $I_C$ est positive (d'après la réduction 2). $R$ est donc bien une réduction de $A$ vers $C$.
+    - Montrons (4) : on reprend la même preuve que (3) mais il faut également montrer que la réduction est polynomiale, en supposant que $R_1$ et $R_2$ le sont. Il existe donc des réels $k_1 > 0$ et $k_2 > 0$ tels que $R_1$ est de complexité $O(|I_A|^{k_1})$ et $R_2$ de complexité $O(|I_B|^{k_2})$. Une autre façon de le dire est qu'il existe des constantes $C_1$ et $C_2$ tels que les temps de calcul de $R_1$ et $R_2$ vérifient : $T_1 \leq C_1 |I_A|^{k_1}$ et $T_2 \leq C_2 |I_B|^{k_2}$. Maintenant, voici le point délicat de la preuve : $R_1$ ne peut pas produire une sortie plus grande que sont temps de calcul, car écrire sur la sortie consomme justement du temps de calcul de $R_1$, donc $|I_B| \leq T_1$. On obtient alors que le temps de calcul de $R$ vérifie : $T = T_1 + T_2 \leq C_1 |I_A|^{k_1} + C_2 |I_B|^{k_2} \leq C_1 |I_A|^{k_1} + C_2 C_1^{k_2} |I_A|^{k_1k_2} \leq C |I_A|^{\max(k_1,k_1k_2)}$ avec $C = \max(C_1, C_2C_2^{k_2})$ qui est une constante. Donc $R$ est bien de complexité polynomiale.
+    
+!!!example "Exercice"
+    Pour vérifier que vous avez bien compris : écrire la machine $R$ de la démonstration sous forme d'algorithme en pseudo-code; puis de fonction en langage C
+
 ## 2. La classe **P**
 
-Le fait qu'un problème soit décidable ne suffit pas à dire qu'on sait le traiter en pratique. En effet, il se peut que les algorithmes qu'on conait pour le résoudre soit de complexité trop élevés pour pouvoir être utilisés en pratique. Nous allons donc maintenant ajouter une condition sur la complexité de la machine qui résout le problème.
+Le fait qu'un problème soit décidable ne suffit pas à dire qu'on sait le traiter en pratique. En effet, il se peut que les algorithmes qu'on connaisse pour le résoudre soient de complexité trop élevée pour pouvoir être utilisés en pratique. Nous allons donc maintenant ajouter une condition sur la complexité de la machine qui résout le problème.
 
-La classe **P** est la classe des problèmes pour lesquels il existe un algorithme de complexité polynomiale pour les résoudre.
+La classe **P** est l'ensemble des problèmes de décision pour lesquels il existe un algorithme de complexité polynomiale pour les résoudre.
 
 !!!abstract "Définition (classe **P**)"
     Un problème de décision est dans la **classe P**, s'il existe un nombre réel $k > 0$ et une machine $M$ prenant en entrée une instance $I$ telle que :
@@ -215,7 +251,7 @@ La classe **P** est la classe des problèmes pour lesquels il existe un algorith
     ```
 On remarque que la condition (2) implique nécessairement que la machine termine sur toute entrée et qu'un problème dans la classe **P** est toujours un problème décidable.
 
-Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un polynôme $Q$ tel que le temps d'exécution pire cas est en $O(Q(n))$. Cela est totalement équivalent à la définition donnée et c'est aussi pour cela que la classe s'appelle **P** comme *polynome*.
+Dans la définition, on aurait pu remplacer le réel $k$ par l'existence d'un polynôme $Q$ tel que le temps d'exécution pire cas est en $O(Q(n))$. Cela est totalement équivalent à la définition donnée et c'est aussi pour cela que la classe s'appelle **P** comme *polynôme*.
 
 !!!example "Exemple"
     Soit le problème de décision suivant qu'on appellera *TABTRIE* :
@@ -270,7 +306,46 @@ Bien évidemment il y a beaucoup d'autres exemples de problèmes qui sont dans *
 
 En informatique théorique, on considère donc que la classe **P** est l'ensemble des problèmes qu'on peut résoudre sur ordinateur *en temps raisonnable* (bien que cela soit une simplification très grossière).
 
+!!!tip "Proposition"
+    Soit $A$ et $B$ deux problèmes de décision. Si
+    
+    1. $A \leq_P B$
+    2. $B \in \mathbf{P}$
+
+    Alors $A \in \mathbf{P}$
+Cette proposition pourrait se reformuler : *si on est plus facile qu'un problème facile alors on est facile*.
+
+!!!note "Démonstration"
+    Soit $A$ et $B$ deux problèmes de décision vérifiant (1) et (2). D'après (1), il existe une machine $R$ qui réduit $A$ vers $B$ en temps polynomial. D'après (2), il existe une machine $M$ qui décide $B$ en temps polynomial. On construit donc la machine suivante $M'$ suivante :
+    ```mermaid
+    flowchart LR
+        classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+        classDef machine fill:pink;
+        classDef reduction fill:lightgreen,stroke:green;
+        classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+        subgraph MM["$$M'$$"]
+        R--> J["$$I_B$$"];
+        J--> M["$$M$$"];
+        end
+
+        I["$$I_A$$"] --> R@{ shape: delay };
+        M--> X["oui/non"];
+        class I,J instance;
+        class R reduction;
+        class M machine;
+        class X answer;
+    ```
+    Alors on bien :
+    
+    - $I_A$ est positive $\Leftrightarrow$ $I_B$ est positive $\Leftrightarrow$ $M(I_B) = oui$ $\Leftrightarrow M'(I_A) = oui$
+    - $M'$ fonctionne en temps polynomial dans le pire cas (même preuve que pour la composition des réductions $R_1$ et $R_2$ ci-dessus).
+
+
 ## 3. La classe **NP**
+
+!!!danger "Spoiler"
+    **NP** ne signifie pas *non polynomial*
 
 Certains problèmes que l'on rencontre en informatique sont difficiles à résoudre efficacement. Cependant si on vous donne une solution au problème, il est facile de vérifier que cette solution est la bonne.
 
@@ -296,7 +371,7 @@ Autrement dit, on peut facilement écrire un algorithme à **deux entrées** une
 ```
 
 
-Cette notion correspond à la classe de problèmes appelée **NP**.
+Cette notion de problème facile à vérifier correspond à la classe de problèmes appelée **NP**.
 
 !!!abstract "Définition (classe **NP**)"
     Un problème de décision $A$ est dans la **classe NP**, s'il existe un nombre réel $k > 0$ et une machine $V$ appelée *vérificateur* ayant deux entrées :
@@ -328,12 +403,31 @@ Informellement, la classe **NP** est la classe des probèmes pour lesquels les i
 !!!tip "Théorème"
     **P** $\subset$ **NP**
 
-???note "Démonstration"
+!!!note "Démonstration"
     Soit $A$ un problème dans **P**. Il existe donc un réel $k > 0$ et une machine $M$ qui décide $A$ en temps $O(n^k)$ avec $n$ la taille de l'instance. On **pose** la machine $V$ définie par $V(I, C) = M(I)$. On a alors :
 
     - La machine $V$ s'exécute en pire cas en temps $O(n^k)$.
     - Si la réponse à $I$ est oui, alors en prenant n'importe quel certificat, par exemple le certficat vide $C = \varnothing$, on a $V(I, C) = M(I) = oui$.
     - Réciproquement, s'il existe $C$ tel que $V(I, C) = oui$ alors $M(I) = V(I, C) = oui$ donc $I$ est positive.
+    ```mermaid
+    %%{init: { "flowchart": { "curve": "stepAfter" } }}%%
+    flowchart LR
+        classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+        classDef machine fill:pink;
+        classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+        subgraph V
+        X@{ shape: stop };
+        M["$$M$$"];
+        end
+        I["instance I"] --> M;
+        M --> R[oui/non]
+        C["certificat C"] --> X;
+        class I,C instance;
+        class M machine;
+        class R answer;
+    ```
+    **Conclusion :** on a bien construit un vérificateur en temps polynomial pour le problème $A$, donc $A \in \mathbf{NP}$
 
 
 J'espère que ce théorème chassera en vous l'idée que **NP** signifierait "non polynomial"...
@@ -341,17 +435,52 @@ J'espère que ce théorème chassera en vous l'idée que **NP** signifierait "no
 !!!tip "Problème ouvert depuis 1971"
     On ne sait pas aujourd'hui si **P** = **NP** ou si **P** $\neq$ **NP**.
 
-## La classe NP-complet
+## 4. La classe NP-complet
 
-!!!tip "Théorème de Cook-Levin"
-    Le problème SAT est NP-complet
+On s'intéresse ici à certains problèmes de **NP** qui combinent deux aspects :
+
+- on les rencontre assez fréquemment en informatique
+- ils sont particulièrement coriaces à résoudre
+
+!!!abstract "Définition (problème NP-complet)"
+    Un problème de décision $A$ est **NP**-complet s'il vérifie :
+
+    1. $A \in \mathbf{NP}$
+    2. $A$ est **NP**-difficile, ce qui signifie : $\forall B \in \mathbf{NP}, B \leq_P A$
+
+Attention à ne pas oublier l'hypothèse 1. L'hypothèse 2 signifie que les problèmes de **NP**-difficiles sont des *majorants* de **NP**, autrement dit les problèmes **NP**-complets sont les problèmes les plus difficiles de **NP**.
+
+Bien sûr, la première question que l'on se pose est *existe-t-il de tels problèmes ?*, la réponse est *oui* d'après le théorème (admis) suivant :
+
+!!!tip "Théorème de Cook-Levin (1971)"
+    Le problème *SAT* est **NP**-complet
+
+Nous avons déjà montré ci-dessus que *SAT* $\in$ **NP**, la partie difficile et admise de ce théorème est que *SAT* est aussi **NP**-difficile.
+
+Pour se convaincre de la difficulté des problèmes **NP**-complets on peut aussi considérer la proposition suivante.
+
+!!!tip "Proposition"
+    Soit $A$ un problème $NP$-complet. 
+
+    1. S'il existe une machine $M$ qui décide $A$ en temps polynomial alors $\mathbf{P} = \mathbf{NP}$.
+    2. Si $\mathbf{P} \neq \mathbf{NP}$ alors il n'existe pas de machine pour décider $A$ en temps polynomial.
+
+Autrement dit (1) dit que trouver un algorithme polynomial pour résoudre un problème **NP**-complet revient à résoudre le célèbre problème ouvert. La reformulation (2) dit que si on admet que $\mathbf{P} \neq \mathbf{NP}$  alors il est impossible de trouver un algorithme de complexité raisonnable pour résoudre $A$...
+
+Ceci explique aussi pourquoi on s'intéresse tant à la question $P = NP$ ?
+
+!!!note "Démonstration"
+    - (2) est la contraposée de (1) donc il suffit de montrer (1)
+    - Supposons qu'il existe une machine $M$ pour résoudre $A$ en temps polynomial, donc $A \in \mathbf{P}$. On sait déjà que $\mathbf{P} \subset \mathbf{NP}$, il reste à montrer l'inclusion inverse. Soit $B \in \mathbf{NP}$, comme $A$ est **NP**-difficile, $B \leq_P A$. Mais d'après la proposition de la partie 2, on en déduit que $B \in \mathbf{P}$. Conclusion $\mathbf{NP} \subset \mathbf{P}$.
 
 ### Exemples de problèmes NP-complets
 
-Réduction de SAT à 3-SAT
-Réduction de 3-SAT à CNF-SAT
-Réduction de 3-SAT à CLIQUE
-Réduction de 3-SAT à HAMILTON-PATH
+Il existe une multitude d'autres problèmes **NP**-complets. Pour démontrer la **NP**-complétude, on utilise la méthode par réduction.
 
-## Les problèmes indécidables
+#### Réduction de SAT à 3-SAT
+#### Réduction de 3-SAT à CNF-SAT
+#### Réduction de 3-SAT à CLIQUE
+#### Réduction de 3-SAT à HAMILTON-PATH
+
+## 5. Les problèmes indécidables
 
