@@ -188,7 +188,7 @@ La réduction est polynomiale lorsque le temps de calcul de la traduction est po
         return M(ib);
     }
     ```
-    Toutes les approches sont valides
+    Je trouve la représentation schématique plus claire mais toutes ces propositions sont valides
 
 ## 2. La classe **P**
 
