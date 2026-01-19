@@ -19,7 +19,7 @@
     - [Algorithme ID3 : le choixpeau magique](/pdf/id3.pdf)
     - [Arbres k-dimensionnels : illustrations](/pdf/kdtree.pdf)
 8. [:material-gate-xor: Logique propositionnelle, logique des prédicats, déduction naturelle](/pdf/logique.pdf)
-9. [:fontawesome-solid-circle-nodes: Décidabilité et complexité](/pdf/decicomp.pdf)
+9. [:fontawesome-solid-circle-nodes: Décidabilité et complexité](/algo/decicomp)
 10. [:material-sigma: Grammaires algébriques](/langages/grammaires)
 11. [:fontawesome-solid-circle-nodes: Composantes fortement connexes](/algo/cfc)
 12. [:fontawesome-solid-code-fork: Programmation concurrente](/algo/concur)
