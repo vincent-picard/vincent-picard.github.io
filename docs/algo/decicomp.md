@@ -475,12 +475,139 @@ Ceci explique aussi pourquoi on s'intéresse tant à la question $P = NP$ ?
 
 ### Exemples de problèmes NP-complets
 
-Il existe une multitude d'autres problèmes **NP**-complets. Pour démontrer la **NP**-complétude, on utilise la méthode par réduction.
+Il existe une multitude d'autres problèmes **NP**-complets. Pour démontrer la **NP**-complétude, on utilise en général la proposition suivante :
+
+!!!tip "Proposition"
+    Soit $A$ un problème de décision **NP**-complet et $B$ un problème de décision. Si
+    
+    1. $B \in \mathbf{NP}$
+    2. $A \leq_P B$
+
+    Alors $B$ est **NP**-complet.
+
+!!!note "Démonstration"
+    D'après (1), $B \in \mathbf{NP}$, il reste donc à montrer que $B$ est **NP**-difficile. Soit $C$ un problème de **NP**, comme $A$ est **NP**-complet, on a $C \leq_P A$. De plus, $A \leq_P B$ d'après (2), donc par transitivité de $\leq_P$, on a $C \leq_P B$. Ainsi $B$ est bien **NP**-difficile. Conclusion : $B$ est **NP**-complet.
+
+Autrement dit pour montrer qu'un problème est **NP**-complet, il suffit de montrer qu'il est dans **NP** puis de montrer qu'il est plus difficile qu'un problème dont on sait déjà qu'il est **NP**-complet. Cette méthode par réduction permet de montrer à partir de *SAT* que de nombreux autres problèmes sont **NP**-complets. Étudions quelques exemples.
 
 #### Réduction de SAT à 3-SAT
+
+Le problème 3-SAT est similaire à SAT mais on se restreint aux formules sour formes normales conjonctives avec 3 littéraux par clause au plus.
+
+- **Instance :** une formule $F$ de la logique propositionnelle sous forme normale conjonctive (CNF) avec 3 littéraux par clause au plus.
+- **Question :** $F$ est elle satisfiable ?
+
+Il est facile de montrer que 3-SAT $\in$ **NP** : on peut utiliser exactement le même vérificateur que pour *SAT*.
+
+Montrons que SAT $\leq_P$ 3-SAT. On décrit l'algorithme de réduction à l'aide d'un exemple :
+$F = x_1 \to \neg(x_2 \leftrightarrow (x_1 \land x_4))$
+
+##### Étape 1
+
+On voit la formule comme un arbre et on *descend* les négations aux feuilles à l'aide des équivalences suivantes :
+
+- $\neg(A \land B) \equiv (\neg A \lor \neg B)$
+- $\neg(A \lor B) \equiv (\neg A \land \neg B)$
+- $\neg(A \to B) \equiv (A \land \neg B)$
+- $\neg(A \leftrightarrow B) \equiv (\neg A \leftrightarrow \neg B)$
+
+On obtient ainsi un arbre équivalent, où les feuilles sont des littéraux, et les noeuds sont des connecteurs parmi $\land, \lor, \to, \leftrightarrow$. Dans notre exemple on obtient :
+$F \equiv (x_1 \to (\neg x_2 \leftrightarrow (\neg x_1 \lor \neg x_4)$
+
+Ce qui se représente sous forme d'arbre binaire :
+    ```mermaid
+    graph TD
+        A("$$\to$$") --> B[$$x_1$$];
+        A --> C("$$\leftrightarrow$$");
+        C --> D["$$\neg x_2$$"];
+        C --> E("$$\lor$$");
+        E --> F["$$\neg x_1$$"];
+        E --> G["$$\neg x_4$$"];
+    ```
+
+##### Étape 2
+
+On introduit des nouvelles variables $y_1, y_2, \dots$ pour chaque noeud de l'arbre binaire obtenu (chaque sous formule en fait) :
+    ```mermaid
+    graph TD
+        A("$$y_1$$") --> B[$$x_1$$];
+        A --> C("$$y_2$$");
+        C --> D["$$\neg x_2$$"];
+        C --> E("$$y_3$$");
+        E --> F["$$\neg x_1$$"];
+        E --> G["$$\neg x_4$$"];
+    ```
+On va considérer que $y_1$ est la variable associée à la racine de l'arbre.
+
+##### Étape 3
+
+On va contraindre chaque variables $y_i$ à prendre pour valeur *l'évaluation* de la sous-formule à laquelle est elle est associée. On introduit pour cela des formules propositionnelles $N_1, N_2, \dots$ ainsi :
+
+- $N_1 = (y_1 \leftrightarrow (x_1 \to y_2)$
+- $N_2 = (y_2 \leftrightarrow (\neg x_2 \leftrightarrow y_3))$
+- $N_3 = (y_3 \leftrightarrow (\neg x_1 \leftrightarrow \neg x_4))$
+
+Plus généralement, la formule $N_i$ a pour forme $N_i = (y_i \leftrightarrow (g \bowtie d)$ avec $g$ et $d$ les variables (ou littéraux) correspondant aux fils gauche et droit et $\bowtie$ le connecteur logique du noeud.
+
+##### Étape 4
+
+On remarque alors que chaque formule $N_i$ fait intervenir au plus 3 variables. On peut donc lui trouver une formule équivalente sous forme normale conjonctive avec des clauses contenant 3 littéraux au plus. On utilise par exemple sa table de vérité qui fait 8 lignes au plus (donc 8 clauses dans le pire cas pour la FNC).
+
+Notons $C_i$ la formule sous forme 3-CNF associée à cahque $N_i$
+
+##### Étape 5
+
+Au final on pose la formule $G = y_1 \land C_1 \land \dots \land C_m$, qui est bien sous forme normale conjonctive avec au plus 3 littéraux dans chaque clause. De plus, par construction $F$ est satisfiable si et seulement si $G$ est satisfiable. On remarque enfin que la réduction est bien polynomiale :
+- étape 1 : descendre les négations est un parcours récursif de l'arbre binaire, donc de complexité linéaire 
+- étape 2 : on introduit $m$ variables $y_i$ qui sont en même quantité que les noeuds internes de l'arbre binaire. Mais on sait que : $f = m + 1$ avec $f$ le nombre de feuilles dans un arbre binaire. Donc $|F| = m + f = 2m + 1$ donc $m$ est linéiare en la taille de $F$
+- étape 3 : $O(m)$
+- étape 4 : la construction de chaque $C_i$ prend un temps constant (en fonction de |F|), donc encore une fois cette étape prend un temps $O(m)$
+- étape 5 : la formule $G$ construite a donc pour taille $O(m) = O(|F|)$.
+
+La réduction est bien polynomiale (et même linéaire en fait !)
+
+
+Conclusion : on a montré que 3-SAT est **NP** et que SAT $\leq_P$ 3-SAT, donc 3-SAT est **NP**-complet.
+
 #### Réduction de 3-SAT à CNF-SAT
+
+Cette réduction est beaucoup plus simple que la précédente !
+
+On considère cette fois le problème CNF-SAT :
+
+- **Instance :** une formule $F$ de la logique propositionnelle sous forme normale conjonctive (CNF).
+- **Question :** $F$ est elle satisfiable ?
+
+On montre d'abord que CNF-SAT est dans NP, en utilisant le même vérificateur que pour SAT.
+
+Ensuite on remarque que la fonction identité est une réduction valide pour montrer $3-SAT \leq_P CNF-SAT$. En effet, chaque formule au format 3-CNF est bien une formule CNF en particulier.
+
+Ainsi CNF-SAT est **NP**-complet.
+
+Au final on a démontré que 2 variantes du problème SAT sont NP-complet.
+
 #### Réduction de 3-SAT à CLIQUE
-#### Réduction de 3-SAT à HAMILTON-PATH
+
+Attaquons-nous maintenant à une réduction entre deux problèmes qui n'ont a priori rien à voir. On considère le problème *CLIQUE* :
+
+- **Instance :** un graphe non orienté $G$ et un entier $K$. 
+- **Question :** existe-t-il une clique de taille $K$ dans le graphe $G$ ?
+
+Montrons que *CLIQUE* est **NP**-complet.
+
+Tout d'abord *CLIQUE* est bien dans **NP**. En effet un certificat est par exemple, une liste $L$ de $K$ sommets qui forme une clique dans $G$. Il est alors facile d'écrire un algorithme de complexité polynomiale, qui prend en entrée $(G, K)$ d'une part (l'instance) et $L$ d'autre part (le certificat) et qui vérifie que les sommets de $L$ forment bien une clique de taille $K$. 
+
+Montrons maintenant que 3-SAT $\leq_P$ CLIQUE.
+
+!!!note "Culture"
+    En 1972, Richard Karp (Prix Turing 1985) utilise ce procédé pour montrer que 21 problèmes fréquents en informatique sont NP-complets, on y trouve par exemple :
+
+    - couverture par sommets d'un graphe
+    - problème du sac à dos
+    - existence de circuits Hamiltoniens dans un graphe
+    - partition d'un ensemble d'entiers en deux sous-ensembles de même somme
+    - ...
+
 
 ## 5. Les problèmes indécidables
 
