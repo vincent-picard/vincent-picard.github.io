@@ -17,8 +17,8 @@
 - :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 - :simple-c: **Détection automatique de langue** [[:bookmark: sujet]](langue.pdf) [[:file_folder: ressources]](langue_eleve.zip) 
 - :simple-ocaml: **Algorithme ID3** [[:bookmark: sujet]](id3.pdf) [[:file_folder: ressources]](id3_eleve.ml) [[:white_check_mark: corrigé]](id3_corrige.ml)
-<!--
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
+<!--
 - :simple-ocaml: **Les perles de Dijkstra** [[:bookmark: sujet]](perles.pdf) 
 - :simple-ocaml: **Analyse syntaxique : expressions arithmétiques** [[:bookmark: sujet]](gram.pdf) [[:file_folder: ressources]](gram_eleve.zip) 
 - :simple-ocaml: **Résolution du jeu de Taquin** [[:bookmark: sujet]](taquin.pdf) [[:star: compléments]](taquin_star.pdf) 
