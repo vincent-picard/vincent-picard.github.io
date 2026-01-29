@@ -599,6 +599,86 @@ Tout d'abord *CLIQUE* est bien dans **NP**. En effet un certificat est par exemp
 
 Montrons maintenant que 3-SAT $\leq_P$ CLIQUE.
 
+La réduction doit partir d'une formule propositionnelle sous forme normale conjonctive qui contient 3 littéraux au plus par clause. Le but est de construire un graphe $G$ et de choisir un entier $K$ tel que $F$ est satisfiable si et seulement si $G$ contient une $K$-clique.
+
+On explique la réduction à l'aide de l'exemple suivant :
+$F = (\neg x \lor y \lor z) \land (x \lor \neg y) \land (x \lor \neg z)$
+
+On construit alors un graphe qui contient un noeud pour chaque **occurence** de littéral de $F$. Dans ce graphe il existe un arc entre le littéral $\ell$ et le littéral $\ell'$ si et seulement si les deux conditions suivante sont vérifiées :
+
+1. Les occurrences $\ell$ et $\ell'$ n'appartiennent pas à la même clause
+2. $\ell$ et $\ell'$ sont compatibles c'est-à-dire qu'il n'existe pas de variable telle que $\ell = x$ et $\ell' = \neg x$ (ou l'inverse).
+
+Voici le graphe $G$ qu'on obtient sur l'exemple :
+    ```mermaid
+    graph TD
+        subgraph X["$$C_1$$"]
+        A("$$\neg x$$");
+        B("$$y$$");
+        C("$$z$$");
+        end;
+        subgraph Z["$$C_3$$"]
+        D("$$\neg z$$");
+        E("$$x$$");
+        end;
+        subgraph Y["$$C_2$$"]
+        F("$$\neg y$$");
+        G("$$x$$");
+        end;
+        A---F;
+        A---D;
+        B---G;
+        B---E;
+        B---D;
+        C---G;
+        C---F;
+        C---E;
+        D---G;
+        D---F;
+        E---G;
+        E---F;
+    ```
+On choisit également $K = 3$ car il y a 3 clauses dans la formule $F$.
+
+Vérifions que la réduction est correcte :
+
+- Si une valuation satisfait $F$, par exemple $(x,y,z) = (true, true, false)$, alors cette valuation satisfait au moins un littéral par clause. Si on choisit pour chaque clause, l'un de ces littéraux alors on obtient $K$ sommets au total qui forment une clique :
+    ```mermaid
+    graph TD
+        classDef true fill:lightgreen;
+        subgraph X["$$C_1$$"]
+        A("$$\neg x$$");
+        B("$$y$$");
+        C("$$z$$");
+        end;
+        subgraph Z["$$C_3$$"]
+        D("$$\neg z$$");
+        E("$$x$$");
+        end;
+        subgraph Y["$$C_2$$"]
+        F("$$\neg y$$");
+        G("$$x$$");
+        end;
+        A---F;
+        A---D;
+        B---G;
+        B---E;
+        B---D;
+        C---G;
+        C---F;
+        C---E;
+        D---G;
+        D---F;
+        E---G;
+        E---F;
+        class B,G,D true;
+    ```
+    En effet, les littéraux sont forcément deux à deux compatibles car ils sont vrais simultanément.
+
+    - Réciproquement, si le graphe $G$ admet une $K$ clique alors il y a exactement 1 sommet par clause car les sommets d'une même clause ne sont pas reliés. On pose alors une valuation $\varphi$ qui rend vrai tous les littéraux correspondants (ceci est possible car on n'a pas une variable et sa négation car les littéraux sont 2 à 2 compatibles). Cette valuation rend alors vrai au moins un littéral par clause donc elle satisfait $F$.
+
+Cette réduction est donc correcte, de plus elle est bien polynomiale : ne nombre de sommets de $G$ est majoré par $|F|$ donc le graphe s'il est par exemple représenté par matrice d'adjacence a pour taille $O(|F|^2)$.
+
 !!!note "Culture"
     En 1972, Richard Karp (Prix Turing 1985) utilise ce procédé pour montrer que 21 problèmes fréquents en informatique sont NP-complets, on y trouve par exemple :
 
