@@ -691,3 +691,53 @@ Cette réduction est donc correcte, de plus elle est bien polynomiale : ne nombr
 
 ## 5. Les problèmes indécidables
 
+Pour conclure ce chapitre nous considérons maintenant les problèmes de décision qui sont impossibles à résoudre. Un problème est **indécidable** s'il n'est pas décidable, autrement dit s'il n'existe pas de machine (i.e. d'algorithme) qui termine toujours et qui répond oui/non correctement par rapport à l'instance donnée.
+
+L'existence de tels problèmes est surprenante et est la conséquence de deux faits :
+
+- les machines $M$ peuvent être traitées comme des données : toute machine possède un codage qu'on notera $<M>$
+- les machines sont capables d'exécuter une machine à partir de son code $<M>$.
+
+!!!abstract "Définition (Machine universelle)"
+    Une machine $U$ est universelle si elle est capable d'effectuer le calcul de $M(x)$ si elle possède pour données le code de la machine $<M>$ et l'entrée $x$.
+
+Nous considérons que le modèle de calcul qu'on considère admet cette propriété. En effet : il est possible de voir un algorithme ou un programme C/OCaml comme une donnée (par exemple le fichier source du programme). Il est également possible d'écrire un programme capable d'exécuter cet algorithme ou ce programme à partir de sa description (par exemple un interprète ou un programme qui compile et exécute le code). Autrement dit, nos ordinateurs sont assez puissants pour être capable d'exécuter un programme qu'on lui donne en entrée.
+
+Le fait de pouvoir voir les algorithmes et les programmes comme des données peut sembler être une propriété souhaitée, mais cela va malheureusement entrainer l'existence de problèmes indécidables. Le plus célèbre est le problème **HALT** :
+
+- **Instance** : le code d'une machine $<M>$ et une entrée $x$ pour la machine $M$
+- **Question** : le calcul $M(x)$ termine-t-il ?
+
+!!!tip "Proposition"
+    **HALT** est indécidable.
+
+!!!note "Démonstration"
+    Supposons qu'il existe une telle machine qu'on appelle $H$ qui termine sur toute entrée et qui vérifie $H(<M>, x) = oui$ si et seulement si $M(x)$ termine.
+    On considère la machine *diagonale* $D$ prenant en entrée un code de machine $<M>$ et qui fait le calcul suivant : elle calcule $HALT(<M>, <M>)$, si la réponse est oui alors elle déclenche une boucle infinie, sinon elle répond oui.
+    On obtient la contractiction suivante $D(<D>)$ termine si et seulement si $HALT(<D>, <D>) = non$ si et seulement si $D(<D>)$ ne termine pas. C'est absurde.
+
+Le fait que HALT soit indécidable permet de montrer que beaucoup d'autres problèmes le sont, voici un exemple :
+
+!!!example "Exercice"
+    Soit le problème de décision **HW** suivant :
+
+    - **Instance** : le code d'une machine $<M>$ ne prenant pas d'entrée.
+    - **Question** : est-ce que la machine $M$ produit en sortie le texte *Hello World!* ?
+
+    Montrer que **HW** est indécidable.
+
+    ???note "Solution"
+        Supposons par l'absurde qu'il existe une telle machine $HW$. On va construire une machine $H$ prenant en entrée le code d'une machine $<M>$ et une entrée $x$ pour M et dont voici la description :
+
+        - elle écrit la description d'une machine $<P>$ exécutant le programme suivant : calculer $M(x)$ (machine universelle) puis produire en sorie *Hello World!*
+        - elle calcule $HW(<P>)$ et renvoie la réponse oui/non
+
+        Alors si $H(<M>, x) = oui$ c'est que $HW(<P>) = oui$ donc P affiche *Hello world!* et donc le calcul de $M(x)$ s'est terminé. Si $H(<M>, x) = non$ c'est que $HW(<P>) = non$, c'est que P n'affiche pas *Hello world!*, cela n'est possible que si $M(x)$ ne termine pas. Conclusion HW décide HALT c'est absurde. Donc HW n'est pas décidable.
+
+Plus généralement, il existe un théorème (Rice) qui exprime que toute propriété sémantique non triviale sur un programme est indécidable par exemple :
+
+- Est-ce que le programme peut renvoyer la valeur nulle ?
+- Est-ce que le programme calcule la fonction "carrée" ? Est-ce que le programme implémente une fonction donnée ?
+- Est-ce que le programme envoie un message sur internet ?
+- etc...
+
