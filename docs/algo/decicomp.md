@@ -509,17 +509,17 @@ On voit la formule comme un arbre et on *descend* les négations aux feuilles à
 - $\neg(A \land B) \equiv (\neg A \lor \neg B)$
 - $\neg(A \lor B) \equiv (\neg A \land \neg B)$
 - $\neg(A \to B) \equiv (A \land \neg B)$
-- $\neg(A \leftrightarrow B) \equiv (\neg A \leftrightarrow \neg B)$
+- $\neg(A \leftrightarrow B) \equiv (A \leftrightarrow \neg B)$
 
 On obtient ainsi un arbre équivalent, où les feuilles sont des littéraux, et les noeuds sont des connecteurs parmi $\land, \lor, \to, \leftrightarrow$. Dans notre exemple on obtient :
-$F \equiv (x_1 \to (\neg x_2 \leftrightarrow (\neg x_1 \lor \neg x_4)$
+$F \equiv (x_1 \to (x_2 \leftrightarrow (\neg x_1 \lor \neg x_4)))$
 
 Ce qui se représente sous forme d'arbre binaire :
     ```mermaid
     graph TD
         A("$$\to$$") --> B[$$x_1$$];
         A --> C("$$\leftrightarrow$$");
-        C --> D["$$\neg x_2$$"];
+        C --> D["$$x_2$$"];
         C --> E("$$\lor$$");
         E --> F["$$\neg x_1$$"];
         E --> G["$$\neg x_4$$"];
@@ -532,7 +532,7 @@ On introduit des nouvelles variables $y_1, y_2, \dots$ pour chaque noeud de l'ar
     graph TD
         A("$$y_1$$") --> B[$$x_1$$];
         A --> C("$$y_2$$");
-        C --> D["$$\neg x_2$$"];
+        C --> D["$$x_2$$"];
         C --> E("$$y_3$$");
         E --> F["$$\neg x_1$$"];
         E --> G["$$\neg x_4$$"];
@@ -544,7 +544,7 @@ On va considérer que $y_1$ est la variable associée à la racine de l'arbre.
 On va contraindre chaque variables $y_i$ à prendre pour valeur *l'évaluation* de la sous-formule à laquelle est elle est associée. On introduit pour cela des formules propositionnelles $N_1, N_2, \dots$ ainsi :
 
 - $N_1 = (y_1 \leftrightarrow (x_1 \to y_2)$
-- $N_2 = (y_2 \leftrightarrow (\neg x_2 \leftrightarrow y_3))$
+- $N_2 = (y_2 \leftrightarrow (x_2 \leftrightarrow y_3))$
 - $N_3 = (y_3 \leftrightarrow (\neg x_1 \leftrightarrow \neg x_4))$
 
 Plus généralement, la formule $N_i$ a pour forme $N_i = (y_i \leftrightarrow (g \bowtie d)$ avec $g$ et $d$ les variables (ou littéraux) correspondant aux fils gauche et droit et $\bowtie$ le connecteur logique du noeud.
@@ -558,9 +558,10 @@ Notons $C_i$ la formule sous forme 3-CNF associée à cahque $N_i$
 ##### Étape 5
 
 Au final on pose la formule $G = y_1 \land C_1 \land \dots \land C_m$, qui est bien sous forme normale conjonctive avec au plus 3 littéraux dans chaque clause. De plus, par construction $F$ est satisfiable si et seulement si $G$ est satisfiable. On remarque enfin que la réduction est bien polynomiale :
+
 - étape 1 : descendre les négations est un parcours récursif de l'arbre binaire, donc de complexité linéaire 
-- étape 2 : on introduit $m$ variables $y_i$ qui sont en même quantité que les noeuds internes de l'arbre binaire. Mais on sait que : $f = m + 1$ avec $f$ le nombre de feuilles dans un arbre binaire. Donc $|F| = m + f = 2m + 1$ donc $m$ est linéiare en la taille de $F$
-- étape 3 : $O(m)$
+- étape 2 : on introduit $m$ variables $y_i$ qui sont en même quantité que les noeuds internes de l'arbre binaire. Mais on sait que dans un arbre binaire: $f = m + 1$ avec $f$ le nombre de feuilles dans un arbre binaire. Donc $|F| = m + f = 2m + 1$ donc $m$ est linéaire en la taille de $F$ : $m = O(|F|)$.
+- étape 3 : $O(m)$ donc $O(|F|)$
 - étape 4 : la construction de chaque $C_i$ prend un temps constant (en fonction de |F|), donc encore une fois cette étape prend un temps $O(m)$
 - étape 5 : la formule $G$ construite a donc pour taille $O(m) = O(|F|)$.
 
@@ -580,11 +581,11 @@ On considère cette fois le problème CNF-SAT :
 
 On montre d'abord que CNF-SAT est dans NP, en utilisant le même vérificateur que pour SAT.
 
-Ensuite on remarque que la fonction identité est une réduction valide pour montrer $3-SAT \leq_P CNF-SAT$. En effet, chaque formule au format 3-CNF est bien une formule CNF en particulier.
+Ensuite on remarque que la fonction identité est une réduction valide pour montrer 3-SAT $\leq_P$ CNF-SAT. En effet, chaque formule au format 3-CNF est bien une formule CNF en particulier.
 
 Ainsi CNF-SAT est **NP**-complet.
 
-Au final on a démontré que 2 variantes du problème SAT sont NP-complet.
+Au final on a démontré que 2 variantes du problème SAT sont **NP**-complet.
 
 #### Réduction de 3-SAT à CLIQUE
 
@@ -675,9 +676,9 @@ Vérifions que la réduction est correcte :
     ```
     En effet, les littéraux sont forcément deux à deux compatibles car ils sont vrais simultanément.
 
-    - Réciproquement, si le graphe $G$ admet une $K$ clique alors il y a exactement 1 sommet par clause car les sommets d'une même clause ne sont pas reliés. On pose alors une valuation $\varphi$ qui rend vrai tous les littéraux correspondants (ceci est possible car on n'a pas une variable et sa négation car les littéraux sont 2 à 2 compatibles). Cette valuation rend alors vrai au moins un littéral par clause donc elle satisfait $F$.
+- Réciproquement, si le graphe $G$ admet une $K$ clique alors il y a exactement 1 sommet par clause car les sommets d'une même clause ne sont pas reliés. On pose alors une valuation $\varphi$ qui rend vrai tous les littéraux correspondants (ceci est possible car on n'a pas une variable et sa négation car les littéraux sont 2 à 2 compatibles). Cette valuation rend alors vrai au moins un littéral par clause donc elle satisfait $F$.
 
-Cette réduction est donc correcte, de plus elle est bien polynomiale : ne nombre de sommets de $G$ est majoré par $|F|$ donc le graphe s'il est par exemple représenté par matrice d'adjacence a pour taille $O(|F|^2)$.
+Cette réduction est donc correcte, de plus elle est bien polynomiale : le nombre de sommets de $G$ est majoré par $|F|$ donc le graphe s'il est par exemple représenté par matrice d'adjacence a pour taille $O(|F|^2)$.
 
 !!!note "Culture"
     En 1972, Richard Karp (Prix Turing 1985) utilise ce procédé pour montrer que 21 problèmes fréquents en informatique sont NP-complets, on y trouve par exemple :
@@ -701,7 +702,7 @@ L'existence de tels problèmes est surprenante et est la conséquence de deux fa
 !!!abstract "Définition (Machine universelle)"
     Une machine $U$ est universelle si elle est capable d'effectuer le calcul de $M(x)$ si elle possède pour données le code de la machine $<M>$ et l'entrée $x$.
 
-Nous considérons que le modèle de calcul qu'on considère admet cette propriété. En effet : il est possible de voir un algorithme ou un programme C/OCaml comme une donnée (par exemple le fichier source du programme). Il est également possible d'écrire un programme capable d'exécuter cet algorithme ou ce programme à partir de sa description (par exemple un interprète ou un programme qui compile et exécute le code). Autrement dit, nos ordinateurs sont assez puissants pour être capable d'exécuter un programme qu'on lui donne en entrée.
+Nous admettons que le modèle de calcul qu'on considère possède cette propriété. En effet : il est possible de voir un algorithme ou un programme C/OCaml comme une donnée (par exemple le fichier source du programme). Il est également possible d'écrire un programme capable d'exécuter cet algorithme ou ce programme à partir de sa description (par exemple un interprète ou un programme qui compile et exécute le code). Autrement dit, nos ordinateurs sont assez puissants pour être capable d'exécuter un programme qu'on lui donne en entrée.
 
 Le fait de pouvoir voir les algorithmes et les programmes comme des données peut sembler être une propriété souhaitée, mais cela va malheureusement entrainer l'existence de problèmes indécidables. Le plus célèbre est le problème **HALT** :
 
@@ -712,9 +713,17 @@ Le fait de pouvoir voir les algorithmes et les programmes comme des données peu
     **HALT** est indécidable.
 
 !!!note "Démonstration"
-    Supposons qu'il existe une telle machine qu'on appelle $H$ qui termine sur toute entrée et qui vérifie $H(<M>, x) = oui$ si et seulement si $M(x)$ termine.
-    On considère la machine *diagonale* $D$ prenant en entrée un code de machine $<M>$ et qui fait le calcul suivant : elle calcule $HALT(<M>, <M>)$, si la réponse est oui alors elle déclenche une boucle infinie, sinon elle répond oui.
-    On obtient la contractiction suivante $D(<D>)$ termine si et seulement si $HALT(<D>, <D>) = non$ si et seulement si $D(<D>)$ ne termine pas. C'est absurde.
+    Supposons par l'absurde qu'il existe une telle machine qu'on appelle $H$ qui termine sur toute entrée et qui vérifie $H(<M>, x) = oui$ si et seulement si $M(x)$ termine.
+    On considère la machine *diagonale* $D$ prenant en entrée un code de machine $<M>$ et qui fait le calcul suivant, donné en pseudo-code :
+    ```
+    def D(<M>):
+        b <- H(<M>, <M>) // <M> est une suite de 1/0 donc on peut prendre cette information comme x
+        if b = true then
+            while (true) do {} // boucle infinie
+        else
+            return true
+    ```
+    On obtient la contractiction suivante $D(<D>)$ termine si et seulement si $H(<D>, <D>) = false$ si et seulement si $D(<D>)$ ne termine pas. C'est absurde.
 
 Le fait que HALT soit indécidable permet de montrer que beaucoup d'autres problèmes le sont, voici un exemple :
 
