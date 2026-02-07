@@ -16,3 +16,4 @@
 - **Arbres couvrants de poids minimal, théorème de Kleene (et conséquences), Apprentissage supervisé, logique, déduction naturelle (propositionnelle)** [[:bookmark: Programme semaine 14]](colle14.pdf)
 - **Logique, déduction naturelle; décidabilité et complexité (début)** [[:bookmark: Programme semaine 17]](colle17.pdf)
 - **Décidabilité et complexité : tout le chapitre** [[:bookmark: Programme semaine 18]](colle18.pdf)
+- **Décidabilité et complexité; Grammaires algébrique (le début)** [[:bookmark: Programme semaine 19]](colle19.pdf)
