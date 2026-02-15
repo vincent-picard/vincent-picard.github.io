@@ -1,0 +1,155 @@
+#!/usr/local/bin/python3.9
+# Auteur : Vincent Picard <vincent.picard2@ac-reunion.fr>
+
+import random
+import sys
+
+if len(sys.argv) >= 2:
+    u0 = int(sys.argv[1])
+else:
+    u0 = 42
+
+print("u0 = ", u0)
+print()
+
+"""
+Une position du jeu de taquin sera représentée par une matrice 3x3 codée
+sous forme d'une liste de 3 listes (une liste par ligne).
+"""
+
+"""
+Les deux fonctions ci-dessous servent à afficher joliment
+une position du jeu de taquin. print_ligne est une fonction
+auxilaire pour print_taquin. print_taquin est la fonction
+à utiliser.
+"""
+
+def print_ligne(a, b, c):
+    l = ""
+    l += u'\u2551 ' + (str(a) if a != 0 else u'\u25C8') + ' '
+    l += u'\u2551 ' + (str(b) if b != 0 else u'\u25C8') + ' '
+    l += u'\u2551 ' + (str(c) if c != 0 else u'\u25C8') + ' '
+    l += u'\u2551'
+    print(l)
+
+"""
+Cette fonction prend en arguments une position de jeu de taquin
+et l'affiche joliment à l'écran.
+"""
+def print_taquin(t):
+    bord_haut = u'\u2554' + (u'\u2550' * 3 + u'\u2566') * 2 + u'\u2550' * 3 + u'\u2557'
+    bord_bas = u'\u255A' + (u'\u2550' * 3 + u'\u2569') * 2 + u'\u2550' * 3 + u'\u255D'
+    bord_int = u'\u2560' + (u'\u2550' * 3 + u'\u256C') * 2 + u'\u2550' * 3 + u'\u2563'
+    print(bord_haut)
+    print_ligne(t[0][0], t[0][1], t[0][2])
+    print(bord_int)
+    print_ligne(t[1][0], t[1][1], t[1][2])
+    print(bord_int)
+    print_ligne(t[2][0], t[2][1], t[2][2])
+    print(bord_bas)
+
+
+""" QUESTION 1 """
+def taquin_resolu():
+    return [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+""" QUESTION 2 """
+def place_vide(t):
+    for i in range(3):
+        for j in range(3):
+            if t[i][j] == 0:
+                return (i, j)
+    return None # ce cas n'est pas censé arrivé sur une grille de taquin valide...
+
+""" QUESTION 3 """
+
+"""
+Tente de réaliser un déplacement dans le jeu de taquin.
+La direction donnée est la direction prise par la tuile
+qui se déplace. La fonction retourne 0 si le déplacement
+est possible et 1 sinon. Si le déplacement est possible
+le taquin est modifié en conséquence sinon il n'est pas
+changé.
+"""
+def deplacement(taquin, direction):
+    assert direction in ['N', 'E', 'S', 'W']
+    (i, j) = place_vide(taquin)
+    if direction == 'N' and i != 2:
+        taquin[i][j] = taquin[i+1][j]
+        taquin[i+1][j] = 0
+        return 1
+    elif direction == 'E' and j != 0:
+        taquin[i][j] = taquin[i][j-1]
+        taquin[i][j-1] = 0
+        return 1
+    elif direction == 'S' and i != 0:
+        taquin[i][j] = taquin[i-1][j]
+        taquin[i-1][j] = 0
+        return 1
+    elif direction == 'W' and j != 2:
+        taquin[i][j] = taquin[i][j+1]
+        taquin[i][j+1] = 0
+        return 1
+    else:
+        return 0
+
+""" QUESTION 4 """
+u = [u0]
+K = 2**30 - 3
+for n in range(1, 100000):
+    u.append( (u[n-1] * 1022) % K)
+
+print("QUESTION 4")
+print("a/ ", u[10])
+print("b/ ", u[500])
+print("c/ ", u[10000])
+print()
+
+""" QUESTION 5 """
+def D(k, l):
+    res = []
+    for i in range(l):
+        if u[i + k] % 4 == 0:
+            res.append('N')
+        elif u[i + k] % 4 == 1:
+            res.append('E')
+        elif u[i + k] % 4 == 2:
+            res.append('S')
+        else:
+            res.append('W')
+    return res
+
+print("QUESTION 5")
+print("a/ ", D(0, 5))
+print("b/ ", D(50, 5))
+print("c/ ", D(140, 5))
+print()
+
+""" QUESTION 6 """
+def deplacement_liste(taquin, l):
+    n = len(l)
+    deplacements = 0
+    for k in range(n):
+        deplacements += deplacement(taquin, l[k])
+    return deplacements
+
+print("QUESTION 6")
+print("a/ ", deplacement_liste(taquin_resolu(), D(50, 1000)))
+print("b/ ", deplacement_liste(taquin_resolu(), D(3500, 1000)))
+print("c/ ", deplacement_liste(taquin_resolu(), D(7100, 1000)))
+print()
+
+""" QUESTION 7 """
+def T(k):
+    taquin = taquin_resolu()
+    deplacement_liste(taquin, D(k, 1000))
+    return taquin
+
+print("QUESTION 7")
+print("a/")
+print_taquin(T(700))
+t = T(50)
+print("b/ ", t[0][0] + t[0][1] + t[0][2])
+print("c/ ", place_vide(T(200)))
+print()
+
