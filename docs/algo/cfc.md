@@ -47,9 +47,10 @@ Le parcours en profondeur (DFS) récursif d'un graphe $G = (S, A)$ permet d'obte
 
 Commençons par rappeler l'algorithme récursif de parcours en profondeur.
 On utilisera le système de couleurs suivant pour marquer les sommets :
-    - vert : sommet non exploré
-    - orange : sommet en cours d'exploration
-    - rouge : sommet dont l'exploration est terminée
+
+- vert : sommet non exploré
+- orange : sommet en cours d'exploration
+- rouge : sommet dont l'exploration est terminée
 
 ```
 Variables globales : 
@@ -104,6 +105,7 @@ La relation $\leq_T$ est une relation d'ordre total sur l'ensemble des sommets.
     ```
     L'ordre $\leq_T$ obtenu est donc : $A \leq_T B \leq_T C \leq_T E \leq_T D$
 
+<!--
 L'ordre $\leq_T$ possède la bonne propriété suivante :
 
 !!! tip "Proposition"
@@ -120,13 +122,14 @@ L'ordre $\leq_T$ possède la bonne propriété suivante :
     on aurait alors $y \leq_T x$ et donc x = y. Ce cas est exclus.
     - Cas 4 : d(x) f(x) d(y) f(y)
     on aurait alors $y \leq_T x$ et donc x = y. Ce cas est exclus.
+-->
 
-#### Conséquence dans le cas d'un DAG
+#### A. Conséquence dans le cas d'un DAG
 
 On rappelle qu'un DAG est un graphe orienté sans cycle (directed acyclic graph).
 
-!!! abstract "Définition (ordre topoligique)"
-    Soit $G = (S, A)$ un graphe et $\leq$ un ordre total sur ses sommets. On dit qu'un tel ordre est un **ordre topoligue** lorsque :
+!!! abstract "Définition (ordre topologique)"
+    Soit $G = (S, A)$ un graphe et $\leq$ un ordre total sur ses sommets. On dit qu'un tel ordre est un **ordre topologue** lorsque :
 
     $$
     (x,y) \in A \quad \Rightarrow (x \leq y)
@@ -137,38 +140,104 @@ Autrement dit, si on dessine le graphe linéairement avec les sommets de gauche 
 Cela est très important pour résoudre les **problèmes de dépendances** : si l'arc $x \to y$ matérialise le fait que $y$ dépend de $x$, alors un ordre topologique est un ordre pour lequel on peut traiter les sommets en respectant les dépendances.
 
 !!! tip "Proposition"
-    Si $G = (S, A)$ est un DAG alors l'ordre $\leq_T$ est un ordre topoligique.
+    Si $G = (S, A)$ est un DAG alors l'ordre $\leq_T$ est un ordre topologique. C'est-à-dire :
+
+    $$
+    (x,y) \in A \quad \Rightarrow (x \leq_T y)
+    $$
+
 
 !!! note "Démonstration"
-    Soit $(x, y) \in A (x \neq y)$ et supposons par l'absudre que $y \leq_T x$. Comme $(x, y) \in A$, on a $x \Rightarrow^* y$ et d'après la propriété sur $\leq_T$ on en déduit que $y \Rightarrow^* x$. Il y aurait donc un cycle dans ce graphe, c'est absurde.
+    Soit $xy \in A$ une arête. On procède par disjonction de cas sur tous les parenthésages corrects possibles des événements liés à $x$ et $y$ :
 
+    - Cas 1 : d(y) f(y) d(x) f(x) :
+    Dans ce cas $x \leq_T y$
+    - Cas 2 : d(x) d(y) f(y) f(x) :
+    Dans ce cas $x \leq_T y$
+    - Cas 3 : d(y) d(x) f(x) f(y) :
+    Ce cas est impossible : cela signifie qu'il existe un chemin de $y$ vers $x$, mais comme $xy \in A$ on aurait un cycle.
+    - Cas 4 : d(x) f(x) d(y) f(y)
+    Ce cas est impossible : cela voudrait dire que le DFS depuis $x$ s'est terminé sans que $y$ ne soit exploré mais $xy \in A$.
+
+### B. Conséquence dans le cas général 
+
+Dans le cas où le graphe contient des cycles un ordre topologique ne peut pas exister (pourquoi ?).
+
+On possède toutefois la propriété suivante :
+
+!!!tip "Proposition"
+    Soit $G = (S, A)$ un graphe. Soit $x$ et $y$ appartenant à des composantes fortement connexes **distinctes** tels que $x \leq_T y$ alors il ne peut exister de chemin de $y$ vers $x$.
+
+!!! note "Démonstration"
+    Supposons par l'absurde l'existence d'un tel chemin de $y$ vers $x$ et raisonnons ensuite par disjonction de cas sur tous les parenthésages corrects possibles des événements liés à $x$ et $y$ :
+
+    - Cas 1 : d(y) f(y) d(x) f(x) :
+    On a un chemin de $y$ vers $x$ mais quand on explore $y$ on ne trouve pas $x$ : c'est absurde.
+    - Cas 2 : d(x) d(y) f(y) f(x) :
+    Dans ce cas cela signifie qu'il y a un chemin de $x$ vers $y$ donc $x$ et $y$ seraient dans la même CFC : c'est absurde.
+    - Cas 3 : d(y) d(x) f(x) f(y) :
+    Exclu car $f[y] < f[x]$.
+    - Cas 4 : d(x) f(x) d(y) f(y)
+    Exclu car $f[y] < f[x]$.
+
+
+<!--
+On peut toutefois raisonner sur le *graphe des composantes fortement connexes* aussi appelé *graphe quotient* :
+
+!!!abstract "Définition (graphe des CFC)"
+    Soit $G = (S, A)$ un graphe non orienté. Le *graphe des composantes fortement connexes* de $G$ noté $G_{CFC}$ est le graphe dans lequel :
+
+    - Les sommets sont les CFC de $G$
+    - Il existe un arc $C_1 \to C_2$ si et seulement si il existe $x \in C_1$ et $y \in C_2$ tels que $(x, y) \in A$.
+
+!!!tip "Proposition"
+    $G_{CFC}$ est acyclique (c'est un DAG).
+
+Ceci découle du fait qu'un cycle entre CFC signifieraient que tous les sommets des CFC de ce cycle sont en fait équivalents (il existe un chemin de l'un vers l'autre dans les deux sens). C'est absurde.
+
+De plus on peut étendre les notions de dates de début et fin d'exploration ainsi :
+
+$$ d[C] = \min_{x \in C} d[x] $$
+
+$$ f[C] = \max_{x \in C} f[y] $$
+
+On a alors la propriété que $\leq_T$ ordonne les composantes fortement connexes selon un ordre topologique par rapport à $G_{CFC}$ :
+
+!!!abstract "Proposition"
+    Soit $G = (S, A)$ un graphe et $G_{CFC} = (S_{CFC}, A_{CFC})$ son graphe des CFC alors : 
+
+    $$
+    (C_1,C_2) \in A_{CFC} \quad \Rightarrow f[C_2] \leq_T f[C_1]
+    $$
+-->
 ## 3. Algorithme de Kosaraju
 
 L'algorithme de Kosaraju est un algorithme efficace pour calculer les composantes fortement connexes d'un graphe orienté.
 ```
 KOSARAJU(G = (S,A))
     Gbar <- transpose(G)
-    ordre <- tri_topo(Gbar)
+    ordre <- tri_topo(G)
     composante <- 0
     Pour tout x dans S selon ordre :
-        EXPLORER(x) par DFS dans G en étiquettant tout somme exploré par composante 
+        EXPLORER(x) par DFS dans Gbar en étiquettant tout somme exploré par composante 
         composante <- composante + 1
     Fin Pour
 ```
 
 !!! note "Démonstration"
+    Remarquons déjà que les CFC de $G$ et de $G^t$ sont les mêmes.
     On procède par récurrence sur le nombre de composantes connexes produites :
-    P(k) : les k premiers arbres d'exploration obtenus sont des CFC
+    P(k) : les k premiers arbres d'exploration obtenus lors du parcours de $G^t$ sont des CFC
 
     - $P(0)$ est évidemment vraie il n'y a aucun arbre
     - $P(k) \Rightarrow P(k+1)$ :  
-    On note $x$ la racine de l'arbre d'exploration k+1
-        - **Tous les sommets de la CFC de x sont atteints** : si un sommet $y$ est dans la CFC de $x$ alors $x \Rightarrow^* y$ et par propriété du parcours en profondeur, EXPLORER(x) va explorer $y$. Remarque : si des sommet sur le chemin de $x$ à $y$ ont déjà été explorés, c'est que $y$ a déjà été exploré, et donc qu'il appartient à une CFC qui n'est pas celle de x par hypothèse de récurrence.
-        - **Les sommets atteints sont tous dans la CFC de x** : lorsqu'un sommet $y$ est atteint par le parcours on possède un chemin de $x\Rightarrow^* y$ dans G, c'est-à-dire un chemin de $y \Rightarrow^* x$ dans $\bar{G}$. Par propriété de l'ordre $\leq_T$ sur $\bar{G}$, comme $x \leq_T y$, on en déduit que $x \Rightarrow^* y$ dans $\bar{G}$, donc $y \Rightarrow^* x$ dans $G$. Donc $y$ est dans la CFC de $x$.
+    On note $u_{k+1}$ la racine de l'arbre d'exploration $T_{k+1}$ et $C_{k+1}$ la CFC de $u_{k+1}$. Montrons que $T_{k+1} = C_{k+1}$.
 
-**Remarque :** Cela ne change rien si on avait effecuté le tri topologique sur $G$, puis le parcours dans $\bar{G}$. Cependant on procède traditionnellement ainsi.
+        - **Tous les sommets de la composante $C_{k+1}$ sont atteints par $T_{k+1}$** : en effet par hypothèse de récurrence, aucun sommet de $C_{k+1}$ n'est actuellement exploré, donc l'exploration par parcours en profondeur depuis $u_{k+1}$ va tous les découvrir c'est-à-dire que $C_{k+1} \subset T_{k+1}$.
+        - **Si un sommet $y$ est atteint par $T_{k+1}$ alors il est dans $C_{k+1}$**. Supposons qu'il ne le soit pas c'est-à-dire que $y$ appartient à une CFC différente de $x$. On a de plus $x \leq_T y$ car on explore les sommets dans l'ordre $\leq_T$. Donc d'après la proposition précédente, il n'existe pas de chemin de $y$ vers $x$ dans $G$, ce qui signifie qu'il n'existe pas de chemin de $x$ vers $y$ dans $G^t$ c'est absurde. Donc $T_{k+1} \subset C_{k+1}$.
+**Remarque :** Cela ne change rien si on avait effecuté le tri topologique sur $G^t$, puis le parcours dans $G$. 
 
-**Complexité :** Notons $n$ le nombre de sommets et $m$ le nombre d'arcs; on suppose le graphe représenté par liste d'adjacences. Le tri topoligique est un parcours de graphe donc de complexité $O(n + m)$ de complexité linéaire, le calcul de transposée est aussi linéaire $O(n + m)$, enfin le second parcours en profondeur est de complexité linéaire $O(n+m)$. Conclusion : **l'algorithme de Kosaraju est de complexité linéaire par rapport à la taille du graphe $O(n + m)$**
+**Complexité :** Notons $n$ le nombre de sommets et $m$ le nombre d'arcs; on suppose le graphe représenté par liste d'adjacences. Le tri topologique est un parcours de graphe donc de complexité $O(n + m)$ de complexité linéaire, le calcul de transposée est aussi linéaire $O(n + m)$, enfin le second parcours en profondeur est de complexité linéaire $O(n+m)$. Conclusion : **l'algorithme de Kosaraju est de complexité linéaire par rapport à la taille du graphe $O(n + m)$**
 ## 4. 2-SAT est dans P
 
 On sait que 3-SAT est NP-complet d'après le théorème de Cook, mais qu'en est-il de 2-SAT ?
