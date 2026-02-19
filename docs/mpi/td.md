@@ -10,7 +10,5 @@
 - **Logique propositionnelle** [[:bookmark: planche]](logique.pdf)
 - **Déduction naturelle** [[:bookmark: planche]](deducnat.pdf)
 - **Décidabilité et complexité (P, NP, ...)** [[:bookmark: planche]](pnp.pdf)
-<!--
-- **Un exercice de réduction NP-complet** [[:bookmark: énoncé]](npcomplet.pdf)
+- **NP-complétude de VERTEX-COVER** [[:bookmark: énoncé]](npcomplet.pdf)
 - **Grammaires non contextuelles** [[:bookmark: planche]](grammaires.pdf)
--->
