@@ -1,0 +1,1759 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../flags/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Architecture générale - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-generale-du-processeur" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture générale
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-composants-du-processeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Composants du processeur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rappels-sur-la-representation-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Rappels sur la représentation binaire
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Rappels sur la représentation binaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-operateurs-de-decalage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les opérateurs de décalage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-operateurs-logiques-bit-a-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les opérateurs logiques bit à bit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-execution-dun-programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Exécution d'un programme
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Exécution d&#39;un programme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langage-machine-et-jeu-dinstructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langage machine et jeu d'instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-composants-du-processeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Composants du processeur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rappels-sur-la-representation-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Rappels sur la représentation binaire
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Rappels sur la représentation binaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-operateurs-de-decalage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les opérateurs de décalage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-operateurs-logiques-bit-a-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les opérateurs logiques bit à bit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-execution-dun-programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Exécution d'un programme
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Exécution d&#39;un programme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langage-machine-et-jeu-dinstructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langage machine et jeu d'instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="architecture-generale-du-processeur">Architecture générale du processeur</h1>
+<p><strong>Nouveaux fichiers :</strong> <code>computer.h</code> <code>computer.c</code></p>
+<p>Commençons par présenter le processeur i8080 du point de vue de son mode de fonctionnement. Nous ne rentrerons pas dans les détails de l'architecture matérielle de ce processeur.</p>
+<h2 id="1-composants-du-processeur">1. Composants du processeur</h2>
+<p>Voici un schéma des principaux composants d'un processeur i8080 (en jaune):</p>
+<pre class="mermaid"><code>block-beta
+  columns 3
+  block:cpu:3
+      columns 3
+      block
+          columns 1
+          alu[\"Unité arithmétique et logique (ALU)"/]
+          control[["Unité de contrôle"]]
+          decode(["Décodeur d'instructions"])
+      end
+      block:reg
+        columns 2
+        a["Accumulateur (A)"] f["Flags"] b["B"] c["C"] d["D"] e["E"] h["H"] l["L"]
+      end
+      block:pcsp
+        columns 2
+        sp["Stack pointer"]:1
+        pc["Program counter"]:1
+      end
+  end
+  blockArrowId6&lt;["Bus de données"]&gt;(up, down)
+  space
+  blockArrowId4&lt;["Bus d'adresses"]&gt;(down)
+  mem["Mémoire 64kio (programmes + données)"]:3
+  io[("Périphériques E/S")]:3
+  style mem fill:#bbf,stroke:blue
+  style io fill:#bfb,stroke:green</code></pre>
+<p>À l'interieur d'un processeur i8080, on trouve :</p>
+<ol>
+<li><strong>Les registres</strong> : Ce sont des mémoires très rapides qui servent à stocker les valeurs qui vont être manipulées par le proceseur. Ils sont au nombre de 10. Parmi ces registres, deux jouent un rôle particulier : PC qui contient l'adresse de l'instruction en cours d'exécution, et SP qui contient l'adresse du sommet de la pile d'exécution (nous expliquerons tout cela par la suite).<ul>
+<li>Registre A (8 bits) : ce registre particulier est appelé <strong>accumulateur</strong></li>
+<li>Registre B (8 bits)</li>
+<li>Registre C (8 bits)</li>
+<li>Registre D (8 bits)</li>
+<li>Registre E (8 bits)</li>
+<li>Registre H (8 bits)</li>
+<li>Registre L (8 bits)</li>
+<li>Registre PC <em>program counter</em> (16 bits)</li>
+<li>Registre SP <em>stack pointer</em> (16 bits)</li>
+</ul>
+</li>
+<li><strong>L'unité arithmétique et logique (ALU)</strong> : un ensemble de circuits qui permet d'effectuer certains calculs, l'i8080 est capable d'effectuer des additions, des soustractions, des décalages binaires, et des opérations logiques bit à bit : le AND, le OR et le XOR (ou exclusif), et c'est tout...</li>
+<li><strong>Les flags (drapeaux)</strong> aussi appelés <em>conditions</em> : ce sont des valeurs binaires qui servent à donner des informations sur les résultats des calculs effectués, ils sont au nombre de 5 :<ul>
+<li><em>Sign (S)</em> : signe</li>
+<li><em>Zero (Z)</em> : zéro</li>
+<li><em>Auxiliary carry (AC)</em> : retenue auxiliaire</li>
+<li><em>Parity (P)</em> : parité</li>
+<li><em>Carry (CY)</em> : retenue</li>
+</ul>
+</li>
+<li><strong>La mémoire</strong> : le processeur est relié à la mémoire de l'ordinateur par un <strong>bus de données</strong> de 8 bits et un <strong>bus d'adresses</strong> de 16 bits : cela signifie qu'on dispose de <span class="arithmatex">\(2^{16}\)</span> adresses et que chaque adresse représente 1 octet de la mémoire. Le processeur i8080 est ainsi capable de travailler avec une mémoire de 64kio. </li>
+<li><strong>Entrées / Sorties</strong> : le processeur est capable d'envoyer ou recevoir un octet à un périphérique de l'ordinateur, chaque périphérique est repéré par un numéro de <strong>port</strong> unique codé aussi sur 8 bits, on peut donc en théorie brancher jusqu'à 256 périphériques I/O sur le processeur.</li>
+<li><strong>Une unité de contrôle</strong> : un composant chargé d'orchestrer l'exécution du processeur, elle contient en particulier un <strong>décodeur</strong> capable de lire le langage machine et déterminer quelles instructions doivent être exécutées.</li>
+</ol>
+<p>Voici un autre schéma, tiré du manuel utilisateur de l'Intel 8080, qui montre comment les 40 <em>pins</em> du proceseur sont connectées avec l'extérieur. On y retrouve, l'alimentation l'électrique, le bus d'adresse, le bus de données, l'horloge (entrées <span class="arithmatex">\(\Phi_1\)</span> et <span class="arithmatex">\(\Phi_2\)</span>) qui cadence le processeur à 2Mhz, et d'autres entrées/sorties de contrôle que je ne détaille pas. Toutes les connexions de la partie droite du schéma vont vers le périphérique mémoire de l'ordinateur.</p>
+<figure>
+<img _="," align="align" alt="Interface du Intel 8080" src="../i8080_pins.png" width="800" />
+
+<figcaption> Interface du i8080 (source : manuel Intel 8080) </figcaption>
+</figure>
+<p>Avec ces informations, on peut déjà commencer par définir des types en C pour représenter un ordinateur contenant un processeur i8080.</p>
+<div class="language-c highlight"><span class="filename">computer.h</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#ifndef COMPUTER_H</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define COMPUTER_H</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">struct</span><span class="w"> </span><span class="nc">cpu_s</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regA</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regB</span><span class="p">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regC</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regD</span><span class="p">;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regE</span><span class="p">;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regH</span><span class="p">;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">regL</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">pc</span><span class="p">;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">sp</span><span class="p">;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="c1">// Pour mémoriser les 5 flags</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">};</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">cpu_s</span><span class="w"> </span><span class="n">Cpu</span><span class="p">;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">struct</span><span class="w"> </span><span class="nc">computer_s</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">Cpu</span><span class="w"> </span><span class="n">cpu</span><span class="p">;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">mem</span><span class="p">[</span><span class="mi">65536</span><span class="p">];</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">};</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">computer_s</span><span class="w"> </span><span class="n">Computer</span><span class="p">;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">comp_init</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">);</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="cp">#endif</span>
+</span></code></pre></div>
+<p>Noter que dans un processeur 8080 réel, il n'y a pas de registre 8-bit nommé <em>FLAGS</em>. Nous décidons ici de coder l'ensemble des flags sur un octet, ce qui sera pratique quand on voudra générer le <em>Program Status Word (PSW)</em> (voir plus loin).</p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Écrire dans le fichier <code>computer.c</code> ci-dessous l'implémentation de la fonction <code>comp_init</code>. Cette fonction initialisera toute la mémoire de l'ordinateur à la valeur <code>0</code>. Elle initialisera le registre <code>PC</code> à la valeur <code>0x0000</code> (première adresse mémoire) et le registre <code>SP</code> à la valeur <code>0xFFFF</code> (dernière adresse mémoire).
+<div class="language-c highlight"><span class="filename">computer.c</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;computer.h&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">comp_init</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="c1">/// A COMPLETER</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</span></code></pre></div>
+On pourra tester que ce code compile avec :
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcc<span class="w"> </span>-c<span class="w"> </span>computer.c
+</span></code></pre></div></p>
+</div>
+<h2 id="2-rappels-sur-la-representation-binaire">2. Rappels sur la représentation binaire</h2>
+<p>Vous l'aurez compris, notre émulateur va intensivement manipuler des valeurs codées sur 8 ou 16 bits et il faudra être à l'aise avec les réprésentations binaires pour s'en sortir. Je fais ici quelques rappels, en cas de doutes référez-vous à votre cours de MP2I.</p>
+<p>Le type <code>uint8_t</code> représente une valeur entière non signée codée sur exactement 8 bits. Ainsi les valeurs possibles pour un type <code>uint8_t</code> sont :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Base</th>
+<th style="text-align: center;">Plus petite valeur</th>
+<th style="text-align: center;">Plus grande valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: center;"><span class="arithmatex">\(2^8 - 1\)</span> = <code>255</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><code>0b00000000</code></td>
+<td style="text-align: center;"><code>0b11111111</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;"><code>0x00</code></td>
+<td style="text-align: center;"><code>0xFF</code></td>
+</tr>
+</tbody>
+</table>
+<p>Remarquez l'utilisation du préfixe <code>0b</code> pour indiquer que la valeur littérale qui suit est codée en base 2, et le préfixe <code>0x</code> pour la base 16. Ces préfixes peuvent bien évidemment être utilisés en langage C.</p>
+<p>Le type <code>uint16_t</code> représente une valeur entière non signée codée sur exactement 16 bits. Ainsi les valeurs possibles pour un type <code>uint16_t</code> sont :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Base</th>
+<th style="text-align: center;">Plus petite valeur</th>
+<th style="text-align: center;">Plus grande valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: center;"><span class="arithmatex">\(2^{16} - 1\)</span> = <code>65535</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><code>0b0000000000000000</code></td>
+<td style="text-align: center;"><code>0b1111111111111111</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;"><code>0x0000</code></td>
+<td style="text-align: center;"><code>0xFFFF</code></td>
+</tr>
+</tbody>
+</table>
+<p>La représentation hexadécimale est la plus pratique car elle est compacte tout en conservant une correspondance avec la représentation binaire : = chaque chiffre hexadécimal correspond à 4 bits de l'entier codé (ce n'est pas le cas avec la base 10...) :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Chiffre hexadécimal</th>
+<th style="text-align: center;">Bits</th>
+<th style="text-align: center;">Chiffre hexadécimal</th>
+<th style="text-align: center;">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0000</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">1000</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0001</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">1001</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0010</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1010</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0011</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1011</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0100</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">1100</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0101</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">1101</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0110</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">1110</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0111</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">1111</td>
+</tr>
+</tbody>
+</table>
+<p>Ainsi si on veut écrire la valeur binaire 16 bits suivante : <code>0b1111011100010001</code>, il sera plus commode d'utiliser la base hexadécimale : <code>0xF711</code> </p>
+<p>Les valeurs de type <code>uint8_t</code> et <code>uint16_t</code> sont des entiers signés comme les autres et on peut utiliser les opérations classiques sur les entiers. Par exemple on peut écrire en C :
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mb">0b00111110</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span></code></pre></div>
+En cas de dépassement d'entier sur un calcul en <code>uint8_t</code>, tout se passe comme si on travaillait sur <span class="arithmatex">\(\mathbb{Z}/8\mathbb{Z}\)</span> (de même, sur <span class="arithmatex">\(\mathbb{Z}/16\mathbb{Z}\)</span> pour <code>uint16_t</code>). </p>
+<h3 id="les-operateurs-de-decalage">Les opérateurs de décalage</h3>
+<p>En langage C, l'opérateur <code>&lt;&lt;</code> correspond à un décalage des bits d'un entier vers la gauche. La valeur de <code>n &lt;&lt; k</code> est obtenue en considérant <span class="arithmatex">\(n\)</span> en binaire et en décalant ses bits de <span class="arithmatex">\(k\)</span> rangs vers la gauche. Par exemple, si on travaille sur <code>uint8_t</code> : <code>0b11001101 &lt;&lt; 3</code> donnera <code>0b01101000</code>. Ainsi, les 3 bits les plus forts ont été perdus, tandis que 3 bits à 0 on été introduits par la droite. Mathématiquement, cela revient à multiplier par <span class="arithmatex">\(2^k\)</span>.</p>
+<p>De même, il existe l'opérateur <code>&gt;&gt;</code> qui décale les bits de la même manière (en insérant des 0) mais vers la droite. Mathématiquement calculer <code>n &gt;&gt; k</code> revient à effectuer la division entière de <span class="arithmatex">\(n\)</span> par <span class="arithmatex">\(2^k\)</span>.</p>
+<p>Ces opérateurs sont très utiles lorsqu'on veut lire des bits particuliers d'un nombre ou à l'inverse construire un nombre à partir de ses bits. Par exemple si on possède un entier sur 4 bits <code>u</code> (noté <code>uuuu</code> en base 2) codé sur <code>uint8_t</code> et un autre entier 4 bits <code>v</code> (noté <code>vvvv</code> en base 2) et que l'on souhaite construire l'entier qui dont les bits sont <code>uuuuvvvv</code>, on écrira tout simplement <code>(u &lt;&lt; 4) + v</code>.</p>
+<h3 id="les-operateurs-logiques-bit-a-bit">Les opérateurs logiques bit à bit</h3>
+<p>En C, on peut utiliser les 4 opérateurs bit à bit suivants :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Opérateur</th>
+<th style="text-align: center;">Symbole</th>
+<th style="text-align: center;">Syntaxe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">NON bit à bit</td>
+<td style="text-align: center;">~</td>
+<td style="text-align: center;">~x</td>
+</tr>
+<tr>
+<td style="text-align: center;">ET bit à bit</td>
+<td style="text-align: center;">&amp;</td>
+<td style="text-align: center;">x &amp; y</td>
+</tr>
+<tr>
+<td style="text-align: center;">OU bit à bit</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">x | y</td>
+</tr>
+<tr>
+<td style="text-align: center;">XOR (ou exclusif) bit à bit</td>
+<td style="text-align: center;">^</td>
+<td style="text-align: center;">x ^ y</td>
+</tr>
+</tbody>
+</table>
+<p>Un opérateur bit à bit prend deux entiers <code>x</code> et <code>y</code> (un seul pour le NON) et forme un nouvel entier en appliquant la fonction logique correspondante sur les bits de la représentation en base 2 de <code>x</code> et <code>y</code>.
+Par exemple, <code>17 &amp; 12 = 5</code> car :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">bits</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>21</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>13</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition absract">
+<p class="admonition-title">Utilisation de masques binaires</p>
+<p>Une application particulièrement utile de l'opérateur <code>&amp;</code>, dont on se servira pour écrire le décodeur, est l'application de <strong>masques binaires</strong> </p>
+<p>Supposons qu'on dispose d'un entier sur 8 bits que l'on écrira <code>a = a7 a6 a5 a4 a3 a2 a1 a0</code> et qu'on ne souhaite <em>conserver</em> que les bits <code>a4</code>, <code>a3</code> et <code>a2</code>. Cela est possible en calculant : <code>a &amp; 0b00011100</code> qui vaudra en base 2 : <code>0 0 0 a4 a3 a2 0 0</code>. La valeur <code>00011100</code> est un masque binaire qui en conjonction avec l'opérateur <code>&amp;</code> permet de sélectionner des bits qui nous intéressent et d'annuler tous les autres.</p>
+<p>Une autre application intéressante est le calcul de modulo par une puissance de 2. En effet, calculer <code>n % 8</code> par exemple correspond à ne conserver que les 3 bits les plus à droite de <code>n</code> (car <span class="arithmatex">\(8 = 2^3\)</span>). Ceci peut être calculé en temps constant par application d'un masque <code>n &amp; 0x07</code> (car <code>0x07 = 0b00000111</code>). </p>
+</div>
+<h2 id="3-execution-dun-programme">3. Exécution d'un programme</h2>
+<p>Le mode de fonctionnement d'un i8080 est très simple. Le programme à exécuter est codé en langage machine (binaire) dans la mémoire de l'ordinateur. Le registre PC (<em>program counter</em>) contient l'adresse mémoire de l'instruction à exécuter.</p>
+<p>Une instruction peut être codée sur 1 octet, 2 octets ou 3 octets selon le type d'instruction. Le processeur décode l'instruction, lit le nombre d'octets nécessaires pour cela, puis l'exécute. Cela a en général pour effet de modifier les valeurs des registres et/ou des flags.</p>
+<p>Le processeur met ensuite à jour son registre PC pour aller à l'instruction suivante en mémoire (donc selon le type d'instructions on incrémentera PC de 1, 2 ou 3).</p>
+<h3 id="langage-machine-et-jeu-dinstructions">Langage machine et jeu d'instructions</h3>
+<p>Vous vous demandez sans doute comment le processeur fait pour savoir si l'instruction à lire est codée sur 1, 2 ou 3 octets, mais aussi comment il fait pour savoir de quelle instruction il s'agit. C'est très simple, le processeur commence par lire le premier octet (celui à l'adresse PC) et selon la valeur lue, il peut déterminer le type d'instruction.</p>
+<p>Voici quelques exemples :</p>
+<ul>
+<li>si la valeur est <code>0x00</code>, l'instruction lue est <code>NOP</code> : l'instruction qui ne fait rien. (C'est une instruction sur 1 octet).</li>
+<li>si la valeur est <code>0xD3</code>, l'instruction lue est <code>OUT</code> qui signifie <em>envoyer le contenu du registre accumulateur sur le périphérique de sortie</em>. (C'est une instruction sur 2 octets, le 2e octet précise le port)</li>
+<li>si la valeur est <code>0x81</code>, l'instruction lue est <code>ADD</code> qui signifie <em>ajouter la valeur d'un registre dans l'accumulateur</em>, quel registre ? Pour <code>0x81</code> il s'agit du registre C. En fait plusieurs valeurs correspondent à des instructions de type <code>ADD</code> selon le registre source. De manière générale, une instruciton <code>ADD</code> a pour forme : <code>0x11001RRR</code> où <code>RRR</code> est une valeur sur 3 bits qui indique le registre à utiliser, il ya donc 8 instructions de type <code>ADD</code> et on les note souvent <code>ADD A</code>, <code>ADD B</code>, <code>ADD H</code>, etc selon la valeur à sommer.</li>
+</ul>
+<p>Il y a au total environ 80 types d'instructions différentes sur un processeur 8080, c'est ce qu'on appelle son <strong>jeu d'instructions</strong>. Pour s'y retrouver, il faut lire attentativement la documentation :</p>
+<ul>
+<li>les manuels Intel (liens sur la page d'accueil)</li>
+<li>un tableau qui résume tout (mais qui ne dit pas tout) : <a href="https://pastraiser.com/cpu/i8080/i8080_opcodes.html">Intel 8080 instruction set</a>.</li>
+</ul>
+<p>Apprenez à lire ce dernier tableau. On y retrouve beaucoup d'informations : le décodage de chaque instruction déjà, mais aussi le nombre d'octets de l'instruction, le nombre de cycles d'horloges nécessaires pour l'exécuter, les flags affectés par l'opération.</p>
+<p>Je donne un exemple de lecture : si le premier octet d'instruction est <code>0x16</code>, on lit dans le tableau que ça correspond à la case <code>MVI B, d8 (2 7)</code>, ce qui signifie que c'est une instruction de type <code>MVI</code> sur 2 octets, qui va travailler avec le registre <code>B</code> et <code>d8</code>. <code>d8</code> signifie <code>data 8-bit</code> et représente la valeur sur le 2e octet de l'instruction. Enfin le 7 signifie que l'instruction s'exécutera en 7 cycles processeur.</p>
+<p>Pour mener à bien notre projet d'émulation, il faudra donc déjà implémenter en C chaque opération du jeu d'instructions, puis programmer la logique d'exécution (décodage, exécution, mise à jour du PC). Cela fait beaucoup d'instructions à implémenter mais je vais vous guider.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

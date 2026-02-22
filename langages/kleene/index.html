@@ -1,0 +1,1502 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Théorème de Kleene - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#theoreme-de-kleene" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Théorème de Kleene
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../i8080/" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/alu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-des-expressions-regulieres-vers-les-automates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Des expressions régulières vers les automates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Des expressions régulières vers les automates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-algorithme-de-berry-sethi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Algorithme de Berry-Séthi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A. Algorithme de Berry-Séthi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langages-locaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langages locaux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automate-de-glushkov" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automate de Glushkov
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme-de-berry-sethi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithme de Berry-Séthi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-automates-de-thomson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Automates de Thomson
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B. Automates de Thomson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automates-normalises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automates normalisés
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automates-de-thomson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automates de Thomson
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression-des-transitions-spontanees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suppression des transitions spontanées
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-des-automates-vers-les-expressions-regulieres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Des automates vers les expressions régulières
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Des automates vers les expressions régulières">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-algorithme-par-elimination-des-etats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Algorithme par élimination des états
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="theoreme-de-kleene">Théorème de Kleene</h1>
+<p>Dans ce chapitre, on fait le lien entre <strong>les langages réguliers</strong>, qu'on peut dénoter par expression régulière, et les <strong>langages reconnaissables</strong> par automate fini. Ce lien a été explicité par <em>Stephen C. Kleene</em> en 1956 :</p>
+<div class="admonition tip">
+<p class="admonition-title">Théorème de Kleene</p>
+<p>Un langage <span class="arithmatex">\(L\)</span> est régulier (ou rationnel) si et seulement s'il est reconnaissable par automate fini.</p>
+</div>
+<p>Ainsi il y a <strong>égalité</strong> entre la <strong>classe des langages réguliers</strong>  <span class="arithmatex">\(\def\rat#1{{\text{RAT}(#1)}} \rat{\Sigma}\)</span><br />
+et la <strong>classe des langages reconnaissables</strong>  par automate fini <span class="arithmatex">\(\def\rec#1{{\text{REC}(#1)}} \rec{\Sigma}\)</span> sur un alphabet <span class="arithmatex">\(\Sigma\)</span>.</p>
+<div class="arithmatex">\[ \rat{\Sigma} = \rec{\Sigma} \]</div>
+<p>Nous allons démontrer ce théorème de manière constructive :</p>
+<ul>
+<li>on présente deux algorithmes pour construire un automate reconnaissant le langage dénoté par une expression régulière donnée</li>
+<li>on présente un algorithme pour construire une expression régulière qui dénote le langage reconnu par un automate fini donné</li>
+</ul>
+<p>Nous verrons ensuite quelques conséquences importantes.</p>
+<h2 id="1-des-expressions-regulieres-vers-les-automates">1. Des expressions régulières vers les automates</h2>
+<h3 id="a-algorithme-de-berry-sethi">A. Algorithme de Berry-Séthi</h3>
+<h4 id="langages-locaux">Langages locaux</h4>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage sur l'alphabet <span class="arithmatex">\(\Sigma\)</span>, on définit les ensembles suivants :</p>
+<ul>
+<li><span class="arithmatex">\(P(L) = \{ a \in \Sigma \ /\ a\Sigma^* \cap L \neq \varnothing\}\)</span></li>
+<li><span class="arithmatex">\(D(L) = \{ a \in \Sigma \ /\ \Sigma^*a \cap L \neq \varnothing\}\)</span></li>
+<li><span class="arithmatex">\(T(L) = \{ u \in \Sigma^2 \ /\ \Sigma^* u \Sigma^* \cap L \neq \varnothing\}\)</span></li>
+</ul>
+<p>Autrement dit <span class="arithmatex">\(P(L)\)</span> est l'ensemble des lettres qui sont au début d'un des mots de <span class="arithmatex">\(L\)</span>, <span class="arithmatex">\(D(L)\)</span> est l'ensemble des lettres qui terminent l'un des mots de <span class="arithmatex">\(L\)</span>, et <span class="arithmatex">\(T(L)\)</span> est l'ensemble des facteurs de longueur 2 qui apparaissent dans l'un des mots de <span class="arithmatex">\(L\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemples</p>
+<ul>
+<li><span class="arithmatex">\(L_1 = \{a, abb, aabbb\}\)</span><ul>
+<li><span class="arithmatex">\(P(L_1) = \{a\}\)</span></li>
+<li><span class="arithmatex">\(D(L_1) = \{a, b\}\)</span></li>
+<li><span class="arithmatex">\(T(L_1) = \{aa, ab, bb\}\)</span></li>
+</ul>
+</li>
+<li><span class="arithmatex">\(L_2 = \{u \in \{a,b\}^* \ /\ |u|_a \text{ est pair}\}\)</span><ul>
+<li><span class="arithmatex">\(P(L_2) = \{a, b\}\)</span></li>
+<li><span class="arithmatex">\(D(L_2) = \{a, b\}\)</span></li>
+<li><span class="arithmatex">\(T(L_2) = \{aa, ab, ba, bb\}\)</span></li>
+</ul>
+</li>
+<li><span class="arithmatex">\(L_3 = \{ \text{mots sur } \{a,b\} \text{ où tout } b \text{ est suivi d'un } a\}\)</span><ul>
+<li><span class="arithmatex">\(P(L_3) = \{a, b\}\)</span></li>
+<li><span class="arithmatex">\(D(L_3) = \{a\}\)</span></li>
+<li><span class="arithmatex">\(T(L_3) = \{aa, ab, ba\}\)</span></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (langage local)</p>
+<p>Un langage <span class="arithmatex">\(L\)</span> sur l'alphabet <span class="arithmatex">\(\Sigma\)</span> est dit <strong>local</strong> lorsque</p>
+<div class="arithmatex">\[ L \setminus \{\varepsilon \} = \left(P(L)\Sigma^* \cap \Sigma^*D(L)\right) \setminus \left( \Sigma^*\left( \Sigma^2 \setminus T(L) \right) \Sigma^* \right)\]</div>
+</div>
+<p>Cette expression mathématique peut paraître un peu barbare mais elle signifie simplement qu'un langage local est un langage dont l'ensemble des mots peuvent être décrits exactement en donnant :</p>
+<ul>
+<li>les premières lettres autorisées,</li>
+<li>les dernières lettres autorisées,</li>
+<li>les paires de lettres consécutives autorisées;</li>
+<li>et en précisant si <span class="arithmatex">\(\varepsilon \in L\)</span></li>
+</ul>
+<p>Ainsi pour savoir si un mot appartient à un langage local il suffit de l'observer <em>localement</em>.</p>
+<p>Remarquons que pour tout langage l'inclusion :</p>
+<div class="arithmatex">\[ L \setminus \{\varepsilon \} \subset \left(P(L)\Sigma^* \cap \Sigma^*D(L)\right) \setminus \left( \Sigma^*\left( \Sigma^2 \setminus T(L) \right) \Sigma^* \right)\]</div>
+<p>est vraie. En effet, un mot de <span class="arithmatex">\(L\)</span> non vide commence bien par une lettre qui est nécessairement dans <span class="arithmatex">\(P(L)\)</span>, termine par une lettre qui doit être dans <span class="arithmatex">\(D(L)\)</span> et ne contient aucun facteur de longueur 2 qui ne serait pas dans <span class="arithmatex">\(T(L)\)</span>. <strong>C'est donc l'inclusion réciproque qui caractérise les langages locaux</strong>.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemples</p>
+<ul>
+<li><span class="arithmatex">\(L_1\)</span> n'est pas local car par exemple <span class="arithmatex">\(ab\)</span> commence par <span class="arithmatex">\(a \in P(L_1)\)</span> finit par <span class="arithmatex">\(b \in D(L_1)\)</span> et possède pour seul facteur de longueur 2 <span class="arithmatex">\(ab \in T(L_1)\)</span>, mais pourtant <span class="arithmatex">\(ab \not \in L_1\)</span>. </li>
+<li><span class="arithmatex">\(L_2\)</span> n'est pas local car par exemple <span class="arithmatex">\(a\)</span> commence par <span class="arithmatex">\(a \in P(L_2)\)</span> finit par <span class="arithmatex">\(a \in D(L_2)\)</span> et ne possède pas de facteur de longueur 2, mais pourtant <span class="arithmatex">\(a \not \in L_2\)</span>. </li>
+<li><span class="arithmatex">\(L_3\)</span> est local : soit en effet un mot <span class="arithmatex">\(u\)</span> dans <span class="arithmatex">\(\left(P(L)\Sigma^* \cap \Sigma^*D(L)\right) \setminus \left( \Sigma^*\left( \Sigma^2 \setminus T(L) \right) \Sigma^* \right)\)</span> alors si <span class="arithmatex">\(b\)</span> apparaît dans <span class="arithmatex">\(u\)</span> il ne peut apparaître à la dernière place car <span class="arithmatex">\(b \not \in D(L_3)\)</span>, donc il est suivi par une lettre qui ne peut pas être un <span class="arithmatex">\(b\)</span> car <span class="arithmatex">\(bb \not \in T(L_3)\)</span>, donc il est nécessairement suivi d'un <span class="arithmatex">\(a\)</span>. Ainsi <span class="arithmatex">\(u \in L_3\)</span> l'inclusion réciproque est vraie. </li>
+</ul>
+</div>
+<h4 id="automate-de-glushkov">Automate de Glushkov</h4>
+<p>Une propriété bien sympathique d'un langage local est qu'il est très facile de concevoir un automate fini qui le reconnait. En effet, il suffit d'imaginer un automate qui <em>mémorise</em> à tout instant la dernière lettre lue, pour savoir si la prochaine lettre est autorisée ou non. On appelle cette construction <strong>automate de Glushkov</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (automate de Glushkov)</p>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage <strong>local</strong> sur <span class="arithmatex">\(\Sigma\)</span>, on définit l'<strong>automate de Glushkov</strong> comme l'automate fini déterministe <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> suivant :</p>
+<ul>
+<li><span class="arithmatex">\(Q = \Sigma \cup \{ q_0 \}\)</span></li>
+<li><span class="arithmatex">\(q_0 = q_0\)</span></li>
+<li><span class="arithmatex">\(F = D(L) \cup \{q_0\}\)</span> si <span class="arithmatex">\(\varepsilon \in L\)</span>, <span class="arithmatex">\(F = D(L)\)</span> sinon</li>
+<li><span class="arithmatex">\(\delta : Q \times \Sigma \to Q\)</span> est définie ainsi :<ul>
+<li><span class="arithmatex">\(\forall x \in \Sigma, \delta(q_0, x) = x\)</span> si <span class="arithmatex">\(x \in P(L)\)</span>, bloque sinon</li>
+<li><span class="arithmatex">\(\forall x,y \in \Sigma, \delta(x, y) = y\)</span> si <span class="arithmatex">\(xy \in T(L)\)</span>, bloque sinon </li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Voici un exemple pour le langage <span class="arithmatex">\(L_3\)</span>.</p>
+<h4 id="algorithme-de-berry-sethi">Algorithme de Berry-Séthi</h4>
+<p>On voudrait utiliser la construction de Glushkov pour produire un automate à partir de n'importe quelle expression régulière. Hélas, on a vu que les expressions régulières ne dénotent pas un langage régulier dans tous les cas.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition : expression régulière linéaire</p>
+<p>Une expression régulière <strong>linéaire</strong> est une expression régulière qui ne contient pas deux fois une même lettre.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Toute expression régulière <em>linéaire</em> dénote un langage <em>local</em>.</p>
+</div>
+<p>C'est un peu fastidieux mais on peut le démontrer par induction sur les expressions régulières.</p>
+<div class="admonition example algorithme de berry-séthi">
+<p class="admonition-title">Example</p>
+<ol>
+<li>Linéariser <span class="arithmatex">\(e\)</span> en numérotant chacune de ses lettres (avec des numéros distincts)</li>
+<li>Déterminer les paramètres <span class="arithmatex">\(P(L')\)</span>, <span class="arithmatex">\(D(L')\)</span> et <span class="arithmatex">\(T(L')\)</span> à partir de l'expression régulière <span class="arithmatex">\(e'\)</span></li>
+<li>Déterminer à partir de <span class="arithmatex">\(e'\)</span> si <span class="arithmatex">\(\varepsilon \in L'\)</span></li>
+<li>Construire l'automate de Glushkov <span class="arithmatex">\(A'\)</span> pour <span class="arithmatex">\(L'\)</span></li>
+<li>Effacer les numéros de lettres sur les <strong>transitions</strong> pour revenir à un automate <span class="arithmatex">\(A\)</span> qui reconnaît <span class="arithmatex">\(L\)</span></li>
+</ol>
+</div>
+<p>Remarques :</p>
+<ul>
+<li>L'automate obtenu contient <span class="arithmatex">\(1 + |e|_{\Sigma}\)</span> états.</li>
+<li>L'automate n'est pas nécessairement déterministe (donc peu pratique d'un point de vue calcul) mais on peut toujours le déterminiser pour obtenir un automate efficace qui reconnaît les mots de <span class="arithmatex">\(L\)</span> en temps linéaire. C'est coûteux mais on ne le fait qu'une seule fois (<span class="arithmatex">\(\simeq\)</span> procédé de compilation).</li>
+</ul>
+<h3 id="b-automates-de-thomson">B. Automates de Thomson</h3>
+<p>L'algorithme de Thomson se propose de construire un automate <span class="arithmatex">\(A\)</span> qui reconnaît <span class="arithmatex">\(\mu(e)\)</span> en procédant par induction sur <span class="arithmatex">\(e\)</span>.</p>
+<h4 id="automates-normalises">Automates normalisés</h4>
+<div class="admonition abstract">
+<p class="admonition-title">Définition : automate normalisé</p>
+<p>Un automate fini non déterministe (<span class="arithmatex">\(\varepsilon\)</span>-afnd) est dit <strong>normalisé</strong> si :
+    - (i) il possède un unique état initial <span class="arithmatex">\(q_0\)</span>
+    - (ii) <span class="arithmatex">\(q_0\)</span> ne possède que des transitions sortantes
+    - (iii) il possède un unique état final <span class="arithmatex">\(q_f \neq q_0\)</span>
+    - (iv) <span class="arithmatex">\(q_f\)</span> ne possède que des transitions entrantes</p>
+</div>
+<p>Il est toujours possible de <em>normaliser</em> un automate donné en ajoutant une paire d'états initiaux et finaux et des <span class="arithmatex">\(\varepsilon\)</span>-ransitions allant de <span class="arithmatex">\(q_0\)</span> vers les états initiaux de l'automate et des états finaux vers <span class="arithmatex">\(q_f\)</span>.</p>
+<h4 id="automates-de-thomson">Automates de Thomson</h4>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Pour toute expression régulière <span class="arithmatex">\(e\)</span>, il existe un automate normalisé qui reconnaît le langage dénoté par <span class="arithmatex">\(e\)</span>.</p>
+</div>
+<ul>
+<li>
+<p><strong>Cas de base</strong></p>
+<ul>
+<li><span class="arithmatex">\(e = \varnothing\)</span></li>
+<li><span class="arithmatex">\(e = \varepsilon\)</span></li>
+<li><span class="arithmatex">\(e = x (x \in \Sigma)\)</span></li>
+</ul>
+</li>
+<li>
+<p><strong>Cas construits</strong></p>
+<ul>
+<li><span class="arithmatex">\(e = e_1.e_2\)</span> : on fusionne l'état final de <span class="arithmatex">\(e_1\)</span> avec l'état initial de <span class="arithmatex">\(e_2\)</span></li>
+<li><span class="arithmatex">\(e = (e_1 | e_2)\)</span> : on utilise une bifurcation pour séparer les deux cas possibles</li>
+<li><span class="arithmatex">\(e = e_1\star\)</span> : on procède ainsi :</li>
+</ul>
+</li>
+</ul>
+<p>Attention à respecter scrupuleusement la construction précédente... n'improvisez pas sous peine d'écrire des automates faux.</p>
+<p>Exemple : <span class="arithmatex">\(e = a(a|ab)\star\)</span>.</p>
+<h4 id="suppression-des-transitions-spontanees">Suppression des transitions spontanées</h4>
+<p>On remarque que les automates de Thomson possèdent un grand nombre d'<span class="arithmatex">\(\epsilon\)</span>-transitions. Voici un petit algorithme simple permettant de se débarrasser des transitions instantanées sans avoir besoin de déterminiser l'automate.</p>
+<ol>
+<li>Marquer comme état initial tous les états de <span class="arithmatex">\(\eta(q)\)</span> avec <span class="arithmatex">\(q \in I\)</span>.</li>
+<li>Pour toute transition <span class="arithmatex">\((q, x, q')\)</span> avec <span class="arithmatex">\(x \in Sigma\)</span>, on ajoute des transitions <span class="arithmatex">\((q, x, q'')\)</span> pour tout <span class="arithmatex">\(q'' \in \eta(q)\)</span>.</li>
+</ol>
+<h2 id="2-des-automates-vers-les-expressions-regulieres">2. Des automates vers les expressions régulières</h2>
+<h3 id="a-algorithme-par-elimination-des-etats">A. Algorithme par élimination des états</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

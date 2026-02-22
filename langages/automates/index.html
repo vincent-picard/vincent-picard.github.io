@@ -1,0 +1,2264 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Automates finis - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#automates-finis" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Automates finis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../i8080/" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/alu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-automates-finis-deterministes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Automates finis déterministes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Automates finis déterministes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Définition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-calcul-dun-automate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Calcul d'un automate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-langage-reconnu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Langage reconnu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-programmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Programmation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-operations-classiques-sur-les-automates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Opérations classiques sur les automates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Opérations classiques sur les automates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-accessibilite-et-emondage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Accessibilité et émondage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-completion-dun-automate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Complétion d'un automate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-automate-complementaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Automate complémentaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-automate-produit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Automate produit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-automates-finis-non-deterministes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automates finis non déterministes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Automates finis non déterministes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Définition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-calcul-non-deterministe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Calcul non déterministe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-langage-reconnu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Langage reconnu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-determinisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Déterminisation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-langages-non-reconnaissables-par-automate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Langages non reconnaissables par automate
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="automates-finis"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.27 17.05A2.991 2.991 0 0 1 4 22c-1.66 0-3-1.34-3-3s1.34-3 3-3c.18 0 .36 0 .53.05l3.07-5.36-1.74-.99 4.09-1.12 1.12 4.09-1.74-.99zM20 16c-1.3 0-2.4.84-2.82 2H11v-2l-3 3 3 3v-2h6.18c.42 1.16 1.52 2 2.82 2 1.66 0 3-1.34 3-3s-1.34-3-3-3m-8-8c.18 0 .36 0 .53-.05l3.07 5.36-1.74.99 4.09 1.12 1.12-4.09-1.74.99-3.06-5.37A2.991 2.991 0 0 0 12 2c-1.66 0-3 1.34-3 3s1.34 3 3 3"/></svg></span> Automates finis</h1>
+<p>Dans le chapitre sur les <a href="/langages/regexp">langages réguliers</a>, nous avons défini les <strong>mots</strong> et les <strong>langages formels</strong>. Nous avons décrit une certaine famille de langages appelée <strong>langages réguliers</strong>, qui sont décrits par un motif appelé <strong>expression régulière</strong>.</p>
+<p>Une faiblesse des expressions régulières est qu'il est <em>a priori</em> difficile d'énoncer un algorithme général permettant de vérifier si un mot <span class="arithmatex">\(u\)</span> appartient au langage dénoté par une expression régulière. Le formalisme est expressif, facile à utiliser de notre point de vue, mais difficile à mettre en oeuvre sur une machine.</p>
+<p>Dans ce chapitre on introduit la notion d'<strong>automate</strong> est qui une machine simple permettant de reconnaître des mots, et donc des langages. Contrairement aux expressions régulières, ce formalisme s'implémente facilement et efficacement sur un ordinateur.</p>
+<p>Les automates sont aussi très importants en informatique car ils constitue un premier exemple de <strong>machine formelle</strong>, c'est-à-dire une représentation abstraite d'une machine capable de calculer. L'exemple le plus célèbre de machine formelle est la <strong>machine de Turing</strong> mais pour bien la comprendre, il faut commencer par comprendre les automates.</p>
+<p>Dans tout ce chapitre, on se fixe un alphabet <span class="arithmatex">\(\Sigma\)</span> sur lequel on travaille.</p>
+<h2 id="1-automates-finis-deterministes">1. Automates finis déterministes</h2>
+<h3 id="a-definition">A. Définition</h3>
+<p>Commençons par donner une vision intuitive de la machine que nous allons construire :</p>
+<ul>
+<li>un automate est une machine qui se situe à tout moment dans un certain <em>état</em>; elle a un nombre
+fini d'états possibles;</li>
+<li>un automate prend en entrée un mot qu'elle lit de gauche à droite, lettre par lettre;</li>
+<li>lorsque l'automate est dans un état <span class="arithmatex">\(q\)</span> et qu'il lit une lettre <span class="arithmatex">\(c\)</span>, alors il <em>transite</em> vers un état <span class="arithmatex">\(\delta(q, c)\)</span> qui ne dépend que de l'état actuel <span class="arithmatex">\(q\)</span> et de la lettre lue <span class="arithmatex">\(c\)</span>.</li>
+</ul>
+<p>Voici la définition formelle de cette machine :</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Un <strong>automate fini déterministe</strong> (afd) est un quadruplet <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> où :</p>
+<ul>
+<li><span class="arithmatex">\(Q\)</span> est un ensemble <strong>fini</strong> d'<strong>états</strong>;</li>
+<li><span class="arithmatex">\(q_0 \in Q\)</span> est un état particulier appelé <strong>état initial</strong>;</li>
+<li><span class="arithmatex">\(F \subset Q\)</span> est un ensemble d'<strong>états finaux</strong>;</li>
+<li><span class="arithmatex">\(\delta : Q \times \Sigma \to Q\)</span> est la <strong>fonction de transition</strong> de l'automate.</li>
+</ul>
+</div>
+<p>La fonction de transition <span class="arithmatex">\(\delta\)</span> n'est pas nécessairement définie sur <span class="arithmatex">\(Q \times \Sigma\)</span> en entier, autrement dit, pour certains états <span class="arithmatex">\(q\)</span> et certaines lettres <span class="arithmatex">\(c\)</span>, <span class="arithmatex">\(\delta(q, c)\)</span> peut ne pas être défini. Dans ce cas, on dit que l'automate <strong>bloque</strong> à la lecture de <span class="arithmatex">\(c\)</span> dans l'état <span class="arithmatex">\(q\)</span>.</p>
+<p>Un automate se représente plus volontier sous forme d'un <em>graphe orienté</em>, par exemple ainsi :</p>
+<figure>
+<img alt="Exemple d'automate fini déterministe" src="../fig/automates/afd/afd-1.svg" />
+</figure>
+<p>Dans cette représentation :</p>
+<ul>
+<li>les sommets du graphe représentent les états de l'automate</li>
+<li>les arcs représentent les transitions, l'étiquette d'un arc est la lettre lue</li>
+<li>une flèche entrante marque l'état initial</li>
+<li>un trait double entoure les états finaux</li>
+</ul>
+<p>Ainsi, dans cet exemple, l'automate représenté est <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> où :</p>
+<ul>
+<li><span class="arithmatex">\(Q = \{q_0, q_1, q_2\}\)</span></li>
+<li><span class="arithmatex">\(q_0 = q_0\)</span></li>
+<li><span class="arithmatex">\(F = \{q_1, q_2\}\)</span></li>
+<li><span class="arithmatex">\(\delta\)</span> est la fonction de transition que l'on peut représenter sous forme de <strong>table de transition</strong> de l'automate :</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">état <span class="arithmatex">\(q\)</span></th>
+<th style="text-align: center;"> lettre <span class="arithmatex">\(c\)</span></th>
+<th style="text-align: center;"> arrivée <span class="arithmatex">\(\delta(q, c)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(q_0\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(q_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(q_0\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(q_2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(q_0\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Remarque</p>
+<p>Dans certains textes, les états finaux peuvent être marqués par une flèche sortante plutôt qu'un trait double.</p>
+</div>
+<h3 id="b-calcul-dun-automate">B. Calcul d'un automate</h3>
+<p>Nous avons défini formellement un automate et il nous reste maintenant à décrire son fonctionnement c'est-à-dire décrire comment cette machine <em>calcule</em>.</p>
+<p>Un automate est une machine capable de <em>lire des mots</em>. Lorsque l'automate est dans un état <span class="arithmatex">\(q_1\)</span> et que l'on lit une lettre <span class="arithmatex">\(c\)</span>, l'automate transitionne vers l'état <span class="arithmatex">\(q_2 = \delta(q, c)\)</span> (sauf s'il y a blocage). Pour tout état <span class="arithmatex">\(q_1\)</span> et <span class="arithmatex">\(q_2\)</span> et toute lettre <span class="arithmatex">\(c \in \Sigma\)</span>, on notera :</p>
+<div class="arithmatex">\[
+q_1 \longrightarrow^c q_2
+\]</div>
+<p>lorsque <span class="arithmatex">\(q_2 = \delta(q_1, c)\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Notation alternative</p>
+<p>Il est aussi possible de noter <span class="arithmatex">\(q_1.c = q_2\)</span> lorsque <span class="arithmatex">\(\delta(q_1, c) = q_2\)</span>.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (calcul)</p>
+<p>Un <strong>calcul</strong> d'un automate fini déterministe <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> est un chemin dans l'automate, c'est-à-dire une suite d'états :</p>
+<div class="arithmatex">\[
+u_0 \longrightarrow^{w_1} u_1 \longrightarrow^{w_2} u_2 \longrightarrow^{w_3} \cdots \longrightarrow^{w_{n-1}} u_{n-1} \longrightarrow^{w_n} u_n
+\]</div>
+<p>où les <span class="arithmatex">\(w_i\)</span> sont des lettres lues et qui vérifie bien :</p>
+<div class="arithmatex">\[
+\forall k \in \{0, \dots, n-1\}, u_{k+1} = \delta(u_k, w_k).
+\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple (calcul d'un automate)</p>
+<p>Dans l'automate :
+<figure>
+<img alt="Exemple d'automate fini déterministe" src="../fig/automates/afd/afd-1.svg" />
+</figure></p>
+<div class="arithmatex">\[
+q_0 \longrightarrow^a q_0 \longrightarrow^b q_1 \longrightarrow^b q_2 \longrightarrow^a q_0 \longrightarrow^b q_1
+\]</div>
+<p>est un calcul de l'automate qui correspond à la lecture du mot <span class="arithmatex">\(abbab\)</span> depuis l'état <span class="arithmatex">\(q_0\)</span> et qui mène en <span class="arithmatex">\(q_1\)</span>.</p>
+</div>
+<p>On remarque que pour un état de départ <span class="arithmatex">\(q\)</span>, et un mot <span class="arithmatex">\(u\)</span> donné, il ne peut exister qu'un seul calcul depuis cet état, c'est pour cette raison que l'on dit que l'automate est <strong>déterministe</strong> : il n'a qu'un seul comportement possible à la lecture d'un mot en entrée. Cela peut être rendu explicite par la définition de la <em>fonction de transition étendue</em> :</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (fonction de transition étendue)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> un automate fini déterministe. On définit la <strong>fonction de transition étendue</strong> <span class="arithmatex">\(\delta^* : Q \times \Sigma^* \to Q\)</span> par :</p>
+<div class="arithmatex">\[
+\begin{cases}
+\forall q \in Q,\ \delta^*(q, \varepsilon) = q  \\
+\forall q \in Q, \ \forall u \in \Sigma^*, \ \forall c \in \Sigma, \ \delta^*(q, uc) = \delta(\delta^*(q, u), c) \\
+\end{cases}
+\]</div>
+</div>
+<p>Ainsi, la fonction <span class="arithmatex">\(\delta^*\)</span> étend la fonction <span class="arithmatex">\(\delta\)</span> aux mots. Tout comme la fonction <span class="arithmatex">\(\delta\)</span>, elle n'est pas forcément définie sur <span class="arithmatex">\(Q \times \Sigma^*\)</span> : la lecture d'un mot peut provoquer un blocage.</p>
+<div class="admonition info">
+<p class="admonition-title">Notations alternatives</p>
+<p>Il est aussi possible de noter :</p>
+<ul>
+<li><span class="arithmatex">\(q_1.u = q_2\)</span> </li>
+<li>ou encore <span class="arithmatex">\(q_1 \rightarrow^u q_2\)</span></li>
+</ul>
+<p>lorsque <span class="arithmatex">\(\delta^*(q_1, u) = q_2\)</span>. La première notation, plus mathématique, montre qu'on peut faire <em>agir</em> le monoïde <span class="arithmatex">\(\Sigma^*\)</span> sur l'ensemble d'états <span class="arithmatex">\(Q\)</span>. La seconde notation met en évidence la notion de chemin dans l'automate.</p>
+</div>
+<h3 id="c-langage-reconnu">C. Langage reconnu</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (mot reconnu)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> un automate fini déterministe. Un mot <span class="arithmatex">\(u \in \Sigma^*\)</span> est <strong>reconnu</strong> (on dit aussi <strong>accepté</strong>) par <span class="arithmatex">\(A\)</span> lorsque <span class="arithmatex">\(\delta^*(q_0, u) \in F\)</span>.</p>
+</div>
+<p>Autrement dit, un mot est reconnu est par un automate si sa lecture à partir l'état initial <span class="arithmatex">\(q_0\)</span> :</p>
+<ol>
+<li>ne provoque pas de blocage </li>
+<li>mène l'automate dans un de ses états finaux</li>
+</ol>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (langage reconnu)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> un automate fini déterministe. Le <strong>langage reconnu</strong> (aussi appelé <strong>langage accepté</strong>) par l'automate <span class="arithmatex">\(A\)</span>, noté <span class="arithmatex">\(\mathcal{L}(A)\)</span> est :</p>
+<div class="arithmatex">\[
+\mathcal{L}(A) = \{ u \in \Sigma^*, \delta^*(q, u) \in F \}
+\]</div>
+</div>
+<p>Autrement dit, le langage reconnu est l'ensemble des mots reconnus par l'automate.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (langage reconnaissable)</p>
+<ul>
+<li>Un langage <span class="arithmatex">\(L\)</span> est dit <strong>reconnaissable par automate fini</strong> s'il existe un automate fini déterministe <span class="arithmatex">\(A\)</span> tel que <span class="arithmatex">\(\mathcal{L}(A) = L\)</span>.</li>
+<li>L'ensemble des langages sur <span class="arithmatex">\(\Sigma\)</span> reconnaissables par automate fini est appelé <strong>classe des langages reconnaissables</strong>. Elle sera notéee <span class="arithmatex">\(\def\rec#1{{\text{REC}(#1)}} \rec{\Sigma}\)</span> dans ce cours.</li>
+</ul>
+</div>
+<p>Étudions maintenant quelques exemples de langages pouvant être reconnus par automate fini déterministe.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple : mots commençant par ...</p>
+<p>On souhaite reconnaître par automate le langage des mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> qui commencent par <span class="arithmatex">\(aba\)</span>, c'est-à-dire ayant <span class="arithmatex">\(aba\)</span> pour préfixe. Pour cela, on peut proposer l'automate suivant :
+<figure>
+<img alt="Automate reconnaissant les mots qui commencent par aba" src="../fig/automates/afd/afd-2.svg" />
+</figure>
+La dernière flèche, tout à droite, est étiquetée par <span class="arithmatex">\(a, b\)</span>, ce qui signifie qu'il y a en réalité 2 transitions. On utilise souvent cette notation pour alléger les figures.
+L'automate peut se lire en deux parties :</p>
+<ul>
+<li>Une première phase où on lit le préfixe <span class="arithmatex">\(aba\)</span>, remarquer comme on utilise le <strong>blocage</strong> pour rejeter les mots qui ne commencent pas par <span class="arithmatex">\(aba\)</span></li>
+<li>Une seconde phase où on boucle sur l'état final, ce qui signifie qu'on accepte maintenant toute suite de lettres</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : mots contenant un nombre impair de <span class="arithmatex">\(a\)</span></p>
+<p>On souhaite reconnaître par automate le langage des mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> contenant un nombre impair de <span class="arithmatex">\(a\)</span>. Pour cela, on peut proposer l'automate suivant :
+<figure>
+<img alt="Automate reconnaissant les mots ayant un nombre impair de a" src="../fig/automates/afd/afd-3.svg" />
+</figure>
+Dans cet exemple, les états de l'automate servent à reprensenter les classes de congruence du nombre de <span class="arithmatex">\(a\)</span> modulo 2. Plus simplement, dans l'état <span class="arithmatex">\(q_0\)</span> le nombre de <span class="arithmatex">\(a\)</span> lus est pair et dans l'état <span class="arithmatex">\(q_1\)</span> le nombre de <span class="arithmatex">\(a\)</span> lus est impair. Cela explique que la lecture d'un <span class="arithmatex">\(a\)</span> fait passer d'un état à l'autre, tandis que la lecture d'un <span class="arithmatex">\(b\)</span> ne change pas l'état.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Conseil</p>
+<p>Autant que possible, faites en sorte que chaque état de l'automate ait une signification propore comme dans les exemples précédents. Cela facilite à la fois la conception et la justification de l'automate.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>En vous inspirant de l'exemple précédent, proposer un automate pour reconnaître les mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> dont le nombre de <span class="arithmatex">\(b\)</span> est de la forme <span class="arithmatex">\(3k + 1\)</span> avec <span class="arithmatex">\(k \in \mathbb{N}\)</span>.</p>
+</div>
+<p><a id="KMP"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Exemple difficile : mots finissant par <span class="arithmatex">\(ababa\)</span></p>
+<p>On souhaite reconnaître le langage des mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> finissant par <span class="arithmatex">\(ababa\)</span>, c'est-à-dire ayant <span class="arithmatex">\(ababa\)</span> pour suffixe. Voici un automate fini déterministe reconnaissant ce langage.
+<figure>
+<img alt="Automate reconnaissant les mots qui finissent par ababa" src="../fig/automates/afd/afd-10.svg" />
+</figure>
+Cet automate implémente en fait l'algorithme de recherche de motif de Knuth-Morris-Pratt (KMP). L'état <span class="arithmatex">\(q_i\)</span> représente le préfixe de longueur <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(ababab\)</span>. Être dans l'état <span class="arithmatex">\(q_i\)</span> signifie que le plus long préfixe de <span class="arithmatex">\(ababa\)</span> qui est actuellement en fin de mot lu, c'est-à-dire qui est suffixe du mot lu, est celui de longueur <span class="arithmatex">\(i\)</span>.</p>
+<ul>
+<li>Les transitions vers la droite sont faciles à comprendre : si on lit la bonne lettre, on gagne une lettre dans le préfixe de <span class="arithmatex">\(ababa\)</span>.</li>
+<li>Les transitions retour, c'est-à-dire quand on lit la mauvaise lettre, sont plus ardues. Prenons un exemple :<ul>
+<li>Lorsqu'on est dans <span class="arithmatex">\(q_3\)</span>, le plus long suffixe du mot lu qui est aussi préfixe de <span class="arithmatex">\(ababa\)</span> est <span class="arithmatex">\(aba\)</span>, autrement dit le mot lu est de la forme <span class="arithmatex">\(waba\)</span>. Si on lit maintenant un <span class="arithmatex">\(a\)</span>, le mot est <span class="arithmatex">\(wabaa\)</span>, alors le plus long suffixe de <span class="arithmatex">\(wabaa\)</span> qui est préfixe de <span class="arithmatex">\(ababa\)</span> est <span class="arithmatex">\(a\)</span>. C'est pourquoi on retourne en <span class="arithmatex">\(q_1\)</span> et pas en <span class="arithmatex">\(q_0\)</span>. On constate en fait que malgré l'erreur de lettre, une partie de la lecture de <span class="arithmatex">\(ababa\)</span> a déjà commencé et qu'il ne faut pas reprendre la recherche depuis le début.</li>
+<li>De même lorsqu'on est dans <span class="arithmatex">\(q_5\)</span>, le mot lu a pour forme <span class="arithmatex">\(wababa\)</span>. Si on lit maintenant un <span class="arithmatex">\(b\)</span>, le mot lu sera <span class="arithmatex">\(wababab\)</span>, et on s'aperçoit que le plus long suffixe de ce mot qui est aussi préfixe de <span class="arithmatex">\(ababa\)</span> est <span class="arithmatex">\(abab\)</span>, donc on revient en <span class="arithmatex">\(q_4\)</span>. Vous pouvez tester cela en regardant la lecture du mot <span class="arithmatex">\(ababababa\)</span> par exemple.</li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="d-programmation">D. Programmation</h3>
+<p>Nous avions promis que les automates étaient bien plus simples à mettre en oeuvre sur un ordinateur que les expressions régulières. Voici donc un exemple d'implémentation en OCaml.</p>
+<div class="language-ocaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    <span class="k">type</span> <span class="n">etat</span> <span class="o">=</span> <span class="kt">int</span><span class="o">;;</span> <span class="c">(* Les etats sont representes par des numeros de 0 à |A|-1*)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">type</span> <span class="n">auto</span> <span class="o">=</span> <span class="o">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="n">taille</span><span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="c">(* nombre d&#39;états *)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">init</span><span class="o">:</span> <span class="n">etat</span><span class="o">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">final</span><span class="o">:</span> <span class="n">etat</span> <span class="kt">list</span><span class="o">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">trans</span><span class="o">:</span> <span class="o">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">etat</span><span class="o">)</span> <span class="kt">list</span> <span class="kt">array</span><span class="o">;</span> <span class="c">(* table de transitions *)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="o">};;</span>
+</span></code></pre></div>
+<p>Le seul point délicat de cette représentation est la <em>table de transitions</em>, c'est-à-dire la manière dont on représente la fonction de transition <span class="arithmatex">\(\delta\)</span>.
+La représentation choisie est un tableau <code>trans</code> dans lequel chaque case <code>trans.(i)</code> contient les transitions sortantes de l'état <span class="arithmatex">\(i\)</span>.
+Ces transitions sont représentées sous forme d'une liste de couples <span class="arithmatex">\((c, j)\)</span> où <span class="arithmatex">\(c\)</span> est la lettre lue et <span class="arithmatex">\(j\)</span> l'état d'arrivée de la transition. 
+Cette représentation est analogue à celle des <strong>listes d'adjacence</strong> pour les graphes orientés.</p>
+<div class="admonition note">
+<p class="admonition-title">Remarque</p>
+<p>Ces listes sont appelées <strong>listes associatives</strong>. Elles servent à associer un état d'arrivée (valeur) à une lettre lue (clef). Autrement dit il s'agit d'une implémentation concrète de la structure de données abstraite de <strong>dictionnaire</strong>. On a choisi les listes associatives par simplicité mais nous aurions aussi pu utiliser une <strong>table de hachage</strong> ou encore un <strong>arbre binaire de recherche</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Définition d'un automate</p>
+<p>Définissons en OCaml l'automate vu en début de chapitre :
+<figure>
+<img alt="Exemple d'automate fini déterministe" src="../fig/automates/afd/afd-1.svg" />
+</figure>
+<div class="language-ocaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">let</span> <span class="n">a1</span> <span class="o">=</span> <span class="o">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">taille</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">init</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">final</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span> <span class="mi">2</span><span class="o">];</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">trans</span> <span class="o">=</span> <span class="o">[|</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="o">[(</span><span class="sc">&#39;a&#39;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span> <span class="o">(</span><span class="sc">&#39;b&#39;</span><span class="o">,</span> <span class="mi">1</span><span class="o">)];</span> <span class="c">(* transitions sortantes de l&#39;etat 0 *)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="o">[(</span><span class="sc">&#39;a&#39;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span> <span class="o">(</span><span class="sc">&#39;b&#39;</span><span class="o">,</span> <span class="mi">2</span><span class="o">)];</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="o">[(</span><span class="sc">&#39;a&#39;</span><span class="o">,</span> <span class="mi">0</span><span class="o">)]</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="o">|]</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="o">};;</span>
+</span></code></pre></div></p>
+</div>
+<p>Un avantage de l'utilisation des listes associatives est que la fonction <code>List.assoc</code> est déjà programmée pour vous dans la bibliothèque OCaml (sa programmation ne devrait poser aucun problème, faites-le en exercice). Cette fonction a pour signature <code>List.assoc : 'a -&gt; ('a * 'b) list -&gt; 'b'</code>, elle prend en argument une <em>clef</em> et une liste associative et renvoie la valeur associée à cette clef. Si la clef n'existe pas dans la liste, alors l'exception <code>Not_found</code> est levée.</p>
+<p>Pour nous, les clefs sont les lettres lues, les valeurs les états d'arrivée et l'exception <code>Not_found</code> est déclenchée lorsqu'il y a blocage. Implémentons la fonction de calcul d'un automate :
+<div class="language-ocaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c">(* lit le mot u dans auto depuis l&#39;etat q *)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">let</span> <span class="n">calcul</span> <span class="n">auto</span> <span class="n">q</span> <span class="n">u</span> <span class="o">=</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nn">String</span><span class="p">.</span><span class="n">length</span> <span class="n">u</span> <span class="k">in</span> <span class="c">(* le mot est une chaîne de caractères *)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">let</span> <span class="n">etat_courant</span> <span class="o">=</span> <span class="n">ref</span> <span class="n">q</span> <span class="k">in</span> <span class="c">(* on se sert d&#39;une référence pour mémoriser l&#39;état courant *)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="k">do</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">let</span> <span class="n">nouvel_etat</span> <span class="o">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">assoc</span> <span class="n">u</span><span class="o">.[</span><span class="n">i</span><span class="o">]</span> <span class="n">auto</span><span class="o">.</span><span class="n">trans</span><span class="o">.(!</span><span class="n">etat_courant</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">etat_courant</span> <span class="o">:=</span> <span class="n">nouvel_etat</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">done</span><span class="o">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="o">!</span><span class="n">etat_courant</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="o">;;</span>
+</span></code></pre></div>
+Remarquons que cette fonction lève aussi l'exception <code>Not_found</code> en cas de blocage. Nous pouvons maintenant programmer la fonction
+qui teste si un mot est accepté ou non par un automate :
+<div class="language-ocaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">let</span> <span class="n">est_reconnu</span> <span class="n">auto</span> <span class="n">u</span> <span class="o">=</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">try</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="c">(* on calcule l&#39;etat d&#39;arrivée en fin de lecture du mot *)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="k">let</span> <span class="n">etat_fin</span> <span class="o">=</span> <span class="n">calcul</span> <span class="n">auto</span> <span class="n">auto</span><span class="o">.</span><span class="n">init</span> <span class="n">u</span> <span class="k">in</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="c">(* on teste s&#39;il est final *)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="nn">List</span><span class="p">.</span><span class="n">mem</span> <span class="n">etat_fin</span> <span class="n">auto</span><span class="o">.</span><span class="n">final</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">with</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="c">(* Si Not_found est levé, il y a blocage, le mot n&#39;est pas accepté *)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">false</span> 
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">;;</span>
+</span></code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Les automates sont efficaces !</p>
+<p>Les automates se programment assez rapidement mais surtout ils sont efficaces. La lecture d'un mot <span class="arithmatex">\(u\)</span> est de complexité linéaire <span class="arithmatex">\(O(|u|)\)</span>. Encore mieux, l'automate lit en fait une et une seule fois chaque lettre de gauche à droite.</p>
+</div>
+<h2 id="2-operations-classiques-sur-les-automates">2. Opérations classiques sur les automates</h2>
+<h3 id="a-accessibilite-et-emondage">A. Accessibilité et émondage</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (accessibilité)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, q_0, \delta, F)\)</span> un automate fini déterministe et <span class="arithmatex">\(q \in Q\)</span> un état.</p>
+<ul>
+<li>On dit que <span class="arithmatex">\(q\)</span> est <strong>accessible</strong> s'il existe un mot <span class="arithmatex">\(u\)</span> tel que <span class="arithmatex">\(q_0 \rightarrow^u q\)</span></li>
+<li>On dit que <span class="arithmatex">\(q\)</span> est <strong>co-accessible</strong> s'il existe un mot <span class="arithmatex">\(u\)</span> et un état final <span class="arithmatex">\(q_F \in F\)</span> tels que <span class="arithmatex">\(q \rightarrow^u q_F\)</span></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Remarque : un état utile est accessible et co-accessible</p>
+<ul>
+<li>Un état qui n'est pas accessible n'est jamais atteint lors d'un calcul depuis l'état <span class="arithmatex">\(q_0\)</span>, il est donc inutile.</li>
+<li>Un calcul qui atteint un état qui n'est pas co-accessible n'aboutira jamais à un état final. </li>
+</ul>
+</div>
+<p>Le calcul des états accessibles peut s'obtenir simplement en réalisant un parcours de graphe depuis l'état <span class="arithmatex">\(q_0\)</span>, en igonorant les étiquettes des transitions. </p>
+<p>Le calcul des états co-accessibles peut s'obtenir de la même manière, en inversant le sens des transitions et en exécutant un parcours à partir de chaque état final.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage reconnaissable par automate fini déterministe, alors il existe un automate fini déterministe <span class="arithmatex">\(A\)</span> qui reconnaît <span class="arithmatex">\(L\)</span> et dont tous les états sont accessibles et co-accessibles.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>Il suffit de calculer tous les états accessibles et co-accessibles d'un automate reconnaissant <span class="arithmatex">\(L\)</span>, puis de lui supprimer les états qui ne le sont pas. Ce faisant, on supprime bien sûr les transitions qui partent ou qui pointent d'un état supprimé. Comme un calcul réussi passe nécessairement par des états accessibles et co-accessibles, cela ne change pas le langage reconnu par l'automate.</p>
+</details>
+<div class="admonition info">
+<p class="admonition-title">Vocabulaire</p>
+<p>Lorsqu'on élimine les états non accessibles et non co-accessibles d'un automate, on dit qu'on <strong>émonde</strong> cet automate.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Considérons l'automate :
+<figure>
+<img alt="Exemple d'automate non émondé" src="../fig/automates/afd/afd-4.svg" />
+</figure>
+Les états <strong>accessibles</strong> sont : <span class="arithmatex">\(q_0, q_1, q_2, q_3, q_4\)</span></p>
+<p>Les états <strong>co-accessibles</strong> sont <span class="arithmatex">\(q_0, q_1, q_2, q_3, q_5\)</span></p>
+<p>Les états <span class="arithmatex">\(q_4\)</span> et <span class="arithmatex">\(q_5\)</span> sont donc inutiles.</p>
+<p>Si on émonde l'automate on obtient :
+<figure>
+<img alt="Exemple d'automate émondé" src="../fig/automates/afd/afd-2.svg" />
+</figure></p>
+</div>
+<h3 id="b-completion-dun-automate">B. Complétion d'un automate</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (automate complet)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, q_0, \delta, F)\)</span> un automate fini déterministe. On dit que cet automate est <strong>complet</strong> lorsque <span class="arithmatex">\(\delta(q, c)\)</span> est défini pour tout état <span class="arithmatex">\(q \in Q\)</span> et toute lettre <span class="arithmatex">\(c \in \Sigma\)</span>.</p>
+</div>
+<p>Dans un automate complet, il n'y a jamais de blocage.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage reconnaissable par automate fini déterministe, alors il existe un automate fini déterministe <strong>complet</strong> <span class="arithmatex">\(A\)</span> qui reconnaît <span class="arithmatex">\(L\)</span>.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>Soit <span class="arithmatex">\(A = (Q, q_0, \delta, F)\)</span> un automate qui reconnaît <span class="arithmatex">\(L\)</span> et qui n'est pas déjà complet. On construit l'automate <span class="arithmatex">\(A' = (Q', q_0, \delta', F)\)</span> avec <span class="arithmatex">\(Q' = Q \cup \{q_\infty\}\)</span> où <span class="arithmatex">\(q_\infty\)</span> est un nouvel état (<span class="arithmatex">\(q_\infty \not \in Q\)</span>.) appelé <em>état puits</em>. On définit <span class="arithmatex">\(\delta'\)</span> ainsi :</p>
+<div class="arithmatex">\[
+\forall q \in Q',\ \forall c \in \Sigma, \delta'(q, c) =
+\begin{cases}
+\delta(q, c) &amp; \text{si c'est défini}\\
+q_\infty &amp; \text{sinon}
+\end{cases}
+\]</div>
+<p>Alors <span class="arithmatex">\(A'\)</span> est complet et de plus <span class="arithmatex">\(\mathcal{L}(A) = \mathcal{L}(A')\)</span>. En effet :</p>
+<ul>
+<li>si <span class="arithmatex">\(u \in \mathcal{L}(A)\)</span> alors il existe un calcul dans <span class="arithmatex">\(A\)</span> étiqueté par <span class="arithmatex">\(u\)</span> mentant de l'état <span class="arithmatex">\(q_0\)</span> à un état final. Ce calcul existe donc aussi dans <span class="arithmatex">\(A'\)</span>, donc <span class="arithmatex">\(u \in \mathcal{L}(A')\)</span>.</li>
+<li>réciproquement, si <span class="arithmatex">\(u \in \mathcal{L}(A')\)</span> alors il existe un calcul dans <span class="arithmatex">\(A'\)</span> étiqueté par <span class="arithmatex">\(u\)</span> menant de l'état <span class="arithmatex">\(q_0\)</span> à un état final. Comme <span class="arithmatex">\(q_\infty\)</span> n'est pas co-accessible, ce calcul ne passe pas par <span class="arithmatex">\(q_\infty\)</span> et c'est donc aussi un calcul dans <span class="arithmatex">\(A\)</span>, donc <span class="arithmatex">\(u \in \mathcal{L}(A)\)</span>.</li>
+</ul>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Point méthode</p>
+<p>Pour compléter un automate (qui n'est pas déjà complet) :</p>
+<ol>
+<li>On ajoute un état puits <span class="arithmatex">\(q_\infty\)</span></li>
+<li>Pour tout état, on ajoute toutes les transitions sortantes manquantes, en les faisant pointer vers <span class="arithmatex">\(q_\infty\)</span></li>
+<li>On n'oublie pas de réaliser l'étape 2 aussi pour l'état puits <span class="arithmatex">\(q_\infty\)</span></li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Soit l'automate suivant sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> qui n'est pas complet:
+<figure>
+<img alt="Exemple d'automate non complet" src="../fig/automates/afd/afd-2.svg" />
+</figure></p>
+<p>En appliquant l'algorithme de complétion, on obtient :
+<figure>
+<img alt="Exemple d'automate completé" src="../fig/automates/afd/afd-5.svg" />
+</figure></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>On peut émonder un automate, on peut compléter un automate, mais on ne peut pas toujours faire les deux opérations à la fois puisque l'état puits que l'on ajoute dans la complétion n'est pas co-accessible.</p>
+</div>
+<h3 id="c-automate-complementaire">C. Automate complémentaire</h3>
+<p>Soit <span class="arithmatex">\(\Sigma\)</span> un alphabet et <span class="arithmatex">\(L\)</span> un langage, on note <span class="arithmatex">\(\bar{L} = \{u \in \Sigma^*, u \not \in L\}\)</span> le <strong>langage complémentaire</strong> de L.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Si <span class="arithmatex">\(L\)</span> est un langage reconnaissable par automate fini déterministe alors <span class="arithmatex">\(\bar{L}\)</span> l'est aussi.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage reconnu par l'automate fini déterministe <span class="arithmatex">\(A\)</span>.
+On donne un algorithme pour construire un automate fini déterministe <span class="arithmatex">\(A'\)</span> qui reconnaît <span class="arithmatex">\(\bar{L}\)</span>.</p>
+<ul>
+<li>On commence par compléter l'automate <span class="arithmatex">\(A\)</span> et on obtient un automate complet <span class="arithmatex">\(A_c = (Q, q_0, \delta, F)\)</span> qui reconnaît <span class="arithmatex">\(L\)</span>.</li>
+<li>On construit alors <span class="arithmatex">\(A'\)</span> en inversant les états finaux et non finaux dans <span class="arithmatex">\(A_c\)</span> c'est-à-dire que <span class="arithmatex">\(A_c = (Q, q_0, \delta, Q \setminus F)\)</span>.</li>
+</ul>
+<p>On a alors <span class="arithmatex">\(\mathcal{L}(A') = \bar{L}\)</span>, en effet pour tout <span class="arithmatex">\(u \in \Sigma^*\)</span>:</p>
+<div class="arithmatex">\[
+\begin{align}
+u \in \mathcal{L}(A') &amp; \Leftrightarrow \delta^*(q_0, u) \in Q \setminus F \\
+&amp; \Leftrightarrow \delta^*(q_0, u) \not \in F \\
+&amp; \Leftrightarrow u \not \in \mathcal{L}(A_c) \quad \text{ car } A_c \text{ est complet} \\
+&amp; \Leftrightarrow u \not \in \mathcal{L}(A) \\
+&amp; \Leftrightarrow u \not \in L\\
+&amp; \Leftrightarrow u \in \bar{L}
+\end{align}
+\]</div>
+</details>
+<p>Dans la démonstration, on remarque l'importance de compléter l'automate : cela permet de n'avoir qu'une seule cause de non non-accceptation à savoir le fait que la lecture du mot aboutit dans un état non final.</p>
+<div class="admonition note">
+<p class="admonition-title">Point méthode</p>
+<p>Pour construire un automate fini déterministe <span class="arithmatex">\(A'\)</span> reconnaissant le complémentaire de <span class="arithmatex">\(\mathcal{L}(A)\)</span>, on applique les étapes :</p>
+<ol>
+<li>On complète <span class="arithmatex">\(A\)</span></li>
+<li>On inverse les états finaux et non finaux</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : mots qui ne commencent pas par <span class="arithmatex">\(aba\)</span></p>
+<p>Soit l'automate suivant sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> reconnaissant les mots qui commencent par <span class="arithmatex">\(aba\)</span> :
+<figure>
+<img alt="Mots qui commencent par aba" src="../fig/automates/afd/afd-2.svg" />
+</figure></p>
+<p>On souhaite construire l'automate complémentaire c'est-à-dire un automate qui reconnaît les mots qui ne commencent pas par <span class="arithmatex">\(aba\)</span>.
+On commence par compléter l'automate : 
+<figure>
+<img alt="Complétion de l'automate" src="../fig/automates/afd/afd-5.svg" />
+</figure></p>
+<p>Puis, on inverse les états finaux et non finaux :
+<figure>
+<img alt="Complétion de l'automate" src="../fig/automates/afd/afd-6.svg" />
+</figure></p>
+</div>
+<p>Encore une fois, on peut constater sur l'exemple que l'oubli de l'étape de complétion donne un automate complémentaire faux.</p>
+<h3 id="d-automate-produit">D. Automate produit</h3>
+<p>L'automate produit de deux automates <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span> est un automate qui fait <strong>calculer simultanément</strong> <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span>. On le définit ainsi :</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (automate produit)</p>
+<p>Soit <span class="arithmatex">\(A_1 = (Q_1, q_0^1, \delta_1, F_1)\)</span> et <span class="arithmatex">\(A_2 = (Q_2, q_0^2, \delta_2, F_2)\)</span> deux automates finis déterministes. On définit l'automate produit de <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span>, noté <span class="arithmatex">\(A = A_1 \times A_2\)</span>, par <span class="arithmatex">\(A = (Q, q_0, \delta, F)\)</span> avec :</p>
+<ul>
+<li><span class="arithmatex">\(Q = Q_1 \times Q_2\)</span> : les états sont des couples <span class="arithmatex">\((q_1, q_2)\)</span> qui décrivent l'état actuel des automates <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span></li>
+<li><span class="arithmatex">\(q_0 = (q_0^1, q_0^2)\)</span></li>
+<li><span class="arithmatex">\(F = F_1 \times F_2\)</span> : un état est final si les deux automates <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span> sont dans un état final</li>
+<li>Pour tout <span class="arithmatex">\(q_1 \in Q_1\)</span>, <span class="arithmatex">\(q_2 \in Q_2\)</span> et <span class="arithmatex">\(c \in \Sigma\)</span>, <span class="arithmatex">\(\delta((q_1, q_2), c)\)</span> n'est défini que lorsque <span class="arithmatex">\(\delta_1(q_1, c)\)</span> et <span class="arithmatex">\(\delta_2(q_2, c)\)</span> sont définis, c'est-à-dire qu'aucun des deux automates <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span> ne bloque. Dans ce cas, on pose :</li>
+</ul>
+<div class="arithmatex">\[
+\delta((q_1, q_2), c) = \left( \delta_1(q_1, c), \delta_2(q_2, c) \right)
+\]</div>
+</div>
+<p>Il résulte de cette définition que l'automate produit accepte uniquement les mots qui sont acceptés par <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple : mots qui commencent par <span class="arithmatex">\(aba\)</span> ayant un nombre pair de <span class="arithmatex">\(b\)</span></p>
+<p>On souhaite construire un automate qui reconnaît les mots sur <span class="arithmatex">\(\Sigma =\{a, b\}\)</span> qui commencent par <span class="arithmatex">\(aba\)</span> et qui contiennent un nombre pair de <span class="arithmatex">\(b\)</span>. Pour cela on part des deux automates suivants <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span> :
+<figure>
+<img alt="Mots qui commencent par aba" src="../fig/automates/afd/afd-7.svg" />
+</figure>
+<figure>
+<img alt="Mots qui contiennent un nombre pair de b" src="../fig/automates/afd/afd-8.svg" />
+</figure>
+Le langage reconnu par <span class="arithmatex">\(A_1\)</span> est l'ensemble des mots qui commencent par <span class="arithmatex">\(aba\)</span> et celui de <span class="arithmatex">\(A_2\)</span> est l'ensemble des mots ayant un nombre pair de <span class="arithmatex">\(b\)</span>. Pour alléger les écritures dans la construction de l'automate produit on a noté avec des lettres capitales les états de <span class="arithmatex">\(A_1\)</span> et des numéros pour les états de <span class="arithmatex">\(A_2\)</span>.</p>
+<p>Pour construire l'automate produit, <strong>on ne représente en général que les états accessibles</strong>, les autres états étant inutiles. On procède donc en partant de l'état initial <span class="arithmatex">\((A, 0)\)</span> et en construisant de proche en proche les états rencontrés. On obtient :
+<figure>
+<img alt="Automate produit" src="../fig/automates/afd/afd-9.svg" />
+</figure></p>
+<p>Cet automate reconnaît les mots qui commencent par <span class="arithmatex">\(aba\)</span> et qui contiennent un nombre pair de <span class="arithmatex">\(b\)</span>. Remarquons encore une fois que l'on n'a pas représenté les états non accessibles (<span class="arithmatex">\((A, 1)\)</span>, <span class="arithmatex">\((B, 1)\)</span> et <span class="arithmatex">\((C, 0)\)</span>) bien qu'ils fassent partie de la définition de l'automate produit.</p>
+</div>
+<p>On constante sur l'exemple précédent que l'automate produit reconnaît les mots qui sont reconnus par les deux automates à la fois. Démontrons maintenant formellement ce résultat.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A_1\)</span> et <span class="arithmatex">\(A_2\)</span> deux automates finis déterministes et <span class="arithmatex">\(A_1 \times A_2\)</span> leur automate produit, alors :</p>
+<div class="arithmatex">\[
+\mathcal{L}(A_1 \times A_2) = \mathcal{L}(A_1) \cap \mathcal{L}(A_2)
+\]</div>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>Nous allons d'abord démontrer par récurrence la propriété suivante :</p>
+<div class="arithmatex">\[
+P(n) : \quad \forall u \in \Sigma^n,\  \forall q_1 \in Q_1,\  \forall q_2 \in Q_2,\  \delta^*((q_1, q_2), u) = \left( \delta_1^*(q_1, u), \delta_2^*(q_2, u) \right) \text{ (sous réserve d'existence)}
+\]</div>
+<ul>
+<li><strong>Initialisation</strong> : pour tout couple d'états <span class="arithmatex">\((q_1, q_2)\)</span>, on a <span class="arithmatex">\(\delta^*((q_1, q_2), \varepsilon) = (q_1, q_2) = (\delta_1^*(q_1, \varepsilon), \delta_2^*(q_2, \varepsilon))\)</span></li>
+<li><strong>Hérédité</strong> : On suppose <span class="arithmatex">\(P(n)\)</span> vrai et on montre <span class="arithmatex">\(P(n+1)\)</span>. Soit <span class="arithmatex">\(u\)</span> un mot de longueur <span class="arithmatex">\(n+1\)</span> que l'on décompose en <span class="arithmatex">\(u = v.c\)</span> avec <span class="arithmatex">\(c \in \Sigma\)</span> et <span class="arithmatex">\((q_1, q_2)\)</span> un couple d'états. Alors on a (sous réserve d'existence) :</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align}
+\delta^*((q_1, q_2), u) &amp;= \delta^*((q_1, q_2), vc) \\
+&amp;= \delta(\delta^*((q_1, q_2), v), c) \\
+&amp;= \delta\left((\delta_1^*(q_1, v), \delta_2^*(q_2, v)), c\right) \text{ par hypothèse de récurrence} \\
+&amp;= \left( \delta_1(\delta_1^*(q_1, v), c), \delta_2(\delta_2^*(q_2, v), c)\right) \text{ par définition de l'automate produit}\\
+&amp;= (\delta_1^*(q_1, vc), \delta_2^*(q_2, vc)) \\
+&amp;= (\delta_1^*(q_1, u), \delta_2^*(q_2, u))\\
+\end{align}
+\]</div>
+<p>Puis pour tout mot <span class="arithmatex">\(u \in \Sigma^*\)</span> on a :</p>
+<div class="arithmatex">\[
+\begin{align*}
+u \in \mathcal{L}(A_1 \times A_2) &amp;\Leftrightarrow \delta^*(q_0, u) \in F\\
+&amp;\Leftrightarrow \delta^*((q_0^1, q_0^2), u) \in F \\
+&amp;\Leftrightarrow (\delta_1^*(q_0^1, u), \delta_2^*(q_0^2, u)) \in F \text{ d'après la propriété démontrée ci-dessus}\\
+&amp;\Leftrightarrow (\delta_1^*(q_0^1, u), \delta_2^*(q_0^2, u)) \in F_1 \times F_2\\ 
+&amp;\Leftrightarrow \delta_1^*(q_0^1, u) \in F_1 \text { et } \delta_2^*(q_0^2, u) \in F_2 \\ 
+&amp;\Leftrightarrow u \in \mathcal{L}(A_1) \text { et } u \in \mathcal{L}(A_2) \\ 
+&amp;\Leftrightarrow u \in \mathcal{L}(A_1) \cap \mathcal{L}(A_2)
+\end{align*}
+\]</div>
+<p>Donc <span class="arithmatex">\(\mathcal{L}(A_1 \times A_2) = \mathcal{L}(A_1) \cap \mathcal{L}(A_2)\)</span></p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Corollaire</p>
+<p>Si <span class="arithmatex">\(L_1\)</span> et <span class="arithmatex">\(L_2\)</span> sont des langages reconnaissables par automate alors <span class="arithmatex">\(L_1 \cap L_2\)</span> est aussi reconnaissable par automate.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Remarque</p>
+<p>Si <span class="arithmatex">\(A_1\)</span> possède <span class="arithmatex">\(n\)</span> états et <span class="arithmatex">\(A_2\)</span> possède <span class="arithmatex">\(m\)</span> états alors <span class="arithmatex">\(A_1 \times A_2\)</span> possède <span class="arithmatex">\(nm\)</span> états. Même si tous ces états ne sont pas nécessairement accessibles, dans le pire cas, on peut aboutir à de grands automates avec cette construction.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Calculer un automate produit <em>à la main</em> nécessite une grande concentration. L'algorithme est facile à appliquer mais la moindre petite erreur conduit à un automate complètement faux. Vérifiez bien votre résultat en faisant calculer votre automate produit sur des mots tests. </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<ol>
+<li>Donner un automate <span class="arithmatex">\(A_1\)</span> reconnaissant les mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> ayant un nombre impair de <span class="arithmatex">\(a\)</span>.</li>
+<li>Donner un automate <span class="arithmatex">\(A_2\)</span> reconnaissant les mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> dont le nombre de <span class="arithmatex">\(b\)</span> est de la forme <span class="arithmatex">\(3k + 1\)</span> avec <span class="arithmatex">\(k \in \mathbb{N}\)</span></li>
+<li>En déduire un automate <span class="arithmatex">\(A\)</span> qui reconnaît les mots sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> ayant un nombre impair de <span class="arithmatex">\(a\)</span> et un nombre de <span class="arithmatex">\(b\)</span> de la forme <span class="arithmatex">\(3k + 1\)</span>.</li>
+</ol>
+</div>
+<h2 id="3-automates-finis-non-deterministes">3. Automates finis non déterministes</h2>
+<p>Les automates finis déterministes sont simples et faciles à implémenter sur ordinateur. L'inconvénient principal est qu'ils peuvent être difficile à concevoir d'un point de vue humain.</p>
+<p>Prenons l'exemple du langage <span class="arithmatex">\(L\)</span> sur <span class="arithmatex">\(\Sigma = \{a, b\}\)</span> des mots qui finissent par <span class="arithmatex">\(ababa\)</span>. Écrire une expression régulière qui dénote <span class="arithmatex">\(L\)</span> est très facile : <span class="arithmatex">\(e = (a|b)*ababa\)</span>. Par contre, concevoir un automate fini déterministe qui reconnaît ce langage est nettement plus complexe, comme on l'a vu dans l'<a href="#KMP">exemple plus haut</a>.</p>
+<p>On aimerait dessiner un automate simple ayant cette allure :
+    <figure>
+    <img alt="Automate non déterministe" src="../fig/automates/afd/afd-11.svg" />
+    </figure>
+Dans cet automate on lit un certain nombre de lettres <span class="arithmatex">\(a\)</span> ou <span class="arithmatex">\(b\)</span> en bouclant sur l'état initial, puis on termine la lecture en lisant <span class="arithmatex">\(ababa\)</span>.</p>
+<p>Malheureusement, cette figure ne correspond pas à celle d'un automate fini déterministe. En effet <span class="arithmatex">\(\delta(q_0, a)\)</span> aurait 2 images, ce qui est impossible pour une fonction... Une autre façon de le dire est que lorsqu'on est dans l'état <span class="arithmatex">\(q_0\)</span> et qu'on lit un <span class="arithmatex">\(a\)</span>, on ne sait pas s'il faut aller en <span class="arithmatex">\(q_1\)</span> ou rester en <span class="arithmatex">\(q_0\)</span> : cet automate est <strong>non déterministe</strong>.</p>
+<p>Nous allons voir dans cette partie qu'il est tout à fait possible de travailler avec ce type de machine non déterministe.</p>
+<h3 id="a-definition_1">A. Définition</h3>
+<div class="admonition abtract">
+<p class="admonition-title">Définition (automate fini non déterministe)</p>
+<p>Un <strong>automate fini non déterministe</strong> est un quadruplet <span class="arithmatex">\(A = (Q, I, F, T)\)</span> dans lequel :</p>
+<ul>
+<li><span class="arithmatex">\(Q\)</span> est l'ensemble fini des états</li>
+<li><span class="arithmatex">\(I \subset Q\)</span> est l'ensemble des <strong>états initiaux</strong></li>
+<li><span class="arithmatex">\(F \subset Q\)</span> est l'ensemble des <strong>états finaux</strong></li>
+<li><span class="arithmatex">\(T \subset Q \times \Sigma \times Q\)</span> est l'ensemble des <strong>transitions</strong></li>
+</ul>
+</div>
+<p>On remarque deux différences par rapport aux automates finis déterministes :
+    1. La possibilité d'avoir plusieurs états initiaux (on démarre de manière non déterministe).
+    2. Les transitions qui sont notées sont forme de triplets : le triplet <span class="arithmatex">\((q, c, q')\)</span> signifie que l'automate peut transiter de <span class="arithmatex">\(q\)</span> à <span class="arithmatex">\(q'\)</span> en listant la lettre <span class="arithmatex">\(c\)</span>. Ce que l'on notera <span class="arithmatex">\(q \rightarrow^c q'\)</span> comme on l'a fait avec les automates déterministes.</p>
+<div class="admonition warning">
+<p class="admonition-title">Un automate déterministe est un automate non déterministe</p>
+<p>On peut toujours voir un automate fini déterministe <span class="arithmatex">\(A = (Q, q_0, \delta, F)\)</span> comme un automate fini non déterministe. Dans ce cas :</p>
+<ol>
+<li>L'ensemble d'états initiaux est le singleton <span class="arithmatex">\(I = \{q_0\}\)</span>.</li>
+<li>On peut construire <span class="arithmatex">\(T\)</span> itérativement. Pour tout état <span class="arithmatex">\(q \in Q\)</span> et toute lettre <span class="arithmatex">\(c \in \Sigma\)</span>, si <span class="arithmatex">\(\delta(q, c)\)</span> est défini alors on a ajoute la transition <span class="arithmatex">\((q, c, \delta(q, c))\)</span> dans <span class="arithmatex">\(T\)</span>.</li>
+</ol>
+<p>La plupart du temps on fera l'abus et on dira qu'un automate déterministe n'est qu'un cas particulier d'automate non déterministe.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>L'automate non déterministe ci-dessus
+<figure>
+<img alt="Automate non déterministe" src="../fig/automates/afd/afd-11.svg" />
+</figure>
+est défini par <span class="arithmatex">\(A = (Q, I, F, T)\)</span> avec :</p>
+<ul>
+<li><span class="arithmatex">\(Q = \{q_0, q_1, q_2, q_3, q_4, q_5\}\)</span></li>
+<li><span class="arithmatex">\(I = \{q_0\}\)</span></li>
+<li><span class="arithmatex">\(F = \{q_5\}\)</span></li>
+<li><span class="arithmatex">\(T = \{(q_0, a, q_0), (q_0, b, q_0), (q_0, a, q_1), (q_1, b, q_2), (q_2, a, q_3), (q_3, b, q_4), (q_4, a, q_5)\}\)</span></li>
+</ul>
+</div>
+<h3 id="b-calcul-non-deterministe">B. Calcul non déterministe</h3>
+<p>Il y a deux façons de voir le calcul dans un automate non déterministe :</p>
+<ul>
+<li><strong>vision clonage</strong> : à chaque fois qu'on est confronté à un choix non déterministe, on imagine que le processus se clone, chaque clone envisage une des possibilités offertes. Si <strong>l'un des clones</strong> réussit le calcul, alors le calcul est considéré réussi.</li>
+<li><strong>vision oracle</strong> : si à chaque fois qu'on est confronté à un choix non déterminsite, il existe un <em>oracle</em> capable de me dire le bon chemin qui me mènera vers un calcul réussi, alors le calcul est réussi.</li>
+</ul>
+<p>Ces deux visions sont équivalentes, mais il est peut-être plus simple de comprendre la première. Formalisons cela, en définissant la fonction de transition <span class="arithmatex">\(\delta\)</span> puis la fonction de transition étendue <span class="arithmatex">\(\delta^*\)</span> d'un automate non déterministe.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (fonction de transition d'un automate non déterministe)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, I, F, T)\)</span> un automate fini non déterministe, alors sa fonction de transition est l'<strong>application</strong> <span class="arithmatex">\(\delta : Q \times \Sigma \to \mathfrak{P}(Q)\)</span> définie par :</p>
+<div class="arithmatex">\[
+\forall q \in Q, \ \forall c \in \Sigma, \ \delta(q, c) = \{ q' \in Q, (q, c, q') \in T\}
+\]</div>
+</div>
+<p>Ainsi <span class="arithmatex">\(\delta(q, c)\)</span> donne l'ensemble des états qu'on peut atteindre en lisant <span class="arithmatex">\(c\)</span> depuis <span class="arithmatex">\(q\)</span>. Notons que contrairement aux automates non déterministes <span class="arithmatex">\(\delta\)</span> est cette fois une application, c'est-à-dire définie sur <span class="arithmatex">\(Q \times \Sigma\)</span> en entier. La notion de <strong>blocage</strong> correspond donc au cas où <span class="arithmatex">\(\delta(q, c) = \varnothing\)</span>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définiton (fonction de transtion étendue)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, I, F, T)\)</span> un automate fini non déterministe. La fonction de transtion étendue est l'application <span class="arithmatex">\(\delta^* : Q \times \Sigma^* \to \mathfrak{P}(Q)\)</span> définie par :</p>
+<div class="arithmatex">\[
+\forall q \in Q,\ 
+\begin{cases}
+\delta^*(q, \varepsilon) = \{q\} \\
+\forall v \in \Sigma^*, \ \forall c \in \Sigma, \delta^*(q, v.c) = \displaystyle \bigcup_{q' \in \delta^*(q, v)} \delta(q', c)\\
+\end{cases}
+\]</div>
+</div>
+<p>Cette fonction doit se comprendre ainsi : <span class="arithmatex">\(\delta^*(q, u)\)</span> est l'ensemble des états atteints par mes clones (ou moi) lorsque je pars de l'état <span class="arithmatex">\(q\)</span> et que je lis <span class="arithmatex">\(u\)</span>. Dans la définition pour calculer <span class="arithmatex">\(\delta^*(q, v.c)\)</span>, on commence par regarder tous les états <span class="arithmatex">\(q'\)</span> atteints par mes clones (ou moi) lors de la lecture de <span class="arithmatex">\(v\)</span>, puis pour chacun de ces états on ajoute au résultat les états qu'on peut atteindre en lisant la dernière lettre <span class="arithmatex">\(c\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple de calcul</p>
+<p>Reprenons l'automate censé reconnaître les mots finissant par <span class="arithmatex">\(ababa\)</span> :  <br />
+<figure>
+<img alt="Automate non déterministe" src="../fig/automates/afd/afd-11.svg" />
+</figure>
+et effectuons le calcul pas à pas de <span class="arithmatex">\(\delta^*(q_0, abab)\)</span> (lecture de <span class="arithmatex">\(abab\)</span> depuis <span class="arithmatex">\(q_0\)</span>) :</p>
+<ul>
+<li><span class="arithmatex">\(\delta^*(q_0, \varepsilon) = \{q_0\}\)</span></li>
+<li><span class="arithmatex">\(\delta^*(q_0, a) = \{q_0, q_1\}\)</span></li>
+<li><span class="arithmatex">\(\delta^*(q_0, ab) = \{q_0, q_2\}\)</span> </li>
+<li><span class="arithmatex">\(\delta^*(q_0, aba) = \{q_0, q_1, q_3\}\)</span> </li>
+<li><span class="arithmatex">\(\delta^*(q_0, abab) = \{q_0, q_2, q_4\}\)</span> </li>
+</ul>
+<p>Ainsi lorsque je lis <span class="arithmatex">\(abab\)</span> depuis <span class="arithmatex">\(q_0\)</span> je peux me retrouver au choix en <span class="arithmatex">\(q_0\)</span>, en <span class="arithmatex">\(q_2\)</span> ou en <span class="arithmatex">\(q_4\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Pour tout mot <span class="arithmatex">\(u \in \Sigma^*\)</span>, pour tout états <span class="arithmatex">\(q, q' \in Q\)</span>, 
+<span class="arithmatex">\(q' \in \delta^*(q, u)\)</span> si et seulement s'il existe au moins un chemin dans l'automate menant de <span class="arithmatex">\(q\)</span> à <span class="arithmatex">\(q'\)</span> et étiqueté par <span class="arithmatex">\(u\)</span>.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>La démonstration par récurrence sur la longueur du mot <span class="arithmatex">\(u\)</span> est laissée en exercice au lecteur ou à la lectrice.</p>
+</details>
+<p>Cette proposition nous invite naturellement à noter <span class="arithmatex">\(q \rightarrow^u q'\)</span> lorsque <span class="arithmatex">\(q' \in \delta^*(q, u)\)</span>. Cela coïncide avec nos notations pour les automates déterministes.</p>
+<h3 id="c-langage-reconnu_1">C. Langage reconnu</h3>
+<p>Nous pouvons maintenant décrire les mots acceptés par un automate non déterministe.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (mot reconnu)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, I, F, T)\)</span> un automate fini non déterministe. Un mot <span class="arithmatex">\(u \in \Sigma^*\)</span> est <strong>reconnu</strong> (on dit aussi <strong>accepté</strong>) par <span class="arithmatex">\(A\)</span> lorsqu'il existe au moins un état initial <span class="arithmatex">\(q_0 \in I\)</span> tel que <span class="arithmatex">\(\delta^*(q_0, u)\)</span> contienne au moins un état final. Autrement dit :</p>
+<div class="arithmatex">\[
+u \text{ accepté } \Leftrightarrow \exists q_0 \in I, \ \delta^*(q_0, u) \displaystyle \cap F \not = \varnothing
+\]</div>
+</div>
+<p>Deux autres façons de dire la même chose :
+    1. Un mot <span class="arithmatex">\(u\)</span> est accepté s'il existe au moins un chemin dans <span class="arithmatex">\(A\)</span> menant d'un état initial à un état final et etiqueté par <span class="arithmatex">\(u\)</span>.
+    2. Un mot <span class="arithmatex">\(u\)</span> est accepté si l'un de mes clones (avec un clone par état initial ininitialement) aboutit sur un état final lors de la lecture de <span class="arithmatex">\(u\)</span>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (langage reconnu)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, I, F, T)\)</span> un automate fini déterministe. Le <strong>langage reconnu</strong> (aussi appelé <strong>langage accepté</strong>) par l'automate <span class="arithmatex">\(A\)</span>, noté <span class="arithmatex">\(\mathcal{L}(A)\)</span> est :</p>
+<div class="arithmatex">\[
+\mathcal{L}(A) = \{ u \in \Sigma^*, A \text{ accepte } u \}
+\]</div>
+</div>
+<h3 id="d-determinisation">D. Déterminisation</h3>
+<p>Nous venons de définir les automates finis non déterministes et décrire leur fonctionnement. Deux questions se posent naturellement :</p>
+<ol>
+<li>L'avantage des automates était la simplicité de mise en oeuvre sur machine et l'efficacité du calcul. Or, on vient de perdre les deux avantages : le calcul nécessite maintenant de mémoriser une liste d'états, de plus le calcul <span class="arithmatex">\(\delta^*(q, u)\)</span> est maintenant de complexité exponentielle en <span class="arithmatex">\(|u|\)</span> alors qu'elle était linéaire pour les automates finis déterministes.</li>
+<li>Les langages reconnaissables par automate fini non déterministes sont-ils les mêmes que ceux reconnus par automate fini déterministe ? N'a-t-on pas créé une machine plus puissante en introduisant le non déterminisme ?</li>
+</ol>
+<p>La réponse à la seconde question est remarquablement : non. Nous allons voir dans cette partie que les automates non déterministes ont la même puissance d'expression que les automates non déterministes.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (Automate des parties)</p>
+<p>Soit <span class="arithmatex">\(A = (Q, I, F, T)\)</span> un automate fini non déterministe, on définit l'automate fini <strong>déterministe</strong> <span class="arithmatex">\(A_p = (Q_p, q_0, F_p, \delta_p)\)</span> suivant :</p>
+<ul>
+<li><span class="arithmatex">\(Q_p = \mathfrak{P}(Q)\)</span></li>
+<li><span class="arithmatex">\(q_0 = I\)</span></li>
+<li><span class="arithmatex">\(F_p = \{ X \subset Q, X \cap F \not = \varnothing\}\)</span></li>
+<li><span class="arithmatex">\(\delta(X, c) = \displaystyle \bigcup_{x \in X} \delta(x, c)\)</span> où <span class="arithmatex">\(\delta\)</span> est la fonction de transtion de <span class="arithmatex">\(A\)</span></li>
+</ul>
+<p>Cet automate est appelé <strong>automate des parties</strong> car ses états sont des parties de l'ensemble d'états <span class="arithmatex">\(Q\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Point méthode : algorithme de déterminisation</p>
+<p>Pour calculer <span class="arithmatex">\(A_p\)</span> à partir de <span class="arithmatex">\(A\)</span>, on procède pas à pas en ne représentant que les états accessibles.</p>
+<ol>
+<li>On commence par introduire l'état <span class="arithmatex">\(q_0 = I\)</span>.</li>
+<li>Pour chaque état <span class="arithmatex">\(X\)</span> non traité, pour chaque lettre <span class="arithmatex">\(c \in \Sigma\)</span>, on calcule <span class="arithmatex">\(\displaystyle\cup_{x \in X} \delta(x, c)\)</span>, c'est-à-dire les états qu'on peut atteindre depuis <span class="arithmatex">\(X\)</span> en lisant une lettre <span class="arithmatex">\(c\)</span>.</li>
+<li>On dessine les nouveaux états et les nouvelles transitions obtenus.</li>
+<li>On recommence avec les états non traités.</li>
+</ol>
+<p>Il peut être agréable représenter cette démarche sous forme d'une table.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : déterminisation d'un automate</p>
+<p>On veut déterminiser l'automate qui reconnaît les mots qui finissent par <span class="arithmatex">\(ababa\)</span>, c'est-à-dire calculer son automate des parties. Pour alléger les écritures, on a noté <span class="arithmatex">\(\{0, 1, 2, 3, 4, 5\}\)</span> l'ensemble d'états :
+<figure>
+<img alt="Automate non déterministe" src="../fig/automates/afd/afd-12.svg" />
+</figure></p>
+<p>On construit pas à pas la table des transitions comme expliqué dans le point méthode :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">états <span class="arithmatex">\(X\)</span></th>
+<th style="text-align: center;"> lettre <span class="arithmatex">\(c\)</span></th>
+<th style="text-align: center;"> arrivée <span class="arithmatex">\(\delta_p(X, c)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1, 3\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1, 3\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1, 3\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2, 4\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2, 4\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1, 3, 5\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2, 4\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1, 3, 5\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1\}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 1, 3, 5\}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(b\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\{0, 2, 4\}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>On obtient l'automate suivant qui est isomorphe à l'automate obtenu lorsqu'on a voulu directement concevoir un automate déterministe pour ce langage. Il reconnaît donc aussi les mots qui finissent par <span class="arithmatex">\(ababa\)</span>.
+<figure>
+<img alt="Automate des parties" src="../fig/automates/afd/afd-13.svg" />
+</figure>
+Encore une fois remarquons qu'on n'a représenté que les <strong>états accessibles</strong> de l'automate des parties qui en contient réellement <span class="arithmatex">\(2^6 = 64\)</span> dans cet exemple.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span> un automate fini non déterministe, soit <span class="arithmatex">\(A_p\)</span> son automate des parties alors :</p>
+<div class="arithmatex">\[
+\mathcal{L}(A) = \mathcal{L}(A_p)
+\]</div>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>On montre par récurrence sur la longueur du mot que pour tout mot <span class="arithmatex">\(u \in \Sigma^*\)</span> et pour tout ensemble d'états <span class="arithmatex">\(X \subset Q\)</span>, <span class="arithmatex">\(\delta_p^*(X, u) = \displaystyle\bigcup_{x \in X} \delta^*(x, u)\)</span>. Ainsi avec l'ensemble de départ <span class="arithmatex">\(q_0\)</span> choisi le calcul dans l'automate des parties nous donne l'ensemble des états qu'on peut atteindre par la lecture de <span class="arithmatex">\(u\)</span> dans <span class="arithmatex">\(A\)</span> depuis un des états initiaux. L'ensemble <span class="arithmatex">\(F_p\)</span> est choisi de telle sorte à ce <span class="arithmatex">\(A_p\)</span> n'accepte cet ensemble d'états que lorsqu'il contient au moins un état final.</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Corollaire</p>
+<p>La classe des langages sur <span class="arithmatex">\(\Sigma\)</span> reconnaissables par automate fini déterministe et par automate fini non déterministe sont les mêmes. On notera <span class="arithmatex">\(\rec{\Sigma}\)</span> l'ensemble des langages reconnaissables par automate (déterministe ou non).</p>
+</div>
+<p>La conclusion de cette partie est que les automates non déterministes reconnaissent exactement les mêmes langages que les automates déterministes. Si on veut un automate déterministe pour reconnaître efficacement un langage en machine, on peut le concevoir de manière non-déterministe puis lui appliquer l'algorithme de déterminisation. Évidemment cet algorithme est très coûteux dans le pire cas, car il peut produire <span class="arithmatex">\(2^{|Q|}\)</span> états. Cependant on ne réalise cette étape qu'une seule fois, on peut ensuite utiliser l'automate déterministe obtenu autant de fois que voulu.</p>
+<!--- ## 4. Automates finis non déterministes à transitions spontanées --->
+
+<h2 id="4-langages-non-reconnaissables-par-automate">4. Langages non reconnaissables par automate</h2>
+<p>Il existe des langages qui ne peuvent pas être reconnus par un automate fini. Le théorème suivant permet de démontrer que certains langages ne sont pas reconnaissables.</p>
+<div class="admonition tip">
+<p class="admonition-title">Théorème (Lemme de l'étoile)</p>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage reconnu par un automate à <span class="arithmatex">\(N\)</span> états. Soit <span class="arithmatex">\(u \in L\)</span> un mot de longueur <span class="arithmatex">\(|u| \geq N\)</span>, alors il existe 3 mots <span class="arithmatex">\(x, y, z \in \Sigma^*\)</span> tels que <span class="arithmatex">\(u\)</span> se décompose en <span class="arithmatex">\(u = xyz\)</span> et vérifiant :</p>
+<ol>
+<li><span class="arithmatex">\(|xy| \leq N\)</span></li>
+<li><span class="arithmatex">\(y \neq \varepsilon\)</span></li>
+<li><span class="arithmatex">\(\forall k \in \mathbb{N},\  xy^kz \in L\)</span></li>
+</ol>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>Soit <span class="arithmatex">\(L\)</span> un langage reconnu par un automate <span class="arithmatex">\(A = (Q, q_0, F, \delta)\)</span> à <span class="arithmatex">\(N\)</span> états et <span class="arithmatex">\(u \in L\)</span> un mot de longueur <span class="arithmatex">\(|u| \geq N\)</span>.
+Notons <span class="arithmatex">\(p_k\)</span> (<span class="arithmatex">\(0 \leq k \leq N\)</span>) le préfixe de <span class="arithmatex">\(u\)</span> de longeur <span class="arithmatex">\(k\)</span>. On considère l'application</p>
+<div class="arithmatex">\[
+\begin{align}
+\varphi : [|0, N|] &amp;\to Q \\
+k &amp;\mapsto \delta^*(q_0, p_k)\\
+\end{align}
+\]</div>
+<p>Remarquons que cette application est bien définie, car <span class="arithmatex">\(u\)</span> est reconnu par <span class="arithmatex">\(A\)</span> donc il n'y a pas de blocage à la lecture des préfixes de <span class="arithmatex">\(u\)</span>.</p>
+<p>Comme <span class="arithmatex">\(\text{Card}([|0, N|]) = N+1\)</span> et <span class="arithmatex">\(\text{Card}(Q) = N\)</span>, l'application <span class="arithmatex">\(\varphi\)</span> n'est pas injective. Il existe donc deux entiers <span class="arithmatex">\(0 \leq k_1 &lt; k_2 \leq N\)</span> tels que <span class="arithmatex">\(\varphi(k_1) = \varphi(k_2)\)</span>. Informellement, cela signifie que la lecture de <span class="arithmatex">\(u\)</span> depuis l'état <span class="arithmatex">\(q_0\)</span> va conduire au passage par un même état à deux instants <span class="arithmatex">\(k_1\)</span> et <span class="arithmatex">\(k_2\)</span> distincts. Notons <span class="arithmatex">\(q' = \varphi(k_1)\)</span> cet état qui est visité au moins deux fois.</p>
+<p>On pose alors <span class="arithmatex">\(x = p_{k_1}\)</span>, <span class="arithmatex">\(y\)</span> tel que <span class="arithmatex">\(xy = p_{k_2}\)</span> et <span class="arithmatex">\(z\)</span> tel que <span class="arithmatex">\(xyz = u\)</span>. On a alors <span class="arithmatex">\(\delta^*(q_0, x) = \delta^*(q_0, xy) = q'\)</span>. Vérifions que cette décomposition fonctionne :</p>
+<ol>
+<li><span class="arithmatex">\(|xy| = |p_{k_2}| = k_2 \in [|0, N|]\)</span></li>
+<li>Si <span class="arithmatex">\(y = \varepsilon\)</span> alors <span class="arithmatex">\(x = xy\)</span> ce qui implique <span class="arithmatex">\(k_1 = k_2\)</span>, c'est exclus.</li>
+<li>
+<p>On montre par récurrence sur <span class="arithmatex">\(k\)</span> que <span class="arithmatex">\(\delta^*(q_0, xy^kz) = \delta^*(q_0, u)\)</span> ce qui montre que <span class="arithmatex">\(xy^kz\)</span> est reconnu car <span class="arithmatex">\(u\)</span> l'est.</p>
+<p>a. <strong>Initialisation</strong> : <span class="arithmatex">\(\delta^*(q_0, xz) = \delta^*(\delta^*(q_0, x), z) = \delta^*(q', z) = \delta^*(\delta^*(q_0, xy), z) = \delta^*(q_0, xyz)\)</span></p>
+<p>b. <strong>Hérédité</strong> : on suppose la propriété vraie au rang <span class="arithmatex">\(k \in \mathbb{N}\)</span>, montrons-là au rang <span class="arithmatex">\(k+1\)</span> :</p>
+<div class="arithmatex">\[
+\begin{align}
+\delta^*(q_0, xy^{k+1}z) &amp;= \delta^*(\delta^*(\delta^*(q_0, xy), y^k), z) = \delta^*(\delta^*(q', y), z) \\
+&amp;= \delta^*(\delta^*(\delta^*(q_0, x), y^k), z) = \delta^*(q_0, xy^kz)\\
+&amp;= \delta^*(q_0, xyz) \text{ par hypothèse de récurrence}
+\end{align}
+\]</div>
+</li>
+</ol>
+</details>
+<p>Savoir démontrer qu'un langage n'est pas reconnaissable ne s'improvise pas et il faut étudier attentivement les méthodes permettant d'obtenir ce résultat.</p>
+<div class="admonition note">
+<p class="admonition-title">Point méthode : démontrer qu'un langage <span class="arithmatex">\(L\)</span> n'est pas reconnaissable avec le lemme de l'étoile</p>
+<ol>
+<li>On suppose par l'absurde que <span class="arithmatex">\(L\)</span> est reconnu par un automate à <span class="arithmatex">\(N\)</span> états.</li>
+<li>On <strong>choisit</strong> judicieusement un mot <span class="arithmatex">\(u \in L\)</span> particulier de longueur <span class="arithmatex">\(|u| \geq N\)</span></li>
+<li>On invoque le Lemme de l'étoile ce qui nous permet d'obtenir la décompostion <span class="arithmatex">\(u = xyz\)</span>.</li>
+<li>À l'aide des propriétés (1), (2) et (3) du lemme de l'étoile, on aboutit à une absurdité.</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple clé : <span class="arithmatex">\(\{a^n b^n, n \in \mathbb{N}\}\)</span></p>
+<p>Démontrons que langage <span class="arithmatex">\(L = \{a^nb^n, n \in \mathbb{N}\}\)</span> n'est pas reconnaissable.</p>
+<ol>
+<li>Supposons par l'absurde que <span class="arithmatex">\(L\)</span> soit reconnaissable et qu'il est reconnu par un automate à <span class="arithmatex">\(N\)</span> états.</li>
+<li>Considérons le mot <span class="arithmatex">\(u = a^N b^N\)</span>, alors <span class="arithmatex">\(u \in L\)</span> et <span class="arithmatex">\(|u| = 2N \geq N\)</span>.</li>
+<li>D'après le lemme de l'étoile, il existe donc 3 mots <span class="arithmatex">\(x, y, z \in \mathbb{N}\)</span> tels que<ol>
+<li><span class="arithmatex">\(|xy| \leq N\)</span></li>
+<li><span class="arithmatex">\(y \neq \varepsilon\)</span></li>
+<li><span class="arithmatex">\(\forall k \in \mathbb{N},\ xy^kz \in L\)</span></li>
+</ol>
+</li>
+<li>D'après (a), <span class="arithmatex">\(x\)</span> et <span class="arithmatex">\(y\)</span> ne contiennent que des lettres <span class="arithmatex">\(a\)</span>. De plus, d'après (b), <span class="arithmatex">\(y\)</span> contient au moins un <span class="arithmatex">\(a\)</span>. D'après (c), on doit avoir <span class="arithmatex">\(|xy^kz|_a = |xy^kz|_b\)</span> pour tout <span class="arithmatex">\(k \in \mathbb{N}\)</span> car les mots de <span class="arithmatex">\(L\)</span> contiennent autant de <span class="arithmatex">\(a\)</span> que de <span class="arithmatex">\(b\)</span>. Ceci est absurde, car d'après nos remarques :</li>
+</ol>
+<div class="arithmatex">\[
+|xy^kz|_a = |x|_a + k\underbrace{|y|_a}_{&gt; 0} + |z|_a
+\]</div>
+<div class="arithmatex">\[
+|xy^kz|_b = |x|_b + |y^k|_b + |z|_b = |z|_b
+\]</div>
+<p>La première quantité croît <strong>strictement</strong> lorsque <span class="arithmatex">\(k\)</span> croît tandis que la seconde reste constante. C'est absurde. Donc <span class="arithmatex">\(L\)</span> n'est pas reconnaissable.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Point méthode : démontrer qu'un langage <span class="arithmatex">\(L\)</span> n'est pas reconnaissable en utilisant les propriétés de clôture</p>
+<p>Pour utiliser cette méthode, il faut exploiter un langage <span class="arithmatex">\(L_2\)</span> dont on sait déjà qu'il n'est pas reconnaissable (hypothèse de l'énoncé ou on l'a démontré avant).</p>
+<ol>
+<li>On suppose par l'absurde que <span class="arithmatex">\(L\)</span> est reconnaissable.</li>
+<li>On montre que <span class="arithmatex">\(L_2\)</span> peut s'obtenir à partir de <span class="arithmatex">\(L\)</span> et d'autres langages reconnaissables en utilisant des opérations qui préservent le caractère reconnaissable (complémentaire, intersection finie, union finie, ...)</li>
+<li>On en déduit que <span class="arithmatex">\(L_2\)</span> est reconnaissable : c'est absurde.</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple clé : <span class="arithmatex">\(\{ u \in \{a,b\}^*, |u|_a = |u|_b \}\)</span></p>
+<p>Montrons que <span class="arithmatex">\(L = \{ u \in \{a,b\}^*, |u|_a = |u|_b \}\)</span> n'est pas reconnaissable. On sait que le langage <span class="arithmatex">\(L_2 = \{a^n b^n, n \in \mathbb{N} \}\)</span> n'est pas reconnaissable (exemple précédent).</p>
+<ol>
+<li>Supposons par l'absurde que <span class="arithmatex">\(L\)</span> est reconnaissable.</li>
+<li>On pose <span class="arithmatex">\(K\)</span> le langage dénoté par <span class="arithmatex">\(a^*b^*\)</span>, il est reconnaissable (il est facile de proposer un automate).
+On remarque de plus que <span class="arithmatex">\(L \cap K = L_2\)</span>.</li>
+<li>Comme l'<strong>intersection</strong> de deux langages reconnaissable est reconnaissable, on en déduit que <span class="arithmatex">\(L_2\)</span> est reconnaissable : c'est absurde.</li>
+</ol>
+</div>
+<p>Cette seconde méthode, quand on peut l'appliquer, permet de gagner du temps en évitant d'invoquer le lemme de l'étoile. La lectrice pourra vérifier qu'on peut aussi résoudre ce deuxième exemple en utilisant la première méthode.</p>
+<div class="admonition bug">
+<p class="admonition-title">Raisonnements faux usuels</p>
+<p>On retrouve souvent les raisonnements <strong>faux</strong> suivants :</p>
+<ol>
+<li><em>Une sous-partie d'un langage non reconnaissable est non reconnaissable</em> : <span class="arithmatex">\(L \subset L'\)</span> avec <span class="arithmatex">\(L'\)</span> non reconnaissable donc <span class="arithmatex">\(L\)</span> est non reconnaissable.</li>
+<li><em>Si je contiens une partie non reconnaissable alors je suis non reconnaissable</em> : <span class="arithmatex">\(L' \subset L\)</span> avec <span class="arithmatex">\(L'\)</span> non reconnaissable donc <span class="arithmatex">\(L\)</span> est non reconnaissable.</li>
+</ol>
+<p>Dans le premier cas, cela montrerait par exemple que <span class="arithmatex">\(\varnothing\)</span> n'est pas reconnaissable.
+Dans le second cas, si on prend <span class="arithmatex">\(L = \Sigma^*\)</span> on obtiendrait que <span class="arithmatex">\(\Sigma^*\)</span> n'est pas reconnaissable. </p>
+<p><strong>A RETENIR :</strong> les raisonnements par inclusion sont faux dans ce contexte</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

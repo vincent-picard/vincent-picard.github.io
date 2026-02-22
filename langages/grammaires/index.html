@@ -1,0 +1,1722 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Grammaires algébriques - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#grammaires-algebriques" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Grammaires algébriques
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../i8080/" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/alu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-grammaires-algebriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Grammaires algébriques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-derivations-et-langages-engendres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dérivations et langages engendrés
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dérivations et langages engendrés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-derivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Dérivations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-langage-engendre-par-une-grammaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Langage engendré par une grammaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-non-contextualite-des-langages-reguliers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Non contextualité des langages réguliers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbres-de-derivation-et-ambiguite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbres de dérivation et ambiguïté
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Arbres de dérivation et ambiguïté">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-arbres-de-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Arbres de dérivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-ambiguite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Ambiguïté
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-lexemple-du-sinon-pendant-dangling-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. L'exemple du "sinon pendant" (dangling else)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-analyse-syntaxique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Analyse syntaxique
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="grammaires-algebriques">Grammaires algébriques</h1>
+<p>Nous avons déjà étudié les expressions régulières et les automates finis qui permettent de décrire certains langages appelés langages réguliers. Nous avons aussi vu que tous les langages ne sont pas réguliers, en particulier certains langages utiles en informatique comme les langages de mots bien parenthésés ne sont pas régulier.</p>
+<p>On s'intéresse donc dans ce chapitre à une nouvelle manière de décrire des langages à l'aide de grammaires.</p>
+<h2 id="1-grammaires-algebriques">1. Grammaires algébriques</h2>
+<p>Dans ce cours on notera en général :</p>
+<ul>
+<li><span class="arithmatex">\(\Sigma\)</span> un alphabet fini de symboles appelés <strong>symboles terminaux</strong></li>
+<li><span class="arithmatex">\(V\)</span> un alphabet fini de symboles appelés <strong>variables</strong> ou <strong>symboles non terminaux</strong></li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Une <strong>grammaire algébrique</strong> est un quadruplet <span class="arithmatex">\((\Sigma, V, S, \mathcal{R})\)</span> dans lequel :</p>
+<ul>
+<li><span class="arithmatex">\(\Sigma\)</span> est l'alphabet des <strong>symboles terminaux</strong></li>
+<li><span class="arithmatex">\(V\)</span> est l'alphabet des <strong>symboles non terminaux</strong> ou <strong>variables</strong></li>
+<li><span class="arithmatex">\(S \in V\)</span> est un non terminal spécial appelé <strong>axiome</strong> ou <strong>symbole de départ</strong></li>
+<li><span class="arithmatex">\(\mathcal{R}\)</span> est un ensemble <em>fini</em> de <strong>règles de production</strong> : une règle de production est un couple <span class="arithmatex">\((X, u)\)</span> où <span class="arithmatex">\(X\)</span> est une variable et <span class="arithmatex">\(u\)</span> un mot sur <span class="arithmatex">\(\Sigma \cup V\)</span>.</li>
+</ul>
+</div>
+<p>Une règle de production <span class="arithmatex">\((X, u)\)</span> sera notée <span class="arithmatex">\(X \to u\)</span>. <span class="arithmatex">\(X\)</span> est le <strong>membre gauche</strong> de la règle et <span class="arithmatex">\(u\)</span> le <strong>membre droit</strong>.</p>
+<p>Lorsqu'une grammaire possède plusieurs règles avec même membre gauche on peut condenser l'écriture de ces règles ainsi : <span class="arithmatex">\(X \to u \ | \ v \ | \ w\)</span> signifie qu'il existe trois règles de production <span class="arithmatex">\(X \to u\)</span>, <span class="arithmatex">\(X \to v\)</span> et <span class="arithmatex">\(X \to w\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Vocabulaire</p>
+<p>Les grammaires algébriques sont aussi appelées <strong>grammaires hors contexte</strong> ou encore <strong>grammaires non contextuelles</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple (grammaire en langage naturel)</p>
+<p>Voici une grammaire algébrique pour décrire ceraines phrases en français : 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Phrase -&gt; Sujet Verbe Complement
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Sujet -&gt; je | elle
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Verbe -&gt; programme | mange
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Complément -&gt; Article Nom
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Article -&gt; un | une | le | la
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Nom -&gt; ordinateur | pomme | arbre 
+</span></code></pre></div></p>
+</div>
+<p>On remarque que pour donner une grammaire il suffit souvent de lister les règles de production. Une convention souvent utilisée est que la première règle de production correspond à l'axiome, les variables commencent par une majuscule et les terminaux sont en minuscules. En cas de doute, préciser la nature des symboles utilisés.</p>
+<p>Cette grammaire permet de générer les phrases suivantes :</p>
+<ul>
+<li>elle programme un ordinateur</li>
+<li>je mange une pomme</li>
+<li>je programme un arbre</li>
+<li>elle programme le pomme</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exemple (langage de balises)</p>
+<p>Voici une grammaire permettant de representer un langage balisé
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Texte -&gt; epsilon | LettreTexte | &lt;Ident&gt;Texte&lt;/Ident&gt;Texte
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Lettre -&gt; a | b | ... | z | (espace) (27 règles)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Ident -&gt; gras | italique
+</span></code></pre></div>
+Ici, <code>epsilon</code> désigne le mot vide. Les symboles non terminaux sont <span class="arithmatex">\(V = \{\mathrm{Texte}, \mathrm{Lettre}, \mathrm{Ident}\}\)</span> et les symboles terminaux sont <span class="arithmatex">\(\Sigma = \{&lt;, &gt;, /, a, ..., z, (espace)\}\)</span>.</p>
+</div>
+<p>Cette grammaire permet par exemple de réprésenter le texte balisé suivant : <code>&lt;gras&gt; &lt;italique&gt; texte &lt;/italique&gt; &lt;/gras&gt; issu de notre &lt;gras&gt; grammaire &lt;/gras&gt;</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Cette grammaire ne génère pas nécessairement de textes <strong>correctement</strong> balisés : par exemple il est tout a fait possible d'écrire <code>&lt;gras&gt; vanille bourbon &lt;/italique&gt;</code> avec les règles de cette grammaire. <em>Comment modifier cette grammaire pour obtenir des balises correctes ?</em></p>
+</div>
+<details class="example">
+<summary>Exemple (langage de balises correct)</summary>
+<p>Pour avoir un parenthésage correct des balises 'gras' et 'italique' on peut utiliser la grammaire suivante :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Texte -&gt; epsilon | LettreTexte
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Texte -&gt; &lt;gras&gt;Texte&lt;/gras&gt;Texte
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Texte -&gt; &lt;italique&gt;Texte&lt;/italique&gt;Texte
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Lettre -&gt; a | b | ... | z | (espace) (27 règles)
+</span></code></pre></div></p>
+</details>
+<div class="admonition example">
+<p class="admonition-title">Exemple (expressions arithmétiques)</p>
+<p>Les expressions arithmétiques avec des constantes littérales binaires peuvent être obtenues par une grammaire telle que :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>S -&gt; C
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>S -&gt; S + S
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>S -&gt; S x S
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>C -&gt; 0D | 1D
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>D -&gt; epsilon | 0D | 1D
+</span></code></pre></div>
+Par exemple on peut générer le texte : <code>111 + 10 x 1101</code> avec cette grammaire.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple (grammaire d'un langage de programmation)</p>
+<p>La lecture du <a href="https://v2.ocaml.org/releases/5.1/htmlman/language.html">manuel OCaml</a> permet de s'apercevoir que la syntaxe des programmes <code>OCaml</code> est décrite par une grammaire algébrique. Une grammaire permet donc la spécification formelle de la syntaxe d'un langage de programmation ou d'un format de données (html, xml, yaml, toml, json...)</p>
+</div>
+<h2 id="2-derivations-et-langages-engendres">2. Dérivations et langages engendrés</h2>
+<p>Nous allons maintenant définir formellement ce qu'est le <strong>langage engendré</strong> par une grammaire. Pour cela, il nous faudra d'abord expliquer la notion de <strong>dérivation</strong>.</p>
+<h3 id="a-derivations">A. Dérivations</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (dérivation immédiate)</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique, soit <span class="arithmatex">\(R = A \to \alpha\)</span> une règle de production de <span class="arithmatex">\(G\)</span>. Soit <span class="arithmatex">\(u\)</span> et <span class="arithmatex">\(v\)</span> deux mots sur <span class="arithmatex">\(\Sigma \cup V\)</span>. On dit que <span class="arithmatex">\(u\)</span> se <strong>dérive immédiatement</strong> en <span class="arithmatex">\(v\)</span> avec la règle <span class="arithmatex">\(R\)</span> s'il existe deux mots <span class="arithmatex">\(x\)</span> et <span class="arithmatex">\(y\)</span> sur <span class="arithmatex">\(\Sigma \cup V\)</span> tels que :</p>
+<ul>
+<li><span class="arithmatex">\(u = x A y\)</span></li>
+<li><span class="arithmatex">\(v = x \alpha y\)</span></li>
+</ul>
+</div>
+<p>Autrement dit, cette définition dit que <span class="arithmatex">\(u\)</span> se dérive en <span class="arithmatex">\(v\)</span> avec la règle <span class="arithmatex">\(R\)</span> si <span class="arithmatex">\(u\)</span> contient quelque part le symbole non terminal <span class="arithmatex">\(A\)</span> et qu'on peut obtient <span class="arithmatex">\(v\)</span> lorsqu'on subsitue <span class="arithmatex">\(A\)</span> par <span class="arithmatex">\(\alpha\)</span> dans <span class="arithmatex">\(u\)</span>.</p>
+<p><strong>Notation :</strong> On notera <span class="arithmatex">\(u \Rightarrow v\)</span> pour dire que <span class="arithmatex">\(u\)</span> se dérive immédiatement en <span class="arithmatex">\(v\)</span>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (dérivation)</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique. Soit <span class="arithmatex">\(u\)</span> et <span class="arithmatex">\(v\)</span> des mots sur <span class="arithmatex">\(\Sigma \cup V\)</span>. On dit que <span class="arithmatex">\(u\)</span> se <strong>dérive</strong> en <span class="arithmatex">\(v\)</span> s'il existe une suite <em>finie</em> de <span class="arithmatex">\(n\)</span> dérivations immédiates : <span class="arithmatex">\(w_0 \Rightarrow w_1 \Rightarrow w_2 \Rightarrow \dots \Rightarrow w_n\)</span> telle que :</p>
+<ul>
+<li><span class="arithmatex">\(w_0 = u\)</span></li>
+<li><span class="arithmatex">\(w_n = v\)</span></li>
+</ul>
+<p>Le nombre de dérivations immédiates <span class="arithmatex">\(n \in \mathbb{N}\)</span> s'appelle la <em>longueur de la dérivation</em>.</p>
+</div>
+<p><strong>Notation :</strong> <span class="arithmatex">\(u \Rightarrow^* v\)</span></p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>La relation <span class="arithmatex">\(\Rightarrow^*\)</span> est réflexive et transitive.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<ol>
+<li>Il est évident que tout mot <span class="arithmatex">\(u\)</span> se dérive en <span class="arithmatex">\(u\)</span> par la suite de dérivations de longueur nulle. Donc <span class="arithmatex">\(\Rightarrow^* {}\)</span> est transitive.</li>
+<li>On suppose qu'il existe trois mots <span class="arithmatex">\(u\)</span>, <span class="arithmatex">\(v\)</span>, <span class="arithmatex">\(w\)</span> tels que <span class="arithmatex">\(u \Rightarrow^* v\)</span> et <span class="arithmatex">\(v \Rightarrow^* w\)</span>. Donc il existe deux suites finies de dérivations immédiates <span class="arithmatex">\(a_0 \Rightarrow \dots \Rightarrow a_n\)</span> et <span class="arithmatex">\(b_0 \Rightarrow \dots \Rightarrow b_m\)</span> telles que <span class="arithmatex">\(a_0 = u\)</span>, <span class="arithmatex">\(a_n = b_0 = v\)</span> et <span class="arithmatex">\(b_m = w\)</span>. Ainsi, il existe bien une dérivation de <span class="arithmatex">\(u\)</span> en <span class="arithmatex">\(w\)</span> de longueur <span class="arithmatex">\(n + m\)</span> : <span class="arithmatex">\(u = a_0 \Rightarrow \dots \Rightarrow a_n = b_0 \Rightarrow \dots \Rightarrow b_m = w\)</span>. Donc <span class="arithmatex">\(u \Rightarrow^* v\)</span>.</li>
+</ol>
+</details>
+<p>En informatique, on dit que la relation <span class="arithmatex">\(\Rightarrow^* {}\)</span> est la <strong>fermeture réflexive transitive</strong> de la relation <span class="arithmatex">\(\Rightarrow\)</span>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>On dit qu'une dérivation immédiate xAy =&gt; x alpha y est une <strong>dérivation immédiate gauche</strong> (resp. <strong>dérivation immédiate droite</strong>) lorsque x (resp. y) ne contient pas de symbole non terminal.</p>
+</div>
+<p><strong>Notations:</strong> <span class="arithmatex">\(u \Rightarrow_g v\)</span> et <span class="arithmatex">\(u \Rightarrow_d v\)</span></p>
+<p>Autrement dit, une dérivation gauche est une dérivation dans laquelle on applique une règle de production associée à un symbole non terminal le plus à gauche du mot. </p>
+<p>On définit de même les relations de <strong>dérivation gauche</strong> <span class="arithmatex">\(\Rightarrow_g^*\)</span> et de <strong>dérivation droite</strong> <span class="arithmatex">\(\Rightarrow_d^*\)</span> lorsqu'on a une suite finie de dérivations immédiates gauche ou droite.</p>
+<h3 id="b-langage-engendre-par-une-grammaire">B. Langage engendré par une grammaire</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique, on appelle <strong>langage engendré</strong> par <span class="arithmatex">\(G\)</span> le langage des mots sur <span class="arithmatex">\(\Sigma\)</span> qu'on peut obtenir par dérivation du symbole initial <span class="arithmatex">\(S\)</span> : </p>
+<div class="arithmatex">\[\mathcal{L}(G) = \{ u \in \Sigma^* \text{ tels que } S \Rightarrow^* u \}\]</div>
+</div>
+<p>Attention, le langage engendré par une grammaire n'est constitué que de mots formés sur l'alphabet des terminaux.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Un langage <span class="arithmatex">\(L\)</span> est dit <strong>langage algébrique</strong> s'il est engendré par une grammaire algébrique. On désigne aussi parfois cette classe de langage sous le terme de <strong>langages non contextuels</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple (langage de Dyck)</p>
+<p>Soit <span class="arithmatex">\(G\)</span> la grammaire suivante :</p>
+<div class="arithmatex">\[S \rightarrow \varepsilon \ | \ aSbS\]</div>
+<p>Alors <span class="arithmatex">\(\mathcal{L}(G)\)</span> est le langage des mots bien parenthésés dans lequel <span class="arithmatex">\(a\)</span> représente une parenthèse ouvrante et <span class="arithmatex">\(b\)</span> une parenthèse fermante.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<ol>
+<li>Montrons d'abord que tout mot correctement parenthésé peut se dériver depuis <span class="arithmatex">\(S\)</span>. On procède par récurrence forte sur la longueur de <span class="arithmatex">\(u\)</span>. Si <span class="arithmatex">\(u = \varepsilon\)</span> alors <span class="arithmatex">\(S \Rightarrow^* u\)</span>. Si <span class="arithmatex">\(u\)</span> un mot bien parenthésé non vide, il commence nécessairement par une parenthèse ouvrante <span class="arithmatex">\(a\)</span>. On décompose alors <span class="arithmatex">\(u\)</span> en <span class="arithmatex">\(u = avbw\)</span> où la lettre <span class="arithmatex">\(b\)</span> de la décomposition correspond à la parenthèse fermante associée à la première parenthèse ouvrante <span class="arithmatex">\(a\)</span>. Les mots <span class="arithmatex">\(v\)</span> et <span class="arithmatex">\(w\)</span> sont alors aussi bien parenthésés. Par hypothèse de récurrence forte on a <span class="arithmatex">\(S \Rightarrow^* v\)</span> et <span class="arithmatex">\(S \Rightarrow^* w\)</span>. Il vient alors : <span class="arithmatex">\(S \Rightarrow aSbS \Rightarrow^* avbS \Rightarrow^* avbw = u\)</span>. La récurrence forte est établie.</li>
+<li>Réciproquement, montrons que tout mot <span class="arithmatex">\(u\)</span> dérivé depuis <span class="arithmatex">\(S\)</span> est bien parenthésé. On procède par récurrence forte sur la longueur de la dérivation. Si la dérivation est de longueur 0 alors elle ne peut pas générer de mot sur <span class="arithmatex">\(\Sigma\)</span>. Si la dérivation est de longueur k &gt; 0. Alors soit elle commence par <span class="arithmatex">\(S \Rightarrow \varepsilon\)</span> ce qui signifie que <span class="arithmatex">\(u = \varepsilon\)</span> qui est bien parenthésé, soit elle commence par <span class="arithmatex">\(S \Rightarrow aSbS\)</span>. Donc nécessairement <span class="arithmatex">\(u\)</span> est de la forme <span class="arithmatex">\(u = avbw\)</span> avec <span class="arithmatex">\(S \Rightarrow^* v\)</span> et <span class="arithmatex">\(S \Rightarrow^* w\)</span>. Par hypothese de recurrence forte, <span class="arithmatex">\(v\)</span> et <span class="arithmatex">\(w\)</span> sont bien parenthésés. On en déduit que <span class="arithmatex">\(avb\)</span> est bien parenthésé et que <span class="arithmatex">\(u = avb \cdot w\)</span> est bien parenthésé par concaténation de deux mots bien parenthésés. La récurrence forte est établie.</li>
+</ol>
+<p>Une démonstration plus formelle (mais pas nécessairement plus claire) nécessiterait de définir proprement le langage de Dyck comme les mots ayant autant de <span class="arithmatex">\(a\)</span> que de <span class="arithmatex">\(b\)</span> et dans lesquels tout préfixe contient plus de <span class="arithmatex">\(a\)</span> que de <span class="arithmatex">\(b\)</span>. Aussi, le 2e sens de la preuve peut être clarifié en utilisant les arbres de dérivations présentés dans la partie suivante.</p>
+</details>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Deux grammaires <span class="arithmatex">\(G_1\)</span> et <span class="arithmatex">\(G_2\)</span> sont dites <strong>faiblement équivalentes</strong> lorsqu'elles engendrent le même langage : <span class="arithmatex">\(\mathcal{L}(G_1) = \mathcal{L}(G_2)\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>La grammaire suivante </p>
+<div class="arithmatex">\[ \begin{align}
+S &amp; \to SS \ |\  \varepsilon \\
+S &amp; \to aSb
+\end{align}
+\]</div>
+<p>engendre aussi le langage de Dyck et est donc faiblement équivalente à la grammaire proposée précédemment.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<p>Notons <span class="arithmatex">\(G_1\)</span> la grammaire initialement proposée et <span class="arithmatex">\(G_2\)</span> cette nouvelle grammaire.</p>
+<ol>
+<li>
+<p>On remarque que pour <span class="arithmatex">\(G_2\)</span>, <span class="arithmatex">\(S \Rightarrow \varepsilon\)</span> et <span class="arithmatex">\(S \Rightarrow SS \Rightarrow aSbS\)</span>. Donc toute suite de dérivation immédiates pour la grammaire <span class="arithmatex">\(G_1\)</span> peut être traduite en suite de dérivations pour la grammaire <span class="arithmatex">\(G_2\)</span>. Cela signifie que <span class="arithmatex">\(\mathcal{L}(G_1) \subset \mathcal{L}(G_2)\)</span>.</p>
+</li>
+<li>
+<p>Pour montrer l'inclusion réciproque : <span class="arithmatex">\(\mathcal{L}(G_2) \subset \mathcal{L}(G_1)\)</span>, il suffit de montrer que les mots engendrés par <span class="arithmatex">\(G_2\)</span> sont bien parentésés. On peut le montrer par récurrence forte sur la longueur de la dérivation : cela fonctionne car <span class="arithmatex">\(\varepsilon\)</span> est bien parenthésé, si <span class="arithmatex">\(u\)</span> est bien parenthésé alors <span class="arithmatex">\(aub\)</span> aussi et que le langage de Dyck est stable par concaténation.</p>
+</li>
+</ol>
+</details>
+<h3 id="c-non-contextualite-des-langages-reguliers">C. Non contextualité des langages réguliers</h3>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Les langages réguliers sont algébriques.</p>
+</div>
+<p>Deux autres manières de le dire : </p>
+<ul>
+<li>Tout langage dénoté par une expression régulière est engendré par une grammaire algébrique</li>
+<li>Tout langage accepté par un automate fini (déterministe ou non) est engendré par une grammaire algébrique</li>
+</ul>
+<details class="note">
+<summary>Démonstration</summary>
+<p>On procède par induction sur les langages réguliers qui sont définis inductivement. Montrons la propriété</p>
+<div class="arithmatex">\[P(L) : \text{"Il existe une grammaire algébrique $G$ telle que $\mathcal{L}(G) = L$"}\]</div>
+<p>sur tous les langages <span class="arithmatex">\(L\)</span> réguliers.</p>
+<ul>
+<li><strong>Cas de base</strong><ul>
+<li><span class="arithmatex">\(L = \varnothing\)</span> : une grammaire ne contenant aucune règle de production convient</li>
+<li><span class="arithmatex">\(L = \{ \varepsilon \}\)</span> : la grammaire possédant uniquement la règle <span class="arithmatex">\(S \to \varepsilon\)</span> convient</li>
+<li><span class="arithmatex">\(L = \{ a \}\)</span> avec <span class="arithmatex">\(a \in \Sigma\)</span> : la grammaire possédant uniquement la règle <span class="arithmatex">\(S \to a\)</span> convient</li>
+</ul>
+</li>
+<li><strong>Hérédité</strong><ul>
+<li><span class="arithmatex">\(L = L_1.L_2\)</span> avec <span class="arithmatex">\(P(L_1)\)</span> et <span class="arithmatex">\(P(L_2)\)</span> vraies. Il existe alors deux grammaires algébriques <span class="arithmatex">\(G_1 = (\Sigma, V_1, S_1, \mathcal{R}_1)\)</span> et <span class="arithmatex">\(G_2 = (\Sigma, V_2, S_2, \mathcal{R}_2)\)</span> telles que <span class="arithmatex">\(\mathcal{L}(G_1) = L_1\)</span> et <span class="arithmatex">\(\mathcal{L}(G_2) = L_2\)</span>. Quitte à renommer les symboles non terminaux, on peut supposer <span class="arithmatex">\(V_1 \cap V_2 = \varnothing\)</span>. On pose alors <span class="arithmatex">\(G = (\Sigma, V_1 \cup V_2 \cup \{S\}, \mathcal{R}_1 \cup \mathcal{R}_2 \cup \{ S \to S_1S_2\})\)</span> où <span class="arithmatex">\(S\)</span> est un symbole non terminal nouveau. Dans la grammaire obtenue, la seule dérivation immédiate initiale possible est <span class="arithmatex">\(S \Rightarrow S_1S_2\)</span> ce qui signifie que les mots dérivés depuis <span class="arithmatex">\(S\)</span> seront de la forme <span class="arithmatex">\(u_1.u_2\)</span> avec <span class="arithmatex">\(u_1 \in L_1\)</span> et <span class="arithmatex">\(u_2 \in L_2\)</span>. Donc <span class="arithmatex">\(\mathcal{L}(G) = L_1.L_2 = L\)</span>.</li>
+<li><span class="arithmatex">\(L = L_1 \cup L_2\)</span> avec <span class="arithmatex">\(P(L_1)\)</span> et <span class="arithmatex">\(P(L_2)\)</span> vraies. On procède comme dans le cas précédent et on pose cette fois la grammaire : <span class="arithmatex">\(G = (\Sigma, V_1 \cup V_2 \cup \{S\}, \mathcal{R}_1 \cup \mathcal{R}_2 \cup \{S \to S_1, S \to S_2\})\)</span>. Une dérivation de <span class="arithmatex">\(S\)</span> dans cette grammaire débute soit par <span class="arithmatex">\(S \Rightarrow S_1\)</span> et alors un mot de <span class="arithmatex">\(L_1\)</span> sera ultimement généré, soit <span class="arithmatex">\(S \Rightarrow S_2\)</span> et alors un mot de <span class="arithmatex">\(L_2\)</span> sera ultimement généré. On en déduit que <span class="arithmatex">\(\mathcal{L}(G) = L_1 \cup L_2 = L\)</span>.</li>
+<li><span class="arithmatex">\(L = L_1^*\)</span> avec <span class="arithmatex">\(P(L_1)\)</span> vrai. Il existe donc une grammaire <span class="arithmatex">\(G_1 = (\Sigma, V_1, S_1, \mathcal{R}_1)\)</span> engendrant <span class="arithmatex">\(L_1\)</span>. On pose la grammaire <span class="arithmatex">\(G = (\Sigma, V_1 \cup \{S\}, \mathcal{R}_1 \cup \{S \to S_1S, S \to \varepsilon\})\)</span>. Les règles introduites permettent initialement de dériver tout mot de la forme <span class="arithmatex">\(S_1^k\)</span> depuis <span class="arithmatex">\(S\)</span> : <span class="arithmatex">\(S \Rightarrow S_1^k\)</span> pour tout <span class="arithmatex">\(k \in \mathbb{N}\)</span>. Chaque non terminal <span class="arithmatex">\(S_1\)</span> se dérivera ensuite en un mot de <span class="arithmatex">\(L_1\)</span>. Donc le langage engendré par cette grammaire est <span class="arithmatex">\(\mathcal{L}(G) = L_1^* = L\)</span>.</li>
+</ul>
+</li>
+</ul>
+</details>
+<h2 id="3-arbres-de-derivation-et-ambiguite">3. Arbres de dérivation et ambiguïté</h2>
+<div class="admonition example">
+<p class="admonition-title">Exemple introductif (L'inconvénient des suites de dérivations)</p>
+<p>Pour la grammaire du langage de Dyck introduite précédemment :</p>
+<div class="arithmatex">\[ S \to aSbS \ | \  \varepsilon\]</div>
+<p>On peut dériver depuis <span class="arithmatex">\(S\)</span> le mot <span class="arithmatex">\(aabbab\)</span> de deux manières différentes :</p>
+<ol>
+<li><span class="arithmatex">\(S \Rightarrow a\mathbf{S}bS \Rightarrow aaSbSb\mathbf{S} \Rightarrow aaSbSbaSbS \Rightarrow^* aabbab\)</span></li>
+<li><span class="arithmatex">\(S \Rightarrow aSb\mathbf{S} \Rightarrow a\mathbf{S}baSbS \Rightarrow aaSbSbaSbS \Rightarrow^* aabbab\)</span></li>
+</ol>
+<p>Pourtant ces deux dérivations utilisent les mêmes règles de production, qui sont simplement appliquées dans un ordre différent. Il n'est pas aisé de constater ce fait lorsqu'on représente une dérivation par une suite de dérivations immédiates. Dans cette partie on va montrer comment représenter les dérivations à l'aide d'arbres. </p>
+</div>
+<h3 id="a-arbres-de-derivation">A. Arbres de dérivation</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique. Soit <span class="arithmatex">\(X \in V\)</span> un symbole non terminal. Un <strong>arbre de dérivation</strong> de racine <span class="arithmatex">\(X\)</span> est un arbre enraciné dont les noeuds et feuilles sont étiquetés dans <span class="arithmatex">\(\Sigma \cup V \cup \{\varepsilon\}\)</span> et qui vérifie :</p>
+<ol>
+<li>La racine est étiquetée par <span class="arithmatex">\(X\)</span></li>
+<li>Les noeuds internes sont étiquetés par des variables</li>
+<li>Si une feuille est étiquetée par <span class="arithmatex">\(\varepsilon\)</span>, elle n'a pas de soeurs, et si <span class="arithmatex">\(A\)</span> est l'étiquette de son parent alors <span class="arithmatex">\(A \to \varepsilon\)</span> est une règle de production de <span class="arithmatex">\(G\)</span></li>
+<li>Pour tout noeud interne étiqueté par <span class="arithmatex">\(A\)</span> ayant pour fils des noeuds et feuilles étiquetées de gauche à droite par <span class="arithmatex">\(\alpha_1 \dots \alpha_n\)</span>, alors <span class="arithmatex">\(A \to \alpha_1 \dots \alpha_n\)</span> est une règle de production de <span class="arithmatex">\(G\)</span></li>
+</ol>
+</div>
+<p>Un tel arbre représente une suite de dérivations immédiates effectuée depuis <span class="arithmatex">\(X\)</span>. Chaque noeud interne de l'arbre correspond à l'application d'une règle de production de la grammaire.</p>
+<div class="admonition info">
+<p class="admonition-title">Vocabulaire</p>
+<p>Les arbres de dérivation sont aussi appelés <strong>arbres d'analyse</strong>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Vocabulaire</p>
+<p>Lorsque les feuilles de l'arbre contiennent encore des non terminaux on dit que c'est un <strong>arbre de dérivation partielle</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple (langage de Dyck)</p>
+<p>Reprenons l'exemple de la grammaire générant le langage de Dyck :</p>
+<div class="arithmatex">\[ S \to aSbS \ | \  \varepsilon\]</div>
+<p>Voici un exemple d'arbre de dérivation qui représente les dérivations utilisées dans l'introduction de la partie pour engendrer <span class="arithmatex">\(aabbab\)</span> :</p>
+<p><figure>
+<img alt="Exemple d'arbre de dérivation" src="../fig/arbreder/arbreder-1.svg" />
+</figure></p>
+<p>On constate que chaque noeud interne correspond à l'application d'une règle de production.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Soit un arbre de dérivation, on appelle <strong>frontière</strong> de l'arbre le mot obtenu en concaténant toutes ses feuilles de gauche à droite.</p>
+</div>
+<p><strong>Notation:</strong> <span class="arithmatex">\(\mathrm{Fr}(A)\)</span> où <span class="arithmatex">\(A\)</span> est l'arbre de dérivation.</p>
+<p>On peut remarquer que si l'arbre de dérivation n'est pas partiel alors la frontière est un mot sur <span class="arithmatex">\(\Sigma\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Théorème</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique, <span class="arithmatex">\(u\)</span> un mot sur <span class="arithmatex">\(\Sigma \cup V\)</span> et <span class="arithmatex">\(X\)</span> un symbole non terminal alors <span class="arithmatex">\(X \Rightarrow^* u\)</span> si et seulement s'il existe un arbre de dérivation de racine <span class="arithmatex">\(X\)</span> dont la frontière est <span class="arithmatex">\(u\)</span>.</p>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<ol>
+<li><strong>Sens direct :</strong> On procède par récurrence sur la longueur de la dérivation. <ul>
+<li><em>Initialisation</em> : Si la dérivation est de longueur 0, c'est-à-dire <span class="arithmatex">\(X \Rightarrow^* X\)</span>, l'arbre ayant un seul noeud <span class="arithmatex">\(X\)</span> convient. </li>
+<li><em>Hérédité</em> : La dérivation se décompose en <span class="arithmatex">\(X \Rightarrow^* v\)</span> de longueur <span class="arithmatex">\(k\)</span> et <span class="arithmatex">\(v \Rightarrow u\)</span>. Par hypothèse de récurrence, il existe un arbre de dérivation <span class="arithmatex">\(A_1\)</span> de racine <span class="arithmatex">\(X\)</span> dont la frontière est <span class="arithmatex">\(v\)</span>. Puisque <span class="arithmatex">\(v \Rightarrow u\)</span>, <span class="arithmatex">\(v\)</span> se décompose en <span class="arithmatex">\(v = s Y t\)</span> et <span class="arithmatex">\(u\)</span> en <span class="arithmatex">\(s y_1 ... y_n t\)</span> avec <span class="arithmatex">\(Y \to y_1 ... y_n\)</span> la règle de production utilisée dans la dernière dérivation immédiate. Il suffit alors de remplacer la feuille <span class="arithmatex">\(Y\)</span> dans <span class="arithmatex">\(A_1\)</span> par un noeud étiqueté par <span class="arithmatex">\(Y\)</span> et ayant des feuilles étiquetées de gauche à droite par <span class="arithmatex">\(y_1 ... y_n\)</span>, on obtient un nouvel arbre <span class="arithmatex">\(A\)</span>. Il est facile de vérifier que <span class="arithmatex">\(A\)</span> est bien un arbre de dérivation dont la frontière est <span class="arithmatex">\(s y_1 ... y_n t = u\)</span>.</li>
+</ul>
+</li>
+<li><strong>Sens réciproque :</strong> On procède par induction sur les arbres : <span class="arithmatex">\(P(A)\)</span> : "Si <span class="arithmatex">\(A\)</span> est un arbre de dérivation de racine <span class="arithmatex">\(X\)</span> et de frontière <span class="arithmatex">\(u\)</span> alors <span class="arithmatex">\(X \Rightarrow^* u\)</span>".<ul>
+<li><em>Cas de base</em> : Si l'arbre est une feuille alors on a bien <span class="arithmatex">\(X \Rightarrow^* X\)</span>.</li>
+<li>
+<p><em>Hérédité</em> : La racine possède un ou plusieurs fils qui vérifient l'hypothèse d'induction. On a deux cas :</p>
+<ul>
+<li>soit la racine possède un unique fils <span class="arithmatex">\(\varepsilon\)</span> et alors d'après le point 3 de la définition, <span class="arithmatex">\(X \to \varepsilon\)</span> est une règle de la grammaire donc <span class="arithmatex">\(X \Rightarrow^* \varepsilon = \mathrm{Fr}(A)\)</span>. </li>
+<li>Sinon il possède des fils <span class="arithmatex">\(A_1, \dots,  A_n\)</span> de racines respectives d'étiquettes <span class="arithmatex">\(a_1, \dots, a_n\)</span> distinctes de <span class="arithmatex">\(\varepsilon\)</span>. Si <span class="arithmatex">\(a_i\)</span> est un symbole terminal alors <span class="arithmatex">\(a_i \Rightarrow^* a_i = \mathrm{Fr}(A_i)\)</span>. Si <span class="arithmatex">\(a_i\)</span> est un symbole non terminal alors <span class="arithmatex">\(a_i \Rightarrow^* \mathrm{Fr}(A_i)\)</span> par hypothèse d'induction. Dans tous les cas on a donc <span class="arithmatex">\(a_i \Rightarrow^* \mathrm{Fr}(A_i)\)</span>. D'après le point 4 de la définition, on sait que <span class="arithmatex">\(X \to a_1 \dots a_n\)</span> est une règle de la grammaire, donc on a : <span class="arithmatex">\(X \Rightarrow^* a_1 \dots a_n \Rightarrow^* \mathrm{Fr}(A_1) a_2 \dots a_n \Rightarrow^* \cdots \Rightarrow^* \mathrm{Fr}(A_1)\dots \mathrm{Fr}(A_n) = \mathrm{Fr}(A) = u\)</span>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Corollaire</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique, <span class="arithmatex">\(u\)</span> un mot sur <span class="arithmatex">\(\Sigma\)</span> alors <span class="arithmatex">\(u \in \mathcal{L}(G)\)</span> si et seulement s'il existe un arbre de dérivation de racine <span class="arithmatex">\(S\)</span> dont la frontière est <span class="arithmatex">\(u\)</span>.</p>
+</div>
+<p>La démonstration de ce théorème est importante car elle nous donne un algorithme pour convertir une suite de dérivations immédiates en arbre de dérivation et réciproquement :</p>
+<ul>
+<li>Pour construire un arbre de dérivation à partir d'une suite de dérivations immédiates depuis <span class="arithmatex">\(X\)</span> : on commence par construire le noeud racine <span class="arithmatex">\(X\)</span>, puis on lit les dérivations dans l'ordre, pour chaque dérivation utilisant une règle <span class="arithmatex">\(A \to a_1\dots a_n\)</span>, on ajoute au noeud d'étiquette <span class="arithmatex">\(A\)</span> concerné <span class="arithmatex">\(n\)</span> fils d'étiquettes <span class="arithmatex">\(a_1, \dots, a_n\)</span>.</li>
+<li>Pour obtenir une suite de dérivations immédiates à partir d'un arbre de dérivation on procède par <strong>parcours en profondeur</strong> de l'arbre de dérivation : à chaque noeud interne rencontré, on écrit une dérivation immédiate correspondant à la règle utilisée pour ce noeud.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(G = (\Sigma, V, S, \mathcal{R})\)</span> une grammaire algébrique, <span class="arithmatex">\(X\)</span> un symbole non terminal et <span class="arithmatex">\(u\)</span> un mot sur <span class="arithmatex">\(\Sigma\)</span> alors on a équivalence entre :</p>
+<ol>
+<li><span class="arithmatex">\(X \Rightarrow^* u\)</span></li>
+<li><span class="arithmatex">\(X \Rightarrow_g^* u\)</span></li>
+<li><span class="arithmatex">\(X \Rightarrow_d^* u\)</span></li>
+</ol>
+</div>
+<details class="note">
+<summary>Démonstration</summary>
+<ul>
+<li>(2) implique (1) et (3) implique (1) découlent directement des définitions.</li>
+<li>Si <span class="arithmatex">\(X \Rightarrow^* u\)</span> d'après la proposition précédente, il existe un arbre de dérivation de racine <span class="arithmatex">\(X\)</span> et de frontière <span class="arithmatex">\(u\)</span>. De plus, si on suit la démonstration de cette même proposition, on s'aperçoit que la suite de dérivations immédiates proposées pour passer d'un arbre à une suite de dérivation n'utilise que des dérivations gauche (car les frontières des sous-arbres ne contiennent alors que des symboles terminaux). On a donc <span class="arithmatex">\(X \rightarrow_g^* u\)</span>. Donc (1) implique (2).</li>
+<li>(1) implique (3) se montre de la même manière mais en considérant un parcours en profondeur où les fils sont explorés de droite à gauche.</li>
+<li>On montre de même que (1) implique (3) en construisant la suite de dérivations à l'aide d'un parcours en profondeur en considérant les fils de droite à gauche.</li>
+</ul>
+</details>
+<p>Une conséquence est que si on se restreint à utiliser des dérivations gauche (resp. droite) alors le langage engendré par une grammaire est inchangé.
+Un autre intérêt de cette proposition est qu'il est toujours possible supposer dans une démonstration dans la quelle on sait que $X \Rightarrow^<em> u \in \Sigma^</em> $ que toutes les dérivations utilisées sont gauche (ou droite).</p>
+<h3 id="b-ambiguite">B. Ambiguïté</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>Une grammaire <span class="arithmatex">\(G\)</span> est dite <strong>ambiguë</strong> s'il existe un mot <span class="arithmatex">\(u\)</span> dans <span class="arithmatex">\(\mathcal{L}(G)\)</span> tel qu'il existe deux arbres de dérivation distincts de racine <span class="arithmatex">\(S\)</span> et de frontière <span class="arithmatex">\(u\)</span>.</p>
+</div>
+<p>Ainsi une grammaire est ambiguë lorsqu'elle permet de produire un mot <span class="arithmatex">\(u\)</span> de deux manières différentes.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>On considère la grammaire suivante permettant de décrire certaines formules propositionnelles sur l'ensemble de variables propositionnelles <span class="arithmatex">\({x, y, z}\)</span>.</p>
+<div class="arithmatex">\[\begin{align}
+    S &amp;\to C \ | \ (S) \\
+    S &amp;\to \neg S\\
+    S &amp;\to S \lor S \ | \ S \land S\\ 
+    C &amp;\to x \ |\  y\  |\  z
+\end{align}
+\]</div>
+<p>Cette grammaire est ambiguë, un exemple peut être obtenu avec le mot <span class="arithmatex">\(u = x \lor y \land z\)</span> qui est frontière des deux arbres de dérivations suivants :</p>
+<p><figure>
+<img alt="Un arbre de dérivation" src="../fig/ambiguite/ambiguite-1.svg" />
+</figure></p>
+<p><figure>
+<img alt="Un autre arbre de dérivation" src="../fig/ambiguite/ambiguite-2.svg" />
+</figure></p>
+<p>On note également que l'ambiguïté n'est en général pas une propriété souhaitable pour une grammaire. Dans cet exemple, elle signifie qu'il est impossible de donner un sens à la formule <span class="arithmatex">\(x \lor y \land z\)</span> (on ne sait pas si cette formule et un OU ou un ET).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : le théorème de lecture unique</p>
+<p>Avec l'exemple précédent, on comprend l'intérêt de définir des grammaires non ambiguës pour décrire les formules propositionnelles. Cela est possible avec la grammaire suivante :</p>
+<div class="arithmatex">\[
+\begin{align}
+S &amp;\to \neg S\\
+S &amp;\to (S \lor S) \ |\  (S \land S) \ |\  (S \rightarrow S) \ |\  (S \leftrightarrow S)\\
+S &amp;\to C \\
+C &amp;\to \textrm{variables propositionnelles}
+\end{align}
+\]</div>
+<p>En logique propositionnelle, le <strong>théorème de lecture unique</strong> énonce que cette grammaire est non ambiguë. Autrement dit, si on se sert de ces règles pour écrire les formules alors on pourra les interpréter sous forme d'arbre sans ambiguïté.</p>
+</div>
+<p>Si l'on souhaite "résoudre" les problèmes d'ambiguïté deux solutions sont en général utilisées :</p>
+<ul>
+<li>Définir une grammaire non ambiguë pour le langage souhaité en utilisant un bon système de parenthésage : c'est ce qui a été fait dans l'exemple précédent.</li>
+<li>Utiliser une grammaire ambiguë mais définir des priorités d'opérateurs et/ou des règles d'associativité pour lever l'ambiguité sur l'arbre d'analyse à choisir quand il y en a plusieurs : c'est souvent ce que l'on fait pour les expressions arithmétiques et plus généralement les langages de programmation.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exemple : une autre grammaire pour le langage de Dyck</p>
+<p>On peut vérifier que la grammaire suivante :</p>
+<div class="arithmatex">\[
+S \to SS \ |\  aSb \ |\  \varepsilon
+\]</div>
+<p>engendre également le langage de Dyck mais qu'elle est ambiguë. Saurez-vous trouver un mot de Dyck possédant deux arbres d'analyse distincts pour cette grammaire ?</p>
+</div>
+<p>Il n'est pas toujours possible d'obtenir une grammaire non ambiguë pour décrire un langage algébrique, autrement dit, il existe des langages algébriques dits <strong>inhéremment ambigüs</strong> pour lesquels toutes les grammaires qui les décrivent sont ambiguës. Un exemple est <span class="arithmatex">\(L = \{a^n b^n c^m,\  (n, m) \in \mathbb{N}^2\} \cup \{a^n b^m c^m,\  (n, m) \in \mathbb{N}^2\}\)</span> mais les outils pour le démontrer sont hors programme.</p>
+<h3 id="c-lexemple-du-sinon-pendant-dangling-else">C. L'exemple du "sinon pendant" (dangling else)</h3>
+<p>Un cas d'école classique d'illustration des grammaires et de l'ambiguïté est le problème du <em>sinon pendant</em>. Le problème survient lorsque l'on décide de définir pour un langage de programmation, une structure conditionnelle <em>Si ... Alors ... Sinon ...</em> avec un <em>Sinon</em> optionnel. Par exemple considérons la grammaire simplifiée suivante :</p>
+<div class="arithmatex">\[
+\begin{align}
+I &amp;\to \mathbf{si}\  B\  \mathbf{alors}\  I\\
+    &amp;|\  \mathbf{si}\  B\ \mathbf{alors}\  I\  \mathbf{sinon}\  I \\
+    &amp;|\ a \\
+B &amp;\to b
+\end{align}
+\]</div>
+<p>Dans cette grammaire, <span class="arithmatex">\(B\)</span> sert à décrire une expression booléenne (ici volontairement simplifiée à <span class="arithmatex">\(b\)</span> par simplicité) et <span class="arithmatex">\(a\)</span> sert à décrire une instruction ou un bloc d'instructions (ici volontairement réduit à <span class="arithmatex">\(a\)</span>). On remarque alors qu'il existe deux interprétations différentes du programme :</p>
+<div class="arithmatex">\[
+\mathbf{si}\  b\  \mathbf{alors}\  \mathbf{si}\  b\  \mathbf{alors}\  a\  \mathbf{sinon}\  a 
+\]</div>
+<p>autrement dit, la grammaire utilisée est ambiguë.</p>
+<p>Voyons comment le problème pourrait se traduire en langage C. Imaginons un langage proche du C dans lequel il n'y a pas d'accolade, et considérons le programme :</p>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">else</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d, %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Alors avec la première interprétation du sinon pendant, le programme affiche <code>(5, 42)</code> avec la seconde interprétation il affiche <code>(5, 2)</code>. Autrement dit, il est impossible de savoir si le <code>else</code> appartient au premier ou au second <code>if</code>... La syntaxe du langage C permet de lever l'ambiguité grâce à l'utilisation des accolades.</p>
+<p>Voyons maintenant ce qu'il se passe en OCaml. 
+<div class="language-ocaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">7</span><span class="o">;;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">if</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">then</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">print_string</span> <span class="s2">&quot;UN&quot;</span><span class="o">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="k">if</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">then</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="n">print_string</span> <span class="s2">&quot;DEUX&quot;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">else</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">print_string</span> <span class="s2">&quot;TROIS&quot;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="o">;;</span>
+</span></code></pre></div>
+Ce programme affiche <code>DEUX</code> à l'écran.</p>
+<p>On constate donc que OCaml décide de faire le choix que le dernier <code>else</code> correspond au 2e <code>if</code>. Si on regarde la manière dont le code est indenté, on constate que l'auteur est probablement dans l'erreur dans ce qu'il imagine être le comportement du programme (erreur classique d'utilisation du <code>if</code> en OCaml).</p>
+<h3 id="d-analyse-syntaxique">D. Analyse syntaxique</h3>
+<p>L'<strong>analyse syntaxique</strong> consiste à partir d'une grammaire et d'un texte appartenant au langage de cette grammaire à <strong>construire un arbre d'analyse</strong> pour ce texte. Cet arbre représentera alors le texte sous une forme structurée qui sera plus facile à manipuler par un programme.</p>
+<p>Par exemple, on peut vouloir obtenir le résultat du calcul de l'expression arithmétique <code>(1 + 3) * (5 + 7)</code>. On utilise alors un analyseur syntaxique pour obtenir un arbre de dérivation correspondant à cette expression, puis on calcule la valeur de l'expression à partir de l'arbre.</p>
+<p>Un autre exemple classique est celui de la compilation. En général, un compilateur commence par une première phrase d'analyse textuelle du code source afin de représenter le programme sous forme d'un arbre appelé <strong>arbre de syntaxe abstraite</strong>. C'est à partir de cet arbre que le compilateur va pouvoir produire du code vers le langage cible.</p>
+<p>Aucune technique spécifique d'analyse syntaxique n'est au programme mais il faut savoir réaliser cette démarche dans le cas de grammaires simples. <strong>Voir TP :</strong> pour une analyse syntaxique descendante des expressions arithmétiques simples.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1774 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+        <link rel="prev" href="../direct/">
+      
+      
+        <link rel="next" href="../immediate/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>L'unité arithmétique et logique - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lunite-arithmetique-et-logique-alu" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L'unité arithmétique et logique
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-les-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Les additions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Les additions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additionneur-1-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additionneur 1 bit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additionneur-8-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additionneur 8-bits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implémentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-les-soustractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Les soustractions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Les soustractions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformer-une-soustraction-en-somme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformer une soustraction en somme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#et-sil-y-a-un-emprunt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Et s'il y a un emprunt ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implémentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-les-operations-logiques-bit-a-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Les opérations logiques bit à bit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tester-tester-et-tester" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tester, tester et tester !
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-les-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Les additions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Les additions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additionneur-1-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additionneur 1 bit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additionneur-8-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additionneur 8-bits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implémentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-les-soustractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Les soustractions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Les soustractions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformer-une-soustraction-en-somme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformer une soustraction en somme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#et-sil-y-a-un-emprunt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Et s'il y a un emprunt ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implémentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-les-operations-logiques-bit-a-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Les opérations logiques bit à bit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tester-tester-et-tester" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tester, tester et tester !
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lunite-arithmetique-et-logique-alu">L'unité arithmétique et logique (ALU)</h1>
+<p><strong>Nouveaux fichiers :</strong> <code>alu.h</code> <code>alu.c</code></p>
+<p>On s'intéresse maintenant aux calculs arithmétiques et logiques réalisés par le processeur. Le 8080 est capable de réaliser :</p>
+<ul>
+<li>des additions</li>
+<li>des soustractions</li>
+<li>des ET, OR, XOR bit à bit</li>
+<li>des comparaisons</li>
+</ul>
+<p>Toutefois plusieurs instructions permettent de réaliser chacune de ces opérations, par exemple pour additioner on dispose de <strong>ADD</strong>, <strong>ADC</strong>, <strong>ADI</strong> et <strong>ACI</strong>.
+Pour éviter de réécrire plusieurs fois les mêmes codes, on rassemble dans cette unité de compilation les fonctions permettant de réaliser concrètement les opérations sur le processeur. On se servira ensuite de ces fonctions pour coder facilement chacune des instructions.</p>
+<h2 id="1-les-additions">1. Les additions</h2>
+<p>Dans sa version la plus basique, un processeur réalise l'opération d'addition comme on l'a apprise à l'école primaire :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>retenues :      1     1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                  1 0 0 1 0 (18)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>               +  1 0 0 1 1 (19)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>               ------------
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                1 0 0 1 0 1 (37)
+</span></code></pre></div></p>
+<h3 id="additionneur-1-bit">Additionneur 1 bit</h3>
+<p>Pour implémenter cela, on commence par réaliser un circuit capable d'aditionner deux entiers <span class="arithmatex">\(s = a + b\)</span> ayant 1 bit (donc ils valent 0 ou 1)
+avec éventuellement une retenue d'entrée (<span class="arithmatex">\(c_{in}\)</span>). Cela correspond à une colonne dans le calcul ci-dessus.</p>
+<p>Voilà à quoi ressemble schématiquement un tel composant : il possède 3 entrées <span class="arithmatex">\(a, b, c_{in}\)</span> et deux sorties <span class="arithmatex">\(s, c_{out}\)</span>.</p>
+<figure>
+<img _="," align="align" alt="Additionneur 1 bit" src="../add.svg" width="200" />
+
+<figcaption> Additionneur 1 bit </figcaption>
+</figure>
+<p>La table de vérité implémentée est la suivante :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(a\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(b\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(c_{in}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(s\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(c_{out}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>Par exemple si sur une colonne du calcul on trouve 1 pour <span class="arithmatex">\(a\)</span>, 1 pour <span class="arithmatex">\(b\)</span> et qu'on a une retenue (<span class="arithmatex">\(c_{in} = 1\)</span>), on obtient 11 donc on pose <span class="arithmatex">\(s = 1\)</span> et on retient 1 (<span class="arithmatex">\(c_{out} = 1\)</span>).</p>
+<h3 id="additionneur-8-bits">Additionneur 8-bits</h3>
+<p>Comment faire maintenant pour additioner des nombres <span class="arithmatex">\(a\)</span> et <span class="arithmatex">\(b\)</span> sur 8 bits (avec éventuellement une retenue d'entrée) ? Facile, il suffit d'assembler 8 additionneurs 1-bit. On fait en sorte que les retenues obtenues sur le calcul d'une colonne soit transmises à la colonne suivante. Cela donne le schéma suivant :</p>
+<figure>
+<a href="../add8.svg"><img align="align" alt="Additionneur 8 bit" src="../add8.svg" /></a>
+
+<figcaption> Additionneur 8 bit (cliquer pour agrandir) </figcaption>
+</figure>
+<p>Dans ce circuit, il y a 3 entrées : un entier <span class="arithmatex">\(a\)</span> sur 8 bits, un entier <span class="arithmatex">\(b\)</span> sur 8 bits et un bit éventuel de retenue <span class="arithmatex">\(c_{in}\)</span>. Les sorties sont la somme <span class="arithmatex">\(s\)</span> sur 8 bits et éventuellement une retenue de sortie <span class="arithmatex">\(c_out\)</span>. Cette retenue signifie que le résultat en fait que le résultat ne tenait pas sur 8 bits et qu'il faudrait un bit supplémentaire pour le réprésenter.</p>
+<p>Lorsque le 8080 opère une addition, il procède ainsi. De plus il signale grâce au flag <strong>CY</strong> s'il y a eu une retenue finale ou non (<strong>CY</strong> est <strong>set</strong> lorsque <span class="arithmatex">\(c_{out} = 1\)</span>, sinon il est <strong>reset</strong>). De plus cette retenue est également utile si l'on veur sommer des entiers sur 16-bit, 24-bit, 32-bit, etc : il suffit de les voir comme 2, 3, 4, etc entiers 8-bit et de réaliser une addition par bloc de 8-bits. Le flag <strong>CY</strong> permettra alors de propager correctement les retenues d'un bloc à l'autre. </p>
+<p>On remarque aussi sur le schéma que la retenue éventuelle entre le bit 3 et 4 est aussi notifiée de la même manière que <span class="arithmatex">\(c_{out}\)</span> grâce au flag <strong>AC</strong> (retenue auxilaire). Ce flag ne sert presque à rien à part de permettre en interne l'exécution de l'instruction <strong>DAA</strong> qu'on expliquera plus tard. Il faudra quand même faire attention à définir <strong>AC</strong> correctement.</p>
+<p>Les autres flags <strong>S</strong>, <strong>Z</strong> et <strong>P</strong> sont définis à partir de la valeur de sortie <span class="arithmatex">\(s\)</span>, tel qu'on l'a programmé dans <code>flags.c</code> : on pourra utiliser la fonction <code>update_flags_szp</code>.</p>
+<h3 id="implementation">Implémentation</h3>
+<p>Nous commencerons par les additions et les soustractions, on créé le fichier d'en-tête :</p>
+<div class="language-c highlight"><span class="filename">alu.h</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#ifndef ALU_H</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#define ALU_H</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;computer.h&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="cm">/* Réalise l&#39;opération d&#39;addition de a + b + carry et retourne le résultat.</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="cm"> * carry sert à donner la possibilité d&#39;avoir une retenue d&#39;entrée, carry = 0 ou 1</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="cm"> * op_add modifie tous les flags CY, AC, S, Z, P selon le résultat obtenu et</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="cm"> * le déroulé de l&#39;addition. */</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">op_add</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">carry</span><span class="p">);</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="cp">#endif</span>
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Dans un nouveau fichier <code>alu.c</code> implémenter l'instruction <code>op_add</code>. Je vous conseille de procéder ainsi :</p>
+<ul>
+<li>Ajouter une assertion pour garantir que <code>carry</code> vaut 0 ou 1</li>
+<li>Convertir chaque entrée en entier sur 16-bits : cela évitera les problèmes de dépassement</li>
+<li>Calculer la somme <code>a + b + carry</code></li>
+<li>Si la somme dépasse le plus grand entier représentable sur 8 bits (<code>0xFF</code>) alors c'est qu'il y a une retenue (on met à jour correctement <code>CY</code></li>
+<li>Les 8 bits de poids faible de la somme correspondent à la valeur de sortie <span class="arithmatex">\(s\)</span> de la fonction.</li>
+<li>On vérifie s'il y a une retenue auxilaire de la même manière, en vérifiant si <span class="arithmatex">\(a' + b' + carry\)</span> dépasse la valeur maximale sur 4 bits (<code>0xF</code>), avec <span class="arithmatex">\(a'\)</span> et <span class="arithmatex">\(b'\)</span> les entiers obtenus à partir de <span class="arithmatex">\(a\)</span> et <span class="arithmatex">\(b\)</span> en ne gardant que les 4 bits de poids faibles.</li>
+<li>On n'oublie pas de mettre à jour les autres flags en fonction de la valeur de <span class="arithmatex">\(s\)</span></li>
+</ul>
+</div>
+<h2 id="2-les-soustractions">2. Les soustractions</h2>
+<p>Pour les soustractions on peut également procéder comme à l'école primaire :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>                              1 0 0 1 1 (19)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                           -  0 1 1 0 0 (12)
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>retunues (emprunts) :      -  1 1  
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                               ------------
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>                              0 0 1 1 1 (7)
+</span></code></pre></div></p>
+<p>La différence est surtout liée à la retenue (appelée <em>emprunt</em> dans le cas de la
+soustraction) qui devra cette fois être retirée à la colonne supérieure.</p>
+<p>Toutefois, le processeur 8080 ne procède pas ainsi : il va habilement utiliser les circuits
+déjà présents (l'additionneur 8-bits) et l'astuce du complément à 2 pour réaliser sa soustraction.</p>
+<h3 id="transformer-une-soustraction-en-somme">Transformer une soustraction en somme</h3>
+<div class="admonition remarque">
+<p class="admonition-title">Remarque</p>
+<p>Cette section est construite à partir de ma compréhension des mécanismes impliqués. J'ai dû faire quelques recherches à gauche et à droite car le manuel est peu bavard sur le sujet. Par exemple pour la soustraction avec emprunt, il indique seulement :</p>
+<blockquote>
+<p>The Carry bit is internally added to the contents of the specified byte. This value is then subtracted
+ from the accumulator using two's complement arithmetic.</p>
+</blockquote>
+<p>sans préciser comment la retenue est <em>ajoutée en interne</em> ni comment est utilisé le complément à 2.</p>
+</div>
+<p>L'idée est que comme on travaille sur 8-bits ajouter <span class="arithmatex">\(2^8\)</span> ne change rien au résultat et donc : 
+<span class="arithmatex">\(a - b \equiv a - b + 2^8 = a + (2^8 - 1 - b) + 1\)</span>. Or <span class="arithmatex">\(2^8 - 1 = 0b11111111\)</span>, donc soustraire <span class="arithmatex">\(b\)</span>
+à ce nombre revient à inverser les 0 et les 1 dans <span class="arithmatex">\(b\)</span>. Au final, il suffit donc de calculer :
+<code>a + ~b + 1</code>. On peut le faire avec les circuits actuels : il suffit de sommer <code>a</code> avec <code>~b</code> et d'utiliser une retenue d'entrée <span class="arithmatex">\(c_{in} = 1\)</span>. </p>
+<p>Vous n'êtes pas convaincus ? Regardons sur le même exemple
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>19 = 0 0 0 1 0 0 1 1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>12 = 0 0 0 0 1 1 0 0 donc ~12 = 1 1 1 1 0 0 1 1
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>          0 0 0 1 0 0 1 1 (19)
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        + 1 1 1 1 0 0 1 1 (~12)
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        +               1 (retenue à 1)
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        ----------------- 
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>      (1) 0 0 0 0 0 1 1 1 (7)
+</span></code></pre></div>
+Cela marche ! A ceci près que cela provoque une retenue finale <strong>CY = 1</strong> dans l'addition, alors qu'il n'y a pas d'emprunt final fait dans la soustraction. Pour résoudre cela, on ajoute une étape finale qui consiste <strong>à inverser le flag CY</strong> (on ne le fera pas pour <strong>AC</strong>).</p>
+<p>A l'inverse si on effectue un résultat conduisant à une valeur négative, par exemple <span class="arithmatex">\(19 - 25\)</span> :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>19 = 0 0 0 1 0 0 1 1
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>25 = 0 0 0 1 1 0 0 1 donc ~25 = 1 1 1 0 0 1 1 0
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>          0 0 0 1 0 0 1 1 (19)
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        + 1 1 1 0 0 1 1 0 (~25)
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        +               1 (retenue à 1)
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        ----------------- 
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>      (0) 1 1 1 1 1 0 1 0 (250)
+</span></code></pre></div>
+Non je n'ai pas fait d'erreur, rappelez-vous qu'on travaille ici avec des entiers non signés sur 8 bits, c'est-à-dire modulo 256. La valeur du résultat <span class="arithmatex">\(-6\)</span> est donc bien congrue à <span class="arithmatex">\(256 + (-6) = 250\)</span>. Cela marche !</p>
+<p>Remarquer que cette fois-ci il n'y a pas de retenue finale dans l'addition, et comme on va inverser <strong>CY</strong>, on aura au final <strong>CY = 1</strong> (set). Cela marque le fait que cette opération dans sa globalité a provoqué un emprunt qu'il faudra éventuellement propager dans le cas d'une soustraction par blocs.</p>
+<p>Une autre façon de le voir est qu'en procédant ainsi pour le calcul de <span class="arithmatex">\(a - b\)</span>, le flag CY vaudra 1 lorsque <span class="arithmatex">\(a &lt; b\)</span> et 0 sinon : il sera donc très utile pour permettre de comparer deux valeurs. </p>
+<details class="info">
+<summary>En base 10 : ça marche aussi !</summary>
+<p>Remarquer que l'astuce du complément à 2 n'a rien de spécifique à la base 2 : si je veux calculer par exemple <span class="arithmatex">\(124 - 012\)</span>, je peux transformer cela en addition : <span class="arithmatex">\(124 + 987 + 1\)</span>. En effet, j'ai simplement pris le "complément à 9" de chaque chiffre de 012. On obtient : 124 + 987 + 1 = (1)112. En ignorant le premier chiffre (1 = pas d'emprunt) on retrouve bien le résultat de la soustraction !</p>
+</details>
+<h3 id="et-sil-y-a-un-emprunt">Et s'il y a un emprunt ?</h3>
+<p>Maintenant que se passe-t-il si l'on souhaite effectuer la soustraction <span class="arithmatex">\(a - b\)</span> sachant qu'il y a eu un emprûnt préalable (par exemple, si on a effectué des soustractions par bloc de 8-bits et que le bloc en dessous de nous a provoqué une retenue). Il faut donc alors calculer <span class="arithmatex">\(a - b - 1\)</span>.</p>
+<p>Pas de problème on refait un peu d'arithmétique : <span class="arithmatex">\(a - b - 1 \equiv a - b - 1 + 2^8 = a + (2^8 - 1 - b)\)</span>. Autrement dit, on retrouve le même calcul que précédemment, sauf qu'on effectue l'addition sans retenue d'entrée : <span class="arithmatex">\(c_{in} = 0\)</span> : c'est même encore plus simple !</p>
+<div class="admonition abstract">
+<p class="admonition-title">Résumé</p>
+<p>Pour conclure, on retiendra :</p>
+<ul>
+<li>Pour calculer <span class="arithmatex">\(a - b\)</span> <strong>sans emprunt</strong> : on applique le calcul de somme <code>a + ~b</code> avec une retenue initiale <code>carry = 1</code>, puis on inverse le flag <code>CY</code> à la fin.</li>
+<li>Pour calculer <span class="arithmatex">\(a - b\)</span> <strong>avec un emprunt de 1</strong> : on applique le calcul de somme <code>a + ~b</code> sans retenue initiale <code>carry = 0</code>, puis on inverse le flag <code>CY</code> à la fin</li>
+</ul>
+</div>
+<h3 id="implementation_1">Implémentation</h3>
+<p>Ajouter au fichier d'en-tête :
+<div class="language-c highlight"><span class="filename">alu.h</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cm">/* Réalise l&#39;opération de soustraction de a - b - borrow et retourne le résultat.</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="cm"> * borrow sert à donner la possibilité d&#39;avoir une retenue d&#39;entrée (emprunt)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="cm"> * borrow = 0 ou 1</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="cm"> * op_sub modifie tous les flags CY, AC, S, Z, P selon le résultat obtenu et</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="cm"> * le déroulé de la soustraction. */</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">op_sub</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">borrow</span><span class="p">);</span>
+</span></code></pre></div></p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Dans le fichier <code>alu.c</code>, implémentez la fonction <code>op_sub</code>. Cette fonction procédera comme indiqué ci-dessus : on provoquera le bon appel à <code>op_add</code> puis on inverse le flag <strong>CY</strong> à la fin. C'est donc <code>op_add</code> qui détermine la valeur des autres flags.</p>
+</div>
+<h2 id="3-les-operations-logiques-bit-a-bit">3. Les opérations logiques bit à bit</h2>
+<p>On va pouvoir souffler avec quelques opérations plus simples à comprendre : le AND, le XOR et le OR bit à bit. Ce sont exactement les mêmes opérations que <code>&amp;</code>, <code>^</code> et <code>|</code> en langage C.</p>
+<p>Le seul point d'attention est de mettre à jour correctement les flags. Les flags <strong>S</strong>, <strong>Z</strong>, et <strong>P</strong> se mettent à jour normalement en fonction du résultat : on peut utiliser notre fonction <code>update_flags_szp</code> pour cela. Pour les flags <strong>CY</strong> (<em>Carry</em>) et <strong>AC</strong> (<em>Auxiliary Carry</em>), les règles sont les suivantes :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Opération</th>
+<th style="text-align: center;"><strong>CY</strong></th>
+<th style="text-align: center;"><strong>AC</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">AND</td>
+<td style="text-align: center;"><strong>reset</strong></td>
+<td style="text-align: center;">défini comme le OU des deux bits 3 des opérandes</td>
+</tr>
+<tr>
+<td style="text-align: center;">XOR</td>
+<td style="text-align: center;"><strong>reset</strong></td>
+<td style="text-align: center;"><strong>reset</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">OR</td>
+<td style="text-align: center;"><strong>reset</strong></td>
+<td style="text-align: center;"><strong>reset</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Dans l'exemple :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>bit      7654 3210                  
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>         1010 1010
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    AND  0110 0110
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    --------------
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>         0010 0010
+</span></code></pre></div>
+le flag <strong>CY</strong> sera <strong>reset</strong> (dans tous les cas), et le flag <strong>AC</strong> sera <strong>set</strong> car les bits 3 (c'est-à-dire les 4e bits en comptant de la droite vers la gauche) valent respectivement <code>1</code> et <code>0</code> et que <code>1 OU 0 = 1</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Remarques</p>
+<p>Je vous ai maché ici beaucoup de travail de recherche dans les documentations... En effet :</p>
+<p>Le <em>Intel 8080 Assembly Language Programming Manual</em> stipule que le flag <strong>AC</strong> n'est pas modifié, mais cela est contredit par d'autres sources y compris de chez Intel : le <em>Intel 8080 Microcomputer Systems Users Manual</em> indique que <strong>AC</strong> est affecté, mais sans dire comment. Enfin le <em>8080/8085 Assembly Programming Manual</em> explique (p 1-12) que <strong>AC</strong> est affecté comme expliqué ci-dessus...</p>
+<p><strong>Cet exemple doit vous rappeler à quel point la spécification et la documentation est importante en informatique</strong></p>
+</div>
+<p>Bon, passons à la programmation. On ajoute dans le fichier d'en-tête les prototypes pour ces trois opérations.</p>
+<div class="language-c highlight"><span class="filename">alu.h</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/* Ces fonctions calculent l&#39;opération bit à bit entre a et b</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="cm"> * et retournent le résultat.</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="cm"> * Tous les flags : CY AC S Z P sont affectés */</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">op_and</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">op_xor</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">op_or</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="o">*</span><span class="n">comp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Dans le fichier <code>alu.c</code>, proposer une implémentation des ces trois fonctions. On utilisera évidemment les opérateurs <code>&amp;</code>, <code>^</code> et <code>|</code> du langage C pour effectuer les calculs.</p>
+</div>
+<h2 id="4-tester-tester-et-tester">4. Tester, tester et tester !</h2>
+<p>Après avoir compilé tout cela, je vous encourage sincèrement à écrire des tests unitaires fournis pour vos fonctions <code>op_XXX</code>. En particulier : vérifier non seulement la valeur du résultat, mais aussi que les flags sont correctement définis après chaque opération. Ces fonctions sont source d'erreur, en particulier sur les flags... </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

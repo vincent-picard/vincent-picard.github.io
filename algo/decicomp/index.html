@@ -1,0 +1,2104 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Décidabilité et complexité - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#decidabilite-et-complexite" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Décidabilité et complexité
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../i8080/" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/alu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-problemes-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Problèmes de décision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-modele-de-calcul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Modèle de calcul
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-problemes-decidables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Problèmes décidables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-reductions-dun-probleme-a-lautre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Réductions d'un problème à l'autre
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-la-classe-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. La classe P
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-la-classe-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. La classe NP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-la-classe-np-complet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. La classe NP-complet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. La classe NP-complet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemples-de-problemes-np-complets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemples de problèmes NP-complets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exemples de problèmes NP-complets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reduction-de-sat-a-3-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Réduction de SAT à 3-SAT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Réduction de SAT à 3-SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduction-de-3-sat-a-cnf-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Réduction de 3-SAT à CNF-SAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduction-de-3-sat-a-clique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Réduction de 3-SAT à CLIQUE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-les-problemes-indecidables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Les problèmes indécidables
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="decidabilite-et-complexite">Décidabilité et complexité</h1>
+<p>La <em>théorie de la complexité</em> a pour but d'établir une hiérarchie de <strong>difficulté des problèmes</strong> que l'on souhaite résoudre en informatique. Elle ne doit pas être confondue avec l'<em>analyse de complexité</em> des algorithmes (vue en première année), bien que les deux notions sont effectivement liées.</p>
+<p>Cette étude permet de mieux comprendre les <strong>limites théoriques</strong> de l'informatique et définit en particulier deux classes de problèmes importantes et rencontrés fréquemment en informatique :</p>
+<ul>
+<li><strong>Les problèmes indécidables</strong> : pour lesquels on sait qu'il ne peut pas exister d'algorithme pour les résoudre</li>
+<li><strong>Les problèmes NP-complets</strong> : pour lesquels on ignore aujourd'hui s'il existe des algorithmes efficaces pour les résoudre</li>
+</ul>
+<h2 id="1-introduction">1. Introduction</h2>
+<h3 id="a-problemes-de-decision">A. Problèmes de décision</h3>
+<p>La premier point que nous abordons est la définition de ce qu'on considère être un problème à résoudre :</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (problème de décision)</p>
+<p>Un <strong>problème de décision</strong> est une <em>question</em> portant sur un ensemble de <em>données</em> appelées <strong>instance du problème</strong> et dont la réponse est soit <em>oui</em> soit <em>non</em>.</p>
+</div>
+<p>Attention, tous les problèmes ne sont pas des problèmes de décision, mais la hiérarchie de difficulté qu'on va établir concerne ce type de problèmes.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemples</p>
+<p>Voici des problèmes de décision :</p>
+<ul>
+<li><strong>Instance :</strong> un graphe non orienté <span class="arithmatex">\(G\)</span>. <strong>Question :</strong> <span class="arithmatex">\(G\)</span> est-il connexe ?</li>
+<li><strong>Instance :</strong> un graphe orienté <span class="arithmatex">\(G\)</span> et deux sommets <span class="arithmatex">\(u\)</span> et <span class="arithmatex">\(v\)</span>. <strong>Question :</strong> existe-t-il un chemin dans <span class="arithmatex">\(G\)</span> de <span class="arithmatex">\(u\)</span> à <span class="arithmatex">\(v\)</span> ?</li>
+<li><strong>Instance :</strong> un tableau <span class="arithmatex">\(T\)</span>. <strong>Question :</strong> <span class="arithmatex">\(T\)</span> est-il trié par ordre croissant ?</li>
+<li><strong>Instance :</strong> un tableau <span class="arithmatex">\(T\)</span> et une valeur <span class="arithmatex">\(v\)</span>. <strong>Question :</strong> la valeur <span class="arithmatex">\(v\)</span> est-elle présente dans <span class="arithmatex">\(T\)</span> ?</li>
+<li><strong>Instance :</strong> un entier naturel <span class="arithmatex">\(n\)</span>. <strong>Question :</strong> <span class="arithmatex">\(n\)</span> est-il premier ?</li>
+<li><strong>Instance :</strong> une formule propositionnelle <span class="arithmatex">\(F\)</span>. <strong>Question :</strong> <span class="arithmatex">\(F\)</span> est-elle une tautologie ?</li>
+<li>...</li>
+</ul>
+</div>
+<p>Pour pouvoir parler de complexité nous devons également être en mesure de donner une taille aux entrées du problème :</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (taille de l'instance)</p>
+<p>La <strong>taille</strong> d'une instance d'un problème de décision est l'espace qu'elle occupe en mémoire (en octets par exemple). Pour simplifier, on utilisera les conventions suivantes selon le type d'instance :</p>
+<ul>
+<li><em>un entier <span class="arithmatex">\(n\)</span> non borné</em> : <span class="arithmatex">\(log_2(n)\)</span> (le nombre est écrit en binaire)</li>
+<li><em>un tableau ou une liste de longueur <span class="arithmatex">\(n\)</span></em> : <span class="arithmatex">\(n\)</span> (les cases du tableau occupent un même espace constant)</li>
+<li><em>un graphe de <span class="arithmatex">\(n\)</span> sommets et <span class="arithmatex">\(m\)</span> arêtes/arcs</em> : <span class="arithmatex">\(n + m\)</span> (listes d'adjacence) ou <span class="arithmatex">\(n^2\)</span> (matrice d'adjacence)</li>
+<li><em>un arbre</em> (arbre binaire, formule logique, expression régulière, etc) : la taille de l'arbre (nombre de noeuds et de feuilles)</li>
+</ul>
+</div>
+<p>La manière exacte de compter la taille de l'instance importe peu dans la théorie qui va suivre, à condition de rester raisonnable sur la manière dont l'instance est codée et mesurée. Par exemple on ne va pas coder un entier non borné en base 1...</p>
+<h3 id="b-modele-de-calcul">B. Modèle de calcul</h3>
+<p>Maintenant, nous avons besoin de définir ce qu'est un ordinateur et comment on mesure le temps et l'espace consommé pour résoudre un problème. Malheureusement, il y a beaucoup d'ordinateurs différents c'est pourquoi il est nécessaire de se baser sur un <em>modèle de machine</em> théorique qui décrit ce qu'un ordinateur est capable de calculer ou non. Le modèle théorique de référence est la <em>machine de Turing</em> mais elle n'est pas au programme en MP2I/MPI.</p>
+<p>Pour simplifier, nous utiliserons dans ce cours le terme général de <em>machine</em> pour parler d'un ordinateur qui prend des données en entrée, réalise un calcul algorithmique et produit un résultat en sortie. <strong>Le calcul effectué sera décrit au choix :</strong></p>
+<ul>
+<li>par un <em>algorithme écrit en pseudo-code</em></li>
+<li>par un <em>programme ou une fonction écrite en C</em></li>
+<li>par un <em>programme ou une fonction écrire en OCaml</em></li>
+</ul>
+<p>Le temps d'exécution sera compté en <em>nombre d'opérations élémentaires</em> effectuées et l'espace utilisé par le <em>nombre de cases mémoires</em> utilisées. Autrement dit on compte le temps et l'espace comme vous avez pris l'habitude de le faire en première année (MP2I).</p>
+<h3 id="c-problemes-decidables">C. Problèmes décidables</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (problème décidable)</p>
+<p>Un problème de décision est <strong>décidable</strong> s'il existe une <em>machine</em> qui prend en entrée une instance du problème, <strong>qui termine sur toute entrée</strong>, et qui donne en sortie la bonne réponse <em>oui</em> ou <em>non</em> pour l'instance donnée.
+<pre class="mermaid"><code>flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+    I[instance] --&gt; M;
+    M --&gt; R[oui/non];
+    class I instance;
+    class M machine;
+    class R answer;</code></pre></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Soit le problème de décision suivant qu'on appellera <em>MEMTAB</em> :</p>
+<ul>
+<li><strong>Instance :</strong> un tableau <span class="arithmatex">\(T\)</span> et une valeur <span class="arithmatex">\(v\)</span></li>
+<li><strong>Question :</strong> la valeur <span class="arithmatex">\(v\)</span> est-elle présente dans <span class="arithmatex">\(T\)</span> ?</li>
+</ul>
+<p>Montrer que le problème <em>MEMTAB</em> est décidable.</p>
+<details class="note">
+<summary>Solution</summary>
+<p><em>MEMTAB</em> est décidable, voici un exemple d'alogorithme qui décide <em>MEMTAB</em> :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Entrées : T, v
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>n &lt;- longueur(T)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Pour i allant de 0 à n-1 Faire
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    Si T[i] == v Alors
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        Répondre OUI
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    FinSi
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>FinPour
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Répondre NON
+</span></code></pre></div>
+Cet algorithme répond correctement à la question, de plus <strong>il termine sur toute entrée</strong> (une boucle Pour termine toujours). Donc <em>MEMTAB</em> est décidable.</p>
+</details>
+</div>
+<p>Il est difficile de se l'imaginer pour le moment mais nous verrons que certains problèmes ne sont pas décidables. On dit qu'il alors qu'ils sont indécidables.</p>
+<h3 id="d-reductions-dun-probleme-a-lautre">D. Réductions d'un problème à l'autre</h3>
+<p>Comme annoncé dans l'introduction, un des buts de ce chapitre est de classer les problèmes à traiter selon leur difficulté. Pour cela on va se reposer sur le principe suivant. Supposons qu'on possède un problème <span class="arithmatex">\(A\)</span> par exemple "Eteindre une bougie" et un problème <span class="arithmatex">\(B\)</span> par exemple "Eteindre un incendie".</p>
+<p>Si je dispose d'une méthode <span class="arithmatex">\(M\)</span> pour résoudre <span class="arithmatex">\(B\)</span> (par exemple utiliser une lance à incendie), je peux certainement utiliser cette méthode <span class="arithmatex">\(M\)</span> pour résoudre <span class="arithmatex">\(A\)</span>. On dira dans ce cas que <span class="arithmatex">\(B\)</span> est plus difficile que <span class="arithmatex">\(A\)</span> puisque si je sais résoudre <span class="arithmatex">\(B\)</span> je sais résoudre <span class="arithmatex">\(A\)</span>.</p>
+<p>L'inverse n'est pas vrai : si je dispose d'une méthode pour éteindre une bougie (par exemple souffler dessus), il est peu vraisemblable que cette méthode me permette d'éteindre un incendie. Formalisons cela pour les problèmes de decision.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (réduction et réduction polynomiale)</p>
+<p>Soit <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> deux problèmes de décision. On dit que <span class="arithmatex">\(A\)</span> <strong>se réduit à</strong> <span class="arithmatex">\(B\)</span> s'il existe une machine <span class="arithmatex">\(R\)</span> prenant en entrée une instance <span class="arithmatex">\(I_A\)</span> de <span class="arithmatex">\(A\)</span> et produisant en sortie une instance <span class="arithmatex">\(I_B\)</span> de <span class="arithmatex">\(B\)</span> et vérifiant :</p>
+<ul>
+<li>(i) La machine <span class="arithmatex">\(R\)</span> termine sur toute entrée </li>
+<li>(ii) <span class="arithmatex">\(I_A\)</span> est une instance positive <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(I_B = R(I_A)\)</span> est une instance positive</li>
+</ul>
+<p>Dans ce cas on notera <span class="arithmatex">\(A \leq B\)</span>.</p>
+<p><strong>Si de plus,</strong> il existe un réel <span class="arithmatex">\(k &gt; 0\)</span> tel que </p>
+<ul>
+<li>(iii) Le temps d'exécution pire cas de <span class="arithmatex">\(R\)</span> est en <span class="arithmatex">\(O(|I_A|^k)\)</span></li>
+</ul>
+<p>alors on dit que la <strong>réduction est polynomiale</strong> et on notera alors <span class="arithmatex">\(A \leq_P B\)</span>.</p>
+<pre class="mermaid"><code>flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef reduction fill:lightgreen,stroke:green;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+    I["$$I_A$$"] --&gt; R@{ shape: delay };
+    R--&gt; J["$$I_B$$"];
+    class I,J instance;
+    class R reduction;</code></pre>
+</div>
+<p>Autrement dit une réduction d'un problème <span class="arithmatex">\(A\)</span> vers un problème <span class="arithmatex">\(B\)</span> est une <em>traduction</em> des instances d'un problème à l'autre qui préserve la réponse oui/non. Ainsi pour résoudre une instance du problème <span class="arithmatex">\(A\)</span> on peut considérer sa traduction en problème <span class="arithmatex">\(B\)</span> est résoudre ce nouveau problème. Donc si on sait résoudre <span class="arithmatex">\(B\)</span>, on sait résoudre <span class="arithmatex">\(A\)</span> : <span class="arithmatex">\(B\)</span> est <strong>plus difficile</strong> que <span class="arithmatex">\(A\)</span>.</p>
+<p>La réduction est polynomiale lorsque le temps de calcul de la traduction est polynomial en fonction de la taille de l'instance <span class="arithmatex">\(I_A\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> deux problèmes de décision. Si <span class="arithmatex">\(B\)</span> est décidable et si <span class="arithmatex">\(A \leq B\)</span> alors <span class="arithmatex">\(A\)</span> est décidable.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<p>Soit <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> deux problèmes de décision vérifiant les hyptohèses de départ :</p>
+<ul>
+<li><span class="arithmatex">\(B\)</span> est décidable : il existe donc une machine <span class="arithmatex">\(M\)</span> qui décide <span class="arithmatex">\(B\)</span>.</li>
+<li><span class="arithmatex">\(A \leq B\)</span> : il existe donc une machine <span class="arithmatex">\(R\)</span> qui transforme correctement les instances de <span class="arithmatex">\(A\)</span> en instances de <span class="arithmatex">\(B\)</span>.</li>
+</ul>
+<p>On <strong>pose</strong> la machine suivante :</p>
+<pre class="mermaid"><code>flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef reduction fill:lightgreen,stroke:green;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+    subgraph MM["$$M'$$"]
+    R--&gt; J["$$I_B$$"];
+    J--&gt; M["$$M$$"];
+    end
+
+    I["$$I_A$$"] --&gt; R@{ shape: delay };
+    M--&gt; X["oui/non"];
+    class I,J instance;
+    class R reduction;
+    class M machine;
+    class X answer;</code></pre>
+<p>Cette machine prend donc en entrée une instance de <span class="arithmatex">\(A\)</span> et répond oui/non. De plus :</p>
+<ol>
+<li><span class="arithmatex">\(M'\)</span> termine sur toute entrée, car <span class="arithmatex">\(R\)</span> termine et <span class="arithmatex">\(M\)</span> termine par définition.</li>
+<li><span class="arithmatex">\(I_A\)</span> est une instance positive <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(I_B\)</span> est une instance positive <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(M(I_B) = oui\)</span> <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(M'(I_A) = oui\)</span>.</li>
+</ol>
+<p>Donc <span class="arithmatex">\(M'\)</span> décide <span class="arithmatex">\(A\)</span>, donc <span class="arithmatex">\(A\)</span> est décidable.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Remarque</p>
+<p>Dans la démonstration précédente, la machine <span class="arithmatex">\(M'\)</span> a été introduite par un schéma mais on aurait tout aussi bien pu la donner sous d'algorithme en pseudo-code :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Entrée : I_A
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>I_B &lt;- R(I_A)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>rep &lt;- M(I_B)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Répondre rep
+</span></code></pre></div>
+ou même de fonction pseudo-code :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>MPRIME(I_A)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    I_B &lt;- R(I_A)
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    return M(I_B)
+</span></code></pre></div>
+ou encore de fonction C ou OCaml :
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">Mprime</span><span class="p">(</span><span class="n">Instance</span><span class="w"> </span><span class="n">ia</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">Instance</span><span class="w"> </span><span class="n">ib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">ia</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">M</span><span class="p">(</span><span class="n">ib</span><span class="p">);</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
+</span></code></pre></div>
+Je trouve la représentation schématique plus claire mais toutes ces propositions sont valides</p>
+</div>
+<p>La proposition suivante établit que la réduction (polynomiale) se comporte presque comme un ordre (il manque l'antisymétrie) sur les problèmes de décision.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span> trois problèmes de décision alors :</p>
+<ol>
+<li><span class="arithmatex">\(A \leq A\)</span></li>
+<li><span class="arithmatex">\(A \leq_P A\)</span></li>
+<li><span class="arithmatex">\(A \leq B\)</span> et <span class="arithmatex">\(B \leq C \Rightarrow A \leq C\)</span></li>
+<li><span class="arithmatex">\(A \leq_p B\)</span> et <span class="arithmatex">\(B \leq_P C \Rightarrow A \leq_P C\)</span></li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<ul>
+<li>Les points (1) et (2) sont évidents, il suffit de prendre la <em>machine identité</em> (recopie l'entrée sur la sortie) pour établir la réduction. </li>
+<li>Montrons (3) : soit <span class="arithmatex">\(R_1\)</span> la machine qui réduit de <span class="arithmatex">\(A\)</span> à <span class="arithmatex">\(B\)</span> et <span class="arithmatex">\(R_2\)</span> la machine qui réduit de <span class="arithmatex">\(A\)</span> à <span class="arithmatex">\(C\)</span>. On construit la machine <span class="arithmatex">\(R\)</span> suivante :
+<pre class="mermaid"><code>flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef reduction fill:lightgreen,stroke:green;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+    subgraph R["$$R$$"]
+    RA["$$R_1$$"]--&gt; J["$$I_B$$"];
+    J--&gt; RB["$$R_2$$"];
+    end
+
+    I["$$I_A$$"] --&gt; RA@{ shape: delay };
+    RB@{ shape: delay } --&gt; K["$$I_C$$"];
+    class I,J,K instance;
+    class RA,RB reduction;</code></pre>
+Cette machine termine sur toute entrée (car <span class="arithmatex">\(R_1\)</span> et <span class="arithmatex">\(R_2\)</span> terminent). De plus, <span class="arithmatex">\(I_A\)</span> est positive ssi <span class="arithmatex">\(I_B\)</span> est positive (d'après la réduction 1) ssi <span class="arithmatex">\(I_C\)</span> est positive (d'après la réduction 2). <span class="arithmatex">\(R\)</span> est donc bien une réduction de <span class="arithmatex">\(A\)</span> vers <span class="arithmatex">\(C\)</span>.</li>
+<li>Montrons (4) : on reprend la même preuve que (3) mais il faut également montrer que la réduction est polynomiale, en supposant que <span class="arithmatex">\(R_1\)</span> et <span class="arithmatex">\(R_2\)</span> le sont. Il existe donc des réels <span class="arithmatex">\(k_1 &gt; 0\)</span> et <span class="arithmatex">\(k_2 &gt; 0\)</span> tels que <span class="arithmatex">\(R_1\)</span> est de complexité <span class="arithmatex">\(O(|I_A|^{k_1})\)</span> et <span class="arithmatex">\(R_2\)</span> de complexité <span class="arithmatex">\(O(|I_B|^{k_2})\)</span>. Une autre façon de le dire est qu'il existe des constantes <span class="arithmatex">\(C_1\)</span> et <span class="arithmatex">\(C_2\)</span> tels que les temps de calcul de <span class="arithmatex">\(R_1\)</span> et <span class="arithmatex">\(R_2\)</span> vérifient : <span class="arithmatex">\(T_1 \leq C_1 |I_A|^{k_1}\)</span> et <span class="arithmatex">\(T_2 \leq C_2 |I_B|^{k_2}\)</span>. Maintenant, voici le point délicat de la preuve : <span class="arithmatex">\(R_1\)</span> ne peut pas produire une sortie plus grande que sont temps de calcul, car écrire sur la sortie consomme justement du temps de calcul de <span class="arithmatex">\(R_1\)</span>, donc <span class="arithmatex">\(|I_B| \leq T_1\)</span>. On obtient alors que le temps de calcul de <span class="arithmatex">\(R\)</span> vérifie : <span class="arithmatex">\(T = T_1 + T_2 \leq C_1 |I_A|^{k_1} + C_2 |I_B|^{k_2} \leq C_1 |I_A|^{k_1} + C_2 C_1^{k_2} |I_A|^{k_1k_2} \leq C |I_A|^{\max(k_1,k_1k_2)}\)</span> avec <span class="arithmatex">\(C = \max(C_1, C_2C_2^{k_2})\)</span> qui est une constante. Donc <span class="arithmatex">\(R\)</span> est bien de complexité polynomiale.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Pour vérifier que vous avez bien compris : écrire la machine <span class="arithmatex">\(R\)</span> de la démonstration sous forme d'algorithme en pseudo-code; puis de fonction en langage C</p>
+</div>
+<h2 id="2-la-classe-p">2. La classe <strong>P</strong></h2>
+<p>Le fait qu'un problème soit décidable ne suffit pas à dire qu'on sait le traiter en pratique. En effet, il se peut que les algorithmes qu'on connaisse pour le résoudre soient de complexité trop élevée pour pouvoir être utilisés en pratique. Nous allons donc maintenant ajouter une condition sur la complexité de la machine qui résout le problème.</p>
+<p>La classe <strong>P</strong> est l'ensemble des problèmes de décision pour lesquels il existe un algorithme de complexité polynomiale pour les résoudre.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (classe <strong>P</strong>)</p>
+<p>Un problème de décision est dans la <strong>classe P</strong>, s'il existe un nombre réel <span class="arithmatex">\(k &gt; 0\)</span> et une machine <span class="arithmatex">\(M\)</span> prenant en entrée une instance <span class="arithmatex">\(I\)</span> telle que :</p>
+<ol>
+<li><span class="arithmatex">\(M\)</span> donne en sortie la bonne réponse <em>oui</em> ou <em>non</em> pour l'instance <span class="arithmatex">\(I\)</span></li>
+<li>Dans le pire cas, le temps d'exécution de la machine est <span class="arithmatex">\(O(n^k)\)</span> avec <span class="arithmatex">\(n\)</span> la taille de l'instance <span class="arithmatex">\(I\)</span></li>
+</ol>
+<pre class="mermaid"><code>flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+    I["instance I"] --&gt; M;
+    M --&gt; R[oui/non];
+    class I instance;
+    class M machine;
+    class R answer;</code></pre>
+</div>
+<p>On remarque que la condition (2) implique nécessairement que la machine termine sur toute entrée et qu'un problème dans la classe <strong>P</strong> est toujours un problème décidable.</p>
+<p>Dans la définition, on aurait pu remplacer le réel <span class="arithmatex">\(k\)</span> par l'existence d'un polynôme <span class="arithmatex">\(Q\)</span> tel que le temps d'exécution pire cas est en <span class="arithmatex">\(O(Q(n))\)</span>. Cela est totalement équivalent à la définition donnée et c'est aussi pour cela que la classe s'appelle <strong>P</strong> comme <em>polynôme</em>.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Soit le problème de décision suivant qu'on appellera <em>TABTRIE</em> :</p>
+<ul>
+<li><strong>Instance :</strong> un tableau <span class="arithmatex">\(T\)</span> d'entiers</li>
+<li><strong>Question :</strong> le tableau <span class="arithmatex">\(T\)</span> est-il trié par ordre croissant ? </li>
+</ul>
+<p>Montrer que le problème <em>TABTRIE</em> appartient à <strong>P</strong>.</p>
+<details class="note">
+<summary>Solution</summary>
+<p>On considère l'algorithme en pseudo-code suivant :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Entrées : T
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>n &lt;- longueur(T)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Pour i allant de 0 à n-2 Faire
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    Si T[i] &gt; T[i+1] Alors
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        Répondre NON
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    FinSi
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>FinPour
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Répondre OUI
+</span></code></pre></div>
+Cet algorithme répond correctement à la question.
+Dans le pire cas sa complexité est <span class="arithmatex">\(O(n)\)</span> qui est bien polynomiale en fonction de la taille de l'instance (<span class="arithmatex">\(n\)</span>). Donc <em>TABTRIE</em> <span class="arithmatex">\(\in\)</span> <strong>P</strong>.</p>
+<p>Remarquer que cela implique forcément que <em>TABTRIE</em> est décidable...</p>
+</details>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Attention à la taille de l'instance !</p>
+<p>Soit le problème de décision suivant appelé <em>PRIME</em> :</p>
+<ul>
+<li><strong>Instance :</strong> un entier naturel <span class="arithmatex">\(n\)</span> </li>
+<li><strong>Question :</strong> <span class="arithmatex">\(n\)</span> est-il premier ? </li>
+</ul>
+<p>Montrer que <em>PRIME</em> est dans <strong>P</strong>.</p>
+<details class="bug">
+<summary>Solution fausse</summary>
+<p>On considère l'algorithme en pseudo-code suivant :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Entrées : n
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Pour k allant de 2 à n-1 Faire
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    Si n mod k == 0 Alors // si k divise n
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        Répondre NON
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    FinSi
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>FinPour
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Répondre OUI
+</span></code></pre></div>
+Cet algorithme répond correctement à la question. Dans le pire cas sa complexité est <span class="arithmatex">\(O(n)\)</span> <strong>MAIS ATTENTION</strong> dans ce cas <span class="arithmatex">\(n\)</span> n'est pas la <strong>TALLE DE L'INSTANCE</strong> donc on ne peut pas conclure que <em>PRIME</em> <span class="arithmatex">\(\in P\)</span>.</p>
+<p>En effet, ici dans ce problème <span class="arithmatex">\(n\)</span> est un entier quelconque aussi grand qu'on veut et sa taille en octets (si on l'écrit en binaire) est de l'ordre de <span class="arithmatex">\(p = \log_2(n)\)</span>. Il fallait donc exprimer la complexité en fonction de <span class="arithmatex">\(p\)</span> (la taille de l'instance) et non de <span class="arithmatex">\(n\)</span>. Avec notre algorithme on trouve donc que la complexité est <span class="arithmatex">\(O(2^p)\)</span> (exponentielle) ce qui ne permet pas de conclure que <em>PRIME</em> <span class="arithmatex">\(\in\)</span> <strong>P</strong>.</p>
+</details>
+<p>En réalité <em>PRIME</em> est bien un problème dans <strong>P</strong> mais la démonstration de ce résultat est très difficile et n'a été résolue qu'en 2002 par 3 chercheurs indiens qui ont mis au point l<a href="https://en.wikipedia.org/wiki/AKS_primality_test">'algorithme AKS</a>. Bien que cet algorithme soit de complexité polynomiale, il n'est pas adapté à l'usage pratique...</p>
+</div>
+<p>Bien évidemment il y a beaucoup d'autres exemples de problèmes qui sont dans <strong>P</strong>. Si on y réfléchit bien, la grande majorité des algorithmes que vous avez étudiés jusqu'à présent ont des complexités polynomiales et permettent donc de répondre en temps polynomial à des problèmes de décision.</p>
+<p>En informatique théorique, on considère donc que la classe <strong>P</strong> est l'ensemble des problèmes qu'on peut résoudre sur ordinateur <em>en temps raisonnable</em> (bien que cela soit une simplification très grossière).</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> deux problèmes de décision. Si</p>
+<ol>
+<li><span class="arithmatex">\(A \leq_P B\)</span></li>
+<li><span class="arithmatex">\(B \in \mathbf{P}\)</span></li>
+</ol>
+<p>Alors <span class="arithmatex">\(A \in \mathbf{P}\)</span></p>
+</div>
+<p>Cette proposition pourrait se reformuler : <em>si on est plus facile qu'un problème facile alors on est facile</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<p>Soit <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> deux problèmes de décision vérifiant (1) et (2). D'après (1), il existe une machine <span class="arithmatex">\(R\)</span> qui réduit <span class="arithmatex">\(A\)</span> vers <span class="arithmatex">\(B\)</span> en temps polynomial. D'après (2), il existe une machine <span class="arithmatex">\(M\)</span> qui décide <span class="arithmatex">\(B\)</span> en temps polynomial. On construit donc la machine suivante <span class="arithmatex">\(M'\)</span> suivante :
+<pre class="mermaid"><code>flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef reduction fill:lightgreen,stroke:green;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+    subgraph MM["$$M'$$"]
+    R--&gt; J["$$I_B$$"];
+    J--&gt; M["$$M$$"];
+    end
+
+    I["$$I_A$$"] --&gt; R@{ shape: delay };
+    M--&gt; X["oui/non"];
+    class I,J instance;
+    class R reduction;
+    class M machine;
+    class X answer;</code></pre>
+Alors on bien :</p>
+<ul>
+<li><span class="arithmatex">\(I_A\)</span> est positive <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(I_B\)</span> est positive <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(M(I_B) = oui\)</span> <span class="arithmatex">\(\Leftrightarrow M'(I_A) = oui\)</span></li>
+<li><span class="arithmatex">\(M'\)</span> fonctionne en temps polynomial dans le pire cas (même preuve que pour la composition des réductions <span class="arithmatex">\(R_1\)</span> et <span class="arithmatex">\(R_2\)</span> ci-dessus).</li>
+</ul>
+</div>
+<h2 id="3-la-classe-np">3. La classe <strong>NP</strong></h2>
+<div class="admonition danger">
+<p class="admonition-title">Spoiler</p>
+<p><strong>NP</strong> ne signifie pas <em>non polynomial</em></p>
+</div>
+<p>Certains problèmes que l'on rencontre en informatique sont difficiles à résoudre efficacement. Cependant si on vous donne une solution au problème, il est facile de vérifier que cette solution est la bonne.</p>
+<p>Un exemple important est celui du problème appelé <em>SAT</em> :</p>
+<ul>
+<li><strong>Instance :</strong> une formule <span class="arithmatex">\(F\)</span> de la logique propositionnelle</li>
+<li><strong>Question :</strong> <span class="arithmatex">\(F\)</span> est elle satisfiable ?</li>
+</ul>
+<p>Il est difficile de concevoir un algorithme qui permette de répondre à cette question en temps polynomial par rapport à la taille de la formule. Vous connaissez bien quelques algorithmes pour le résoudre (dresser la table de vérité de la formule, algorithme de Quine) mais ils sont tous de complexité exponentielle.</p>
+<p>Par contre, si on vous donne une valuation <span class="arithmatex">\(\varphi\)</span> qui satisfait <span class="arithmatex">\(F\)</span>, alors il est très facile de <strong>vérifier</strong> que cette valuation convient bien, c'est-à-dire que <span class="arithmatex">\(⟦F⟧_\varphi = true\)</span>.
+Autrement dit, on peut facilement écrire un algorithme à <strong>deux entrées</strong> une pour une formule et l'autre pour une valuation et qui vérifie si la valuation donnée satisfait bien la formule, tout cela en temps polynomial par rapport à la la taille de la formule. On peut par exemple procéder par récurrence en OCaml, comme ceci:</p>
+<div class="language-ocaml highlight"><span class="filename">Vérificateur pour SAT</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>    <span class="k">type</span> <span class="n">formule</span> <span class="o">=</span> <span class="nc">Var</span> <span class="k">of</span> <span class="kt">int</span> <span class="o">|</span> <span class="nc">Not</span> <span class="k">of</span> <span class="n">formule</span> <span class="o">|</span> <span class="nc">Et</span> <span class="k">of</span> <span class="n">formule</span> <span class="o">|</span> <span class="nc">Ou</span> <span class="k">of</span> <span class="n">formule</span><span class="o">;;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">let</span> <span class="k">rec</span> <span class="n">verificateur</span> <span class="n">f</span> <span class="n">phi</span> <span class="o">=</span> <span class="k">match</span> <span class="n">f</span> <span class="k">with</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="o">|</span> <span class="nc">Var</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">phi</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="c">(* valuation donnée sous forme d&#39;un bool array *)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="o">|</span> <span class="nc">Not</span> <span class="n">g</span> <span class="o">-&gt;</span> <span class="n">not</span> <span class="o">(</span><span class="n">verificateur</span> <span class="n">g</span> <span class="n">phi</span><span class="o">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="o">|</span> <span class="nc">Et</span><span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">verificateur</span> <span class="n">g</span> <span class="n">phi</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">verificateur</span> <span class="n">h</span> <span class="n">phi</span><span class="o">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="o">|</span> <span class="nc">Ou</span><span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">verificateur</span> <span class="n">g</span> <span class="n">phi</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">verificateur</span> <span class="n">h</span> <span class="n">phi</span><span class="o">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="o">;;</span>
+</span></code></pre></div>
+<p>Cette notion de problème facile à vérifier correspond à la classe de problèmes appelée <strong>NP</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (classe <strong>NP</strong>)</p>
+<p>Un problème de décision <span class="arithmatex">\(A\)</span> est dans la <strong>classe NP</strong>, s'il existe un nombre réel <span class="arithmatex">\(k &gt; 0\)</span> et une machine <span class="arithmatex">\(V\)</span> appelée <em>vérificateur</em> ayant deux entrées :</p>
+<ul>
+<li>une entrée <span class="arithmatex">\(I\)</span> : pour une instance du problème de décision</li>
+<li>une entrée <span class="arithmatex">\(C\)</span> : appelée <strong>certificat</strong></li>
+</ul>
+<p>et qui répond oui/non avec le comportement suivant :</p>
+<ol>
+<li><span class="arithmatex">\(V(I, C)\)</span> s'exécute dans le pire cas en temps <span class="arithmatex">\(O(n^k)\)</span> avec <span class="arithmatex">\(n = |I|\)</span> la taille de l'instance.</li>
+<li><span class="arithmatex">\(I\)</span> est une instance positive de <span class="arithmatex">\(A\)</span> <span class="arithmatex">\(\Leftrightarrow\)</span> il existe une entrée <span class="arithmatex">\(C\)</span> telle que <span class="arithmatex">\(V(I, C) = oui\)</span>.</li>
+</ol>
+<pre class="mermaid"><code>%%{init: { "flowchart": { "curve": "stepAfter" } }}%%
+flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+    I["instance I"] --&gt; V["vérificateur V"];
+    C["certificat C"] --&gt; V;
+    V --&gt; R[oui/non];
+    class I,C instance;
+    class M machine;
+    class R answer;</code></pre>
+</div>
+<p>Informellement, la classe <strong>NP</strong> est la classe des probèmes pour lesquels les instances <em>positives</em> admettent une <em>preuve de positivité</em> <span class="arithmatex">\(C\)</span> qui peut être <em>vérifiée</em> en temps polynomial par un algorithme. Dans le cas de <em>SAT</em> par exemple, un certificat est une valuation qui satisfait la formule F donnée.</p>
+<div class="admonition tip">
+<p class="admonition-title">Théorème</p>
+<p><strong>P</strong> <span class="arithmatex">\(\subset\)</span> <strong>NP</strong></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<p>Soit <span class="arithmatex">\(A\)</span> un problème dans <strong>P</strong>. Il existe donc un réel <span class="arithmatex">\(k &gt; 0\)</span> et une machine <span class="arithmatex">\(M\)</span> qui décide <span class="arithmatex">\(A\)</span> en temps <span class="arithmatex">\(O(n^k)\)</span> avec <span class="arithmatex">\(n\)</span> la taille de l'instance. On <strong>pose</strong> la machine <span class="arithmatex">\(V\)</span> définie par <span class="arithmatex">\(V(I, C) = M(I)\)</span>. On a alors :</p>
+<ul>
+<li>La machine <span class="arithmatex">\(V\)</span> s'exécute en pire cas en temps <span class="arithmatex">\(O(n^k)\)</span>.</li>
+<li>Si la réponse à <span class="arithmatex">\(I\)</span> est oui, alors en prenant n'importe quel certificat, par exemple le certficat vide <span class="arithmatex">\(C = \varnothing\)</span>, on a <span class="arithmatex">\(V(I, C) = M(I) = oui\)</span>.</li>
+<li>Réciproquement, s'il existe <span class="arithmatex">\(C\)</span> tel que <span class="arithmatex">\(V(I, C) = oui\)</span> alors <span class="arithmatex">\(M(I) = V(I, C) = oui\)</span> donc <span class="arithmatex">\(I\)</span> est positive.
+<pre class="mermaid"><code>%%{init: { "flowchart": { "curve": "stepAfter" } }}%%
+flowchart LR
+    classDef instance fill:lightblue,stroke:transparent,fill:transparent;
+    classDef machine fill:pink;
+    classDef answer fill:lightblue,stroke:transparent,fill:transparent;
+
+    subgraph V
+    X@{ shape: stop };
+    M["$$M$$"];
+    end
+    I["instance I"] --&gt; M;
+    M --&gt; R[oui/non]
+    C["certificat C"] --&gt; X;
+    class I,C instance;
+    class M machine;
+    class R answer;</code></pre>
+<strong>Conclusion :</strong> on a bien construit un vérificateur en temps polynomial pour le problème <span class="arithmatex">\(A\)</span>, donc <span class="arithmatex">\(A \in \mathbf{NP}\)</span></li>
+</ul>
+</div>
+<p>J'espère que ce théorème chassera en vous l'idée que <strong>NP</strong> signifierait "non polynomial"...</p>
+<div class="admonition tip">
+<p class="admonition-title">Problème ouvert depuis 1971</p>
+<p>On ne sait pas aujourd'hui si <strong>P</strong> = <strong>NP</strong> ou si <strong>P</strong> <span class="arithmatex">\(\neq\)</span> <strong>NP</strong>.</p>
+</div>
+<h2 id="4-la-classe-np-complet">4. La classe NP-complet</h2>
+<p>On s'intéresse ici à certains problèmes de <strong>NP</strong> qui combinent deux aspects :</p>
+<ul>
+<li>on les rencontre assez fréquemment en informatique</li>
+<li>ils sont particulièrement coriaces à résoudre</li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (problème NP-complet)</p>
+<p>Un problème de décision <span class="arithmatex">\(A\)</span> est <strong>NP</strong>-complet s'il vérifie :</p>
+<ol>
+<li><span class="arithmatex">\(A \in \mathbf{NP}\)</span></li>
+<li><span class="arithmatex">\(A\)</span> est <strong>NP</strong>-difficile, ce qui signifie : <span class="arithmatex">\(\forall B \in \mathbf{NP}, B \leq_P A\)</span></li>
+</ol>
+</div>
+<p>Attention à ne pas oublier l'hypothèse 1. L'hypothèse 2 signifie que les problèmes de <strong>NP</strong>-difficiles sont des <em>majorants</em> de <strong>NP</strong>, autrement dit les problèmes <strong>NP</strong>-complets sont les problèmes les plus difficiles de <strong>NP</strong>.</p>
+<p>Bien sûr, la première question que l'on se pose est <em>existe-t-il de tels problèmes ?</em>, la réponse est <em>oui</em> d'après le théorème (admis) suivant :</p>
+<div class="admonition tip">
+<p class="admonition-title">Théorème de Cook-Levin (1971)</p>
+<p>Le problème <em>SAT</em> est <strong>NP</strong>-complet</p>
+</div>
+<p>Nous avons déjà montré ci-dessus que <em>SAT</em> <span class="arithmatex">\(\in\)</span> <strong>NP</strong>, la partie difficile et admise de ce théorème est que <em>SAT</em> est aussi <strong>NP</strong>-difficile.</p>
+<p>Pour se convaincre de la difficulté des problèmes <strong>NP</strong>-complets on peut aussi considérer la proposition suivante.</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span> un problème <span class="arithmatex">\(NP\)</span>-complet. </p>
+<ol>
+<li>S'il existe une machine <span class="arithmatex">\(M\)</span> qui décide <span class="arithmatex">\(A\)</span> en temps polynomial alors <span class="arithmatex">\(\mathbf{P} = \mathbf{NP}\)</span>.</li>
+<li>Si <span class="arithmatex">\(\mathbf{P} \neq \mathbf{NP}\)</span> alors il n'existe pas de machine pour décider <span class="arithmatex">\(A\)</span> en temps polynomial.</li>
+</ol>
+</div>
+<p>Autrement dit (1) dit que trouver un algorithme polynomial pour résoudre un problème <strong>NP</strong>-complet revient à résoudre le célèbre problème ouvert. La reformulation (2) dit que si on admet que <span class="arithmatex">\(\mathbf{P} \neq \mathbf{NP}\)</span>  alors il est impossible de trouver un algorithme de complexité raisonnable pour résoudre <span class="arithmatex">\(A\)</span>...</p>
+<p>Ceci explique aussi pourquoi on s'intéresse tant à la question <span class="arithmatex">\(P = NP\)</span> ?</p>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<ul>
+<li>(2) est la contraposée de (1) donc il suffit de montrer (1)</li>
+<li>Supposons qu'il existe une machine <span class="arithmatex">\(M\)</span> pour résoudre <span class="arithmatex">\(A\)</span> en temps polynomial, donc <span class="arithmatex">\(A \in \mathbf{P}\)</span>. On sait déjà que <span class="arithmatex">\(\mathbf{P} \subset \mathbf{NP}\)</span>, il reste à montrer l'inclusion inverse. Soit <span class="arithmatex">\(B \in \mathbf{NP}\)</span>, comme <span class="arithmatex">\(A\)</span> est <strong>NP</strong>-difficile, <span class="arithmatex">\(B \leq_P A\)</span>. Mais d'après la proposition de la partie 2, on en déduit que <span class="arithmatex">\(B \in \mathbf{P}\)</span>. Conclusion <span class="arithmatex">\(\mathbf{NP} \subset \mathbf{P}\)</span>.</li>
+</ul>
+</div>
+<h3 id="exemples-de-problemes-np-complets">Exemples de problèmes NP-complets</h3>
+<p>Il existe une multitude d'autres problèmes <strong>NP</strong>-complets. Pour démontrer la <strong>NP</strong>-complétude, on utilise en général la proposition suivante :</p>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span> un problème de décision <strong>NP</strong>-complet et <span class="arithmatex">\(B\)</span> un problème de décision. Si</p>
+<ol>
+<li><span class="arithmatex">\(B \in \mathbf{NP}\)</span></li>
+<li><span class="arithmatex">\(A \leq_P B\)</span></li>
+</ol>
+<p>Alors <span class="arithmatex">\(B\)</span> est <strong>NP</strong>-complet.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<p>D'après (1), <span class="arithmatex">\(B \in \mathbf{NP}\)</span>, il reste donc à montrer que <span class="arithmatex">\(B\)</span> est <strong>NP</strong>-difficile. Soit <span class="arithmatex">\(C\)</span> un problème de <strong>NP</strong>, comme <span class="arithmatex">\(A\)</span> est <strong>NP</strong>-complet, on a <span class="arithmatex">\(C \leq_P A\)</span>. De plus, <span class="arithmatex">\(A \leq_P B\)</span> d'après (2), donc par transitivité de <span class="arithmatex">\(\leq_P\)</span>, on a <span class="arithmatex">\(C \leq_P B\)</span>. Ainsi <span class="arithmatex">\(B\)</span> est bien <strong>NP</strong>-difficile. Conclusion : <span class="arithmatex">\(B\)</span> est <strong>NP</strong>-complet.</p>
+</div>
+<p>Autrement dit pour montrer qu'un problème est <strong>NP</strong>-complet, il suffit de montrer qu'il est dans <strong>NP</strong> puis de montrer qu'il est plus difficile qu'un problème dont on sait déjà qu'il est <strong>NP</strong>-complet. Cette méthode par réduction permet de montrer à partir de <em>SAT</em> que de nombreux autres problèmes sont <strong>NP</strong>-complets. Étudions quelques exemples.</p>
+<h4 id="reduction-de-sat-a-3-sat">Réduction de SAT à 3-SAT</h4>
+<p>Le problème 3-SAT est similaire à SAT mais on se restreint aux formules sour formes normales conjonctives avec 3 littéraux par clause au plus.</p>
+<ul>
+<li><strong>Instance :</strong> une formule <span class="arithmatex">\(F\)</span> de la logique propositionnelle sous forme normale conjonctive (CNF) avec 3 littéraux par clause au plus.</li>
+<li><strong>Question :</strong> <span class="arithmatex">\(F\)</span> est elle satisfiable ?</li>
+</ul>
+<p>Il est facile de montrer que 3-SAT <span class="arithmatex">\(\in\)</span> <strong>NP</strong> : on peut utiliser exactement le même vérificateur que pour <em>SAT</em>.</p>
+<p>Montrons que SAT <span class="arithmatex">\(\leq_P\)</span> 3-SAT. On décrit l'algorithme de réduction à l'aide d'un exemple :
+<span class="arithmatex">\(F = x_1 \to \neg(x_2 \leftrightarrow (x_1 \land x_4))\)</span></p>
+<h5 id="etape-1">Étape 1</h5>
+<p>On voit la formule comme un arbre et on <em>descend</em> les négations aux feuilles à l'aide des équivalences suivantes :</p>
+<ul>
+<li><span class="arithmatex">\(\neg(A \land B) \equiv (\neg A \lor \neg B)\)</span></li>
+<li><span class="arithmatex">\(\neg(A \lor B) \equiv (\neg A \land \neg B)\)</span></li>
+<li><span class="arithmatex">\(\neg(A \to B) \equiv (A \land \neg B)\)</span></li>
+<li><span class="arithmatex">\(\neg(A \leftrightarrow B) \equiv (A \leftrightarrow \neg B)\)</span></li>
+</ul>
+<p>On obtient ainsi un arbre équivalent, où les feuilles sont des littéraux, et les noeuds sont des connecteurs parmi <span class="arithmatex">\(\land, \lor, \to, \leftrightarrow\)</span>. Dans notre exemple on obtient :
+<span class="arithmatex">\(F \equiv (x_1 \to (x_2 \leftrightarrow (\neg x_1 \lor \neg x_4)))\)</span></p>
+<p>Ce qui se représente sous forme d'arbre binaire :
+    <pre class="mermaid"><code>graph TD
+    A("$$\to$$") --&gt; B[$$x_1$$];
+    A --&gt; C("$$\leftrightarrow$$");
+    C --&gt; D["$$x_2$$"];
+    C --&gt; E("$$\lor$$");
+    E --&gt; F["$$\neg x_1$$"];
+    E --&gt; G["$$\neg x_4$$"];</code></pre></p>
+<h5 id="etape-2">Étape 2</h5>
+<p>On introduit des nouvelles variables <span class="arithmatex">\(y_1, y_2, \dots\)</span> pour chaque noeud de l'arbre binaire obtenu (chaque sous formule en fait) :
+    <pre class="mermaid"><code>graph TD
+    A("$$y_1$$") --&gt; B[$$x_1$$];
+    A --&gt; C("$$y_2$$");
+    C --&gt; D["$$x_2$$"];
+    C --&gt; E("$$y_3$$");
+    E --&gt; F["$$\neg x_1$$"];
+    E --&gt; G["$$\neg x_4$$"];</code></pre>
+On va considérer que <span class="arithmatex">\(y_1\)</span> est la variable associée à la racine de l'arbre.</p>
+<h5 id="etape-3">Étape 3</h5>
+<p>On va contraindre chaque variables <span class="arithmatex">\(y_i\)</span> à prendre pour valeur <em>l'évaluation</em> de la sous-formule à laquelle est elle est associée. On introduit pour cela des formules propositionnelles <span class="arithmatex">\(N_1, N_2, \dots\)</span> ainsi :</p>
+<ul>
+<li><span class="arithmatex">\(N_1 = (y_1 \leftrightarrow (x_1 \to y_2)\)</span></li>
+<li><span class="arithmatex">\(N_2 = (y_2 \leftrightarrow (x_2 \leftrightarrow y_3))\)</span></li>
+<li><span class="arithmatex">\(N_3 = (y_3 \leftrightarrow (\neg x_1 \leftrightarrow \neg x_4))\)</span></li>
+</ul>
+<p>Plus généralement, la formule <span class="arithmatex">\(N_i\)</span> a pour forme <span class="arithmatex">\(N_i = (y_i \leftrightarrow (g \bowtie d)\)</span> avec <span class="arithmatex">\(g\)</span> et <span class="arithmatex">\(d\)</span> les variables (ou littéraux) correspondant aux fils gauche et droit et <span class="arithmatex">\(\bowtie\)</span> le connecteur logique du noeud.</p>
+<h5 id="etape-4">Étape 4</h5>
+<p>On remarque alors que chaque formule <span class="arithmatex">\(N_i\)</span> fait intervenir au plus 3 variables. On peut donc lui trouver une formule équivalente sous forme normale conjonctive avec des clauses contenant 3 littéraux au plus. On utilise par exemple sa table de vérité qui fait 8 lignes au plus (donc 8 clauses dans le pire cas pour la FNC).</p>
+<p>Notons <span class="arithmatex">\(C_i\)</span> la formule sous forme 3-CNF associée à cahque <span class="arithmatex">\(N_i\)</span></p>
+<h5 id="etape-5">Étape 5</h5>
+<p>Au final on pose la formule <span class="arithmatex">\(G = y_1 \land C_1 \land \dots \land C_m\)</span>, qui est bien sous forme normale conjonctive avec au plus 3 littéraux dans chaque clause. De plus, par construction <span class="arithmatex">\(F\)</span> est satisfiable si et seulement si <span class="arithmatex">\(G\)</span> est satisfiable. On remarque enfin que la réduction est bien polynomiale :</p>
+<ul>
+<li>étape 1 : descendre les négations est un parcours récursif de l'arbre binaire, donc de complexité linéaire </li>
+<li>étape 2 : on introduit <span class="arithmatex">\(m\)</span> variables <span class="arithmatex">\(y_i\)</span> qui sont en même quantité que les noeuds internes de l'arbre binaire. Mais on sait que dans un arbre binaire: <span class="arithmatex">\(f = m + 1\)</span> avec <span class="arithmatex">\(f\)</span> le nombre de feuilles dans un arbre binaire. Donc <span class="arithmatex">\(|F| = m + f = 2m + 1\)</span> donc <span class="arithmatex">\(m\)</span> est linéaire en la taille de <span class="arithmatex">\(F\)</span> : <span class="arithmatex">\(m = O(|F|)\)</span>.</li>
+<li>étape 3 : <span class="arithmatex">\(O(m)\)</span> donc <span class="arithmatex">\(O(|F|)\)</span></li>
+<li>étape 4 : la construction de chaque <span class="arithmatex">\(C_i\)</span> prend un temps constant (en fonction de |F|), donc encore une fois cette étape prend un temps <span class="arithmatex">\(O(m)\)</span></li>
+<li>étape 5 : la formule <span class="arithmatex">\(G\)</span> construite a donc pour taille <span class="arithmatex">\(O(m) = O(|F|)\)</span>.</li>
+</ul>
+<p>La réduction est bien polynomiale (et même linéaire en fait !)</p>
+<p>Conclusion : on a montré que 3-SAT est <strong>NP</strong> et que SAT <span class="arithmatex">\(\leq_P\)</span> 3-SAT, donc 3-SAT est <strong>NP</strong>-complet.</p>
+<h4 id="reduction-de-3-sat-a-cnf-sat">Réduction de 3-SAT à CNF-SAT</h4>
+<p>Cette réduction est beaucoup plus simple que la précédente !</p>
+<p>On considère cette fois le problème CNF-SAT :</p>
+<ul>
+<li><strong>Instance :</strong> une formule <span class="arithmatex">\(F\)</span> de la logique propositionnelle sous forme normale conjonctive (CNF).</li>
+<li><strong>Question :</strong> <span class="arithmatex">\(F\)</span> est elle satisfiable ?</li>
+</ul>
+<p>On montre d'abord que CNF-SAT est dans NP, en utilisant le même vérificateur que pour SAT.</p>
+<p>Ensuite on remarque que la fonction identité est une réduction valide pour montrer 3-SAT <span class="arithmatex">\(\leq_P\)</span> CNF-SAT. En effet, chaque formule au format 3-CNF est bien une formule CNF en particulier.</p>
+<p>Ainsi CNF-SAT est <strong>NP</strong>-complet.</p>
+<p>Au final on a démontré que 2 variantes du problème SAT sont <strong>NP</strong>-complet.</p>
+<h4 id="reduction-de-3-sat-a-clique">Réduction de 3-SAT à CLIQUE</h4>
+<p>Attaquons-nous maintenant à une réduction entre deux problèmes qui n'ont a priori rien à voir. On considère le problème <em>CLIQUE</em> :</p>
+<ul>
+<li><strong>Instance :</strong> un graphe non orienté <span class="arithmatex">\(G\)</span> et un entier <span class="arithmatex">\(K\)</span>. </li>
+<li><strong>Question :</strong> existe-t-il une clique de taille <span class="arithmatex">\(K\)</span> dans le graphe <span class="arithmatex">\(G\)</span> ?</li>
+</ul>
+<p>Montrons que <em>CLIQUE</em> est <strong>NP</strong>-complet.</p>
+<p>Tout d'abord <em>CLIQUE</em> est bien dans <strong>NP</strong>. En effet un certificat est par exemple, une liste <span class="arithmatex">\(L\)</span> de <span class="arithmatex">\(K\)</span> sommets qui forme une clique dans <span class="arithmatex">\(G\)</span>. Il est alors facile d'écrire un algorithme de complexité polynomiale, qui prend en entrée <span class="arithmatex">\((G, K)\)</span> d'une part (l'instance) et <span class="arithmatex">\(L\)</span> d'autre part (le certificat) et qui vérifie que les sommets de <span class="arithmatex">\(L\)</span> forment bien une clique de taille <span class="arithmatex">\(K\)</span>. </p>
+<p>Montrons maintenant que 3-SAT <span class="arithmatex">\(\leq_P\)</span> CLIQUE.</p>
+<p>La réduction doit partir d'une formule propositionnelle sous forme normale conjonctive qui contient 3 littéraux au plus par clause. Le but est de construire un graphe <span class="arithmatex">\(G\)</span> et de choisir un entier <span class="arithmatex">\(K\)</span> tel que <span class="arithmatex">\(F\)</span> est satisfiable si et seulement si <span class="arithmatex">\(G\)</span> contient une <span class="arithmatex">\(K\)</span>-clique.</p>
+<p>On explique la réduction à l'aide de l'exemple suivant :
+<span class="arithmatex">\(F = (\neg x \lor y \lor z) \land (x \lor \neg y) \land (x \lor \neg z)\)</span></p>
+<p>On construit alors un graphe qui contient un noeud pour chaque <strong>occurence</strong> de littéral de <span class="arithmatex">\(F\)</span>. Dans ce graphe il existe un arc entre le littéral <span class="arithmatex">\(\ell\)</span> et le littéral <span class="arithmatex">\(\ell'\)</span> si et seulement si les deux conditions suivante sont vérifiées :</p>
+<ol>
+<li>Les occurrences <span class="arithmatex">\(\ell\)</span> et <span class="arithmatex">\(\ell'\)</span> n'appartiennent pas à la même clause</li>
+<li><span class="arithmatex">\(\ell\)</span> et <span class="arithmatex">\(\ell'\)</span> sont compatibles c'est-à-dire qu'il n'existe pas de variable telle que <span class="arithmatex">\(\ell = x\)</span> et <span class="arithmatex">\(\ell' = \neg x\)</span> (ou l'inverse).</li>
+</ol>
+<p>Voici le graphe <span class="arithmatex">\(G\)</span> qu'on obtient sur l'exemple :
+    <pre class="mermaid"><code>graph TD
+    subgraph X["$$C_1$$"]
+    A("$$\neg x$$");
+    B("$$y$$");
+    C("$$z$$");
+    end;
+    subgraph Z["$$C_3$$"]
+    D("$$\neg z$$");
+    E("$$x$$");
+    end;
+    subgraph Y["$$C_2$$"]
+    F("$$\neg y$$");
+    G("$$x$$");
+    end;
+    A---F;
+    A---D;
+    B---G;
+    B---E;
+    B---D;
+    C---G;
+    C---F;
+    C---E;
+    D---G;
+    D---F;
+    E---G;
+    E---F;</code></pre>
+On choisit également <span class="arithmatex">\(K = 3\)</span> car il y a 3 clauses dans la formule <span class="arithmatex">\(F\)</span>.</p>
+<p>Vérifions que la réduction est correcte :</p>
+<ul>
+<li>
+<p>Si une valuation satisfait <span class="arithmatex">\(F\)</span>, par exemple <span class="arithmatex">\((x,y,z) = (true, true, false)\)</span>, alors cette valuation satisfait au moins un littéral par clause. Si on choisit pour chaque clause, l'un de ces littéraux alors on obtient <span class="arithmatex">\(K\)</span> sommets au total qui forment une clique :
+    <pre class="mermaid"><code>graph TD
+    classDef true fill:lightgreen;
+    subgraph X["$$C_1$$"]
+    A("$$\neg x$$");
+    B("$$y$$");
+    C("$$z$$");
+    end;
+    subgraph Z["$$C_3$$"]
+    D("$$\neg z$$");
+    E("$$x$$");
+    end;
+    subgraph Y["$$C_2$$"]
+    F("$$\neg y$$");
+    G("$$x$$");
+    end;
+    A---F;
+    A---D;
+    B---G;
+    B---E;
+    B---D;
+    C---G;
+    C---F;
+    C---E;
+    D---G;
+    D---F;
+    E---G;
+    E---F;
+    class B,G,D true;</code></pre>
+    En effet, les littéraux sont forcément deux à deux compatibles car ils sont vrais simultanément.</p>
+</li>
+<li>
+<p>Réciproquement, si le graphe <span class="arithmatex">\(G\)</span> admet une <span class="arithmatex">\(K\)</span> clique alors il y a exactement 1 sommet par clause car les sommets d'une même clause ne sont pas reliés. On pose alors une valuation <span class="arithmatex">\(\varphi\)</span> qui rend vrai tous les littéraux correspondants (ceci est possible car on n'a pas une variable et sa négation car les littéraux sont 2 à 2 compatibles). Cette valuation rend alors vrai au moins un littéral par clause donc elle satisfait <span class="arithmatex">\(F\)</span>.</p>
+</li>
+</ul>
+<p>Cette réduction est donc correcte, de plus elle est bien polynomiale : le nombre de sommets de <span class="arithmatex">\(G\)</span> est majoré par <span class="arithmatex">\(|F|\)</span> donc le graphe s'il est par exemple représenté par matrice d'adjacence a pour taille <span class="arithmatex">\(O(|F|^2)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Culture</p>
+<p>En 1972, Richard Karp (Prix Turing 1985) utilise ce procédé pour montrer que 21 problèmes fréquents en informatique sont NP-complets, on y trouve par exemple :</p>
+<ul>
+<li>couverture par sommets d'un graphe</li>
+<li>problème du sac à dos</li>
+<li>existence de circuits Hamiltoniens dans un graphe</li>
+<li>partition d'un ensemble d'entiers en deux sous-ensembles de même somme</li>
+<li>...</li>
+</ul>
+</div>
+<h2 id="5-les-problemes-indecidables">5. Les problèmes indécidables</h2>
+<p>Pour conclure ce chapitre nous considérons maintenant les problèmes de décision qui sont impossibles à résoudre. Un problème est <strong>indécidable</strong> s'il n'est pas décidable, autrement dit s'il n'existe pas de machine (i.e. d'algorithme) qui termine toujours et qui répond oui/non correctement par rapport à l'instance donnée.</p>
+<p>L'existence de tels problèmes est surprenante et est la conséquence de deux faits :</p>
+<ul>
+<li>les machines <span class="arithmatex">\(M\)</span> peuvent être traitées comme des données : toute machine possède un codage qu'on notera <span class="arithmatex">\(&lt;M&gt;\)</span></li>
+<li>les machines sont capables d'exécuter une machine à partir de son code <span class="arithmatex">\(&lt;M&gt;\)</span>.</li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">Définition (Machine universelle)</p>
+<p>Une machine <span class="arithmatex">\(U\)</span> est universelle si elle est capable d'effectuer le calcul de <span class="arithmatex">\(M(x)\)</span> si elle possède pour données le code de la machine <span class="arithmatex">\(&lt;M&gt;\)</span> et l'entrée <span class="arithmatex">\(x\)</span>.</p>
+</div>
+<p>Nous admettons que le modèle de calcul qu'on considère possède cette propriété. En effet : il est possible de voir un algorithme ou un programme C/OCaml comme une donnée (par exemple le fichier source du programme). Il est également possible d'écrire un programme capable d'exécuter cet algorithme ou ce programme à partir de sa description (par exemple un interprète ou un programme qui compile et exécute le code). Autrement dit, nos ordinateurs sont assez puissants pour être capable d'exécuter un programme qu'on lui donne en entrée.</p>
+<p>Le fait de pouvoir voir les algorithmes et les programmes comme des données peut sembler être une propriété souhaitée, mais cela va malheureusement entrainer l'existence de problèmes indécidables. Le plus célèbre est le problème <strong>HALT</strong> :</p>
+<ul>
+<li><strong>Instance</strong> : le code d'une machine <span class="arithmatex">\(&lt;M&gt;\)</span> et une entrée <span class="arithmatex">\(x\)</span> pour la machine <span class="arithmatex">\(M\)</span></li>
+<li><strong>Question</strong> : le calcul <span class="arithmatex">\(M(x)\)</span> termine-t-il ?</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p><strong>HALT</strong> est indécidable.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<p>Supposons par l'absurde qu'il existe une telle machine qu'on appelle <span class="arithmatex">\(H\)</span> qui termine sur toute entrée et qui vérifie <span class="arithmatex">\(H(&lt;M&gt;, x) = oui\)</span> si et seulement si <span class="arithmatex">\(M(x)\)</span> termine.
+On considère la machine <em>diagonale</em> <span class="arithmatex">\(D\)</span> prenant en entrée un code de machine <span class="arithmatex">\(&lt;M&gt;\)</span> et qui fait le calcul suivant, donné en pseudo-code :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>def D(&lt;M&gt;):
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    b &lt;- H(&lt;M&gt;, &lt;M&gt;) // &lt;M&gt; est une suite de 1/0 donc on peut prendre cette information comme x
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    if b = true then
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        while (true) do {} // boucle infinie
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    else
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        return true
+</span></code></pre></div>
+On obtient la contractiction suivante <span class="arithmatex">\(D(&lt;D&gt;)\)</span> termine si et seulement si <span class="arithmatex">\(H(&lt;D&gt;, &lt;D&gt;) = false\)</span> si et seulement si <span class="arithmatex">\(D(&lt;D&gt;)\)</span> ne termine pas. C'est absurde.</p>
+</div>
+<p>Le fait que HALT soit indécidable permet de montrer que beaucoup d'autres problèmes le sont, voici un exemple :</p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Soit le problème de décision <strong>HW</strong> suivant :</p>
+<ul>
+<li><strong>Instance</strong> : le code d'une machine <span class="arithmatex">\(&lt;M&gt;\)</span> ne prenant pas d'entrée.</li>
+<li><strong>Question</strong> : est-ce que la machine <span class="arithmatex">\(M\)</span> produit en sortie le texte <em>Hello World!</em> ?</li>
+</ul>
+<p>Montrer que <strong>HW</strong> est indécidable.</p>
+<details class="note">
+<summary>Solution</summary>
+<p>Supposons par l'absurde qu'il existe une telle machine <span class="arithmatex">\(HW\)</span>. On va construire une machine <span class="arithmatex">\(H\)</span> prenant en entrée le code d'une machine <span class="arithmatex">\(&lt;M&gt;\)</span> et une entrée <span class="arithmatex">\(x\)</span> pour M et dont voici la description :</p>
+<ul>
+<li>elle écrit la description d'une machine <span class="arithmatex">\(&lt;P&gt;\)</span> exécutant le programme suivant : calculer <span class="arithmatex">\(M(x)\)</span> (machine universelle) puis produire en sorie <em>Hello World!</em></li>
+<li>elle calcule <span class="arithmatex">\(HW(&lt;P&gt;)\)</span> et renvoie la réponse oui/non</li>
+</ul>
+<p>Alors si <span class="arithmatex">\(H(&lt;M&gt;, x) = oui\)</span> c'est que <span class="arithmatex">\(HW(&lt;P&gt;) = oui\)</span> donc P affiche <em>Hello world!</em> et donc le calcul de <span class="arithmatex">\(M(x)\)</span> s'est terminé. Si <span class="arithmatex">\(H(&lt;M&gt;, x) = non\)</span> c'est que <span class="arithmatex">\(HW(&lt;P&gt;) = non\)</span>, c'est que P n'affiche pas <em>Hello world!</em>, cela n'est possible que si <span class="arithmatex">\(M(x)\)</span> ne termine pas. Conclusion HW décide HALT c'est absurde. Donc HW n'est pas décidable.</p>
+</details>
+</div>
+<p>Plus généralement, il existe un théorème (Rice) qui exprime que toute propriété sémantique non triviale sur un programme est indécidable par exemple :</p>
+<ul>
+<li>Est-ce que le programme peut renvoyer la valeur nulle ?</li>
+<li>Est-ce que le programme calcule la fonction "carrée" ? Est-ce que le programme implémente une fonction donnée ?</li>
+<li>Est-ce que le programme envoie un message sur internet ?</li>
+<li>etc...</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1502 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page personnelle de Vincent Picard et ressources pour l'informatique en MPI">
+      
+      
+        <meta name="author" content="Vincent Picard">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Récurrence et induction - Vincent Picard - Informatique CPGE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/definition.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#recurrence-et-induction" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-header__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vincent Picard - Informatique CPGE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Récurrence et induction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aboutme/" class="md-tabs__link">
+          
+  
+  
+  À propos de moi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mpi/cours/" class="md-tabs__link">
+          
+  
+  
+  Informatique MPI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../itc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Informatique tronc commun
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Liens utiles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../config/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration machine
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../i8080/" class="md-tabs__link">
+          
+  
+  
+  Émulateur i8080
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vincent Picard - Informatique CPGE" class="md-nav__button md-logo" aria-label="Vincent Picard - Informatique CPGE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm144 4c-24.3 0-44 19.7-44 44v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44zm-4 44c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4zm140-44c-11 0-20 9-20 20 0 9.7 6.9 17.7 16 19.6V216c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20zM132 296c0 9.7 6.9 17.7 16 19.6V392c0 11 9 20 20 20s20-9 20-20v-96c0-11-9-20-20-20h-16c-11 0-20 9-20 20m96 24v48c0 24.3 19.7 44 44 44h32c24.3 0 44-19.7 44-44v-48c0-24.3-19.7-44-44-44h-32c-24.3 0-44 19.7-44 44m44-4h32c2.2 0 4 1.8 4 4v48c0 2.2-1.8 4-4 4h-32c-2.2 0-4-1.8-4-4v-48c0-2.2 1.8-4 4-4"/></svg>
+
+    </a>
+    Vincent Picard - Informatique CPGE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    À propos de moi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8 0-.29 0-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37a9.97 9.97 0 0 0 10.41 3.97c.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos de moi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/enseignement/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Enseignement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/parcours/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique MPI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informatique MPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/cours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/tp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux pratiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travaux dirigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpi/colles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmes de colles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../itc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informatique tronc commun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liens utiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Émulateur i8080
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Émulateur i8080
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture générale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les flags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile et tests unitaires
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/carry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions du carry bit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/rotate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de décalage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/datatransfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions de transfert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions à adressage direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/alu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L'unité arithmétique et logique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/immediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions immédiates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i8080/regtoacc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les instructions regisre vers accumulateur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ensembles-definis-par-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ensembles définis par induction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Ensembles définis par induction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-constructive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Définition constructive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-preuves-par-recurrence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Preuves par récurrence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Preuves par récurrence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-recurrence-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Récurrence simple
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-recurrence-double" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Récurrence double
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-recurrence-forte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Récurrence forte
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-preuves-par-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Preuves par induction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="recurrence-et-induction">Récurrence et induction</h1>
+<h2 id="1-ensembles-definis-par-induction">1. Ensembles définis par induction</h2>
+<p>Soit <span class="arithmatex">\(E\)</span> un ensemble.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Définition</p>
+<p>On peut définir une partie <span class="arithmatex">\(X\)</span> de <span class="arithmatex">\(E\)</span> par <strong>induction</strong> en se donnant</p>
+<ul>
+<li>un ensemble <span class="arithmatex">\(X_0 \subset E\)</span> d'élements de base appelés <strong>axiomes</strong>;</li>
+<li>un ensemble de <strong>règles d'inférence</strong> : une règle <span class="arithmatex">\(R\)</span> est une fonction de construction qui prend en entrée un nombre <span class="arithmatex">\(n_R\)</span> d'élements de <span class="arithmatex">\(E\)</span> déjà construits et en construit un nouveau. La valeur <span class="arithmatex">\(n_R\)</span> s'appelle <em>arité</em> de la règle d'inférence.</li>
+</ul>
+<p>La partie <span class="arithmatex">\(X\)</span> est alors <strong>la plus petite partie</strong> de <span class="arithmatex">\(E\)</span> qui contient <span class="arithmatex">\(X_0\)</span> et qui est <em>stable</em> par l'application des règles d'inférence (tout élément construit à partir d'éléments de <span class="arithmatex">\(X\)</span> est dans <span class="arithmatex">\(X\)</span>).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemples</p>
+<ul>
+<li>Les entiers naturels impairs <span class="arithmatex">\(\mathcal{I}\)</span> peuvent être définis par induction par : <span class="arithmatex">\(E = \mathbb{R}\)</span>, <span class="arithmatex">\(X_0 = \{1\}\)</span> et la règle <span class="arithmatex">\(n \mapsto n + 2\)</span>.</li>
+<li>Les <strong>arbres binaires stricts</strong> sont définis par <span class="arithmatex">\(X_0 = \{ \text{Feuille} \}\)</span> et la règle d'inférence d'arité 2 : <span class="arithmatex">\((g, d) \mapsto \text{Noeud}(g, d)\)</span> qui créé un noeud à partir de deux sous-arbres qui seront ses fils. </li>
+<li>Les <strong>formules propositionnelles</strong> : les cas de bases sont les variables propositionnelles et les formules <span class="arithmatex">\(\bot\)</span> et <span class="arithmatex">\(\top\)</span>. Il y a une règle d'arité <span class="arithmatex">\(1\)</span> : <span class="arithmatex">\(F \mapsto \neg F\)</span> et 4 règles d'arité 2 : <span class="arithmatex">\((F, G) \mapsto (F \land G)\)</span> ,<span class="arithmatex">\((F, G) \mapsto (F \lor G)\)</span>, <span class="arithmatex">\((F, G) \mapsto (F \rightarrow G)\)</span>, <span class="arithmatex">\((F, G) \mapsto (F \leftrightarrow G)\)</span>.</li>
+</ul>
+</div>
+<p>En informatique, très souvent on ne précise pas l'ensemble <span class="arithmatex">\(E\)</span> qui est implicite. Dans l'exemple des arbres binaires <span class="arithmatex">\(E\)</span> pourrait être par exemple l'ensemble des chaînes de caractères, mais on ne le précise pas.</p>
+<h3 id="definition-constructive">Définition constructive</h3>
+<p>Lorsqu'un ensemble <span class="arithmatex">\(X\)</span> est défini par induction, on peut aussi voir sa construction à l'aide de la suite d'ensembles <span class="arithmatex">\((X_i)_{i \in \mathbb N}\)</span> définie par par :</p>
+<div class="arithmatex">\[ X_{i+1} = X_i \cup \{ \text{nouveaux éléments que l'on peut construire en appliquant 1 règle d'inférence sur des éléments de $X_i$} \} \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Proposition</p>
+<p>La partie <span class="arithmatex">\(X\)</span> définie par induction vérifie alors :</p>
+<div class="arithmatex">\[ X = \bigcup_{i \in \mathbb N} X_i \]</div>
+</div>
+<p>La preuve de cette proposition peut s'obtenir par double inclusion. D'une part, on peut montrer par récurrence simple que chaque <span class="arithmatex">\(X_i \subset X\)</span>, ce qui montre une inclusion. D'autre part on vérifie que <span class="arithmatex">\(\bigcup_{i \in \mathbb N} X_i\)</span> contient <span class="arithmatex">\(X_0\)</span> et est stable par l'application des règles d'inférence, donc par définition de <span class="arithmatex">\(X\)</span> qui est la plus petite partie vérifiant cela, on obtient l'autre inclusion.</p>
+<h2 id="2-preuves-par-recurrence">2. Preuves par récurrence</h2>
+<p>Nous faisons ici quelques rappels sur le principe de démonstration par récurrence, très utilisé en informatique.</p>
+<p>Une preuve par récurrence consiste à démontrer une propriété pour tout entier <span class="arithmatex">\(n\)</span> une proporiété <span class="arithmatex">\(P(n)\)</span>. <strong>La propriété <span class="arithmatex">\(P\)</span> dépend donc d'un entier</strong>.</p>
+<h3 id="a-recurrence-simple">A. Récurrence simple</h3>
+<div class="admonition tip">
+<p class="admonition-title">Preuve par récurrence simple</p>
+<p>S'il existe un entier <span class="arithmatex">\(n_0 \in \mathbb{N}\)</span> tel que :</p>
+<ul>
+<li><strong>Initialisation</strong>: <span class="arithmatex">\(P(n_0)\)</span> est vraie</li>
+<li><strong>Hérédité</strong>:  Pour tout entier <span class="arithmatex">\(n \geq n_0\)</span> : <span class="arithmatex">\(P(n) \Rightarrow P(n+1)\)</span></li>
+</ul>
+<p>alors par récurrence simple <span class="arithmatex">\(P(n)\)</span> est vraie pour tout <span class="arithmatex">\(n \geq n_0\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Point méthode</p>
+<p>Pour rédiger une récurrence on écrira <strong>systématiquement</strong> la propriété à démontrer:</p>
+<div class="arithmatex">\[ P(n) : \text{"} \dots \text{"} \]</div>
+<p>puis on prouve l'initialisation et l'hérédité. Enfin on conclut.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Démontrer que pour tout graphe non orienté <span class="arithmatex">\(G = (S, A)\)</span>, la somme des degrés de tous les sommets vaut <span class="arithmatex">\(2m\)</span> où <span class="arithmatex">\(m = |A|\)</span>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Une erreur de raisonnement fréquente dans ce genre d'exercice est de montrer l'hérédité en partant d'un graphe à <span class="arithmatex">\(m\)</span> arêtes et en lui ajoutant une arête... C'est bien dans l'autre sens qu'il faut procéder : on veut montrer <span class="arithmatex">\(P(m + 1)\)</span> à partir de <span class="arithmatex">\(P(m)\)</span> donc il faut prendre un graphe <em>quelconque</em> à <span class="arithmatex">\(m + 1\)</span> arêtes et lui enlever une arête pour utiliser l'hypothèse de récurrence.</p>
+</div>
+<h3 id="b-recurrence-double">B. Récurrence double</h3>
+<div class="admonition tip">
+<p class="admonition-title">Preuve par récurrence double</p>
+<p>S'il existe un entier <span class="arithmatex">\(n_0 \in \mathbb{N}\)</span> tel que :</p>
+<ul>
+<li><strong>Initialisation</strong>: <span class="arithmatex">\(P(n_0)\)</span> et <span class="arithmatex">\(P(n_0 + 1)\)</span> sont vraies</li>
+<li><strong>Hérédité</strong>:  Pour tout entier <span class="arithmatex">\(n \geq n_0\)</span> : <span class="arithmatex">\((P(n) \land P(n+1)) \Rightarrow P(n+2)\)</span></li>
+</ul>
+<p>alors par récurrence double <span class="arithmatex">\(P(n)\)</span> est vraie pour tout <span class="arithmatex">\(n \geq n_0\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Point méthode</p>
+<p>Pour rédiger une récurrence double on écrira <strong>systématiquement</strong> la propriété à démontrer</p>
+<div class="arithmatex">\[ P(n) : \text{"} \dots \text{"} \]</div>
+<p>puis <strong>on précisera très clairement</strong> que l'on procède par récurrence <strong>double</strong>. On montre les deux points de l'initialisation et l'hérédité. Enfin on conclut.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>On construit la suite <span class="arithmatex">\((A_n)_{n \in \mathbb{N}}\)</span> d'arbres binaires stricts suivante :</p>
+<ul>
+<li><span class="arithmatex">\(A_0 = \text{Feuille}\)</span></li>
+<li><span class="arithmatex">\(A_1 = \text{Noeud}(\text{Feuille}, \text{Feuille})\)</span></li>
+<li><span class="arithmatex">\(\forall n \geq 2, A_n = \text{Noeud}(A_{n-1}, A_{n-2})\)</span></li>
+</ul>
+<p>Démontrer que le nombre de noeuds+feuilles de <span class="arithmatex">\(A_n\)</span> vaut <span class="arithmatex">\(3 F_n + L_n - 1\)</span> où :</p>
+<ul>
+<li><span class="arithmatex">\((F_n)_{n \in \mathbb{N}}\)</span> sont les nombres de Fibonnacci : <span class="arithmatex">\(F_0 = 0, \quad F_1 = 1, \quad F_{n+2} = F_{n+1} + F_n\)</span></li>
+<li><span class="arithmatex">\((L_n)_{n \in \mathbb{N}}\)</span> sont les nombres de Lucas : <span class="arithmatex">\(L_0 = 2, \quad L_1 = 1, \quad L_{n+2} = L_{n+1} + L_n\)</span></li>
+</ul>
+</div>
+<h3 id="c-recurrence-forte">C. Récurrence forte</h3>
+<div class="admonition tip">
+<p class="admonition-title">Preuve par récurrence forte</p>
+<p>S'il existe un entier <span class="arithmatex">\(n_0 \in \mathbb{N}\)</span> tel que :</p>
+<ul>
+<li><strong>Initialisation</strong>: <span class="arithmatex">\(P(n_0)\)</span> est vraie</li>
+<li><strong>Hérédité</strong>:  Pour tout entier <span class="arithmatex">\(n \geq n_0\)</span> : <span class="arithmatex">\(\left(\forall k \in [| n_0, n|], \,  P(k)\right) \Rightarrow P(n+1)\)</span></li>
+</ul>
+<p>alors par récurrence forte <span class="arithmatex">\(P(n)\)</span> est vraie pour tout <span class="arithmatex">\(n \geq n_0\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Point méthode</p>
+<p>Pour rédiger une récurrence forte on écrira <strong>systématiquement</strong> la propriété à démontrer</p>
+<div class="arithmatex">\[ P(n) : \text{"} \dots \text{"} \]</div>
+<p>puis <strong>on précisera très clairement</strong> que l'on procède par récurrence <strong>forte</strong>. On montre l'initialisation et l'hérédité. Enfin on conclut.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Démontrer par récurrence forte que tout arbre binaire à <span class="arithmatex">\(n\)</span> noeuds internes possède <span class="arithmatex">\(n + 1\)</span> feuilles (noeuds externes).</p>
+</div>
+<h2 id="3-preuves-par-induction">3. Preuves par induction</h2>
+<p>On dit aussi parfois <strong>preuve par induction structurelle</strong>.</p>
+<p>Le schéma de preuve par induction ressemble à une récurrence, la différence est que la propriété <span class="arithmatex">\(P(x)\)</span> dépend cette fois d'un élement <span class="arithmatex">\(x \in X\)</span> d'une ensemble <span class="arithmatex">\(X\)</span> défini par induction. Le but d'une telle preuve est de démontrer que la propriété est vraie pour <strong>tous</strong> les élements <span class="arithmatex">\(x \in X\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Preuve par induction</p>
+<ul>
+<li><strong>Initialisation</strong>: La propriété est vraie pour tous les éléments de base (axiomes) : <span class="arithmatex">\(\forall x \in X_0, \, P(x)\)</span> est vraie</li>
+<li><strong>Hérédité</strong>:  Pour <strong>chaque règle d'inférence</strong> <span class="arithmatex">\(R\)</span> d'arité <span class="arithmatex">\(n_R\)</span>, et <strong>pour tous</strong> éléments <span class="arithmatex">\(x_1, \dots, x_{n_R} \in X\)</span>, on a  : </li>
+</ul>
+<div class="arithmatex">\[ \left(P(x_1) \land P(x_2) \land \dots \land P(x_{n_R}) \right) \Rightarrow P\left(R(x_1, \dots, x_{n_R})\right) \]</div>
+<p>alors par induction structurelle <span class="arithmatex">\(P(x)\)</span> est vraie pour tout <span class="arithmatex">\(x \in X\)</span>.</p>
+</div>
+<p>La formulation générale de ce princpe de preuve peut paraître intimidante, mais savoir l'appliquer en pratique est essentiel.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Démontrer par induction structurelle que tout arbre binaire à <span class="arithmatex">\(n\)</span> noeuds internes possède <span class="arithmatex">\(n + 1\)</span> feuilles (noeuds externes).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Un arbre binaire de recherche est soit une <span class="arithmatex">\({\tt Feuille(n)}\)</span> étiquetée par un entier <span class="arithmatex">\(n\)</span>, soit construit à partir de deux arbres binaires de recherche <span class="arithmatex">\(g\)</span> et <span class="arithmatex">\(d\)</span> par la règle <span class="arithmatex">\({\tt Noeud(x, g, d)}\)</span> qui n'est valide que lorsque <span class="arithmatex">\(\forall y \in \text{Etiquettes}(g), \, y \leq x\)</span> et <span class="arithmatex">\(\forall y \in \text{Etiquettes}(d), \, x &lt; y\)</span>.</p>
+<p>Démontrer que la liste des étiquettes d'un arbre binaire de recherche, énumérées dans l'ordre du parcours en profondeur infixe est une liste triée par ordre croissant.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Point méthode</p>
+<p>Pour rédiger une preuve par induction on écrira <strong>systématiquement</strong> la propriété à démontrer</p>
+<div class="arithmatex">\[ P(x) : \text{"} \dots \text{"} \]</div>
+<p>dépendant d'éléments <span class="arithmatex">\(x\)</span> d'un ensemble construit par induction (arbres, formules logiques, etc). <strong>On précisera très clairement</strong> que l'on procède par <strong>induction structurelle</strong>. On montre l'initialisation et l'hérédité. Enfin on conclut.</p>
+</div>
+<h2 id="exercices">Exercices</h2>
+<div class="admonition example">
+<p class="admonition-title">Un exemple très facile</p>
+<p>En utilisant la construction inductive des entiers impairs <span class="arithmatex">\(\mathcal{I}\)</span> démontrer que tout entier impair est supérieur ou égal à 1.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Hauteur minimale</p>
+<p>Démontrer qu'un arbre binaire possédant <span class="arithmatex">\(2^n\)</span> noeuds ou plus a une hauteur au moins égale à <span class="arithmatex">\(n\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Arbres 2-3</p>
+<p>Un arbre 2-3 de hauteur 0 est une feuille. Un arbre 2-3 de hauteur <span class="arithmatex">\(h &gt; 0\)</span> possède une racine ayant 2 ou 3 fils qui sont tous des arbres 2-3 de hauteur <span class="arithmatex">\(h - 1\)</span>. </p>
+<ol>
+<li>Démontrer que le nombre de feuilles <span class="arithmatex">\(n\)</span> d'un arbre 2-3 vérifie <span class="arithmatex">\(2^h \leq n \leq 3^h\)</span>.</li>
+<li>Pour quelles familles d'arbres ces bornes sont-elles atteintes ?</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Crayons de couleur</p>
+<p>Montrons par récurrence simple que dans toute boîte de <span class="arithmatex">\(n \in \mathbb{N}^*\)</span> crayons de couleurs, tous les crayons sont de la même couleur.</p>
+<ul>
+<li><strong>Initialisation :</strong>Le résultat est vrai pour une boîte ne contenant qu'un seul crayon</li>
+<li><strong>Hérédité :</strong> Considérons une boîte <span class="arithmatex">\(\{c_1, \dots, c_{n+1}\}\)</span> contenant <span class="arithmatex">\(n+1\)</span> crayons de couleurs et enlevons lui le premier crayon. Par hypothèse de récurrence les <span class="arithmatex">\(n\)</span> crayons restants <span class="arithmatex">\(c_2, \dots, c_{n+1}\)</span> sont de la même couleur. Si on enlève maintenant le dernier crayon de la boîte initiale, on en déduit encore par hypothèse de récurrence que les <span class="arithmatex">\(n\)</span> crayons restants <span class="arithmatex">\(c_1, \dots, c_n\)</span>, sont de la même couleur. Conclusion : tous les <span class="arithmatex">\(n+1\)</span> crayons sont de la même couleur.</li>
+</ul>
+<p>Par récurrence on a démontré que tous les crayons d'une boîte quelconque de <span class="arithmatex">\(n\)</span> crayons de couleurs sont de la même couleur.</p>
+<p>Ce résultat est évidemment absurde : trouver l'erreur de raisonnement qui a été faite.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Listes infinies (Mines 2024)</p>
+<p>On définit par induction l'ensemble <span class="arithmatex">\(\mathcal{L}\)</span> des listes d'éléments de <span class="arithmatex">\(E\)</span> ainsi :</p>
+<ul>
+<li>une liste est soit la liste vide notée <code>[]</code></li>
+<li>soit construite à partir d'un élement <span class="arithmatex">\(t \in E\)</span> et d'une liste <span class="arithmatex">\(q\)</span>, on la note alors <span class="arithmatex">\(t::q\)</span></li>
+</ul>
+<p><strong>Questions</strong></p>
+<ol>
+<li>Définir un type en langage OCaml pour représenter ces listes.</li>
+<li>Définir un type en langage C pour représenter ces listes (sur les entiers).</li>
+<li>On définit intuitivement l'ensemble <span class="arithmatex">\(\mathcal{L}_{\infty}\)</span> des listes finies ou infinies de valeurs. Est-ce que <span class="arithmatex">\(\mathcal{L}_\infty\)</span> est stable par la règle d'induction. A-t-on <span class="arithmatex">\(\mathcal{L} = \mathcal{L}_\infty\)</span> ?</li>
+<li>Démontrer que toute liste de <span class="arithmatex">\(\mathcal{L}\)</span> possède un nombre fini d'éléments.</li>
+<li>Le type proposé en langage C permet-il de construire une liste infinie ?</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Arbres ET/OU</p>
+<p>Un arbre binaire ET/OU est un arbre binaire dans lequel : </p>
+<ul>
+<li>une feuille est soit la variable <span class="arithmatex">\(x\)</span>, soit une constante <span class="arithmatex">\(0\)</span> représentant le faux, soit une constante <span class="arithmatex">\(1\)</span> représentant le vrai. </li>
+<li>il existe deux types de noeuds, les noeuds <span class="arithmatex">\(\land\)</span> représantant la conjonction logique et les noeuds <span class="arithmatex">\(\lor\)</span> représentant la disjonction logique. </li>
+</ul>
+<p>À tout arbre binaire ET/OU <span class="arithmatex">\(A\)</span> on associe une fonction <span class="arithmatex">\(f_A : \{0, 1\} \to \{0, 1\}\)</span> où <span class="arithmatex">\(f_A(t)\)</span> vaut le résultat de l'évaluation de l'arbre <span class="arithmatex">\(A\)</span> en replaçant les feuilles <span class="arithmatex">\(x\)</span> par la valeur <span class="arithmatex">\(t\)</span>.</p>
+<p>Démontrer qu'il est impossible de produire la fonction booléenne de négation : <span class="arithmatex">\(f : x \mapsto 1 - x\)</span> à l'aide d'un tel arbre.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title"><span class="arithmatex">\(\star\)</span> Compacité de la logique propositionnelle <span class="arithmatex">\(\star\)</span></p>
+<p>On considère un ensemble dénombrable de variables propositionnelles <span class="arithmatex">\(\mathbb{V} = \{x_1, \dots, x_n, \dots \}\)</span>.</p>
+<p>Une théorie <span class="arithmatex">\(T\)</span> est un ensemble fini ou non de formules propositionnelles sur <span class="arithmatex">\(\mathbb{V}\)</span>. </p>
+<p>Une théorie est dite <strong>satisfiable</strong> s'il existe une valuation qui rend toutes ses formules vraies.
+Une théorie est dite <strong>finiment satisfiable</strong> si toute sous-théorie <span class="arithmatex">\(T' \subset T\)</span> finie est satisfiable.</p>
+<p><strong>Questions</strong></p>
+<ol>
+<li>Donner un exemple de théorie à 3 formules satisfiable.</li>
+<li>Donner un exemple de théorie à 3 formules non satisfiable</li>
+<li>Donner un exemple de théorie infinie satisfiable.</li>
+<li>Démontrer que si une théorie <span class="arithmatex">\(T\)</span> est satisfiable alors toute sous-théorie <span class="arithmatex">\(T'\)</span> finie est satisfiable.</li>
+<li>Démontrer que si toute les sous-théories finies <span class="arithmatex">\(T'\)</span> d'une théorie <span class="arithmatex">\(T\)</span> sont satisfiables alors <span class="arithmatex">\(T\)</span> est satifiable.
+(Indication : construire par récurrence une valuation qui convient, on suppose que les valeurs de vérité de <span class="arithmatex">\(x_1, \dots, x_n\)</span> sont fixées correctement, montrer qu'il est possible de fixer la valeur de vérité de <span class="arithmatex">\(x_{n+1}\)</span> de telle manière à ce que pour toute sous-théorie finie <span class="arithmatex">\(T'\)</span> il existe une valuation qui la satisfait et qui a précisément précisément ces valeurs choisies sur <span class="arithmatex">\(x_1, \dots, x_{n+1}\)</span>)</li>
+</ol>
+<p>On obtient le théorème de compacité qui énonce qu'une théorie est satisfiable si et seulement si toutes ses sous-théories finies le sont. Une autre façon de le dire est qu'une théorie n'est pas satisifiable si et seulement si elle admet une sous-théorie finie qui ne l'est pas. Autrement dit la non satisfiabilité d'une théorie infinie n'est jamais due à son caractère infini : elle provient d'un sous-ensemble fini de formules qui n'est pas satisfiable.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
