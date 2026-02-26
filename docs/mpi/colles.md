@@ -18,3 +18,4 @@
 - **Décidabilité et complexité : tout le chapitre** [[:bookmark: Programme semaine 18]](colle18.pdf)
 - **Décidabilité et complexité; Grammaires algébrique (le début)** [[:bookmark: Programme semaine 19]](colle19.pdf)
 - **Décidabilité et complexité; Grammaires algébrique** [[:bookmark: Programme semaine 20]](colle20.pdf)
+- **Décidabilité et complexité; Grammaires algébrique; Composantes fortement connexes** [[:bookmark: Programme semaine 21]](colle21.pdf)
