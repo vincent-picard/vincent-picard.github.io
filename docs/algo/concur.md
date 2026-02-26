@@ -396,6 +396,48 @@ Une généralisation du verrou est d'utiliser un sémaphore initialisé à $N$ a
     2. Avec cette solution, décrire un scenario qui conduit à un interblocage des 4 philosophes.
     3. On remarque que la situation précédente ne peut se produire lorsque 3 philosophes au plus décident de manger en même temps. En utilisant un sémaphore, résoudre le problème de l'interblocage.
 
+!!!example "Dîner des philosophes : programmation en C"
+    ```c title="philosophe.c"
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <pthread.h>
+    #include <stdbool.h>
+    #include <assert.h>
+
+    // Une structure pour les parametres du thread
+    struct args_s {
+        int id;
+    };
+
+    void* philosophe(void* args) {
+        struct args_s *a = (struct args_s *) args;
+        while (true) {
+            fprintf(stderr, "P%d : je pense\n", a->id);
+            fprintf(stderr, "P%d : prend baguette %d\n", a->id, a->id);
+            fprintf(stderr, "P%d : prend baguette %d\n", a->id, (a->id + 1) % 4);
+            fprintf(stderr, "P%d : je mange\n", a->id);
+            fprintf(stderr, "P%d : pose baguette %d\n", a->id, a->id);
+            fprintf(stderr, "P%d : pose baguette %d\n", a->id, (a->id + 1) % 4);
+        }
+    }
+
+    int main() {
+        pthread_t p[4];
+
+        struct args_s a[4];
+        for (int i = 0; i < 4; i++) {
+            a[i].id = i;
+            pthread_create(&p[i], NULL, &philosophe, &a[i]);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            pthread_join(p[i], NULL);
+        }
+
+        return EXIT_SUCCESS;
+    }
+
+    ```
 #### Utilisation comme moyen de signalisation
 
 Les sémaphores permettent surtout à des processus de se syncrhoniser en s'envoyant des signaux de type "tu peux poursuivre". Pour réaliser cela, on initialise le sémaphore à $S = 0$. L'opération $P(S)$ consiste alors à se placer en attente de réception du signal. A l'inverse l'opération $V(S)$.
