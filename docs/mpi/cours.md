@@ -23,11 +23,11 @@
 10. [:material-sigma: Grammaires algébriques](/langages/grammaires)
 11. [:fontawesome-solid-circle-nodes: Composantes fortement connexes](/algo/cfc)
 12. [:fontawesome-solid-code-fork: Programmation concurrente](/algo/concur)
-13. [:material-robot-outline: Apprentissage non supervisé](/pdf/ia.pdf)
-14. [:fontawesome-solid-circle-nodes: Algorithmes probabilistes](/algo/proba)
-15. [:fontawesome-solid-circle-nodes: Couplages dans les graphes](/graphes/couplages)
+13. [:material-robot-outline: Jeux d'accessibilité](/pdf/ia.pdf)
+14. [:material-robot-outline: Apprentissage non supervisé](/ia/appr_nonsupervise)
+15. [:fontawesome-solid-circle-nodes: Algorithmes probabilistes](/algo/proba)
+16. [:fontawesome-solid-circle-nodes: Couplages dans les graphes](/graphes/couplages)
     - [Chemin augmentants, graphe résiduel : exemple](/pdf/couplage_exemple.pdf)
-16. [:material-robot-outline: Jeux d'accessibilité](/pdf/ia.pdf)
 
 ## :material-book-sync: Notions de MP2I
 
