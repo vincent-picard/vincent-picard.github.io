@@ -26,7 +26,7 @@
 - **Alignement optimal de séquences ADN** [sujet](tp/adn/adn_sujet.pdf) [fichier](tp/adn/fichier_eleve.py.txt) [réponses](tp/adn/fiche_reponse.pdf)
 - **Détection de langue** [[sujet]](tp/langue.pdf) [[ressources]](tp/langue_ressources.zip)
 - **Algorithme k-means (k-moyennes)** [sujet](tp/kmeans.pdf) [ressources](tp/kmeans.zip) 
-- **Puissance 4 (Min-Max)** [sujet](tp/puissance4/sujet/puissance4.pdf) [ressources](tp/puisssance4/src/puissance4_eleve.py) [corrigé](tp/puisssance4/src/puissance4.py) 
+- **Puissance 4 (Min-Max)** [sujet](tp/puissance4/sujet/puissance4.pdf) [ressources](tp/puissance4/src/puissance4_eleve.py) [corrigé](tp/puissance4/src/puissance4.py) 
 <!--
 - **Jeu de taquin** [sujet](tp/taquin/taquin.pdf) [fichier](tp/taquin/taquin_eleves.py) [fichier (version txt)](tp/taquin/taquin_eleves.txt) [reponses](tp/taquin/fiche_reponse.pdf) [solution (partie 1)](tp/taquin/taquin_part1.txt)
 
