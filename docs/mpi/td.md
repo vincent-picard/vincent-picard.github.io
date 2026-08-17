@@ -1,5 +1,6 @@
 # :person_lifting_weights_tone5: Travaux dirigés
 
+<!--
 - **Expressions régulières** [[:bookmark: planche]](regexp.pdf)
 - **Automates finis déterministes** [[:bookmark: planche]](afd.pdf)
 - **Graphes et parcours** [[:bookmark: planche]](graphes.pdf)
@@ -12,3 +13,4 @@
 - **Décidabilité et complexité (P, NP, ...)** [[:bookmark: planche]](pnp.pdf)
 - **NP-complétude de VERTEX-COVER** [[:bookmark: énoncé]](npcomplet.pdf)
 - **Grammaires non contextuelles** [[:bookmark: planche]](grammaires.pdf)
+-->
