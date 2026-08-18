@@ -12,7 +12,7 @@ Soit $E$ un ensemble.
     La partie $X$ est alors **la plus petite partie** de $E$ qui vérifie les deux assertions suivantes :
 
     - $(B) : B \subset X$
-    - $(I) : \forall R \in K, \forall x_1, \dots, x_{a(f)} \in X, R(x_1, \dots, x_{a(f)}) \in X$ 
+    - $(I) : \forall R \in K, \forall x_1, \dots, x_{a(R)} \in X, R(x_1, \dots, x_{a(R)}) \in X$ 
 
 L'assertion $(B)$ signifie que la partie $X$ contient les éléments de base. L'assertion $(I)$ signifie que la partie $X$ est stable par application des règles d'inférence.
 
