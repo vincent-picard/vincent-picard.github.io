@@ -12,8 +12,8 @@
     Les résumés numériques suivants vous permettent de revoir le cours. Ils ne sont en aucun cas exhaustifs et ne dispensent certainement pas d'une **écoute** et d'une **prise de notes** actives en cours. **En cas de manquements, je retirerai l'accès aux documents de cours**.
 
 1. [:material-set-none: Induction et récurrence](/general/induction)
-<!--
 2. [:material-sigma: Langages réguliers, expressions régulières](/langages/regexp)
+<!--
 3. [:fontawesome-solid-circle-nodes: Parcours de graphes et algorithme A:material-star:](/pdf/parcours_graphes.pdf)
     - [Parcours : illustrations](/pdf/parcours_exemples.pdf)
 4. [:material-sigma: Automates finis](/langages/automates)
