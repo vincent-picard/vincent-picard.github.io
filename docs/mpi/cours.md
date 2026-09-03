@@ -13,9 +13,10 @@
 
 1. [:material-set-none: Induction et récurrence](/general/induction)
 2. [:material-sigma: Langages réguliers, expressions régulières](/langages/regexp)
-<!--
 3. [:fontawesome-solid-circle-nodes: Parcours de graphes et algorithme A:material-star:](/pdf/parcours_graphes.pdf)
+    - [Parcours : tous les algorithmes](/pdf/parcours_algo.pdf)
     - [Parcours : illustrations](/pdf/parcours_exemples.pdf)
+<!--
 4. [:material-sigma: Automates finis](/langages/automates)
 5. :fontawesome-solid-circle-nodes: Arbres couvrants de poids minimal
 6. :material-sigma: Théorème de Kleene
