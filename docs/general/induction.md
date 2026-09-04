@@ -6,33 +6,135 @@ Soit $E$ un ensemble.
 !!! abstract "Définition"
     On peut définir une partie $X$ de $E$ par **induction** en se donnant
 
-    - un ensemble $X_0 \subset E$ d'élements de base appelés **axiomes**;
-    - un ensemble de **règles d'inférence** : une règle $R$ est une fonction de construction qui prend en entrée un nombre $n_R$ d'élements de $E$ déjà construits et en construit un nouveau. La valeur $n_R$ s'appelle *arité* de la règle d'inférence.
+    - un ensemble $B \subset E$ d'élements de base appelés **axiomes**;
+    - un ensemble $K$ de **règles d'inférence** : une règle $R \in K$ est une fonction $E^{a(R)} \to E$ de construction qui prend en entrée un nombre $a(R)$ d'élements de $E$ déjà construits et en construit un nouveau. La valeur $a(R)$ s'appelle *arité* de la règle d'inférence.
 
-    La partie $X$ est alors **la plus petite partie** de $E$ qui contient $X_0$ et qui est *stable* par l'application des règles d'inférence (tout élément construit à partir d'éléments de $X$ est dans $X$).
+    La partie $X$ est alors **la plus petite partie** de $E$ qui vérifie les deux assertions suivantes :
+
+    - $(B) : B \subset X$
+    - $(I) : \forall R \in K, \forall x_1, \dots, x_{a(R)} \in X, R(x_1, \dots, x_{a(R)}) \in X$ 
+
+L'assertion $(B)$ signifie que la partie $X$ contient les éléments de base. L'assertion $(I)$ signifie que la partie $X$ est stable par application des règles d'inférence.
 
 !!! example "Exemples"
 
-    - Les entiers naturels impairs $\mathcal{I}$ peuvent être définis par induction par : $E = \mathbb{R}$, $X_0 = \{1\}$ et la règle $n \mapsto n + 2$.
-    - Les **arbres binaires stricts** sont définis par $X_0 = \{ \text{Feuille} \}$ et la règle d'inférence d'arité 2 : $(g, d) \mapsto \text{Noeud}(g, d)$ qui créé un noeud à partir de deux sous-arbres qui seront ses fils. 
+    - Les entiers naturels impairs $\mathcal{I}$ peuvent être définis par induction par : $E = \mathbb{R}$, $B = \{1\}$ et la règle $n \mapsto n + 2$.
+    - Les **arbres binaires stricts** sont définis par $B = \{ \text{Feuille} \}$ et la règle d'inférence d'arité 2 : $(g, d) \mapsto \text{Noeud}(g, d)$ qui créé un noeud à partir de deux sous-arbres qui seront ses fils. 
     - Les **formules propositionnelles** : les cas de bases sont les variables propositionnelles et les formules $\bot$ et $\top$. Il y a une règle d'arité $1$ : $F \mapsto \neg F$ et 4 règles d'arité 2 : $(F, G) \mapsto (F \land G)$ ,$(F, G) \mapsto (F \lor G)$, $(F, G) \mapsto (F \rightarrow G)$, $(F, G) \mapsto (F \leftrightarrow G)$.
 
-En informatique, très souvent on ne précise pas l'ensemble $E$ qui est implicite. Dans l'exemple des arbres binaires $E$ pourrait être par exemple l'ensemble des chaînes de caractères, mais on ne le précise pas.
+En informatique, on omet souvent de préciser l'ensemble $E$ dans lequel la partie $X$ est définie. Dans le cas des arbres binaires $E$ pourrait être par exemple l'ensemble des chaînes de caractères, mais on ne le précise pas.
  
+Il est bien évidemment légitime de se demander si cette définition est mathématiquement valide : une telle partie $X$ existe-t-elle vraiment ? La réponse est oui, on peut la définir de la manière suivante :
+
+$$
+X = \bigcap_{Y \in \mathcal{Y}} Y
+$$
+
+où $Y = \{ A \subset E \ | \ B \subset A \text{ et } A \text{ vérifie } (I) \}$.
+
+Alors,
+
+1. Si une partie $Z$ vérifie $(B)$ et $(I)$ alors par définition elle appartient à $\mathcal{Y}$ donc $Z \subset \cap_{Y \in \mathcal{Y}} Y = X$, ainsi $X$ est bien la plus petite partie de $E$ qui vérifie $(B)$ et $(I)$.
+2. $X$ vérifie $(B)$ et $(I)$
+
+donc cette partie $X$ satisfait bien la définition proposée.
+
 ### Définition constructive
    
 Lorsqu'un ensemble $X$ est défini par induction, on peut aussi voir sa construction à l'aide de la suite d'ensembles $(X_i)_{i \in \mathbb N}$ définie par par :
 
-$$ X_{i+1} = X_i \cup \{ \text{nouveaux éléments que l'on peut construire en appliquant 1 règle d'inférence sur des éléments de $X_i$} \} $$
+$$ X_0 = B $$
+
+et
+
+$$ X_{i+1} = X_i \cup \left\{ R(x_1, \dots x_{a(R)}) \ | \ R \in K, (x_1, \dots, x_{a(R)}) \in X_i^{a(R)} \right\} $$ 
 
 !!! tip "Proposition"
     La partie $X$ définie par induction vérifie alors :
 
     $$ X = \bigcup_{i \in \mathbb N} X_i $$
 
-La preuve de cette proposition peut s'obtenir par double inclusion. D'une part, on peut montrer par récurrence simple que chaque $X_i \subset X$, ce qui montre une inclusion. D'autre part on vérifie que $\bigcup_{i \in \mathbb N} X_i$ contient $X_0$ et est stable par l'application des règles d'inférence, donc par définition de $X$ qui est la plus petite partie vérifiant cela, on obtient l'autre inclusion.
+La preuve de cette proposition peut s'obtenir par double inclusion. D'une part, on peut montrer par récurrence simple que chaque $X_i \subset X$, ce qui montre une inclusion. D'autre part on vérifie que $\bigcup_{i \in \mathbb N} X_i$ contient $B$ et est stable par l'application des règles d'inférence, donc par définition de $X$ qui est la plus petite partie vérifiant cela, on obtient l'autre inclusion.
 
-## 2. Preuves par récurrence
+## 2. Preuves par induction
+
+On dit aussi parfois **preuve par induction structurelle**.
+
+Les preuves par induction sont très utiles en informatique et simplifient souvent les preuves par récurrence. L'utilisation d'une récurrence forte est toujours possible, mais la preuve par induction est généralement plus facile.
+
+
+Le schéma de preuve par induction ressemble à une récurrence, la différence est que la propriété $P(x)$ dépend d'un élement $x \in X$ d'un ensemble $X$ défini par induction. Le but d'une telle preuve est de démontrer que la propriété est vraie pour **tous** les élements $x \in X$.
+
+!!! tip "Preuve par induction"
+
+    - **Initialisation**: La propriété est vraie pour tous les éléments de base (axiomes) : $\forall x \in B, \, P(x)$ est vraie
+    - **Hérédité**:  Pour **chaque règle d'inférence** $R$ d'arité $a(R)$, et **pour tous** éléments $x_1, \dots, x_{a(R)} \in X$, on a  : 
+
+    $$ \left(P(x_1) \land P(x_2) \land \dots \land P(x_{a(R)}) \right) \Rightarrow P\left(R(x_1, \dots, x_{a(R)})\right) $$
+
+    alors par induction structurelle $P(x)$ est vraie pour tout $x \in X$.
+
+La formulation générale de ce principe de preuve peut paraître intimidante, mais savoir l'appliquer en pratique est essentiel.
+
+!!! example "Exercice"
+    Démontrer par induction structurelle que tout arbre binaire à $n$ noeuds internes possède $n + 1$ feuilles (noeuds externes).
+
+!!! example "Exercice"
+    Un arbre binaire de recherche est soit une ${\tt Feuille(n)}$ étiquetée par un entier $n$, soit construit à partir de deux arbres binaires de recherche $g$ et $d$ par la règle ${\tt Noeud(x, g, d)}$ qui n'est valide que lorsque $\forall y \in \text{Etiquettes}(g), \, y \leq x$ et $\forall y \in \text{Etiquettes}(d), \, x < y$.
+
+    Démontrer que la liste des étiquettes d'un arbre binaire de recherche, énumérées dans l'ordre du parcours en profondeur infixe est une liste triée par ordre croissant.
+
+!!! note "Point méthode"
+    Pour rédiger une preuve par induction on écrira **systématiquement** la propriété à démontrer
+    
+    $$ P(x) : \text{"} \dots \text{"} $$
+    
+    dépendant d'éléments $x$ d'un ensemble construit par induction (arbres, formules logiques, etc). **On précisera très clairement** que l'on procède par **induction structurelle**. On montre l'initialisation et l'hérédité. Enfin on conclut.
+
+## :material-star: 3. Définitions inductives non ambiguës
+
+!!!abstract "Définition (définition inductive non ambiguë)"
+    Une définition inductive est *non ambiguë* si :
+
+    1. Pour tout $R \in K$, et tout $x_1, \dots, x_{a(R)} \in X$, $f(x_1, \dots, x_{a(f)}) \not \in B$
+    2. Pour tout $R, R' \in K$ et tout $x_1, \dots, x_{a(R)}, x'_1, \dots, x'_{a(R')} \in X$, $R(x_1, \dots, x_{a(R)}) = R'(x'_1, \dots, x'_{a(R')})$ implique $R = R'$ et $x_1 = x'_1$ et  $\dots$ et $x_{a(R)} = x'_{a(R')}$
+
+Cela rappelle un peu la définition de *fonction injective* en mathématiques. L'assertion (1) signifie qu'un élément de base ne peut pas se construire à l'aide des règles d'inférence. L'assertion (2) signifie qu'un élément ne peut pas être construit de deux manières différentes.
+
+!!! example "Exemples"
+
+    - Les entiers naturels impairs $\mathcal{I}$ peuvent être définis par induction par : $E = \mathbb{R}$, $B = \{1\}$ et les règles $n \mapsto n + 2$, $n \mapsto n + 4$. Cette définition est ambiguë, pourquoi ?
+    - Les entiers relatifs $\mathbb{Z}$ peuvent être définis par induction par $E = \mathbb{R}$, $B = \{0\}$ et les règles $R_1 : x \mapsto x + 1$ et $R_2 : x \mapsto x - 1$. Cette définition est ambiguë, pourquoi ? (donner deux raisons).
+
+En informatique, on privilégie les définitions non ambiguës car elles permettent ensuite de **définir des fonctions par induction**.
+
+!!!tip "Théorème (fonctions définies inductivement)"
+    Soit $X$ un ensemble défini inductivement ($B$ : éléments de base, $K$ : règles) de manière **non ambiguë**. Soit $Y$ un ensemble quelconque. On se donne :
+
+    1. une fonction $\mu : B \to Y$
+    2. Pour toute règle $R \in K$, une fonction $\varphi(R) : Y^{a(R)} \to Y$
+
+    Alors il existe une unique fonction $f : X \to Y$ qui vérifie :
+    
+    1. $\forall x \in B, f(x) = \mu(x)$
+    2. $\forall R \in K, \forall x_1, \dots, x_{a(R)} \in X,\  f(R(x_1, \dots, x_{a(R)})) = \varphi(R) (f(x_1), \dots, f(x_{a(R)}))$
+
+Concernant la démonstration, le caractère non ambigu de la définition inductive donne l'existence. L'unicité peut se démontrer avec une preuve par induction.
+
+Ce théorème permet de définir une fonction sur $X$ en donnant :
+
+1. La valeur que prend la fonction sur les éléments de base : c'est le rôle de $\mu$
+2. La valeur que prend la fonction sur les éléments construits $R(x_1, \dots, x_{a(R)})$ en la valeur de la fonction sur les éléments utilisés pour la construction. Autrement dit, la définition de la fonction $f$ fait intervenir la fonction $f$ elle-même !
+
+!!!example "Exemples"
+    Les exemples foisonnent en informatique :
+
+    1. La taille d'un arbre binaire $t(Vide) = 0$ et $t(Noeud(g, d)) = 1 + t(g) + t(d)$
+    2. La hauteur d'un arbre binaire $h(Vide) = -1$ et $h(Noeud(g, d)) = 1 + \max(h(g), h(d))$
+    3. La valeur de vérité d'une formule de la logique propositionnelle dans le contexte d'une valuation $\varphi$ 
+    4. Plus généralement, les fonctions OCaml définies récursivement sur un type somme.
+
+## 4. Preuves par récurrence
 
 Nous faisons ici quelques rappels sur le principe de démonstration par récurrence, très utilisé en informatique.
 
@@ -113,37 +215,6 @@ Une preuve par récurrence consiste à démontrer une propriété pour tout enti
 !!! example "Exercice"
     Démontrer par récurrence forte que tout arbre binaire à $n$ noeuds internes possède $n + 1$ feuilles (noeuds externes).
 
-## 3. Preuves par induction
-
-On dit aussi parfois **preuve par induction structurelle**.
-
-Le schéma de preuve par induction ressemble à une récurrence, la différence est que la propriété $P(x)$ dépend cette fois d'un élement $x \in X$ d'une ensemble $X$ défini par induction. Le but d'une telle preuve est de démontrer que la propriété est vraie pour **tous** les élements $x \in X$.
-
-!!! tip "Preuve par induction"
-
-    - **Initialisation**: La propriété est vraie pour tous les éléments de base (axiomes) : $\forall x \in X_0, \, P(x)$ est vraie
-    - **Hérédité**:  Pour **chaque règle d'inférence** $R$ d'arité $n_R$, et **pour tous** éléments $x_1, \dots, x_{n_R} \in X$, on a  : 
-
-    $$ \left(P(x_1) \land P(x_2) \land \dots \land P(x_{n_R}) \right) \Rightarrow P\left(R(x_1, \dots, x_{n_R})\right) $$
-
-    alors par induction structurelle $P(x)$ est vraie pour tout $x \in X$.
-
-La formulation générale de ce princpe de preuve peut paraître intimidante, mais savoir l'appliquer en pratique est essentiel.
-
-!!! example "Exercice"
-    Démontrer par induction structurelle que tout arbre binaire à $n$ noeuds internes possède $n + 1$ feuilles (noeuds externes).
-
-!!! example "Exercice"
-    Un arbre binaire de recherche est soit une ${\tt Feuille(n)}$ étiquetée par un entier $n$, soit construit à partir de deux arbres binaires de recherche $g$ et $d$ par la règle ${\tt Noeud(x, g, d)}$ qui n'est valide que lorsque $\forall y \in \text{Etiquettes}(g), \, y \leq x$ et $\forall y \in \text{Etiquettes}(d), \, x < y$.
-
-    Démontrer que la liste des étiquettes d'un arbre binaire de recherche, énumérées dans l'ordre du parcours en profondeur infixe est une liste triée par ordre croissant.
-
-!!! note "Point méthode"
-    Pour rédiger une preuve par induction on écrira **systématiquement** la propriété à démontrer
-    
-    $$ P(x) : \text{"} \dots \text{"} $$
-    
-    dépendant d'éléments $x$ d'un ensemble construit par induction (arbres, formules logiques, etc). **On précisera très clairement** que l'on procède par **induction structurelle**. On montre l'initialisation et l'hérédité. Enfin on conclut.
 
 ## Exercices
 

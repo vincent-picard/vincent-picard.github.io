@@ -1,6 +1,8 @@
 # Programmes de colle 
 
-- **Induction, récurrences, langages réguliers** [[:bookmark: Programme semaine 1]](colle1.pdf)
+- **Induction, récurrences, langages réguliers** [[:bookmark: Programme semaine 2]](colle1.pdf)
+
+<!--
 - **Induction, récurrences, langages réguliers (tout)** [[:bookmark: Programme semaine 2]](colle2.pdf)
 - **Induction, langages réguliers, parcours de graphes** [[:bookmark: Programme semaine 3]](colle3.pdf)
 - **Induction, langages réguliers, parcours de graphes, Algorithme A étoile** [[:bookmark: Programme semaine 4]](colle4.pdf)
@@ -21,3 +23,4 @@
 - **Décidabilité et complexité; Grammaires algébrique; Composantes fortement connexes** [[:bookmark: Programme semaine 21]](colle21.pdf)
 - **Grammaires algébrique; Composantes fortement connexes; Programmation concurrente** [[:bookmark: Programme semaine 22]](colle22.pdf)
 - **Grammaires algébrique; Composantes fortement connexes; Programmation concurrente; Jeux d'accessibilité** [[:bookmark: Programme semaine 23]](colle23.pdf)
+-->

@@ -1,9 +1,11 @@
 # :computer: Travaux pratiques
 
+
 ## Sujets traités en classe
 - :simple-ocaml: **Révisions sur le langage OCaml : listes** [[:bookmark: sujet]](rev_listes.pdf)
 - :simple-c: **Révisions sur le langage C : calculatrice RPN** [[:bookmark: sujet]](calc.pdf) [[:white_check_mark: corrigé]](calc_corrige.zip)
 - :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf) [[:file_folder: ressources]](regexp_eleve.tar.gz)
+<!--
 - :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
     <figure>
     ![Algorithme A* sur une grille](astar.png)
@@ -23,7 +25,6 @@
 - :simple-c: **TP-cours : programmation multi-threads et synchronisation** [[:link: lien]](/algo/concur)
 - :simple-c: **Synchronisation : modèle producteur-consommateur** [[:bookmark: sujet]](buffer.pdf) 
 - :simple-ocaml: **Optimisation du sac à dos par séparation-évaluation (branch and bound)** [[:bookmark: sujet]](sacados.pdf) [[:white_check_mark: corrigé]](sacados_corrige.ml)
-<!--
 - :simple-ocaml: **Résolution du jeu de Taquin** [[:bookmark: sujet]](taquin.pdf) [[:star: compléments]](taquin_star.pdf) 
 - :simple-c: **Une intelligence artificielle pour jouer au puissance 4** [[:bookmark: sujet]](puissance4.pdf) [[:file_folder: ressources]](puissance4_eleve.c) [[:white_check_mark: corrigé]](puissance4.c)
 
