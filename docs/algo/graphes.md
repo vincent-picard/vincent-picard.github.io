@@ -52,7 +52,7 @@ On maintient également pour chaque sommet $x$ une valeur $g[x]$ qui est le coû
 
 L'idée consiste alors à chaque étape à choisir le sommet ouvert qui minimise la valeur de $g[x]$ comme prochain sommet à traiter.
 
-!!!tip "Proposition (preuve de correction)"
+!!!tip "Proposition (preuve de correction partielle)"
     L'algorithme de Dijkstra vérifie *l'invariant* suivant :
 
     $$
@@ -61,6 +61,8 @@ L'idée consiste alors à chaque étape à choisir le sommet ouvert qui minimise
 En particulier comme $g[x]$ est le coût du chemin de $x_d$ à $x$ dans l'arborescence du parcours, on en déduit que l'algorithme de Dijkstra construit une arborescence de chemins optimaux depuis $x_d$ vers tout sommet exploré lors du parcours.
 
 !!!note "Démonstration"
+    L'invariant est évidemment vrai au départ car il n'y a aucun sommet fermé.
+
     Supposons l'invariant vérifié à une étape et considérons $x$ le sommet choisi pour être exploré à l'étape suivante. Montrons que $g[x] = \delta(x_d, x)$. On procède par double inégalités.
 
     - Comme $g[x]$ est le coût d'un chemin de $x_d$ à $x$ (celui donné par l'arborescence du parcours), on en déduit que $\delta(x_d, x) \leq g[x]$ par définition de $\delta$
@@ -83,3 +85,37 @@ En particulier comme $g[x]$ est le coût du chemin de $x_d$ à $x$ dans l'arbore
 
 ## 4. Algorithme A*
 
+!!!tip "Proposition (preuve de correction partielle)"
+    L'algorithme A étoile vérifie *l'invariant* suivant : Si $x_t$ n'est pas fermé alors il existe un noeud témoin $n$ ouvert, situé sur un chemin optimal de $x_d$ à $x_t$, tel que $g[n] = \delta(x_d, n)$ 
+
+!!!note "Démonstration"
+    L'invariant est vrai au départ car on peut prendre $n = x_d$ comme témoin. On a alors bien $g[n] = 0$ d'après l'initialisation de l'algorithme et $\delta(x_d, x_d) = 0$.
+
+    Supposons l'invariant et montrons qu'il se conserve. Considérons $x$ le sommet choisi pour être exploré à l'étape suivante, si $x \not = n$ alors on peut conserver $n$ comme témoin et l'invariant reste vrai. Si $x = n$, on rappelle que $n$ est situé sur un chemin optimal $C$ de $x_d$ à $x_t$, on pose donc $n'$ le noeud successeur de $n$ sur le chemin $C$.
+
+    On a d'une part $g[n'] \geq \delta(x_d, n')$ car $g[n']$ est le poids du chemin actuellement construit de $x_d$ vers $n'$.
+
+    D'autre part on a
+
+    $$
+    \begin{align*}
+    \delta(x_d, n') &= \text{coût}(C_1) + p(n, n') \\
+    &= \delta(x_d, n) + p(n, n') \qquad \text{ car $C$ est optimal donc $C_1$ aussi} \\
+    &= g[n] + p(n, n') \qquad \text{ par hypothèse d'invariant} \\
+    &\geq g[n'] \qquad \text { d'après le traitement de l'arc $nn'$ lors de l'exploration de $n$ et que les valeurs de $g$ sont décroissantes} \\
+    \end{align*}
+    $$
+    
+    Conclusion, par double inégalité on a $\delta(x_d, n') = g[n']$.
+    Il reste à justifier que $n'$ est bien ouvert, en fait cela n'est pas toujours le cas. Il y a 4 cas :
+    
+    - Si $n'$ n'était ni ouvert ni fermé alors il devient ouvert et peut servir de témoin.
+    - Si $n'$ était ouvert alors il reste ouvert et peut servir de témoin.
+    - Si $n'$ était fermé et qu'on a amélioré sa valeur alors il a été ré-ouvert donc il peut servir de témoin (d'où la nécessité de réouvrir les sommets)
+    - Si $n'$ était fermé et qu'on n'a pas amélioré sa valeur c'est que sa valeur est déjà $g[n'] = \delta(x_d, n')$. On recommence alors le même raisonnement avec $n''$ le successeur de $n'$ sur le chemin. Ce processus se termine nécessairement car $x_t$ n'est pas fermé par hypothèse.
+
+Le corollaire est le suivant : lorsqu'on choisit en fin d'alogrithme $x_t$ pour le fermer, on a $f(x_t) = g[x_t]$ car $h(x_t) = 0$ et de plus
+$f(x_t) \leq f(n')$ car $x_t$ est choisi comme le noeud qui minimise $f$ sur les sommets ouverts. Donc
+$g[x_t] \leq f(n') = g[n'] + h(n')  = \delta(x_d, n') + h(n') \leq \delta(x_d, n') + \delta(n', x_t)$ car l'heuristique est admissible.
+mais comme $n'$ est sur le chemin optimal $C$ on a $\delta(x_d, n') + \delta(n', x_t) = \delta(x_d, x_t)$, donc $g[x_t] \leq \delta(x_d, x_t)$. 
+Ainsi l'algorithme a bien construit un chemin optimal de $x_d$ à $x_t$.
