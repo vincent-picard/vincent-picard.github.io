@@ -1,0 +1,88 @@
+\startMPpage
+
+vardef adder(suffix p) =
+    pair p.a, p.b, p.c, p.d;
+    p.b - p.a = p.c - p.d = 2.5cm * right;
+    p.b - p.c = p.a - p.d = 2.5cm * up;
+    p = (p.a + p.b + p.c + p.d) / 4;
+    
+    pair p.arg.a.start, p.arg.a.stp;
+    p.arg.a.stp = (3p.a + p.b) / 4;
+    p.arg.a.start - p.arg.a.stp = 1cm * up;
+    
+    pair p.arg.b.start, p.arg.b.stp;
+    p.arg.b.stp = (p.a + 3p.b) / 4;
+    p.arg.b.start - p.arg.b.stp = 1cm * up;
+
+    pair p.res.start, p.res.stp;
+    p.res.start = (p.c + p.d) / 2;
+    p.res.stp - p.res.start = 1cm * down;
+
+    pair p.cin, p.cout;
+    p.cin = (p.b + p.c) / 2;
+    p.cout = (p.a + p.d) / 2;
+
+enddef;
+
+vardef draw_adder(suffix p)(expr lab) =
+    fill p.a -- p.b -- p.c -- p.d -- cycle withcolor (0.15blue + 0.85white);
+    draw p.a -- p.b -- p.c -- p.d -- cycle;
+    drawarrow p.arg.a.start -- p.arg.a.stp;
+    drawarrow p.arg.b.start -- p.arg.b.stp;
+    drawarrow p.res.start -- p.res.stp;
+    draw p.cin withpen (pencircle scaled 3pt);
+    draw p.cout withpen (pencircle scaled 3pt);
+    fill fullsquare scaled 0.5cm shifted p withcolor (0.4blue + 0.6white);
+    draw fullsquare scaled 0.5cm shifted p;
+
+    label.top("${a}"&lab&"$", p.arg.a.start);
+    label.top("${b}"&lab&"$", p.arg.b.start);
+    label.bot("${s}"&lab&"$", p.res.stp);
+    label.lft("$c^{\text{in}}"&lab&"$", p.cin);
+    label.rt("$c^{\text{out}}"&lab&"$", p.cout);
+    label("$+$", p);
+enddef;
+
+pair a,b,c,d,e,f,g,h;
+a = origin;
+b - a = c - b = d - c = e - d = f - e = g - f = h - g = 4cm * right;
+adder(a);
+adder(b);
+adder(c);
+adder(d);
+adder(e);
+adder(f);
+adder(g);
+adder(h);
+draw_adder(a, "_7");
+draw_adder(b, "_6");
+draw_adder(c, "_5");
+draw_adder(d, "_4");
+draw_adder(e, "_3");
+draw_adder(f, "_2");
+draw_adder(g, "_1");
+draw_adder(h, "_0");
+
+pair cin, cout;
+cin = h.cin + 1cm * right;
+cout = a.cout + 1cm * left;
+
+drawarrow a.cout -- cout;
+drawarrow b.cout -- a.cin;
+drawarrow c.cout -- b.cin;
+drawarrow d.cout -- c.cin;
+drawarrow e.cout -- d.cin;
+drawarrow f.cout -- e.cin;
+drawarrow g.cout -- f.cin;
+drawarrow h.cout -- g.cin;
+drawarrow cin    -- h.cin;
+
+label.rt("$c_{\text{in}}$", cin);
+label.lft("$\text{\bf CY} = c_{\text{out}}$", cout);
+
+pair ac;
+ac = (d.cin + e.cout) / 2;
+drawarrow ac -- (ac shifted (4cm * down));
+label.bot("$\text{{\bf AC}({\it Auxiliary carry}})$", ac shifted (4cm * down));
+
+\stopMPpage
