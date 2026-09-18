@@ -1,0 +1,55 @@
+\startMPpage
+
+vardef adder(suffix p) =
+    pair p.a, p.b, p.c, p.d;
+    p.b - p.a = p.c - p.d = 2.5cm * right;
+    p.b - p.c = p.a - p.d = 2.5cm * up;
+    p = (p.a + p.b + p.c + p.d) / 4;
+    
+    pair p.arg.a.start, p.arg.a.stp;
+    p.arg.a.stp = (3p.a + p.b) / 4;
+    p.arg.a.start - p.arg.a.stp = 1cm * up;
+    
+    pair p.arg.b.start, p.arg.b.stp;
+    p.arg.b.stp = (p.a + 3p.b) / 4;
+    p.arg.b.start - p.arg.b.stp = 1cm * up;
+
+    pair p.res.start, p.res.stp;
+    p.res.start = (p.c + p.d) / 2;
+    p.res.stp - p.res.start = 1cm * down;
+
+    pair p.cin, p.cout;
+    p.cin = (p.b + p.c) / 2;
+    p.cout = (p.a + p.d) / 2;
+
+enddef;
+
+vardef draw_adder(suffix p)(expr lab) =
+    fill p.a -- p.b -- p.c -- p.d -- cycle withcolor (0.15blue + 0.85white);
+    draw p.a -- p.b -- p.c -- p.d -- cycle;
+    drawarrow p.arg.a.start -- p.arg.a.stp;
+    drawarrow p.arg.b.start -- p.arg.b.stp;
+    drawarrow p.res.start -- p.res.stp;
+    draw p.cin withpen (pencircle scaled 4pt);
+    draw p.cout withpen (pencircle scaled 4pt);
+    fill fullsquare scaled 0.5cm shifted p withcolor (0.4blue + 0.6white);
+    draw fullsquare scaled 0.5cm shifted p;
+
+    label.top("${a}"&lab&"$", p.arg.a.start);
+    label.top("${b}"&lab&"$", p.arg.b.start);
+    label.bot("${s}"&lab&"$", p.res.stp);
+    label.lft("$c^{\text{in}}"&lab&"$", p.cin);
+    label.rt("$c^{\text{out}}"&lab&"$", p.cout);
+    label("$+$", p);
+enddef;
+
+pair a;
+a = origin;
+adder(a);
+draw_adder(a, "");
+pair u,v;
+u - a.cin = 1cm * right;
+v - a.cout = 1cm * left;
+drawarrow u -- a.cin;
+drawarrow a.cout -- v;
+\stopMPpage
