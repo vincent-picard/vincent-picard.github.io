@@ -16,8 +16,8 @@
 3. [:fontawesome-solid-circle-nodes: Parcours de graphes et algorithme A:material-star:](/pdf/parcours_graphes.pdf)
     - [Parcours : tous les algorithmes](/pdf/parcours_algo.pdf)
     - [Parcours : illustrations](/pdf/parcours_exemples.pdf)
-<!--
 4. [:material-sigma: Automates finis](/langages/automates)
+<!--
 5. :fontawesome-solid-circle-nodes: Arbres couvrants de poids minimal
 6. :material-sigma: Théorème de Kleene
 7. [:material-robot-outline: Apprentissage supervisé](/pdf/ia.pdf)
