@@ -1,0 +1,40 @@
+#!/usr/local/bin/python3.9
+# Auteur : 
+# Vincent Picard <vincent.picard2@ac-reunion.fr>
+# CPGE Informatique - Lycée Leconte de Lisle
+
+u0 = 115
+## Partie 1 - Génération de séquences ADN aléatoires
+
+u = [0 for _ in range(100000)]
+u[0] = u0
+for k in range(1, 100000):
+    u[k] = (15091 * u[k-1]) % 64007
+
+
+def S(k : int, l : int) -> str:
+    res = ""
+    for i in range(l):
+        x = u[i + k]
+        if x % 4 == 0:
+            lettre = "A"
+        elif x % 4 == 1:
+            lettre = "T"
+        elif x % 4 == 2:
+            lettre = "G"
+        else:
+            lettre = "C"
+        res = res + lettre
+    return res
+
+# Matrice de couts de substitution
+
+matsub = {}
+matsub['A', 'A'] = 0
+matsub['A', 'G'] = 2
+# a completer...
+
+# Le cout d'une substitution est donnée par la matrice matsub
+# Le cout d'une suppression est 4
+# Le cout d'une insertion est 5
+
