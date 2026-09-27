@@ -4,11 +4,11 @@ Bienvenue, ce site contient des ressources pour les cours d'informatique CPGE au
 
 <div class="grid cards" markdown>
 
--   :camel:{ .lg .middle } __[Informatique MPI](/mpi/cours)__
+-   :camel:{ .lg .middle } __[Informatique MPI-MPI*](/mpi/cours)__
 
     ---
     
-    Ressources pour les élèves de MPI
+    Ressources pour les élèves de MPI-MPI*
 
 -   :snake:{ .lg .middle } __[Informatique tronc commun](/itc)__
 

@@ -7,7 +7,7 @@ nav:
     - aboutme/index.md
     - Enseignement : 'aboutme/enseignement.md'
     - Parcours : 'aboutme/parcours.md'
-  - Informatique MPI:
+  - Informatique MPI-MPI*:
     - Cours : 'mpi/cours.md'
     - Travaux pratiques : 'mpi/tp.md'
     - Travaux dirigés : 'mpi/td.md'
