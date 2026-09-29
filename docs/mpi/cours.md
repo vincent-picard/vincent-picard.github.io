@@ -47,8 +47,9 @@ Vous trouverez ici des documents liés concernant les notions de MP2I. Il est to
 
 Les documents suivants permettent, à celles et ceux qui le veulent, d'aller un peu plus loin sur les notions vues en cours. Leur lecture est vivement conseillée à celles et ceux qui préparent les concours les plus sélectifs.
 
-<!--
 - [:fontawesome-solid-circle-nodes: Arbres et tas binomiaux](/pdf/binheap.pdf)
+
+<!--
 - [:material-sigma: Langages réguliers et reconnaissance par monoïde](/pdf/monoides.pdf)
 - [:fontawesome-solid-circle-nodes: Programmation par continuation](/pdf/continuation.pdf)
 - [:fontawesome-solid-circle-nodes: Machines de Turing](/pdf/turing.pdf)
