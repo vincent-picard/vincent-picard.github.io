@@ -5,7 +5,7 @@
 - **Induction, langages réguliers, parcours de graphes, Algorithme A étoile** [[:bookmark: Programme semaine 4]](colle3.pdf)
 - **Langages réguliers, parcours de graphes (A étoile), Automates finis déterministes (le début)** [[:bookmark: Programme semaine 5]](colle4.pdf)
 - **Langages réguliers, parcours de graphes (A étoile), Automates finis déterministes, Automates non déterministes (le début)** [[:bookmark: Programme semaine 6]](colle5.pdf)
-- **Induction, langages réguliers, parcours de graphes, Automates finis déterminstes, non déterministes, à transitions instantanées** [[:bookmark: Programme semaine 6]](colle6.pdf)
+- **Induction, langages réguliers, parcours de graphes, Automates finis déterminstes, non déterministes, à transitions instantanées** [[:bookmark: Programme semaine 7]](colle6.pdf)
 <!--
 - Semaine 7 : pas de changements, voir programme précédent
 - **Langages réguliers et automates, parcours de graphes, arbres couvrants de poids minimal** [[:bookmark: Programme semaine 8]](colle8.pdf)
