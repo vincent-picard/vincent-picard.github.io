@@ -6,8 +6,9 @@
 - :simple-c: **Révisions sur le langage C : calculatrice RPN** [[:bookmark: sujet]](calc.pdf) [[:white_check_mark: corrigé]](calc_corrige.zip)
 - :simple-ocaml: **Expressions régulières** [[:bookmark: sujet]](regexp.pdf) [[:file_folder: ressources]](regexp_eleve.tar.gz)
 - :simple-ocaml: **Résolution du jeu de Taquin** [[:bookmark: sujet]](taquin.pdf) [[:file_folder: ressources]](taquin_eleves.ml) [[:star: compléments]](taquin_star.pdf) [[:white_check_mark: réponses]](solution42.txt)
-- :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)[[:file_folder: graphviewer]](graphviewer.tar.gz) <!-- [[:white_check_mark: corrigé]](automates_corrige.ml) -->
+- :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)[[:file_folder: graphviewer]](graphviewer.tar.gz) [[:white_check_mark: corrigé]](automates_corrige.ml) 
 - :simple-ocaml: **Arbres 2-3** [[:bookmark: sujet]](arbres23.pdf)
+- :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 <!--
 - :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
 - :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
@@ -18,7 +19,6 @@
 - :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 - :simple-ocaml: **Algorithme de Kruskal** [[:bookmark: sujet]](kruskal.pdf) 
 - :simple-ocaml: **Automates de Glushkov** [[:bookmark: sujet]](glushkov.pdf) 
-- :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
 - :simple-c: **Détection automatique de langue** [[:bookmark: sujet]](langue.pdf) [[:file_folder: ressources]](langue_eleve.zip) 
 - :simple-ocaml: **Algorithme ID3** [[:bookmark: sujet]](id3.pdf) [[:file_folder: ressources]](id3_eleve.ml) [[:white_check_mark: corrigé]](id3_corrige.ml)
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
