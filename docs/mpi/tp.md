@@ -9,6 +9,7 @@
 - :simple-ocaml: **Automates finis déterministes** [[:bookmark: sujet]](automates.pdf)[[:file_folder: graphviewer]](graphviewer.tar.gz) [[:white_check_mark: corrigé]](automates_corrige.ml) 
 - :simple-ocaml: **Arbres 2-3** [[:bookmark: sujet]](arbres23.pdf)
 - :simple-c: **Coloration de graphes d'intervalles** [[:bookmark: sujet]](intervalgraph.pdf) 
+- :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 <!--
 - :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
 - :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
@@ -16,7 +17,6 @@
     ![Algorithme A* sur une grille](astar.png)
     <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
     </figure>
-- :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 - :simple-ocaml: **Algorithme de Kruskal** [[:bookmark: sujet]](kruskal.pdf) 
 - :simple-ocaml: **Automates de Glushkov** [[:bookmark: sujet]](glushkov.pdf) 
 - :simple-c: **Détection automatique de langue** [[:bookmark: sujet]](langue.pdf) [[:file_folder: ressources]](langue_eleve.zip) 
