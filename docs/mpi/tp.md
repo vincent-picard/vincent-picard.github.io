@@ -32,8 +32,8 @@
 -->
 ## Sujets pouvant être traités en autonomie à la maison
 
-<!--
 - **Enveloppe convexe et algorithme de Graham** [[:bookmark: sujet]](graham.pdf) [[:white_check_mark: corrigé]](graham_corrige.ml)
+<!--
 - **Arbre des préfixes et des suffixes** [[:bookmark: sujet]](ptree.pdf) [[:white_check_mark: corrigé]](ptree_corrige.ml)
 - **Résolution du Sudoku par backtracking** [[:bookmark: sujet]](sudoku.pdf) [[:white_check_mark: corrigé]](sudoku_corrige.ml)
 - **Tri topologique et algorithme de Kosaraju** [[:bookmark: sujet]](tritopo.pdf) [[:white_check_mark: corrigé]](tritopo_corrige.ml)
