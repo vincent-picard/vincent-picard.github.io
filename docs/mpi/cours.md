@@ -18,7 +18,7 @@
     - [Parcours : illustrations](/pdf/parcours_exemples.pdf)
 4. [:material-sigma: Automates finis](/langages/automates)
 5. :fontawesome-solid-circle-nodes: Arbres couvrants de poids minimal
-6. :material-sigma: Théorème de Kleene
+6. [:material-sigma: Théorème de Kleene](/langages/kleene)
 7. [:material-robot-outline: Apprentissage supervisé](/pdf/ia.pdf)
     - [Algorithme ID3 : le choixpeau magique](/pdf/id3.pdf)
     - [Arbres k-dimensionnels : illustrations](/pdf/kdtree.pdf)
