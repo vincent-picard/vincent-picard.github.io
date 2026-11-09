@@ -127,7 +127,7 @@ L'algorithme de Thomson se propose de construire un automate $A$ qui reconnaît 
         - (iii) il possède un unique état final $q_f \neq q_0$
         - (iv) $q_f$ ne possède que des transitions entrantes
 
-Il est toujours possible de *normaliser* un automate donné en ajoutant une paire d'états initiaux et finaux et des $\varepsilon$-ransitions allant de $q_0$ vers les états initiaux de l'automate et des états finaux vers $q_f$.
+Il est toujours possible de *normaliser* un automate donné en ajoutant une paire d'états initiaux et finaux et des $\varepsilon$-transitions allant de $q_0$ vers les états initiaux de l'automate et des états finaux vers $q_f$.
 
 #### Automates de Thomson
 
@@ -150,7 +150,7 @@ Exemple : $e = a(a|ab)\star$.
 
 #### Suppression des transitions spontanées
 
-On remarque que les automates de Thomson possèdent un grand nombre d'$\epsilon$-transitions. Voici un petit algorithme simple permettant de se débarrasser des transitions instantanées sans avoir besoin de déterminiser l'automate.
+On remarque que les automates de Thomson possèdent un grand nombre d'$\epsilon$-transitions. On rappelle ici l'algorithme permettant de se débarrasser des transitions instantanées sans avoir besoin de déterminiser l'automate :
 
 1. Marquer comme état initial tous les états de $\eta(q)$ avec $q \in I$.
 2. Pour toute transition $(q, x, q')$ avec $x \in Sigma$, on ajoute des transitions $(q, x, q'')$ pour tout $q'' \in \eta(q)$.
