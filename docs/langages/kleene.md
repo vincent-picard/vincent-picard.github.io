@@ -139,8 +139,12 @@ Il est toujours possible de *normaliser* un automate donné en ajoutant une pair
     - $e = \varepsilon$
     - $e = x (x \in \Sigma)$
 
-- **Cas construits**
-    - $e = e_1.e_2$ : on fusionne l'état final de $e_1$ avec l'état initial de $e_2$
+- **Cas construits** : par hypothèses d'induction, on note $A_1$ (resp. $A_2$) un automate normalisé qui reconnaît $\mu(e_1)$ (resp. $\mu(e_2)$) :
+    - $e = e_1.e_2$ : on fusionne l'état final de $A_1$ avec l'état initial de $A_2$ en un seul état $\tilde{q}$, on obtient l'automate :
+    <figure>
+    ![Auto Thomson concatenation](fig/kleene/kleene-5.svg)
+    </figure>
+
     - $e = (e_1 | e_2)$ : on utilise une bifurcation pour séparer les deux cas possibles
     - $e = e_1\star$ : on procède ainsi :
 
