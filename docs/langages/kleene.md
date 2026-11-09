@@ -136,17 +136,35 @@ Il est toujours possible de *normaliser* un automate donné en ajoutant une pair
 
 - **Cas de base**
     - $e = \varnothing$
-    - $e = \varepsilon$
-    - $e = x (x \in \Sigma)$
+    <figure>
+    ![Auto Thomson vide](fig/automates/kleene/kleene-2.svg)
+    </figure>
 
-- **Cas construits** : par hypothèses d'induction, on note $A_1$ (resp. $A_2$) un automate normalisé qui reconnaît $\mu(e_1)$ (resp. $\mu(e_2)$) :
+    - $e = \varepsilon$
+    <figure>
+    ![Auto Thomson mot vide](fig/automates/kleene/kleene-3.svg)
+    </figure>
+
+    - $e = a (a \in \Sigma)$
+    <figure>
+    ![Auto Thomson lettre](fig/automates/kleene/kleene-4.svg)
+    </figure>
+
+- **Cas inductifs** : par hypothèses d'induction, on note $A_1$ (resp. $A_2$) un automate normalisé qui reconnaît $\mu(e_1)$ (resp. $\mu(e_2)$) :
     - $e = e_1.e_2$ : on fusionne l'état final de $A_1$ avec l'état initial de $A_2$ en un seul état $\tilde{q}$, on obtient l'automate :
     <figure>
     ![Auto Thomson concatenation](fig/automates/kleene/kleene-5.svg)
     </figure>
 
-    - $e = (e_1 | e_2)$ : on utilise une bifurcation pour séparer les deux cas possibles
-    - $e = e_1\star$ : on procède ainsi :
+    - $e = (e_1 | e_2)$ : **on ajoute deux nouveaux états** (en bleu) et une bifurcation :
+    <figure>
+    ![Auto Thomson union](fig/automates/kleene/kleene-6.svg)
+    </figure>
+
+    - $e = e_1\star$ : **on ajoute deux noveaux états** (en bleu) :
+    <figure>
+    ![Auto Thomson etoile](fig/automates/kleene/kleene-7.svg)
+    </figure>
 
 Attention à respecter scrupuleusement la construction précédente... n'improvisez pas sous peine d'écrire des automates faux.
 
