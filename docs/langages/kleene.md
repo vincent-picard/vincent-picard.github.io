@@ -122,10 +122,10 @@ L'algorithme de Thomson se propose de construire un automate $A$ qui reconnaît 
 !!!abstract "Définition : automate normalisé"
     Un automate fini non déterministe ($\varepsilon$-afnd) est dit **normalisé** si :
 
-        - (i) il possède un unique état initial $q_0$
-        - (ii) $q_0$ ne possède que des transitions sortantes
-        - (iii) il possède un unique état final $q_f \neq q_0$
-        - (iv) $q_f$ ne possède que des transitions entrantes
+    - (i) il possède un unique état initial $q_0$
+    - (ii) $q_0$ ne possède que des transitions sortantes
+    - (iii) il possède un unique état final $q_f \neq q_0$
+    - (iv) $q_f$ ne possède que des transitions entrantes
 
 Il est toujours possible de *normaliser* un automate donné en ajoutant une paire d'états initiaux et finaux et des $\varepsilon$-transitions allant de $q_0$ vers les états initiaux de l'automate et des états finaux vers $q_f$.
 
