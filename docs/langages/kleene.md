@@ -91,16 +91,18 @@ Voici un exemple pour le langage $L_3$.
 On voudrait utiliser la construction de Glushkov pour produire un automate à partir de n'importe quelle expression régulière. Hélas, on a vu que les expressions régulières ne dénotent pas un langage régulier dans tous les cas.
 
 !!!abstract "Définition : expression régulière linéaire"
-    Une expression régulière **linéaire** est une expression régulière qui ne contient pas deux fois une même lettre.
+    Une expression régulière **linéaire** est une expression régulière qui ne contient pas deux occurrences d'une même lettre.
 
 !!!tip "Proposition"
     Toute expression régulière *linéaire* dénote un langage *local*.
 
 C'est un peu fastidieux mais on peut le démontrer par induction sur les expressions régulières.
 
-!!!example Algorithme de Berry-Séthi
+On en déduit l'algorithme dit de **Berry-Séthi** qui permet de construire un automate à partir de n'importe quelle expression régulière :
 
-    1. Linéariser $e$ en numérotant chacune de ses lettres (avec des numéros distincts)
+!!!example "Algorithme de Berry-Séthi"
+
+    1. Linéariser $e$ en numérotant chacune de ses lettres (avec des numéros distincts), notons $e'$ l'expression régulière obtenue.
     2. Déterminer les paramètres $P(L')$, $D(L')$ et $T(L')$ à partir de l'expression régulière $e'$
     3. Déterminer à partir de $e'$ si $\varepsilon \in L'$
     4. Construire l'automate de Glushkov $A'$ pour $L'$
@@ -108,7 +110,7 @@ C'est un peu fastidieux mais on peut le démontrer par induction sur les express
 
 Remarques :
 
-- L'automate obtenu contient $1 + |e|_{\Sigma}$ états.
+- L'automate obtenu contient $1 + |\Sigma'|$ états avec $\Sigma'$ l'alphabet des lettres numérotées. Il est donc de taille linéaire par rapport à la longueur de l'expression régulière initiale.
 - L'automate n'est pas nécessairement déterministe (donc peu pratique d'un point de vue calcul) mais on peut toujours le déterminiser pour obtenir un automate efficace qui reconnaît les mots de $L$ en temps linéaire. C'est coûteux mais on ne le fait qu'une seule fois ($\simeq$ procédé de compilation).
 
 ### B. Automates de Thomson
@@ -119,6 +121,7 @@ L'algorithme de Thomson se propose de construire un automate $A$ qui reconnaît 
 
 !!!abstract "Définition : automate normalisé"
     Un automate fini non déterministe ($\varepsilon$-afnd) est dit **normalisé** si :
+
         - (i) il possède un unique état initial $q_0$
         - (ii) $q_0$ ne possède que des transitions sortantes
         - (iii) il possède un unique état final $q_f \neq q_0$
