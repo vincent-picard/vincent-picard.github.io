@@ -12,6 +12,8 @@
 - :simple-c: **Segmentation d'images avec la structure Union-Find** [[:bookmark: sujet]](imgseg.pdf) [[:file_folder: ressources]](imgseg_eleve.zip) [[:white_check_mark: corrigé]](imgseg_corrige.zip)
 - :simple-ocaml: **Algorithme de Kruskal** [[:bookmark: sujet]](kruskal.pdf) 
 - :simple-ocaml: **Automates de Glushkov** [[:bookmark: sujet]](glushkov.pdf) 
+- :simple-ocaml: **Algorithme ID3 : classfication d'animaux** [[:bookmark: sujet]](id3_zoo.pdf) [[:file_folder: ressources]](id3_zoo.zip) 
+<!-- [[:white_check_mark: corrigé]](id3_corrige.ml) -->
 <!--
 - :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
 - :simple-ocaml: **Algorithme A* sur une grille** [[:bookmark: sujet]](astar.pdf) [[:file_folder: ressources]](astar_eleve.ml) [[:white_check_mark: corrigé]](astar_corrige.ml)
@@ -20,7 +22,6 @@
     <figcaption>Algorithme de path-finding avec A* (recherche informée) </figcaption>
     </figure>
 - :simple-c: **Détection automatique de langue** [[:bookmark: sujet]](langue.pdf) [[:file_folder: ressources]](langue_eleve.zip) 
-- :simple-ocaml: **Algorithme ID3** [[:bookmark: sujet]](id3.pdf) [[:file_folder: ressources]](id3_eleve.ml) [[:white_check_mark: corrigé]](id3_corrige.ml)
 - :simple-ocaml: **Le problème de l'âne rouge** [[:bookmark: sujet]](anerouge.pdf) [[:file_folder: ressources]](anerouge_eleve.ml) [[:white_check_mark: corrigé]](anerouge_corrige.ml)
 - :simple-ocaml: **Les perles de Dijkstra** [[:bookmark: sujet]](perles.pdf) 
 - :simple-ocaml: **Analyse syntaxique : expressions arithmétiques** [[:bookmark: sujet]](gram.pdf) [[:file_folder: ressources]](gram_eleve.zip) 
