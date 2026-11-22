@@ -9,6 +9,7 @@
 - **Langages réguliers. Automates (jusqu'au lemme de l'étoile). Parcours de graphes.** [[:bookmark: Programme semaine 8]](colle7.pdf)
 - **Langages réguliers et automates, arbres couvrants de poids minimal** [[:bookmark: Programme semaine 9]](colle8.pdf)
 - **Langages réguliers et automates (tout), arbres couvrants de poids minimal** [[:bookmark: Programme semaine 11]](colle9.pdf)
+- **Langages réguliers et automates (tout), algorithme ID3** [[:bookmark: Programme semaine 12]](colle10.pdf)
 <!--
 - Semaine 7 : pas de changements, voir programme précédent
 - **Langages réguliers et automates, arbres couvrants de poids minimal, théorème de Kleene (début)** [[:bookmark: Programme semaine 9]](colle9.pdf)
