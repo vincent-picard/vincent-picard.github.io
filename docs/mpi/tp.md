@@ -13,6 +13,7 @@
 - :simple-ocaml: **Algorithme de Kruskal** [[:bookmark: sujet]](kruskal.pdf) 
 - :simple-ocaml: **Automates de Glushkov** [[:bookmark: sujet]](glushkov.pdf) 
 - :simple-ocaml: **Algorithme ID3 : classfication d'animaux** [[:bookmark: sujet]](id3_zoo.pdf) [[:file_folder: ressources]](id3_zoo.zip) 
+- :simple-c: **Arbres k-dimensionnels : prédiction de la qualité d'un vin** [[:bookmark: sujet]](kdtree.pdf) [[:file_folder: ressources]](kdtree_eleve.zip) 
 <!-- [[:white_check_mark: corrigé]](id3_corrige.ml) -->
 <!--
 - :simple-ocaml: **Automates finis non déterministes** [[:bookmark: sujet]](automates_nd.pdf)
